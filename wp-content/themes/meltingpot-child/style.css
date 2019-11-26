@@ -1,0 +1,307 @@
+/*
+ Theme Name:   Melting Pot Child
+ Theme URI:    https://meltdesign.co.uk/
+ Description:  MemberLab Theme
+ Author:       Andrew Jaff
+ Author URI:   http://thesmartcoders.com
+ Template:     melting_pot
+ Version:      1.0.0
+ License:      GNU General Public License v2 or later
+ License URI:  http://www.gnu.org/licenses/gpl-2.0.html 
+ Text Domain:  melt_default
+*/
+
+/* Base Color = Dark Blue = #262121 */
+/* Main Color = Lighter Blue = #069EDA*/
+/* HighLight Color = Green = #3AA6DE */
+/* BG Highlight Color = Light Grey = #f4f4f4 */
+
+body{font-family: 'Noto Sans', sans-serif;
+font-weight: 400;
+}
+
+h1,h2,h3,h4,h5,h6{font-family: 'Teko', sans-serif;}
+
+h1 {font-size:2.6em;line-height:1.4em;}
+h2 {}
+h3 {font-size: 2em;line-height:1.4em;}
+h4 {font-size: 1.8em;line-height:1.4em;}
+h5 {}
+h6 {}
+
+
+.MemberheaderWrap .headerlogo {max-width:10%;margin-top:-10px;}
+.topmemberNav {padding-right:0;}
+
+
+
+
+
+.BTN,input[type="submit"],button[type="submit"],.wrap-benefit a.BTN,.memberReason a.BTN, .memberSupport a.BTN,.CourseFeed .blogpreview a.BTN,.learndash-wrapper .ld-button,.learndash-wrapper .ld-expand-button,.memberPromo a.BTN{background: #3AA6DE;padding:12px 25px;border-radius:25px;line-height:1em;min-width:0;}
+
+
+
+.questionbox {background:#CC3333;}
+
+.BTN:hover,input[type="submit"]:hover,button[type="submit"]:hover,.wrap-benefit a.BTN:hover,.memberReason a.BTN:hover, .memberSupport a.BTN:hover,a.clCatLink:hover,.CourseFeed .blogpreview a.BTN:hover,.learndash-wrapper .ld-button:hover,.learndash-wrapper .ld-expand-button:hover,.memberPromo a.BTN:hover{background: #CC3333; color: #fff; }
+
+a.backBTN,.sectionHeader a.BTN,.mepr-login-actions a,.mepr-account-change-password a{background: #262121;}
+a.backBTN:hover,.sectionHeader a.BTN:hover,.mepr-login-actions a:hover,.mepr-account-change-password a:hover{background: #3AA6DE;}
+
+
+#search .btn, #search .close{background:#3AA6DE !important;}
+#search .btn:hover, #search .close:hover{background:#CC3333 !important;}
+
+#search .close {border-radius:50%;}
+
+.mepr-nav-item a{background: #eee; color: #262121;  }
+.mepr-nav-item a:hover{background: #262121; color:#fff;  }
+
+ul.clFilters li,a.clCatLink{background: #3AA6DE;}
+
+ul.clFilters li:hover{background: #262121;}
+
+.blogpreview h5 a{color: #262121;}
+.blogpreview h5 a:hover{color:  #101047;}
+
+section.MembersContent.v2 {
+	background: #0a0a2d;}
+
+.topmemberNav li a:hover {color:#3AA6DE;}
+.header .topmemberNav li.menu_search a:hover {background:#3AA6DE;}
+.CourseIntroBoxV2 .courseProgress,section.courseHeaderv2 .courseProgress{background: #3AA6DE;}
+
+section.courseHeaderv2 h1,.courseResources h4,.clResourcesBox h4,.learndash-wrapper .ld-content-actions>a, section.MembersContent.v2 .myContent .lessonTools li a,.memberPromo h3{color: #fff; }
+.myContent .lessonTools li a{color: #262121; }
+
+.CourseOptions h4{color: #fff; }
+.CourseOptions a{color: #fff; }
+.CourseOptions a.post_tool_active{color: #262121; }
+
+section.courseHeaderv2 .breadcrumbs a,section#CourseHeader .breadcrumbs a{color:rgba(255, 255, 255, 0.5)  }
+
+#CourseHeader .progressWrapper .courseProgress{background: #262121;  }
+
+.MemberheaderWrap,span.postLabel,header .CourseMainNav ul li a,section#CourseHeader,.radial-progress .inset,#lessons_list .list-count, .expand_collapse, h4#learndash_course_content_title,#lessons_list > div h4 > a,.CourseOptions,nav#savedContentTabList li a,.CourseSoon,.courseProgress,.learndash-wrapper .ld-table-list .ld-table-list-header,.learndash-wrapper .ld-expand-button.ld-button-alternate .ld-icon,section.backgroundlogin{background: #CC3333;}
+
+section#CourseHeader {background:#3AA6DE;}
+
+.learndash-wrapper .ld-expand-button.ld-button-alternate,.learndash-wrapper .ld-item-list .ld-item-list-item a.ld-item-name:hover{color: #CC3333;}
+
+
+
+.clResourcesBox.courseResources,.header .topmemberNav li.menu_search a,ul.clFilters li.filtr-active,#learndash_course_content .learndash_topic_dots ul > li a:hover,#learndash_next_prev_link a.next-link,#search .btn,#search .close,nav#savedContentTabList li a:hover, nav#savedContentTabList li a.active,header .CourseMainNav ul li a:hover,header .MainNav ul li.menu-item-has-children > ul > li,input[type="button"].wpProQuiz_button,footer.footer.members,.CourseIntroBoxV2,.clResourcesBox,.memberPromo{background: #262121;}
+
+
+.memberReason h3 strong, .memberSupport h3 strong, .memberPromo h3 strong{color: #CC3333;}
+
+
+a,.topmemberNav li a,.learndash_topic_dots a, .learndash_topic_dots a > span,.clResourcesBox li a,.SavedContent li h4 a:hover, .filtered_content li h4 a:hover,.filtr-item h4 a:hover,.wrap-benefit a h4,header .MemberheaderWrap .MainNav ul li a:hover{
+    color: #262121;
+}
+
+header .MemberheaderWrap .MainNav ul li a {font-size:1.2em;font-family: 'Teko', sans-serif;}
+.topmemberNav li a {color:#fff;}
+.topmemberNav li a:hover {color:#262121;}
+.header .topmemberNav li.menu_search a {background:#fff;color: #CC3333;font-size:0.8em;}
+.header .topmemberNav li.menu_search a:hover {background:#262121;color:#CC3333}
+
+
+a.topic-completed::before {background-color: #3AA6DE;}
+
+.myContent .lessonTools li a.post_tool_active{color: #3AA6DE;}
+.topmemberNav li a{font-weight: 700;}
+
+
+section.savedContent.Dashboard,section.memberDashWelc{ background: #eee;}
+
+/*Ask Section */
+.applyBTN {margin-top:10px;}
+.questionbox p, .questionbox .gform_confirmation_message a, .questionbox .gform_wrapper .top_label .gfield_label {color:#fff;}
+span.question {font-weight:300;}
+div.topic p, div.answer p {
+    width: 100%;
+    float: none;
+    display: block;
+    margin: 0 0 5px 0;
+    line-height: 1.6em;
+}
+
+/* Dashboard Links*/
+.dashboardbenefits {background: url('/wp-content/uploads/2019/10/Group-25.png')no-repeat, url('/wp-content/uploads/2019/10/Group-24.png')no-repeat, #262121;background-size:auto 130%, auto 130%;background-position:bottom -70px left,top -70px right;}
+
+.wrap-benefit {}
+.wrap-benefit a h4 {color:#fff;-webkit-transition: all 0.5s ease-in-out;-moz-transition: all 0.5s ease-in-out;-ms-transition: all 0.5s ease-in-out;-o-transition: all 0.5s ease-in-out;transition: all 0.5s ease-in-out;}
+.wrap-benefit a:hover h4 {color:#CC3333;}
+.wrap-benefit a:hover .BTN {background:#CC3333;}
+.wrap-benefit a .BTN {margin-right:0;}
+.wrap-benefit p {color:#fff;}
+.benefitimage {border-radius:50%;float:none;display:inline-block;width:150px;height:150px;background:#fff;padding:20px;border:5px solid #3AA6DE;-webkit-transition: all 0.5s ease-in-out;-moz-transition: all 0.5s ease-in-out;-ms-transition: all 0.5s ease-in-out;-o-transition: all 0.5s ease-in-out;transition: all 0.5s ease-in-out;}
+.benefitimage img {height:auto;margin:0;width:auto;float:left;display:inline-block;}
+
+.wrap-benefit a:hover .benefitimage {border:5px solid #CC3333;}
+
+
+/*Dashboard Welcome*/
+section.memberDashWelc, section.clbHeader {background:url('/wp-content/uploads/2019/10/ice-blue-1024x799.png')no-repeat;background-size:cover;background-position:center;;padding:1rem 0}
+section.memberDashWelc h1, section.memberDashWelc p, section.clbHeader h1, section.clbHeader p {color:#fff;}
+section.memberDashWelc p, section.clbHeader p {margin:0;}
+section.memberDashWelc h1, section.clbHeader h1 {line-height:1.2em;}
+
+
+
+/* Footer */
+img.footerlogo{width:70px;margin-bottom:0;}
+
+footer.footer.members a:hover {color:#CC3333;}
+.members-footer-menu ul li a {font-size:1rem;padding:0;margin:0 0 0 15px;}
+.members-footer-menu ul {width:auto;float:right;margin:0 0 5px 0;}
+.members-footer-menu ul li {}
+.copyright  {width:100%;float:right;text-align:right;}
+.copyright p {margin-bottom:0;}
+
+
+.cd-top {border-radius:50%;}
+.no-touch .cd-top:hover {background-color:#CC3333;}
+
+/*Course Downloads */
+.clResourcesBox {}
+.clResourcesBox ul li {margin:0;}
+.clResourcesBox ul li a:hover {color:#3AA6DE;}
+.clResourcesBox .Documents, .clResourcesBox.courseResources .Documents {width:50%;float:left;}
+.courseSideList .clResourcesBox .Documents  {width:100%;}
+.courseSideList .clResourcesBox .Documents.Resources {margin-top:30px;}
+
+.myContent .lessonTools li a {}
+.myContent .lessonTools li a:hover {color:#CC3333;}
+
+/* Support */
+.membSupportForm .gform_wrapper {width:100%;float:left;margin:0;}
+
+.gform_wrapper ul.gform_fields li.gfield {margin:0 0 10px 0;padding-right:0;}
+.gform_wrapper ul.gform_fields li.gfield input, .gform_wrapper ul.gform_fields li.gfield textarea {margin:0;border-radius:25px;padding:8px 20px !important;}
+.gform_wrapper .gform_footer {margin:10px 0 0 0 !important;padding:0 !important;}
+
+/* Resources */
+
+#clearFilter::before  {width:18px;height:18px;top:12px;left:12px;}
+#clearFilter {width:42px;height:42px;}
+#clearFilter:hover::before {background-color:#CC3333;}
+
+
+/* Search */
+
+span.searchResult {color:#262121;}
+.searchResults input[type="submit"] {background:#CC3333;}
+.searchResults input[type="search"] {border-radius:25px;}
+
+ul.clFilters li {border-radius:25px;}
+
+.filtr-item a.BTN {position:static;bottom:auto;left:auto;}
+.CourseOptions a:hover, a.post_tool_active {color:#262121;}
+
+.searchtext h4 {font-size:1em;}
+.searchItem {margin:0 0 20px 0;}
+
+
+/* Cookie Notice */
+#cookie-notice .cn-button {margin-bottom:0;}
+#cookie-notice .cn-button:hover {background:#262121;}
+
+
+/*Forum*/
+ul.wpipb_topic_list li .BTN {margin:0;}
+ul.wpipb_topic_list li p.author a {color:#CC3333;}
+ul.wpipb_topic_list li p.author a:hover {color:#3AA6DE;}
+
+
+.wpipb_visit_forum a, a.forumQuestion {margin:1rem 1.5% 0 1.5%;background:#CC3333;}
+.wpipb_visit_forum a:hover, a.forumQuestion:hover {background:#3AA6DE;}
+
+
+/* About Jeremy */
+
+.elementor-element-223a5d1c {height:0;width:100%;float:left;margin:0;padding:0;}
+
+
+
+
+
+a.askBTN, a.joinBTN {margin:0 0 0 10px;font-family: 'Noto Sans', sans-serif;font-size: 0.8rem !important;font-weight: 700;line-height: 1em;letter-spacing: 0px;}
+a.joinBTN, .refreshsearch {background:#cc3333;}
+a.joinBTN:hover, .refreshsearch:hover {background:#3AA6DE;}
+
+
+/*Support Page */
+
+.sidebarcontent {width:100%;float:left;}
+.sidebarcontent img {width:100%;}
+.faqs {margin:0;}
+
+
+/*Login Page */
+.memberLoginWrapper {padding:0;margin-bottom:0;background:transparent;}
+.memberLoginWrapper .mepr-form,.memberLoginWrapper #mepr_forgot_password_form {padding: 3rem;display: inline-block;width: 100%;background:#fff;margin:2rem 0;}
+.mp-spacer {display:none;}
+.mp_wrapper h3 {display:none;}
+
+section.BlankTemp {padding:0;}
+
+
+.welcomeHeader p {margin:0;}
+
+
+
+/* Sales Page */
+
+.salesform .gform_wrapper .top_label .gfield_label {display:none;}
+.salesform .gform_wrapper ul.gform_fields li.gfield textarea {height:140px;min-height:140px;}
+.gform_wrapper .gform_footer input.button, .gform_wrapper .gform_footer input[type="submit"] {font-size:0.8rem !important;line-height:1em;padding:12px 35px !important;}
+.gform_wrapper ul.gform_fields li.gfield input, .gform_wrapper ul.gform_fields li.gfield textarea {font-size:0.8em !important;line-height:1.4em !important;}
+
+/*Coded Sales Page Overrides*/
+
+/*
+
+section.CTABannerBG{ background: #3AA6DE; color: #fff; }
+
+.meetOwners{background: #3AA6DE; }
+section.saleGuarantee,.memberPriceBox h4{ background: #CC3333; }
+section#Pricingboxes{background: #262121;}
+
+section.CTABannerBG h2,.meetOwners h2,section.saleGuarantee h2,#Pricingboxes .salesSectHeader h2{color: #fff;}
+
+*/
+
+
+/*Woocommerce Overrides*/
+
+/*
+
+.woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button,.woocommerce button.button.alt,.woocommerce a.button.alt{background: #3AA6DE;}
+
+.woocommerce a.button:hover,.woocommerce button.button.alt:hover,.woocommerce a.button.alt:hover{background: #2a9679;}
+
+*/
+
+
+/*MEDIA QUERIES*/
+
+/*
+
+@media only screen and (max-width: 1300px) {	
+}
+
+
+@media only screen and (max-width: 768px) {	
+}
+
+@media only screen and (max-width: 500px) {	
+}
+
+
+*/
+
+
+
+

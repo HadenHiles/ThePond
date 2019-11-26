@@ -1,0 +1,480 @@
+.et_pb_module #wcf-embed-checkout-form.wcf-field-style-one .mt20{
+    margin-top: 0px;
+}
+
+.et_pb_module #wcf-embed-checkout-form.wcf-field-style-one .woocommerce .woocommerce-billing-fields .form-row label,
+.et_pb_module #wcf-embed-checkout-form.wcf-field-style-one .woocommerce .woocommerce-shipping-fields .form-row label{
+    position: absolute;
+    z-index: 999;
+    margin-top: 19px;
+    margin-right: 15px;
+    -webkit-transition: all .235s ease;
+    transition: all .235s ease;
+}
+
+.et_pb_module #wcf-embed-checkout-form.wcf-field-style-one .woocommerce .woocommerce-billing-fields .form-row.wcf-anim-label label,
+.et_pb_module #wcf-embed-checkout-form.wcf-field-style-one .woocommerce .woocommerce-shipping-fields .form-row.wcf-anim-label label{
+    margin-top: 8px;
+    font-size: 12px;
+}
+
+.et_pb_module #wcf-embed-checkout-form.wcf-field-style-one .woocommerce .woocommerce-billing-fields .form-row label, 
+.et_pb_module #wcf-embed-checkout-form.wcf-field-style-one .woocommerce .woocommerce-shipping-fields .form-row label, 
+.et_pb_module #wcf-embed-checkout-form.wcf-field-style-one .woocommerce .woocommerce-additional-fields .form-row label, 
+.et_pb_module #wcf-embed-checkout-form.wcf-field-style-one .woocommerce .woocommerce-account-fields .form-row label {
+    position: absolute;
+    z-index: 999;
+    margin-top: 19px;
+    margin-right: 15px;
+    -webkit-transition: all .235s ease;
+    transition: all .235s ease;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.et_pb_module #wcf-embed-checkout-form.wcf-field-style-one .woocommerce .woocommerce-billing-fields .form-row.wcf-anim-label label,
+.et_pb_module #wcf-embed-checkout-form.wcf-field-style-one .woocommerce .woocommerce-shipping-fields .form-row.wcf-anim-label label,
+.et_pb_module #wcf-embed-checkout-form.wcf-field-style-one .woocommerce .woocommerce-additional-fields .form-row.wcf-anim-label label,
+.et_pb_module #wcf-embed-checkout-form.wcf-field-style-one .woocommerce .woocommerce-account-fields .form-row.wcf-anim-label label{
+    margin-top: 8px;
+    font-size: 12px;
+}
+
+.et_pb_module #wcf-embed-checkout-form.wcf-field-style-one .woocommerce .form-row input[type="text"],
+.et_pb_module #wcf-embed-checkout-form.wcf-field-style-one .woocommerce .form-row input[type="email"],
+.et_pb_module #wcf-embed-checkout-form.wcf-field-style-one .woocommerce .form-row input[type="password"],
+.et_pb_module #wcf-embed-checkout-form.wcf-field-style-one .woocommerce .form-row input[type="tel"],
+.et_pb_module #wcf-embed-checkout-form.wcf-field-style-one .select2-container--default .select2-selection--single{
+    padding: 25px 12px 5px;
+}
+
+
+
+/**
+* *******************************
+*    Product Variation CSS Start
+* *******************************
+*/
+
+.et_pb_module #wcf-embed-checkout-form hr.wcf-hr {
+    background-color: #ccc;
+}
+.et_pb_module #wcf-embed-checkout-form .wcf-qty-options .wcf-hr {
+    margin: 10px 0;
+}
+
+.et_pb_module #wcf-embed-checkout-form #your_products_heading {
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 20px;
+    text-transform: capitalize;
+    margin: 0 0 25px 0;
+    padding: 3px;
+}
+
+.et_pb_module #wcf-embed-checkout-form.wcf-embed-checkout-form-two-column .wcf-product-option-wrap {
+    margin: 15px 0;
+    width: 55%;
+    float: right;
+    padding-left: 40px;
+}
+
+.et_pb_module #wcf-embed-checkout-form.wcf-embed-checkout-form-one-column .wcf-qty-options, 
+.et_pb_module #wcf-embed-checkout-form .wcf-qty-options {
+    border: none;
+    border-bottom: 0;
+    background-color: #f3f3f3;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border-collapse: collapse;
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: 0.95em;
+    margin: 0 0 0px 0 !important;
+    padding: 15px 20px;
+    text-align: right;
+    width: 100%;
+}
+
+.et_pb_module #wcf-embed-checkout-form .wcf-qty-options .wcf-qty-row .wcf-item, 
+.et_pb_module #wcf-embed-checkout-form .wcf-qty-options .wcf-qty-row .wcf-qty, 
+.et_pb_module #wcf-embed-checkout-form .wcf-qty-options .wcf-qty-row .wcf-price, 
+.et_pb_module #wcf-embed-checkout-form.wcf-embed-checkout-form-one-column .wcf-qty-options .wcf-qty-row .wcf-item, 
+.et_pb_module #wcf-embed-checkout-form.wcf-embed-checkout-form-one-column .wcf-qty-options .wcf-qty-row .wcf-qty, 
+.et_pb_module #wcf-embed-checkout-form.wcf-embed-checkout-form-one-column .wcf-qty-options .wcf-qty-row .wcf-price {
+    padding: 0.3em 0;
+    line-height: 1.4em;
+    border: none;
+}
+
+.et_pb_module #wcf-embed-checkout-form .wcf-qty-options .wcf-item {
+    width: 66%;
+    -webkit-box-flex: 3;
+    -webkit-flex: 3;
+    -moz-box-flex: 3;
+    -ms-flex: 3;
+    flex: 3;
+}
+.et_pb_module #wcf-embed-checkout-form .wcf-qty-options .wcf-qty {
+    width: 17%;
+    text-align: center;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -moz-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+.et_pb_module #wcf-embed-checkout-form .wcf-qty-options .wcf-price {
+    width: 16%;
+    text-align: left;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -moz-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+.et_pb_module #wcf-embed-checkout-form .wcf-qty-options .wcf-item, 
+.et_pb_module #wcf-embed-checkout-form .wcf-qty-options .wcf-qty, 
+.et_pb_module #wcf-embed-checkout-form .wcf-qty-options .wcf-price {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.et_pb_module #wcf-embed-checkout-form .wcf-qty-options .wcf-qty-selection {
+    background: white;
+    border: 1px solid #ccc;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    width: 60px;
+    height: auto;
+    padding: 2px 10px 2px 10px;
+    margin: 0 auto;
+}
+
+.et_pb_module #wcf-embed-checkout-form .wcf-item-selector {
+    display: inline-block;
+    margin-left: 8px;
+}
+
+.et_pb_module #wcf-embed-checkout-form .wcf-bump-order-wrap.wcf-before-checkout .wcf-bump-order-field-wrap input[type=checkbox], 
+.et_pb_module #wcf-embed-checkout-form .wcf-bump-order-wrap.wcf-after-customer .wcf-bump-order-field-wrap input[type=checkbox], 
+.et_pb_module #wcf-embed-checkout-form .wcf-bump-order-wrap.wcf-after-order .wcf-bump-order-field-wrap input[type=checkbox], 
+.et_pb_module #wcf-embed-checkout-form .wcf-product-option-wrap .wcf-qty-row div [type="checkbox"], 
+.et_pb_module #wcf-embed-checkout-form .wcf-product-option-wrap .wcf-qty-row input[type=radio] {
+    border: 1px solid #b4b9be;
+    background: #fff;
+    color: #555;
+    clear: none;
+    cursor: pointer;
+    display: inline-block;
+    line-height: 0;
+    height: 16px;
+    margin: -4px 0 0 4px;
+    outline: 0;
+    padding: 0!important;
+    text-align: center;
+    vertical-align: middle;
+    width: 16px;
+    min-width: 16px;
+    -webkit-appearance: none;
+    -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+    -webkit-transition: .05s border-color ease-in-out;
+    transition: .05s border-color ease-in-out;
+}
+
+.et_pb_module #wcf-embed-checkout-form .wcf-product-option-wrap .wcf-qty-row input[type=radio] {
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    margin-left: 4px;
+    line-height: 10px;
+}
+/**
+* *****************************
+*    Product Variation CSS End
+* *****************************
+*/
+
+
+/**
+* *****************************
+*    Bump Order CSS Start
+* *****************************
+*/
+
+/* Style One Start */
+.et_pb_module #wcf-embed-checkout-form .wcf-bump-order-wrap {
+    display: block;
+    float: none;
+    margin: 1em auto 1em;
+    overflow: hidden;
+}
+.et_pb_module #wcf-embed-checkout-form .wcf-bump-order-style-1 {
+    background: #f1f1f1;
+    border-style: none;
+    border-width: 2px;
+    border-color: red;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    display: inline-block;
+}
+
+.et_pb_module #wcf-embed-checkout-form .wcf-bump-order-style-1 .wcf-bump-order-field-wrap {
+    border-style: none;
+    border-width: 2px;
+    border-color: red;
+    padding: 20px 25px;
+    margin: 0;
+    font-size: 1.1em;
+    display: block;
+    background: #dddddd;
+}
+
+.et_pb_module #wcf-embed-checkout-form .wcf-bump-order-wrap .wcf-bump-order-field-wrap label {
+    margin: 0 !important;
+    vertical-align: middle;
+    font-size: 1em;
+    line-height: 1.3em;
+    letter-spacing: 0;
+    font-family: inherit;
+    font-weight: inherit;
+    text-transform: initial;
+}
+
+.et_pb_module #wcf-embed-checkout-form .wcf-bump-order-style-1 .wcf-content-container {
+    padding: 25px 0;
+}
+
+.et_pb_module #wcf-embed-checkout-form .wcf-bump-order-style-1 .wcf-bump-order-offer {
+    padding: 0 25px 10px;
+    font-size: 1.2em;
+}
+
+.et_pb_module #wcf-embed-checkout-form .wcf-bump-order-style-1 .wcf-bump-order-desc {
+    padding: 0 25px;
+}
+
+/* Style One End */
+
+/* Style Two Start */
+
+.et_pb_module #wcf-embed-checkout-form .wcf-bump-order-style-2 {
+    border: 2px red dashed;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.et_pb_module #wcf-embed-checkout-form .wcf-bump-order-style-2 .wcf-bump-order-offer {
+    padding: 20px 25px;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.et_pb_module #wcf-embed-checkout-form .wcf-bump-order-style-2 .wcf-bump-order-desc {
+    padding: 0 25px 20px;
+}
+
+.et_pb_module #wcf-embed-checkout-form .wcf-bump-order-style-2 .wcf-bump-order-field-wrap {
+    border-top: 2px red dashed;
+    padding: 15px 25px;
+    margin: 0;
+    font-size: 1.1em;
+    display: block;
+}
+/* Style Two End */
+
+/**
+* *****************************
+*    Bump Order CSS End
+* *****************************
+*/
+
+
+/**
+* ****************************
+*    Two Step CSS Start
+* ****************************
+*/
+
+.et_pb_module #wcf-embed-checkout-form.wcf-embed-checkout-form-two-step {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.et_pb_module #wcf-embed-checkout-form.wcf-embed-checkout-form-two-step .wcf-embed-checkout-form-note {
+    border: 1px dashed;
+    border-color: #f16334;
+    margin-bottom: 20px;
+    padding: 10px 15px;
+    padding-top: 10px;
+    padding-left: 15px;
+    padding-bottom: 10px;
+    padding-right: 15px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    color: #fff;
+    background-color: #f16334;
+    position: relative;
+}
+
+.et_pb_module #wcf-embed-checkout-form.wcf-embed-checkout-form-two-step .wcf-embed-checkout-form-note:before {
+    content: '';
+    border: 10px solid;
+    border-top-color: #f16334;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    bottom: -20px;
+    right: auto;
+    top: auto;
+    border-right: 10px transparent solid;
+    border-left: 10px transparent solid;
+    border-bottom: 10px transparent solid;
+}
+
+.et_pb_module #wcf-embed-checkout-form.wcf-embed-checkout-form-two-step .wcf-embed-checkout-form-nav{
+    border: inherit;
+    border-right-style: solid;
+    border-left-style: solid;
+    border-width: 2px;
+    border-top-style: solid;
+    border-color: #dddddd;
+    -webkit-border-top-right-radius: 3px;
+    border-top-right-radius: 3px;
+    -webkit-border-top-left-radius: 3px;
+    border-top-left-radius: 3px;
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 0px;
+    /*min-width: 800px;*/
+}
+
+.et_pb_module #wcf-embed-checkout-form.wcf-embed-checkout-form-two-step ul.wcf-embed-checkout-form-steps {
+    background-color: #F4F4F4;
+    -js-display: flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    list-style: none;
+    margin: 0px;
+    margin-right: 0;
+    margin-bottom: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.et_pb_module #wcf-embed-checkout-form.wcf-embed-checkout-form-two-step .woocommerce {
+    border: inherit;
+    border-top: none;
+    border-right-style: solid;
+    border-left-style: solid;
+    border-bottom-style: solid;
+    border-width: 2px;
+    border-color: #dddddd;
+    -webkit-border-bottom-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    -webkit-border-bottom-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    padding: 10px 20px 20px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.et_pb_module #wcf-embed-checkout-form.wcf-embed-checkout-form-two-step .wcf-embed-checkout-form-steps div.steps a {
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -js-display: flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 15px;
+    width: 100%;
+    /* overflow: hidden; */
+}
+
+.et_pb_module #wcf-embed-checkout-form.wcf-embed-checkout-form-two-step .wcf-embed-checkout-form-steps div.steps .step-number {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 1.5;
+    /* float: left; */
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.et_pb_module #wcf-embed-checkout-form.wcf-embed-checkout-form-two-step .wcf-embed-checkout-form-steps .steps.wcf-current {
+    background-color: #fff;
+}
+
+.et_pb_module #wcf-embed-checkout-form.wcf-embed-checkout-form-two-step .wcf-embed-checkout-form-steps div.step-one {
+    /* border-top: 3px solid #F4F4F4; */
+    opacity: 1;
+}
+
+.et_pb_module #wcf-embed-checkout-form.wcf-embed-checkout-form-two-step .wcf-embed-checkout-form-steps div.steps {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -moz-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    width: 100%;
+    text-align: right;
+    vertical-align: middle;
+    position: relative;
+}
+
+.et_pb_module #wcf-embed-checkout-form.wcf-embed-checkout-form-two-step .wcf-embed-checkout-form-steps a:visited, 
+.et_pb_module #wcf-embed-checkout-form.wcf-embed-checkout-form-two-step .wcf-embed-checkout-form-steps a:focus, 
+.et_pb_module #wcf-embed-checkout-form.wcf-embed-checkout-form-two-step .wcf-embed-checkout-form-steps a:active,
+.et_pb_module #wcf-embed-checkout-form.wcf-embed-checkout-form-two-step .wcf-embed-checkout-form-steps a{
+    color: #444;
+    border: none;
+    outline: none;
+}
+
+.et_pb_module #wcf-embed-checkout-form.wcf-embed-checkout-form-two-step .wcf-embed-checkout-form-steps .wcf-current .step-name {
+    color: #F16334;
+}
+
+.et_pb_module #wcf-embed-checkout-form.wcf-embed-checkout-form-two-step .woocommerce .wcf-embed-checkout-form-nav-btns .wcf-next-button {
+    border: 1px solid;
+    border-color: #f16334;
+    background-color: #f16334;
+    font-family: inherit;
+    font-weight: inherit;
+    letter-spacing: 0.5px;
+    width: 100%;
+    padding: 15px 25px;
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    color: #fff;
+    text-transform: none;
+    text-align: center;
+}
+
+.et_pb_module #wcf-embed-checkout-form.wcf-embed-checkout-form-two-step .wcf-embed-checkout-form-nav-btns .wcf-next-button .dashicons-arrow-right-alt {
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+.et_pb_module #wcf-embed-checkout-form.wcf-embed-checkout-form-two-step .wcf-embed-checkout-form-nav-btns .wcf-next-button .wcf-button-text {
+    vertical-align: middle;
+}
+
+/**
+* ****************************
+*    Two Step CSS End
+* ****************************
+*/

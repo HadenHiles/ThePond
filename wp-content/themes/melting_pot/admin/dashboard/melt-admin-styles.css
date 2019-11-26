@@ -1,0 +1,144 @@
+/* CSS Document */
+
+
+/* LOGIN PAGE STYLES */
+
+body.login {
+  background: #384044;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.login h1 a {
+    background-image: url('../../admin/dashboard/images/logo-white.png');
+    width: 50%;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.login #backtoblog a, .login #nav a{
+	color: #fff;
+}
+
+.login #backtoblog a:hover, .login #nav a:hover, .login h1 a:hover {
+    color: #36a9e1;
+}
+
+.wp-core-ui .button-primary {
+    background: #36a9e1;
+    border-color: #209BD8 #1C8BC1 #1C8BC1;
+    box-shadow: 0 1px 0 #1C8BC1;
+    color: #fff;
+    text-decoration: none;
+    text-shadow: 0 -1px 1px #1C8BC1,1px 0 1px #1C8BC1,0 1px 1px #1C8BC1,-1px 0 1px #1C8BC1;
+}
+
+.wp-core-ui .button-primary.focus, .wp-core-ui .button-primary.hover, .wp-core-ui .button-primary:focus, .wp-core-ui .button-primary:hover {
+    background: #1C8BC1;
+    border-color: #166F9A;
+    color: #fff;
+}
+
+.login #login_error, .login .message{
+	border-left: 4px solid #36a9e1;
+}
+
+
+
+/* DASHBOARD STYLES */
+
+body{
+	background-color: #F0F1F2;
+}
+
+#adminmenu, #adminmenu .wp-submenu, #adminmenuback, #adminmenuwrap {
+    width: 160px;
+    background-color: #384044;
+}
+
+#wpadminbar{
+	background: #384044;
+}
+
+#adminmenu .wp-has-current-submenu .wp-submenu, #adminmenu .wp-has-current-submenu .wp-submenu.sub-open, #adminmenu .wp-has-current-submenu.opensub .wp-submenu, #adminmenu a.wp-has-current-submenu:focus + .wp-submenu, .no-js li.wp-has-current-submenu:hover .wp-submenu{
+	background-color: #292F32;
+}
+
+#adminmenu li.menu-top:hover, #adminmenu li.opensub > a.menu-top, #adminmenu li > a.menu-top:focus {
+    background-color: #292F32;
+    color: #36a9e1;
+}
+
+#adminmenu li a:focus div.wp-menu-image::before, #adminmenu li.opensub div.wp-menu-image::before, #adminmenu li:hover div.wp-menu-image::before, a, .view-switch a.current::before, .wrap .add-new-h2, .wrap .add-new-h2:active, .wrap .page-title-action, .wrap .page-title-action:active {
+    color: #36a9e1;
+}
+
+#adminmenu .wp-has-current-submenu .wp-submenu .wp-submenu-head, #adminmenu .wp-menu-arrow, #adminmenu .wp-menu-arrow div, #adminmenu li.current a.menu-top, #adminmenu li.wp-has-current-submenu a.wp-has-current-submenu, .folded #adminmenu li.current.menu-top, .folded #adminmenu li.wp-has-current-submenu {
+    background: #36a9e1;
+}
+
+#wpadminbar #wp-admin-bar-wp-logo > .ab-item .ab-icon{
+	margin: 0!important;
+}
+
+#wpadminbar #wp-admin-bar-wp-logo > .ab-item .ab-icon::before {
+    content: '';
+    width: 100%;
+    height: 20px;
+	background-image: url(images/melt-icon.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: inline-block;
+    margin: 0;
+}
+
+#wpadminbar #wp-admin-bar-wp-logo > .ab-item {
+    padding: 0px 13px 0 13px;
+    border-right: #36a9e1 solid 1px;
+    border-bottom: solid 1px #36a9e1;
+	text-align: center;
+}
+
+
+
+
+
+/* melt_contact_dashboard_widget STYLES */
+
+
+#melt_contact_dashboard_widget{
+	background: #384044;
+	border: 1px solid #292F32;
+	color: #fff;
+}
+#melt_contact_dashboard_widget h2{
+	color: #fff;
+	border-bottom: 1px solid #292F32;
+	font-weight: 700;
+}
+#melt_contact_dashboard_widget .toggle-indicator{
+	color: #fff;
+}
+
+#melt_contact_dashboard_widget h3{
+    color: #fff;
+    font-weight: 300;
+    font-size: 1.5em;
+    margin-bottom: 0.9em;
+}
+
+#melt_contact_dashboard_widget img {
+    float: right;
+    max-width: 100px;
+    margin: 0 0 3em 3em;
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,36 @@
+<ips:template parameters="$error" />
+
+{{if $error !== NULL}}
+<div class='ipsMessage ipsMessage_error'>
+	{lang="$error"}
+</div>
+{{endif}}
+
+<form method="post">
+	<input type="hidden" name="{$id}_submitted" value="1">
+	<ul class='ipsForm ipsForm_vertical'>
+		<li class="ipsFieldRow ipsClearfix">
+			<label class="ipsFieldRow_label" for="auth">
+				{lang="auth"}
+				<span class="ipsFieldRow_required">{lang="required"}</span>
+			</label>
+			<div class="ipsFieldRow_content">
+				<input type="text" placeholder="{lang="auth"}" name="auth" id="auth" {{if isset( \IPS\Request::i()->auth )}}value="{request="auth"}"{{endif}}>
+			</div>
+		</li>
+		<li class="ipsFieldRow ipsClearfix">
+			<label class="ipsFieldRow_label" for="password">
+				{lang="password"}
+				<span class="ipsFieldRow_required">{lang="required"}</span>
+			</label>
+			<div class="ipsFieldRow_content">
+				<input type="password" placeholder="{lang="password"}" name="password" id="password" {{if isset( \IPS\Request::i()->password )}}value="{request="password"}"{{endif}}>
+			</div>
+		</li>
+		<li class=''>
+			<button type='submit' class='ipsButton ipsButton_primary ipsButton_medium'>{lang="login"}</button>
+			&nbsp;&nbsp;&nbsp;
+			<a href="{url="upgrader_login_help" ips="true"}" target="_blank" rel="noopener" class="ipsType_blendLinks">{lang="help"}</a>
+		</li>
+	</ul>
+</form>

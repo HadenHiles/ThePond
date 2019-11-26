@@ -1,0 +1,86 @@
+{
+  ":classic_angry:": {
+    "image": "angry.png",
+    "image_2x": "angry@2x.png"
+  },
+  ":classic_biggrin:": {
+    "image": "biggrin.png",
+    "image_2x": "biggrin@2x.png"
+  },
+  ":classic_blink:": {
+    "image": "blink.png",
+    "image_2x": "blink@2x.png"
+  },
+  ":classic_blush:": {
+    "image": "blush.png",
+    "image_2x": "blush@2x.png"
+  },
+  ":classic_cool:": {
+    "image": "cool.png",
+    "image_2x": "cool@2x.png"
+  },
+  ":classic_dry:": {
+    "image": "dry.png",
+    "image_2x": "dry@2x.png"
+  },
+  ":classic_happy:": {
+    "image": "happy.png",
+    "image_2x": "happy@2x.png"
+  },
+  ":classic_huh:": {
+    "image": "huh.png",
+    "image_2x": "huh@2x.png"
+  },
+  ":classic_laugh:": {
+    "image": "laugh.png",
+    "image_2x": "laugh@2x.png"
+  },
+  ":classic_mellow:": {
+    "image": "mellow.png",
+    "image_2x": "mellow@2x.png"
+  },
+  ":classic_ohmy:": {
+    "image": "ohmy.png",
+    "image_2x": "ohmy@2x.png"
+  },
+  ":classic_ninja:": {
+    "image": "ph34r.png",
+    "image_2x": "ph34r@2x.png"
+  },
+  ":classic_rolleyes:": {
+    "image": "rolleyes.gif",
+    "image_2x": "rolleyes@2x.png"
+  },
+  ":classic_sad:": {
+    "image": "sad.png",
+    "image_2x": "sad@2x.png"
+  },
+  ":classic_sleep:": {
+    "image": "sleep.png",
+    "image_2x": "sleep@2x.png"
+  },
+  ":classic_smile:": {
+    "image": "smile.png",
+    "image_2x": "smile@2x.png"
+  },
+  ":classic_tongue:": {
+    "image": "tongue.png",
+    "image_2x": "tongue@2x.png"
+  },
+  ":classic_unsure:": {
+    "image": "unsure.png",
+    "image_2x": "unsure@2x.png"
+  },
+  ":classic_wacko:": {
+    "image": "wacko.png",
+    "image_2x": "wacko@2x.png"
+  },
+  ":classic_wink:": {
+    "image": "wink.png",
+    "image_2x": "wink@2x.png"
+  },
+  ":classic_love:": {
+    "image": "wub.png",
+    "image_2x": "wub@2x.png"
+  }
+}

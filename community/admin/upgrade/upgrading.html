@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Update in progress...</title>
+		<style type='text/css'>
+			body {
+				background: #f9f9f9;
+				margin: 0;
+				padding: 30px 20px;
+				font-family: "Helvetica Neue", helvetica, arial, sans-serif;
+			}
+
+			#error {
+				max-width: 800px;
+				background: #fff;
+				margin: 0 auto;
+			}
+
+			h1 {
+				background: #151515;
+				color: #fff;
+				font-size: 22px;
+				font-weight: 500;
+				padding: 10px;
+			}
+
+				h1 span {
+					color: #7a7a7a;
+					font-size: 14px;
+					font-weight: normal;
+				}
+
+			#content {
+				padding: 20px;
+				line-height: 1.6;
+			}
+
+			#reload_button {
+				background: #151515;
+				color: #fff;
+				border: 0;
+				line-height: 34px;
+				padding: 0 15px;
+				font-family: "Helvetica Neue", helvetica, arial, sans-serif;
+				font-size: 14px;
+				border-radius: 3px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id='error'>
+			<h1>Update in progress</h1>
+			<div id='content'>
+				We're sorry, this web site is unavailable while an update is in progress.
+				<br><br>
+				You can try again by clicking the button below, or try again later.
+				<br><br>
+				<button onclick="window.location.reload();" id='reload_button'>Try again</button>
+				<br><br>
+				<strong>Site Owner</strong>
+				<br>
+				This message means an upgrade is in progress. If this is not correct, try visiting the upgrade process again (usually /admin/upgrade) and choose either continue or restart. If the upgrade shows nothing to upgrade, visit the AdminCP and run the Support tool. You can also contact Invision Community support for assistance.
+			</div>
+		</div>
+	</body>
+</html>

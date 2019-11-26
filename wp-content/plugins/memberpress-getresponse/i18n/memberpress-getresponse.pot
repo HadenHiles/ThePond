@@ -1,0 +1,125 @@
+# Copyright (C) 2017 MemberPress GetResponse
+# This file is distributed under the same license as the MemberPress GetResponse package.
+msgid ""
+msgstr ""
+"Project-Id-Version: MemberPress GetResponse 1.0.4\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/memberpress-"
+"getresponse\n"
+"POT-Creation-Date: 2017-05-04 21:38:03+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: MpGetResponse.php:44
+msgid "Enable GetResponse"
+msgstr ""
+
+#: MpGetResponse.php:51
+msgid "GetResponse API Key:"
+msgstr ""
+
+#: MpGetResponse.php:58
+msgid ""
+"You can find your API key under your Account settings at GetResponse.com."
+msgstr ""
+
+#: MpGetResponse.php:66
+msgid "GetResponse List:"
+msgstr ""
+
+#: MpGetResponse.php:74
+msgid "Enable Opt-In Checkbox"
+msgstr ""
+
+#: MpGetResponse.php:78
+msgid ""
+"If checked, an opt-in checkbox will appear on all of your membership "
+"registration pages."
+msgstr ""
+
+#: MpGetResponse.php:83
+msgid "Signup Checkbox Label:"
+msgstr ""
+
+#: MpGetResponse.php:86
+msgid ""
+"This is the text that will display on the signup page next to your mailing "
+"list opt-in checkbox."
+msgstr ""
+
+#: MpGetResponse.php:138
+msgid "We Respect Your Privacy"
+msgstr ""
+
+#: MpGetResponse.php:221
+msgid "GetResponse list for this Membership"
+msgstr ""
+
+#: MpGetResponse.php:224
+msgid "Enable Membership GetResponse List"
+msgstr ""
+
+#: MpGetResponse.php:225
+msgid ""
+"If this is set the member will be added to this list when their payment is "
+"completed for this membership. If the member cancels or you refund their "
+"subscription, they will be removed from the list automatically. You must "
+"have your GetResponse API key set in the Options before this will work."
+msgstr ""
+
+#: MpGetResponse.php:229
+msgid "GetResponse List: "
+msgstr ""
+
+#: MpGetResponse.php:258 MpGetResponse.php:278
+msgid "Hey yo, why you creepin'?"
+msgstr ""
+
+#: MpGetResponse.php:262 MpGetResponse.php:283
+msgid "No apikey code was sent"
+msgstr ""
+
+#: MpGetResponse.php:376
+msgid "Sign Up for the %s Newsletter"
+msgstr ""
+
+#. #-#-#-#-#  memberpress-getresponse.pot (MemberPress GetResponse 1.0.4)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#: main.php:35
+msgid "MemberPress GetResponse"
+msgstr ""
+
+#: main.php:36
+msgid "GetResponse Autoresponder Integration for MemberPress."
+msgstr ""
+
+#: script/i18n/pomo/sample/app.php:56
+msgid "Welcome %s!"
+msgstr ""
+
+#: script/i18n/pomo/sample/app.php:60
+msgid "A string with low priority!"
+msgstr ""
+
+#: script/i18n/pomo/sample/app.php:62
+msgid "Bye\n"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://www.memberpress.com/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "GetResponse Autoresponder integration for MemberPress."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Caseproof, LLC"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://caseproof.com/"
+msgstr ""

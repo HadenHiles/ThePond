@@ -1,0 +1,38 @@
+{
+    "core": {
+        "ContentRouter": {
+            "calendar": "IPS\\calendar\\extensions\\core\\ContentRouter\\calendar"
+        },
+        "StreamItems": {
+            "StreamItems": "IPS\\calendar\\extensions\\core\\StreamItems\\StreamItems"
+        },
+        "LiveSearch": {
+            "Calendars": "IPS\\calendar\\extensions\\core\\LiveSearch\\Calendars"
+        },
+        "FileStorage": {
+            "Events": "IPS\\calendar\\extensions\\core\\FileStorage\\Events"
+        },
+        "Announcements": {
+            "Calendars": "IPS\\calendar\\extensions\\core\\Announcements\\Calendars"
+        },
+        "EditorLocations": {
+            "Venue": "IPS\\calendar\\extensions\\core\\EditorLocations\\Venue",
+            "Calendar": "IPS\\calendar\\extensions\\core\\EditorLocations\\Calendar"
+        },
+        "Permissions": {
+            "Permissions": "IPS\\calendar\\extensions\\core\\Permissions\\Permissions"
+        },
+        "CreateMenu": {
+            "Event": "IPS\\calendar\\extensions\\core\\CreateMenu\\Event"
+        },
+        "FrontNavigation": {
+            "Calendar": "IPS\\calendar\\extensions\\core\\FrontNavigation\\Calendar"
+        },
+        "MemberSync": {
+            "Calendar": "IPS\\calendar\\extensions\\core\\MemberSync\\Calendar"
+        },
+        "Notifications": {
+            "Events": "IPS\\calendar\\extensions\\core\\Notifications\\Events"
+        }
+    }
+}

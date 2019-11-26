@@ -1,0 +1,66 @@
+/*
+ Theme Name:   Melting Pot Child
+ Theme URI:    https://meltdesign.co.uk/
+ Description:  MemberLab Theme
+ Author:       Andrew Jaff
+ Author URI:   http://thesmartcoders.com
+ Template:     melt_default
+ Version:      1.0.0
+ License:      GNU General Public License v2 or later
+ License URI:  http://www.gnu.org/licenses/gpl-2.0.html 
+ Text Domain:  melt_default
+*/
+
+/* Base Color = Dark Blue = #384044 */
+/* Main Color = Lighter Blue = #069EDA*/
+/* HighLight Color = Green = #2FAF8D */
+/* BG Highlight Color = Light Grey = #f4f4f4 */
+
+
+/*FONT CHANGE*/
+
+body{font-family: 'Noto Sans', sans-serif;
+font-weight: 400;
+}
+
+h1,h2,h3,h4,h5,h6{font-family: 'Teko', sans-serif;}
+
+
+/*Base Color Background Elements*/
+
+
+.MemberheaderWrap,span.postLabel,.BTN,input[type="submit"],button[type="submit"],footer.footer.members,ul.clFilters li,header .CourseMainNav ul li a,section#CourseHeader,.radial-progress .inset,#lessons_list .list-count, .expand_collapse, h4#learndash_course_content_title,#lessons_list > div h4 > a,.CourseOptions,a.backBTN,nav#savedContentTabList li a{background: #f00;}
+
+
+/*Base Color Elements*/
+
+/*Main Color Background Elements*/
+
+/*
+.clResourcesBox.courseResources,.courseProgress,.header .topmemberNav li.menu_search a,.wrap-benefit a.BTN,ul.clFilters li.filtr-active,#learndash_course_content .learndash_topic_dots ul > li a:hover,#learndash_next_prev_link a.next-link,#search .btn,#search .close,a.clCatLink,nav#savedContentTabList li a:hover, nav#savedContentTabList li a.active,.BTN:hover,header .CourseMainNav ul li a:hover,header .MainNav ul li.menu-item-has-children > ul > li,input[type="button"].wpProQuiz_button{background: #00f;}
+
+*/
+
+/*Main Color Elements*/
+/*
+a,.myContent .lessonTools li a,.topmemberNav li a,.breadcrumbs a,.learndash_topic_dots a, .learndash_topic_dots a > span,.clResourcesBox li a,.SavedContent li h4 a:hover, .filtered_content li h4 a:hover,.filtr-item h4 a:hover{
+    color: #00f;
+}
+
+.CourseFeed .blogpreview a.BTN{background: #0f0;}
+a.topic-completed::before {
+    background-color: #0f0;
+}
+
+h1{color: #f00; }
+.myContent .lessonTools li a.post_tool_active{color: #0f0;}
+
+*/
+
+
+/*BG Highlight Elements
+section.savedContent.Dashboard{ background: #ccc;}
+
+*/
+
+

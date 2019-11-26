@@ -1,0 +1,117 @@
+/*--------------------------------------------------------------
+# Loader
+---------------------------------------------------------------*/
+
+.wcf-loader-bg.show {
+    display: block;
+}
+.wcf-loader-bg {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    background: rgba(0,0,0,0.5);
+    z-index: 99999;
+    -webkit-animation: popup 0.7s;
+    animation: popup 0.7s;
+}
+.wcf-loader-wrap {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    min-height: 140px;
+    top: 50%;
+    left: 50%;
+    position: relative;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    overflow: hidden;
+    background: #fff;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    padding: 50px;
+}
+.wcf-order-msg {
+    text-align: center;
+}
+.wcf-order-msg .wcf-payment-success {
+    color: #28a745;
+}
+.wcf-order-msg .wcf-payment-failed {
+    color: #dc3545;
+}
+.wcf-order-msg p {
+	margin: 0 0 0.7em; 
+}
+.wcf-order-msg .wcf-note {
+	font-size: 13px;
+}
+.wcf-order-msg .wcf-note-no {
+	display: none;
+}
+p.wcf-process-msg {
+    font-size: 1.2em;
+}
+
+.wcf-loader,
+.wcf-loader:after {
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    width: 8em;
+    height: 8em;
+}
+.wcf-loader {
+    margin: 25px auto;
+    font-size: 10px;
+    position: relative;
+    text-indent: -9999em;
+    border-top: 5px solid #d4d4d4;
+    border-right: 5px solid #d4d4d4;
+    border-bottom: 5px solid #d4d4d4;
+    border-left: 5px solid #f16334;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-animation: load8 550ms infinite linear;
+    animation: load8 550ms infinite linear;
+}
+@-webkit-keyframes load8 {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+@keyframes load8 {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes popup {
+  0%{
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+  }
+  
+}
+
+@keyframes popup {
+  0%{
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+  }
+  
+}

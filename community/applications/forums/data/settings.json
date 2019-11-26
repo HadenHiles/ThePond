@@ -1,0 +1,92 @@
+[
+    {
+        "key": "archive_on",
+        "default": "0",
+        "report": "full"
+    },
+    {
+        "key": "archive_remote_sql_database",
+        "default": "",
+        "report": "none"
+    },
+    {
+        "key": "archive_remote_sql_host",
+        "default": "",
+        "report": "none"
+    },
+    {
+        "key": "archive_remote_sql_pass",
+        "default": "",
+        "report": "none"
+    },
+    {
+        "key": "archive_remote_sql_user",
+        "default": "",
+        "report": "none"
+    },
+    {
+        "key": "archive_sql_port",
+        "default": "",
+        "report": "none"
+    },
+    {
+        "key": "archive_sql_socket",
+        "default": "",
+        "report": "none"
+    },
+    {
+        "key": "archive_sql_tbl_prefix",
+        "default": "",
+        "report": "none"
+    },
+    {
+        "key": "forums_answers_downvote",
+        "default": "1",
+        "report": "full"
+    },
+    {
+        "key": "forums_default_view",
+        "default": "table",
+        "report": "full"
+    },
+    {
+        "key": "forums_default_view_choose",
+        "default": "0",
+        "report": "full"
+    },
+    {
+        "key": "forums_fluid_pinned",
+        "default": "1",
+        "report": "full"
+    },
+    {
+        "key": "forums_new_questions",
+        "default": "0",
+        "report": "full"
+    },
+    {
+        "key": "forums_popular_now",
+        "default": "{\"posts\":\"10\",\"minutes\":\"60\"}",
+        "report": "bool"
+    },
+    {
+        "key": "forums_posts_per_page",
+        "default": "25",
+        "report": "full"
+    },
+    {
+        "key": "forums_questions_downvote",
+        "default": "0",
+        "report": "full"
+    },
+    {
+        "key": "forums_rss",
+        "default": "1",
+        "report": "full"
+    },
+    {
+        "key": "forums_topics_per_page",
+        "default": "25",
+        "report": "full"
+    }
+]

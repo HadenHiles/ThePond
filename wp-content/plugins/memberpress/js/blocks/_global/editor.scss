@@ -1,0 +1,10 @@
+.mp-icon-placeholder {
+	position: absolute;
+	top: 10px;
+	left: 5px;
+
+	&.alt {
+		top: 20px;
+		left: 15px;
+	}
+}
