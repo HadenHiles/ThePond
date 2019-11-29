@@ -45,11 +45,13 @@ class Cartflows_Downsell_Markup extends Cartflows_Pro_Base_Offer_Markup {
 
 	/**
 	 * Process down sell acceptance.
+	 *
+	 * @param boolean $verify_nonce nonce check.
 	 */
-	function process_downsell_accepted() {
+	function process_downsell_accepted( $verify_nonce = true ) {
 
 		$nonce = filter_input( INPUT_POST, '_nonce', FILTER_SANITIZE_STRING );
-		if ( ! wp_verify_nonce( $nonce, 'wcf_downsell_accepted' ) ) {
+		if ( $verify_nonce && ! wp_verify_nonce( $nonce, 'wcf_downsell_accepted' ) ) {
 			return;
 		}
 

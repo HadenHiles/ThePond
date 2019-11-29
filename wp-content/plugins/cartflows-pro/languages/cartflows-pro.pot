@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the CartFlows Pro package.
 msgid ""
 msgstr ""
-"Project-Id-Version: CartFlows Pro 1.3.2\n"
+"Project-Id-Version: CartFlows Pro 1.3.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/cartflows-pro\n"
-"POT-Creation-Date: 2019-11-19 09:45:18+00:00\n"
+"POT-Creation-Date: 2019-11-28 07:09:56+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -479,15 +479,15 @@ msgstr ""
 msgid "<div class=\"dashicons dashicons-arrow-right\"></div> Have a coupon?"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-markup.php:1429
+#: modules/checkout/classes/class-cartflows-pro-checkout-markup.php:1430
 msgid "Billing Custom Fields"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-markup.php:1466
+#: modules/checkout/classes/class-cartflows-pro-checkout-markup.php:1467
 msgid "Shipping Custom Fields"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-checkout-markup.php:1504
+#: modules/checkout/classes/class-cartflows-pro-checkout-markup.php:1505
 msgid "Processing..."
 msgstr ""
 
@@ -933,25 +933,25 @@ msgstr ""
 msgid "Coupon will be applied on checkout"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-variation-product.php:419
-#: modules/checkout/classes/class-cartflows-pro-variation-product.php:576
-#: modules/checkout/classes/class-cartflows-pro-variation-product.php:845
+#: modules/checkout/classes/class-cartflows-pro-variation-product.php:418
+#: modules/checkout/classes/class-cartflows-pro-variation-product.php:575
+#: modules/checkout/classes/class-cartflows-pro-variation-product.php:844
 msgid "Product"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-variation-product.php:422
-#: modules/checkout/classes/class-cartflows-pro-variation-product.php:579
-#: modules/checkout/classes/class-cartflows-pro-variation-product.php:848
+#: modules/checkout/classes/class-cartflows-pro-variation-product.php:421
+#: modules/checkout/classes/class-cartflows-pro-variation-product.php:578
+#: modules/checkout/classes/class-cartflows-pro-variation-product.php:847
 msgid "Quantity"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-variation-product.php:425
-#: modules/checkout/classes/class-cartflows-pro-variation-product.php:582
-#: modules/checkout/classes/class-cartflows-pro-variation-product.php:851
+#: modules/checkout/classes/class-cartflows-pro-variation-product.php:424
+#: modules/checkout/classes/class-cartflows-pro-variation-product.php:581
+#: modules/checkout/classes/class-cartflows-pro-variation-product.php:850
 msgid "Price"
 msgstr ""
 
-#: modules/checkout/classes/class-cartflows-pro-variation-product.php:1370
+#: modules/checkout/classes/class-cartflows-pro-variation-product.php:1369
 msgid "Choose a variation"
 msgstr ""
 
@@ -967,19 +967,19 @@ msgstr ""
 msgid "Order Receipt"
 msgstr ""
 
-#: modules/downsell/classes/class-cartflows-downsell-markup.php:65
-#: modules/downsell/classes/class-cartflows-downsell-markup.php:117
-#: modules/upsell/classes/class-cartflows-pro-upsell-markup.php:68
-#: modules/upsell/classes/class-cartflows-pro-upsell-markup.php:120
+#: modules/downsell/classes/class-cartflows-downsell-markup.php:67
+#: modules/downsell/classes/class-cartflows-downsell-markup.php:119
+#: modules/upsell/classes/class-cartflows-pro-upsell-markup.php:69
+#: modules/upsell/classes/class-cartflows-pro-upsell-markup.php:121
 msgid "Order does not exist"
 msgstr ""
 
-#: modules/downsell/classes/class-cartflows-downsell-markup.php:73
+#: modules/downsell/classes/class-cartflows-downsell-markup.php:75
 msgid "Downsell Payment Failed"
 msgstr ""
 
-#: modules/downsell/classes/class-cartflows-downsell-markup.php:109
-#: modules/upsell/classes/class-cartflows-pro-upsell-markup.php:112
+#: modules/downsell/classes/class-cartflows-downsell-markup.php:111
+#: modules/upsell/classes/class-cartflows-pro-upsell-markup.php:113
 msgid "Current Step Not Found"
 msgstr ""
 
@@ -1155,7 +1155,7 @@ msgstr ""
 msgid "Analytics Report"
 msgstr ""
 
-#: modules/upsell/classes/class-cartflows-pro-upsell-markup.php:76
+#: modules/upsell/classes/class-cartflows-pro-upsell-markup.php:77
 msgid "Upsell Payment Failed"
 msgstr ""
 

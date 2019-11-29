@@ -99,7 +99,7 @@ class Cartflows_Pro_Gateway_Stripe {
 						)
 					);
 				} else {
-					do_action( 'wp_ajax_wcf_' . $offer_type . '_accepted' );
+					do_action( 'wp_ajax_wcf_' . $offer_type . '_accepted', false );
 				}
 			}
 		}

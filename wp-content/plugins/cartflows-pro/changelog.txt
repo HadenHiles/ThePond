@@ -1,3 +1,6 @@
+Version 1.3.3 - Thursday, 28th November 2019
+- Fix: For some users, Upsell/Downsell step was stuck after confirmation.
+
 Version 1.3.2 - Tuesday, 19th November 2019
 - New: Quantity option added to Order Bump.
 - New: Collapsible field option added to checkout fields.

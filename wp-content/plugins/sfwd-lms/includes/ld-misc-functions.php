@@ -1672,7 +1672,7 @@ function learndash_load_login_modal_html() {
 					add_action( 'wp_footer', function() {
 						global $learndash_login_model_html;
 						if ( ( isset( $learndash_login_model_html ) ) && ( ! empty( $learndash_login_model_html ) ) ) {
-							echo '<div class="learndash-wrapper learndash-wrapper-login-modal">' . $learndash_login_model_html . '</div>';
+							echo '<div class="learndash-wrapper learndash-wrapper-login-modal ld-modal-closed">' . $learndash_login_model_html . '</div>';
 						}
 					});
 				}

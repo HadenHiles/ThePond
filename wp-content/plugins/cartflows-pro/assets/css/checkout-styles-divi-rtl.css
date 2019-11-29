@@ -210,6 +210,7 @@
     float: none;
     margin: 1em auto 1em;
     overflow: hidden;
+    width: 100%;
 }
 .et_pb_module #wcf-embed-checkout-form .wcf-bump-order-style-1 {
     background: #f1f1f1;

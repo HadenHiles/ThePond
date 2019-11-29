@@ -93,7 +93,9 @@
 			var wrap 	= $this.closest('.wcf-qty-row');
 			var input 	= wrap.find( '.wcf-qty input' );
 			var qty 	= input.val();
-			var checkout_id 	= jQuery('._wcf_checkout_id').val();
+			// var checkout_id 	= jQuery('._wcf_checkout_id').val();
+			var checkout_id = jQuery('._wcf_checkout_id').val();
+			option['checkout_id']	=  checkout_id
 
 			option['qty'] 		= qty;
 			option['checkout_id'] 		= checkout_id;
@@ -139,9 +141,12 @@
 				checked_cb.removeAttr( 'disabled' );
 			}
 
+			var checkout_id = jQuery('._wcf_checkout_id').val();
+			option['checkout_id']	=  checkout_id
+
 			option['qty'] 		= qty;
 			option['checked']	= 'no';
-
+			
 			if ( $this.is(":checked") ) {
 				option['checked']	= 'yes';
 			}
@@ -176,6 +181,8 @@
 			var option 	= input.data( 'options' );
 			var qty 	= input.val();
 
+			var checkout_id = jQuery('._wcf_checkout_id').val();
+			option['checkout_id']	=  checkout_id
 			option['qty'] = qty;
 
 			wcf_display_spinner();
@@ -218,6 +225,8 @@
 			var qty 	= $this.val();
 
 			option['qty'] = qty;
+			var checkout_id = jQuery('._wcf_checkout_id').val();
+			option['checkout_id']	=  checkout_id
 
 			wcf_display_spinner();
 			$.ajax({
@@ -241,6 +250,13 @@
 		/* Variation Popup */
 		wcf_quick_view();
 	};
+
+	var wcf_remove_product = function(){
+		$(document).on("cartflows_remove_product",function(e,p_id){
+			jQuery('.wcf-multiple-sel[value="'+ p_id +'"]').attr('checked', false);
+			jQuery('.wcf-single-sel[value="'+ p_id +'"]').attr('checked', false);
+		});
+	}
 
 	var wcf_order_bump_ajax = function() {
 
@@ -1136,6 +1152,8 @@
 	}
 
 	$(document).ready(function($) {
+
+		wcf_remove_product();
 
 		wcf_toggle_optimized_fields();
 

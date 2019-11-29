@@ -2,6 +2,7 @@ jQuery(document).ready(function($) {
 
 	var hash = window.location.hash;
 
+	initLoginModal();
 	if (hash == '#login') {
 		openLoginModal();
 	}
@@ -379,12 +380,19 @@ jQuery(document).ready(function($) {
 		}
 	}
 
+	function initLoginModal() {
+		var modal_wrapper = $('.learndash-wrapper-login-modal');
+		if ((typeof modal_wrapper !== 'undefined') && (modal_wrapper.length)) {
+			// Move the model to be first element of the body. See LEARNDASH-3503
+			$(modal_wrapper).prependTo('body');
+		}
+	}
+
 	function openLoginModal() {
 		var modal_wrapper = $('.learndash-wrapper-login-modal');
 		if ((typeof modal_wrapper !== 'undefined') && ( modal_wrapper.length ) ) {
-			// Move the model to be first element of the body. See LEARNDASH-3503
-			$(modal_wrapper).prependTo('body');
 			$(modal_wrapper).addClass('ld-modal-open');
+			$(modal_wrapper).removeClass('ld-modal-closed');
 
 			// Removed LEARNDASH-3867 #4
 			$('html, body').animate({
@@ -394,7 +402,11 @@ jQuery(document).ready(function($) {
 	}
 
 	function closeLoginModal() {
-		$('.learndash-wrapper').removeClass('ld-modal-open');
+		var modal_wrapper = $('.learndash-wrapper-login-modal');
+		if ((typeof modal_wrapper !== 'undefined') && (modal_wrapper.length)) {
+			$(modal_wrapper).removeClass('ld-modal-open');
+			$(modal_wrapper).addClass('ld-modal-closed');
+		}
 	}
 
 	function positionTooltips() {

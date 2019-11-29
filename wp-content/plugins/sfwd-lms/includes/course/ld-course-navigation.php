@@ -58,7 +58,7 @@ if ( empty( $post) ) {
 		} else if ( $url ) {
 			return get_permalink( $posts[ $found_at -1]->ID );
 		} else {
-			$permalink = get_permalink( $posts[ $found_at + 1]->ID );
+			$permalink = get_permalink( $posts[ $found_at -1 ]->ID );
 			if ( is_rtl() ) {
 				$link_name_with_arrow = $link_name;
 			} else {
@@ -67,7 +67,7 @@ if ( empty( $post) ) {
 
 			$link = '<a href="'.$permalink.'" class="prev-link" rel="prev">' . $link_name_with_arrow . '</a>';
 
-			 /**
+			/**
 			 * Filter previous post link output
 			 * 
 			 * @since 2.1.0

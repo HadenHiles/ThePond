@@ -146,7 +146,6 @@ class Cartflows_Pro_Variation_Product {
 		if ( 'two-step' === $checkout_layout ) {
 			add_action( 'woocommerce_checkout_before_order_review', array( $this, 'product_selection_option' ) );
 		} else {
-
 			add_action( 'woocommerce_checkout_after_customer_details', array( $this, 'product_selection_option' ) );
 		}
 	}

@@ -150,7 +150,7 @@ if ( ! class_exists( 'Cartflows_Pro_Loader' ) ) {
 			define( 'CARTFLOWS_PRO_BASE', plugin_basename( CARTFLOWS_PRO_FILE ) );
 			define( 'CARTFLOWS_PRO_DIR', plugin_dir_path( CARTFLOWS_PRO_FILE ) );
 			define( 'CARTFLOWS_PRO_URL', plugins_url( '/', CARTFLOWS_PRO_FILE ) );
-			define( 'CARTFLOWS_PRO_VER', '1.3.2' );
+			define( 'CARTFLOWS_PRO_VER', '1.3.3' );
 			define( 'CARTFLOWS_PRO_SLUG', 'cartflows-pro' );
 
 			define( 'CARTFLOWS_PRO_VISITS_TABLE', 'cartflows_visits' );

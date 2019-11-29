@@ -401,6 +401,7 @@ class Cartflows_Pro_Checkout_Markup {
 		}
 
 			$output .= "
+
 			#wcf-quick-view-content{
 				font-family: {$base_font_family};
 			}
