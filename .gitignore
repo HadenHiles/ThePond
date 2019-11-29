@@ -18,5 +18,5 @@ wp-content/plugins/hello.php
 /sitemap.xml
 /sitemap.xml.gz
 
-
-wp-config/
+wp-config
+wp-config/*
