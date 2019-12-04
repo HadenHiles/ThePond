@@ -1,16 +1,26 @@
 <?php
+/**
+* Fix sql strict mode
+*/
+add_action( 'init', 'mysql_set_sql_mode_traditional', -1);
+
+function mysql_set_sql_mode_traditional() {
+    global $wpdb;
+    $wpdb->query("SET SESSION sql_mode = 'TRADITIONAL'");
+}
+
 add_action( 'wp_enqueue_scripts', 'child_theme_enqueue_styles' );
 function child_theme_enqueue_styles() {
- 
-    $parent_style = 'parent-style';  
- 
+
+    $parent_style = 'parent-style';
+
     wp_enqueue_style( $parent_style, get_template_directory_uri() . '/style.css' );
     wp_enqueue_style( 'style',
         get_stylesheet_directory_uri() . '/style.css',
         array( $parent_style ),
         wp_get_theme()->get('Version')
     );
-} 
+}
 
 /**
  * Join posts and postmeta tables
@@ -20,7 +30,7 @@ function child_theme_enqueue_styles() {
 function cf_search_join( $join ) {
     global $wpdb;
 
-    if ( is_search() ) {    
+    if ( is_search() ) {
         $join .=' LEFT JOIN '.$wpdb->postmeta. ' ON '. $wpdb->posts . '.ID = ' . $wpdb->postmeta . '.post_id ';
     }
 
@@ -51,4 +61,3 @@ function cf_search_distinct( $where ) {
     return $where;
 }
 add_filter( 'posts_distinct', 'cf_search_distinct' );
-
