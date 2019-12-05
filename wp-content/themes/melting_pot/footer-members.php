@@ -19,7 +19,7 @@
     
 <div class="large-10 columns">
 <div class="members-footer-menu"> 
- <? if (is_user_logged_in()): ?>
+ <?php if (is_user_logged_in()): ?>
 <?php 
 if ( has_nav_menu( 'member-footer-menu' ) ) {
 	wp_nav_menu ( array (

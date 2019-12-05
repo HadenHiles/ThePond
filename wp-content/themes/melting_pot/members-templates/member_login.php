@@ -1,4 +1,5 @@
-<?/* Template Name: Member Login */
+<?php
+/* Template Name: Member Login */
 
 if ( get_field('hide_header') == 'hidehead'):
 get_header('blank');
@@ -13,7 +14,7 @@ endif;
 <section class="login-contain <?php  if ( get_field('template_selection') == 'simple'): ?>backgroundlogin<?php endif; ?>" <?php  if ( get_field('template_selection') == 'simple'): ?>style="background-image: url('<?php echo $img;?>');"<?php endif; ?>>
 
 <div class="row">
-<? if(have_posts()): while (have_posts()): the_post(); ?>
+<?php if(have_posts()): while (have_posts()): the_post(); ?>
 <?php  if ( get_field('template_selection') == 'simple'): ?>
 <div class="large-6 columns centered">
 	
@@ -45,7 +46,7 @@ endif;
 </aside>
 </div>
 <?php endif; ?>
-<? endwhile; endif;?>
+<?php endwhile; endif;?>
 </div><!-- End Main Content -->
 </section>
 <?php
