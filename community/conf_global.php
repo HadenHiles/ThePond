@@ -8,6 +8,7 @@ $environments = array(
 
 // Get the hostname
 $http_host = $_SERVER['HTTP_HOST'];
+$http_protocol = stripos($_SERVER['SERVER_PROTOCOL'],'https') === 0 ? 'https://' : 'http://';
 
 // Loop through $environments to see if there’s a match
 foreach($environments as $environment => $hostname) {
@@ -28,7 +29,7 @@ $INFO = array (
   'sql_utf8mb4' => true,
   'board_start' => 1571926982,
   'installed' => true,
-  'base_url' => $environments[ENVIRONMENT],
+  'base_url' => $http_protocol . $environments[ENVIRONMENT],
   'guest_group' => 2,
   'member_group' => 3,
   'admin_group' => 4,
