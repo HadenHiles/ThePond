@@ -23,8 +23,6 @@ define( 'DB_COLLATE', '' );
 /** File save method */
 define('FS_METHOD', 'direct');
 
-echo
-
 /**#@+
  * Authentication Unique Keys and Salts.
  *
