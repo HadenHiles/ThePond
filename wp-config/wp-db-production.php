@@ -3,19 +3,19 @@
 if (!defined('ABSPATH')) exit();
 
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'theponddb' );
+define( 'DB_NAME', getenv('THEPOND_DB_NAME') . ':' . getenv('THEPOND_DB_PORT') );
 
 /** MySQL database username */
-define( 'DB_USER', 'thepond' );
+define( 'DB_USER', getenv('THEPOND_DB_USER') );
 
 /** MySQL database password */
-define( 'DB_PASSWORD', 'HowToToeDragons!Q@W#E' );
+define( 'DB_PASSWORD', getenv('THEPOND_DB_PASSWORD') );
 
 /** MySQL hostname */
-define( 'DB_HOST', 'thepond-do-user-6611109-0.db.ondigitalocean.com:25060' );
+define( 'DB_HOST', getenv('THEPOND_DB_HOST') );
 
 /** Database Charset to use in creating database tables. */
-define( 'DB_CHARSET', 'utf8' );
+define( 'DB_CHARSET', getenv('THEPOND_DB_CHARSET') );
 
 /** The Database Collate type. Don't change this if in doubt. */
 define( 'DB_COLLATE', '' );
