@@ -6,7 +6,7 @@ add_action( 'init', 'mysql_set_sql_mode_traditional', -1);
 
 function mysql_set_sql_mode_traditional() {
     global $wpdb;
-    $wpdb->query("SET SESSION sql_mode = 'TRADITIONAL'");
+    $wpdb->query("SET SESSION sql_mode = ''");
 }
 
 add_action( 'wp_enqueue_scripts', 'child_theme_enqueue_styles' );
