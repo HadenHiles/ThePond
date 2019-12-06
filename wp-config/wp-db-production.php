@@ -3,7 +3,7 @@
 if (!defined('ABSPATH')) exit();
 
 /** The name of the database for WordPress */
-define( 'DB_NAME', getenv('THEPOND_DB_NAME') . ':' . getenv('THEPOND_DB_PORT') );
+define( 'DB_NAME', getenv('THEPOND_DB_NAME') );
 
 /** MySQL database username */
 define( 'DB_USER', getenv('THEPOND_DB_USER') );
@@ -12,7 +12,7 @@ define( 'DB_USER', getenv('THEPOND_DB_USER') );
 define( 'DB_PASSWORD', getenv('THEPOND_DB_PASSWORD') );
 
 /** MySQL hostname */
-define( 'DB_HOST', getenv('THEPOND_DB_HOST') );
+define( 'DB_HOST', getenv('THEPOND_DB_HOST') . ':' . getenv('THEPOND_DB_PORT') );
 
 /** Database Charset to use in creating database tables. */
 define( 'DB_CHARSET', getenv('THEPOND_DB_CHARSET') );
