@@ -1,1 +1,0 @@
-﻿CKEDITOR.plugins.setLang("ipscontextmenu","fa",{options:"گزینه​های منوی زمینه"});

@@ -1,1 +1,0 @@
-﻿CKEDITOR.plugins.setLang("ipscontextmenu","cy",{options:"Opsiynau Dewislen Cyd-destun"});

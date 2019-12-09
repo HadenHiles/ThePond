@@ -1,1 +1,0 @@
-﻿CKEDITOR.plugins.setLang("ipscontextmenu","ug",{options:"قىسقا يول تىزىملىك تاللانمىسى"});

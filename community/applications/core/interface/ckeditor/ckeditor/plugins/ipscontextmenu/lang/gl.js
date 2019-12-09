@@ -1,1 +1,0 @@
-﻿CKEDITOR.plugins.setLang("ipscontextmenu","gl",{options:"Opcións do menú contextual"});

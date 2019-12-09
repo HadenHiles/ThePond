@@ -1,1 +1,0 @@
-﻿CKEDITOR.plugins.setLang("ipscontextmenu","da",{options:"Muligheder for hjælpemenu"});

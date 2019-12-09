@@ -1,1 +1,0 @@
-﻿CKEDITOR.plugins.setLang("ipscontextmenu","ku",{options:"هەڵبژاردەی لیستەی کلیکی دەستی ڕاست"});

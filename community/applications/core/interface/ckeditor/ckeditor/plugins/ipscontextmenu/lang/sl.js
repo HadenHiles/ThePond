@@ -1,1 +1,0 @@
-﻿CKEDITOR.plugins.setLang("ipscontextmenu","sl",{options:"Možnosti Kontekstnega Menija"});
