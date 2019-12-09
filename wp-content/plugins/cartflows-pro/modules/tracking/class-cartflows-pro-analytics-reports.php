@@ -138,7 +138,7 @@ class Cartflows_Pro_Analytics_Reports {
 		$reports_btn_markup          = '<style>.wrap{ position:relative;}</style>';
 		$reports_btn_markup         .= "<div class='wcf-reports-button-wrap'>";
 			$reports_btn_markup     .= "<button class='wcf-trigger-reports-popup button button-secondary'>";
-				$reports_btn_markup .= esc_html( 'View Analytics', 'cartflows-pro' );
+				$reports_btn_markup .= esc_html__( 'View Analytics', 'cartflows-pro' );
 			$reports_btn_markup     .= '</button>';
 		$reports_btn_markup         .= '</div>';
 

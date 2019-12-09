@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the CartFlows Pro package.
 msgid ""
 msgstr ""
-"Project-Id-Version: CartFlows Pro 1.3.3\n"
+"Project-Id-Version: CartFlows Pro 1.3.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/cartflows-pro\n"
-"POT-Creation-Date: 2019-11-28 07:09:56+00:00\n"
+"POT-Creation-Date: 2019-12-05 05:48:10+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -90,7 +90,7 @@ msgstr ""
 msgid "Oooops! Your Payment Failed."
 msgstr ""
 
-#: classes/class-cartflows-pro-frontend.php:293
+#: classes/class-cartflows-pro-frontend.php:297
 msgid "Your session is expired"
 msgstr ""
 
@@ -998,16 +998,16 @@ msgstr ""
 msgid "PayPal Exp Transaction Failed (%s)"
 msgstr ""
 
-#: modules/gateways/class-cartflows-pro-gateway-stripe.php:309
+#: modules/gateways/class-cartflows-pro-gateway-stripe.php:323
 #. translators: %1s site name
 msgid "%1$s - Order %2$s - One Time offer"
 msgstr ""
 
-#: modules/gateways/class-cartflows-pro-gateway-stripe.php:320
+#: modules/gateways/class-cartflows-pro-gateway-stripe.php:334
 msgid "customer_name"
 msgstr ""
 
-#: modules/gateways/class-cartflows-pro-gateway-stripe.php:321
+#: modules/gateways/class-cartflows-pro-gateway-stripe.php:335
 msgid "customer_email"
 msgstr ""
 
@@ -1105,6 +1105,10 @@ msgstr ""
 msgid ""
 "Analytics offers data that helps you understand how your flows are "
 "performing."
+msgstr ""
+
+#: modules/tracking/class-cartflows-pro-analytics-reports.php:141
+msgid "View Analytics"
 msgstr ""
 
 #: modules/tracking/class-cartflows-pro-analytics-reports.php:211

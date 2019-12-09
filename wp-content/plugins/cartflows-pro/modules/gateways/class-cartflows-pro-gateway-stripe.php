@@ -71,14 +71,23 @@ class Cartflows_Pro_Gateway_Stripe {
 
 		if ( isset( $offer_product['price'] ) && ( floatval( 0 ) === floatval( $offer_product['price'] )
 				|| '' === trim( $offer_product['price'] ) ) ) {
-			return false;
+			wp_send_json(
+				array(
+					'result'  => 'fail',
+					'message' => '0 value product',
+				)
+			);
 		} else {
+
 			$gateway = $this->get_wc_gateway();
+
 			if ( $gateway ) {
+
 				$order_source = $gateway->prepare_order_source( $order );
 				$is_3ds       = $order_source->source_object->card->three_d_secure;
 				// Check if 3DS required.
 				if ( isset( $is_3ds ) && 'optional' !== $is_3ds && 'yes' === $offer_action ) {
+
 					$intent = $this->create_intent( $order, $order_source, $offer_product );
 
 					$main_settings = get_option( 'woocommerce_stripe_settings' );
@@ -98,10 +107,15 @@ class Cartflows_Pro_Gateway_Stripe {
 							'stripe_pk'     => $publishable_key,
 						)
 					);
-				} else {
-					do_action( 'wp_ajax_wcf_' . $offer_type . '_accepted', false );
 				}
 			}
+
+			wp_send_json(
+				array(
+					'result'  => 'fail',
+					'message' => 'No 3ds payment',
+				)
+			);
 		}
 	}
 	/**

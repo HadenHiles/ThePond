@@ -1,4 +1,4 @@
-/*! elementor - v2.7.5 - 28-10-2019 */
+/*! elementor - v2.7.6 - 08-12-2019 */
 .dialog-widget-content {
   background-color: #fff;
   position: absolute;
@@ -341,6 +341,7 @@
     width: 650px;
     max-width: 98%;
     top: 18vh;
+    left: -webkit-calc( 50% - 650px / 2);
     left: calc( 50% - 650px / 2); }
   #elementor-finder__modal .dialog-message {
     height: initial;
@@ -374,6 +375,10 @@
     font-size: 14px;
     color: #495157; }
     #elementor-finder__search__input::-webkit-input-placeholder {
+      color: #a4afb7;
+      font-style: italic;
+      font-weight: 300; }
+    #elementor-finder__search__input:-ms-input-placeholder {
       color: #a4afb7;
       font-style: italic;
       font-weight: 300; }

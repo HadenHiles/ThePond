@@ -1,4 +1,4 @@
-/*! elementor - v2.7.5 - 28-10-2019 */
+/*! elementor - v2.7.6 - 08-12-2019 */
 @charset "UTF-8";
 .ui-resizable-n {
   top: -5px; }
@@ -636,6 +636,7 @@
       border-left: solid 1px;
       border-color: #a4afb7;
       margin-left: -1px;
+      width: -webkit-calc(100% + 1px);
       width: calc(100% + 1px); }
       .elementor-control-type-dimensions li input:focus + .elementor-control-dimension-label {
         color: #a4afb7; }
@@ -1130,7 +1131,7 @@
   -webkit-border-radius: 0;
           border-radius: 0;
   width: 10px;
-  -webkit-transform: translateY(calc(50% - 14px)) translateX(-4px);
+  -webkit-transform: translateY(-webkit-calc(50% - 14px)) translateX(-4px);
       -ms-transform: translateY(calc(50% - 14px)) translateX(-4px);
           transform: translateY(calc(50% - 14px)) translateX(-4px); }
   .elementor-control-type-slider--handles-range .elementor-slider .noUi-handle:after {
@@ -1208,7 +1209,7 @@
     width: 16px;
     background-color: #fff;
     left: 0;
-    -webkit-transform: translateY(calc(50% - 14px)) translateX(-8px);
+    -webkit-transform: translateY(-webkit-calc(50% - 14px)) translateX(-8px);
         -ms-transform: translateY(calc(50% - 14px)) translateX(-8px);
             transform: translateY(calc(50% - 14px)) translateX(-8px);
     position: absolute;
@@ -1234,7 +1235,9 @@
     background-color: #a4afb7; }
   .elementor-slider .noUi-tooltip {
     position: absolute;
+    top: -webkit-calc(100% + 5px);
     top: calc(100% + 5px);
+    left: -webkit-calc(50% - 4px);
     left: calc(50% - 4px);
     -webkit-transform: translateX(-50%);
         -ms-transform: translateX(-50%);
@@ -1644,7 +1647,9 @@
           box-sizing: content-box; }
 
 .wp-picker-container .color-alpha {
+  width: -webkit-calc( 100% - 2px * 2);
   width: calc( 100% - 2px * 2);
+  height: -webkit-calc( 100% - 2px * 2);
   height: calc( 100% - 2px * 2);
   margin: 2px;
   position: absolute;
@@ -1822,6 +1827,8 @@
                 box-shadow: none;
         color: #fff; }
       .pen-input-wrapper .pen-url-input::-webkit-input-placeholder {
+        color: #d5dadf; }
+      .pen-input-wrapper .pen-url-input:-ms-input-placeholder {
         color: #d5dadf; }
       .pen-input-wrapper .pen-url-input::-ms-input-placeholder {
         color: #d5dadf; }
@@ -2289,6 +2296,7 @@ html.elementor-html {
       top: 2px;
       border-left-color: #71d7f7;
       border-width: 22px 0 0 12px;
+      left: -webkit-calc(100% - 1px);
       left: calc(100% - 1px); }
     .elementor-editor-section-settings .elementor-editor-element-setting:first-child:hover:before {
       border-left-color: #10bcf2; }
@@ -2302,6 +2310,7 @@ html.elementor-html {
       top: 2px;
       border-right-color: #71d7f7;
       border-width: 22px 12px 0 0;
+      right: -webkit-calc(100% - 1px);
       right: calc(100% - 1px); }
     .elementor-editor-section-settings .elementor-editor-element-setting:last-child:hover:after {
       border-right-color: #10bcf2; }

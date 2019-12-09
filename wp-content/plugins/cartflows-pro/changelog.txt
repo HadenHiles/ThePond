@@ -1,3 +1,8 @@
+Version 1.3.4 - Thursday, 5th December 2019
+- Improvement: Added compatibility for a future release of CartFlows.
+- Improvement: Added filter `cartflows_order_status_cron_time` to change the cron time, which changes the order status to complete.
+- Fix: Double Upsell/Downsell products issue for stripe non-3ds payments.
+
 Version 1.3.3 - Thursday, 28th November 2019
 - Fix: For some users, Upsell/Downsell step was stuck after confirmation.
 

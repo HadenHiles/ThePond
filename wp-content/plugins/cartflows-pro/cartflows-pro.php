@@ -3,7 +3,7 @@
  * Plugin Name: CartFlows Pro
  * Plugin URI: https://cartflows.com/
  * Description: eCommerce on steroid with Order Bump, One Click Upsells and much more!
- * Version: 1.3.3
+ * Version: 1.3.4
  * Author: CartFlows Inc
  * Author URI: https://cartflows.com/
  * Text Domain: cartflows-pro

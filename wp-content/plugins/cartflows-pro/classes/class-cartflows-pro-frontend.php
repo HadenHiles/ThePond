@@ -191,9 +191,13 @@ class Cartflows_Pro_Frontend {
 
 		if ( false === wp_next_scheduled( 'carflows_schedule_normalize_order_status', $args ) ) {
 
+			/* Filter to change the cron time */
+
+			$cron_time = apply_filters( 'cartflows_order_status_cron_time', 30 );
+
 			/* Setup Schedule */
 
-			wp_schedule_single_event( time() + ( 30 * MINUTE_IN_SECONDS ), 'carflows_schedule_normalize_order_status', $args );
+			wp_schedule_single_event( time() + ( $cron_time * MINUTE_IN_SECONDS ), 'carflows_schedule_normalize_order_status', $args );
 
 			wcf()->logger->log( 'Order-' . $order->get_id() . ' Cron Scheduled for Normalize Order Status' );
 		}

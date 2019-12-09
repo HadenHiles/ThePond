@@ -1,4 +1,4 @@
-/*! elementor - v2.7.5 - 28-10-2019 */
+/*! elementor - v2.7.6 - 08-12-2019 */
 .dialog-widget-content {
   background-color: #fff;
   position: absolute;
@@ -1189,10 +1189,6 @@ ul.elementor-icon-list-items.elementor-inline-items {
       font-family: inherit;
       opacity: 0.6; }
     .elementor-field-group .elementor-field-textual:-ms-input-placeholder {
-      color: inherit;
-      font-family: inherit;
-      opacity: 0.6; }
-    .elementor-field-group .elementor-field-textual:-moz-placeholder {
       color: inherit;
       font-family: inherit;
       opacity: 0.6; }
@@ -3398,6 +3394,7 @@ button.swiper-pagination-bullet {
   padding-bottom: 30px; }
 
 .elementor-pagination-position-outside .elementor-swiper-button {
+  top: -webkit-calc(50% - 30px / 2);
   top: calc(50% - 30px / 2); }
 
 .elementor-swiper {
@@ -3407,6 +3404,7 @@ button.swiper-pagination-bullet {
   position: static; }
 
 .elementor-arrows-position-outside .swiper-container {
+  width: -webkit-calc(100% - 60px);
   width: calc(100% - 60px); }
 
 .elementor-arrows-position-outside .elementor-swiper-button-prev {
@@ -3614,6 +3612,7 @@ button.swiper-pagination-bullet {
             transform: rotate(180deg); }
   .elementor-shape svg {
     display: block;
+    width: -webkit-calc(100% + 1.3px);
     width: calc(100% + 1.3px);
     position: relative;
     left: 50%;

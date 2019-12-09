@@ -137,8 +137,6 @@
 							ajax_data.action = action;
 							wcf_process_offer( ajax_data );
 						}
-
-
 					}
 				});
 			} else {
