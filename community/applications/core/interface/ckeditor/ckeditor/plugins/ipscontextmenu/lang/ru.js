@@ -1,1 +1,0 @@
-﻿CKEDITOR.plugins.setLang("ipscontextmenu","ru",{options:"Параметры контекстного меню"});

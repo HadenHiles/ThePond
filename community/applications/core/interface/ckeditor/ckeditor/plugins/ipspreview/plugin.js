@@ -1,1 +1,0 @@
-﻿CKEDITOR.plugins.add("ipspreview",{icons:"ipspreview",hidpi:!0,init:function(a){a.addCommand("ipsPreview",{exec:function(a){$(a.element.$).closest("[data-ipsEditor]").trigger("togglePreview")}});a.ui.addButton("ipsPreview",{label:ips.getString("editorPreview"),command:"ipsPreview",toolbar:"insert"})}});

@@ -1,1 +1,0 @@
-﻿CKEDITOR.plugins.setLang("ipscontextmenu","zh-cn",{options:"快捷菜单选项"});
