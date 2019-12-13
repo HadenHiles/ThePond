@@ -24,7 +24,6 @@ Welcome
 To your dashboard
 <?php endif; ?>
 </p>
-</div>
 <div class="large-4 medium-5 columns">
 
 
@@ -49,26 +48,28 @@ To your dashboard
 <section class="memberbenefits dashboardbenefits">
 <div class="row">
 <?php if( have_rows('dashboard_benefits') ): $i = count(get_field('dashboard_benefits')); ?>
+<div class="large-4 columns">
+	<ul class="benefit-wrap">
+	<?php while( have_rows('dashboard_benefits') ): the_row(); $gridsize = '';
 
-<ul class="benefit-wrap">
-<?php while( have_rows('dashboard_benefits') ): the_row(); $gridsize = '';
-
-if($i == 4) {$gridsize = 'large-3 medium-6';} elseif($i == 3){$gridsize ='large-4 medium-4';} elseif($i == 2){$gridsize ='large-6 medium-6';} ?>
-<li class="<?php echo $gridsize; ?> columns">
-<div class="wrap-benefit">
-<a href="<?php echo the_sub_field('link_page')?>">
-<div class="benefitimage">
-<img src="<?php echo the_sub_field('image'); ?>" alt="<? echo the_sub_field('benefit-title'); ?> icon">
+	if($i == 4) {$gridsize = 'large-6 medium-6';} elseif($i == 3){$gridsize ='large-4 medium-4';} elseif($i == 2){$gridsize ='large-6 medium-6';} ?>
+	<li class="<?php echo $gridsize; ?> columns">
+	<div class="wrap-benefit">
+	<a href="<?php echo the_sub_field('link_page')?>">
+	<div class="benefitimage">
+	<img src="<?php echo the_sub_field('image'); ?>" alt="<? echo the_sub_field('benefit-title'); ?> icon">
+	</div>
+	<h4><?php echo the_sub_field('benefit-title'); ?></h4>
+	<p><?php echo the_sub_field('benefit-small-text'); ?></p>
+	<!-- <span class="BTN"><?php echo the_sub_field('button_text')?></span> -->
+	</a>
+	</div>
+	</li>
+	<?php endwhile; ?>
+	</ul>
 </div>
-<h4><?php echo the_sub_field('benefit-title'); ?></h4>
-<p><?php echo the_sub_field('benefit-small-text'); ?></p>
-<span class="BTN"><?php echo the_sub_field('button_text')?></span>
-</a>
-</div>
-</li>
-<?php endwhile; ?>
-</ul>
 <?php endif; ?>
+<div class="large-8 columns"></div>
 
 <?php if (get_field('content_after_links')): ?>
 <div class="afterMainLinks"><?php the_field('content_after_links'); ?></div>

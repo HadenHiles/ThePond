@@ -15,20 +15,20 @@
 </head>
 <body class="vidFull fitvidcontiner">
 <div id="sitecontainer" <?php body_class(); ?>  >
-	
+
 <?php if( $smof_data['googletagmanagernoscript']) { echo  $smof_data['googletagmanagernoscript']; } ?>
-	
+
 <header class="header">
 <div class="MemberheaderWrap">
   <div class="row">
     <div class="large-12 columns">
       <div class="headerlogo">
-        <?php if($smof_data['member_dashboard_logo']) { 
+        <?php if($smof_data['member_dashboard_logo']) {
 			if( $smof_data['member_homepage_url'] )
 				$home_page_url = $smof_data['member_homepage_url'];
 			else
-				$home_page_url = "/members-dashboard/";	
-				
+				$home_page_url = "/members-dashboard/";
+
 		 ?>
         <a href="<?php echo $home_page_url; ?>"><img class="memberlogo" src="<?php echo $smof_data['member_dashboard_logo']; ?>" alt="<?php bloginfo( 'name' ); ?> Logo" /></a>
         <?php } else if( $smof_data['header_logo']) : ?>
@@ -42,14 +42,14 @@
 				wp_nav_menu ( array (
 					'theme_location' => 'member-account-menu',
 					'menu_class' => 'LoggedIn',
-					'container' => false 
-					) 
+					'container' => false
+					)
 				);
-				
-		}		
+
+		}
 			?>
-      
-      
+
+
       </div>
       <?php else : ?>
       <?php endif;?>
@@ -61,23 +61,23 @@
         </div>
         <nav class="MainNav">
           <?php
-			if( is_user_logged_in() ) { 
+			if( is_user_logged_in() ) {
 				$theme_location = 'member-menu';
-			} else { 
+			} else {
 				$theme_location = 'primary-menu';
-			} 
+			}
 			?>
 			  <?php
-		 if ( has_nav_menu( $theme_location ) ) {		  
-			  
+		 if ( has_nav_menu( $theme_location ) ) {
+
 				wp_nav_menu ( array (
 					'theme_location' => $theme_location,
 					'menu_class' => 'LoggedIn',
-					'container' => false 
-					) 
+					'container' => false
+					)
 				);
-				
-		}		
+
+		}
 			?>
         </nav>
       </div>
