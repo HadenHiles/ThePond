@@ -2,7 +2,7 @@
 
 
 .blogprevtext.course-limit .ld-item-list-item-preview {
-	
+
 }
 
 .course-limit .ld-section-heading {
@@ -130,7 +130,7 @@ ul.atcb-list .atcb-item {
 	padding-left: 1rem;
 }
 ul.atcb-list .atcb-item::before {
-   	font-family: "Font Awesome 5 Pro"; 
+   	font-family: "Font Awesome 5 Pro";
 	font-weight: 400;
 	display: none;
 }
@@ -286,9 +286,9 @@ display: inline-block;
 header .CourseMainNav ul {
 padding: 0;
 margin: 0;
-width: 100%; 
+width: 100%;
 display: inline-block;
-text-align: center; 
+text-align: center;
 }
 
 header .CourseMainNav ul li{
@@ -299,16 +299,16 @@ display: inline-block;
 }
 
 header .CourseMainNav ul li a {
-display: inline-block; 
+display: inline-block;
 color: #fff;
 font-size: .9em;
 text-transform: none;
 padding: .5rem 1.5rem;
-background: #384044; 
+background: #384044;
 }
 
 header .CourseMainNav ul li a:hover{
-background: #069EDA; 
+background: #069EDA;
 }
 
 header .CourseMainNav ul li.current-menu-item a,header .CourseMainNav ul li.current-menu-item a:hover{
@@ -319,14 +319,14 @@ text-decoration: none;
 .course-submenu-button{display: none; }
 
 header .CourseMainNav .submenu-button, header .CourseMainNav .submenu-button.submenu-opened{
-position: absolute; 
+position: absolute;
 right: .5rem;
 color: rgba(255,255,255,0.20);
 top: .2rem;
 z-index: 500;
 padding: 0.7em 1em;
 height: auto;
-font-size: .9rem; 
+font-size: .9rem;
 }
 
 
@@ -451,7 +451,7 @@ display: none;
 display: inline-block;
 margin: 0;
 position: absolute;
-right: 0; 
+right: 0;
 z-index: 1;
 background: #384044;
 width: auto;
@@ -459,7 +459,7 @@ height: auto;
 text-align: center;
 padding: .6rem;
 cursor: pointer;
-border-radius: 4px; 
+border-radius: 4px;
 }
 
 
@@ -960,8 +960,8 @@ text-align: center; -webkit-border-radius: 5px;
 -moz-border-radius: 5px;
 -ms-border-radius: 5px;
 -o-border-radius: 5px;
-border-radius: 5px; 
-font-size: 14px; 
+border-radius: 5px;
+font-size: 14px;
 
 }
 
@@ -988,7 +988,7 @@ a.backBTN:hover{background: #069EDA;  }
 section.MembersContent.v2{background: #2f363a; color: #fff;  }
 
 .clResourcesBox ul li{padding: 0; margin: .5rem 0;  }
-.clResourcesBox ul li a{color: #fff; font-size: 1rem;  } 
+.clResourcesBox ul li a{color: #fff; font-size: 1rem;  }
 
 a.clCatLink{ font-size: .8rem; background: #069EDA; padding: .4rem 1rem;
 color: #fff;
@@ -996,7 +996,7 @@ color: #fff;
 -moz-border-radius: 5px;
 -ms-border-radius: 5px;
 -o-border-radius: 5px;
-border-radius: 5px; 
+border-radius: 5px;
 margin: .5rem .5rem 0 0;
 display: inline-block;
 }
@@ -1017,7 +1017,7 @@ padding: 0.3rem 0;  }
 
 /*
 .CourseContent div {
-    margin-bottom: 1.3rem; line-height: 1.8rem; 
+    margin-bottom: 1.3rem; line-height: 1.8rem;
 }*/
 
 
@@ -1070,7 +1070,7 @@ color: #fff;
 
 section.courseContent{padding: 3rem 0; }
 
-.coursePrevImage{width: 100%; overflow: hidden; 
+.coursePrevImage{width: 100%; overflow: hidden;
 float: left; background-size:cover; background-position:center;
 min-height: 225px; position: relative; background-color: #ccc; }
 .coursePrevImage a{position: absolute; width: 100%; height: 100%; background: rgba(0,0,0,0.10); top: 0; left: 0; }
@@ -1116,7 +1116,7 @@ div#mepr-account-nav{ border-bottom: solid 2px #f4f4f4;}
 .myContent{
 border-top: solid 2px #e9e9e9;
 padding: 1rem 0;
-margin-top: 2rem; 
+margin-top: 2rem;
 display: inline-block;
 width: 100%;
 }
@@ -1124,9 +1124,9 @@ width: 100%;
 .myContent.v2{
 border-top: none;
 padding: 0;
-margin-top: 0rem; 
+margin-top: 0rem;
 display: inline-block;
-width: 100%; text-align: left; 
+width: 100%; text-align: left;
 }
 
 .learndash-wrapper .ld-table-list .ld-table-list-header{background-color: #069EDA;  }
@@ -1136,7 +1136,7 @@ width: 100%; text-align: left;
 
 .myContent .lessonTools ul{width: 100%; text-align: center; margin: 0; display: inline-block;  }
 .myContent .lessonTools li{
-display: inline-block; padding: 0 1rem; text-align: center;  
+display: inline-block; padding: 0 1rem; text-align: center;
 }
 
 .myContent.v2 .lessonTools ul, .myContent.v2 .lessonTools li{text-align: left; padding-left: 0;  }
@@ -1268,7 +1268,7 @@ header .MemberheaderWrap .NavOuter{max-width: 80%;}
 
 .row{max-width: 95%}
 header .MemberheaderWrap .NavOuter{max-width: 80%;}
-    
+
 }
 
 @media only screen and (max-width: 1024px) {
@@ -1302,10 +1302,10 @@ max-width: 85%;
     .JumpTo ul li span.jumptime {float:right;}
     .JumpTo ul li span.jumptitle {padding-right:10px;}
     .JumpTo ul li {list-style:none;}
-    
+
     .upcommingEvent {display:none;}
-    
-    
+
+
 .memberlogo{max-width: 100%;  }
 .MemberheaderWrap .headerlogo{margin-top: 0; }
 
@@ -1314,35 +1314,35 @@ ul.topmemberNav {margin: 10px 58px 0 0;}
 .SavedContent li h4 a, .filtered_content li h4 a{font-size: 1.1rem; }
 .coursePrevImage{min-height: 150px;}
 .SavedContent.watchlist ul li.course-listing .course-content, .filtered_content ul li.course-listing .course-content{min-height: 0; }
-	
+
 .headerBTNS{width: 100%; margin-top: .5rem;  }
 	.salesIncluded ul li{width: 29%; }
-	
+
 	.GuaranteeBadge{padding: 0; }
 	.salesFAQwrap{width: 80%; }
 }
 
 @media only screen and (max-width: 500px) {
-	
+
 	table.callSchedule td{display: block; width: 100%; }
-	
+
 	table.callSchedule thead td.tdCallLink{display: none!important; }
-	
-	
-	
+
+
+
 	.row{padding: 0 1.5rem; max-width: 100%; }
-	
+
 	section.memberDashWelc{text-align: center; }
-	
+
 	.trustIcons{background-size: 100%;  }
-	
+
 	.salesFAQwrap{width: 100%; }
 	.GuaranteeBadge{padding: 1rem 2rem; }
 
-	
+
 	.PriceBoxWrap{padding: 0;  }
 	.memberPriceBox{margin-bottom: 2rem;}
-	
+
 
 
 .sectionHeader{text-align: center; }
@@ -1373,12 +1373,12 @@ width: 100%;
 .topmemberNav li a {
 padding: 10px 12px;
 font-size: 0;
-display: inline-block; 
+display: inline-block;
 }
-	
+
 		.topmemberNav li a i{display: block; font-size: 30px; }
-	
-	
+
+
 
 
 
@@ -1397,7 +1397,7 @@ ul.clFilters li{width: 45%; }
 
 section#CourseHeader{text-align: center; }
 .radial-progress{margin-top: 30px }
-	
+
 	.learndash-wrapper .ld-item-list .ld-item-list-item{background: #fff; }
 
 #learndash_next_prev_link a.prev-link, #learndash_next_prev_link a.next-link{padding: .5rem 1.3rem; }
@@ -1421,13 +1421,13 @@ width: 100%;
 padding: .7rem 0;
 display: block;
 }
-	
+
 #CourseHeader .progressWrapper .courseProgress{bottom: -69px; right: 50%; margin-right: -40px;}
 .progressWrapper{min-height: 20px;}
-	
+
 .breadcrumbs {margin: 1.5rem 0;}
 .breadcrumbs span { display: inline-block; padding: 0.2rem 0; }
-	
+
 section.MembersContent{padding: 5rem 0 3rem 0; }
 
 }

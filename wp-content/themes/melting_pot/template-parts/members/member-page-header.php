@@ -1,5 +1,5 @@
 <?php ?>
-			
+
 <?php if( get_field('hide_title') == 'keeptitle' ) : ?>
 <section class="memberDashWelc">
 	<div class="row">
