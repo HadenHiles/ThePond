@@ -724,7 +724,7 @@ img.memberloginlogo{max-width: 60%; margin: 2rem 0 4rem 0;  }
 section.memberbenefits{padding: 0; }
 ul.benefit-wrap{display: inline-block; margin: 4rem 0; width: 100%;  }
 /* Icon styles - Benefits section */
-.wrap-benefit {text-align: center; padding: 0 1.5rem; position: relative; min-height: 305px; }
+.wrap-benefit {text-align: center; padding: 0 0; position: relative; }
 .wrap-benefit p{font-size:.9rem; line-height: 1.2rem; }
 .wrap-benefit svg {font-size: 80px; margin-bottom: 1.5rem;}
 .wrap-benefit img {height:150px;margin-bottom:1.5rem;}
@@ -1090,8 +1090,7 @@ transform: rotate(-30deg); font-size: 12px;  }
 
 .MemberheaderWrap{width: 100%;
 padding: 2rem 0 2rem 0;
-background: #384044; 
-float: left;}
+background: #384044;}
 
 section.memberDashWelc{background: #f5f5f5; padding: 2rem 0; }
 
@@ -1529,3 +1528,7 @@ li.podcast-related-item .coursePrevImage {
     margin-bottom: 1.9rem;
 }
 /*end*/
+
+.user-points-wrapper h2.gamipress-rank-title {
+	font-size: 1.5em;
+}

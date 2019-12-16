@@ -1,36 +1,29 @@
 <?php global $smof_data; ?>
 
 <footer class="footer">
-<div class="row">	
+<div class="row">
 <div class="large-3 columns">
-	
+
 <?php if($smof_data['footer_logo']) { ?>
 	<a href="/">
 <img src="<?php echo $smof_data['footer_logo']; ?>" class="footerlogo" alt="<?php bloginfo( 'name' ); ?> Logo" /></a>
 <?php } ?>
-	
-<p>&copy; <?php echo date("Y"); ?> <a href="/"><?php bloginfo( 'name' ); ?></p>
-		
+
 </div>
-	
-<div class="large-5 columns">
-<div class="footer-menu"> 
-<?php
- if ( has_nav_menu( 'secondary-menu' ) ) {	
- wp_nav_menu ( array (
-'theme_location' => 'secondary-menu',
-'container' => false ) ); 
-}
-?>
-</div>
-</div>
-	
-<div class="large-4 columns">
-	
+
+<div class="large-9 columns">
+
 <div class="footerRight">
-		
-<a href="/dashboard" class="BTN">SIGN UP</a>
-		
+	<div class="footer-menu">
+	<?php
+	 if ( has_nav_menu( 'secondary-menu' ) ) {
+	 wp_nav_menu ( array (
+	'theme_location' => 'secondary-menu',
+	'container' => false ) );
+	}
+	?>
+	</div>
+
 <div class="SocialFooterSide">
 <?php if($smof_data['facebook_link']) : ?>
 <a href="<?php echo $smof_data['facebook_link'];?>" target="_blank" rel="nofollow"><i class="fab fa-facebook-f"></i></a>
@@ -51,12 +44,12 @@
 <a href="<?php echo $smof_data['insta_link']; ?>" target="_blank" rel="nofollow"><i class="fab fa-instagram"></i></a>
 <?php endif;?>
 </div>
-	
-<p>Website by <a target="_blank" rel="nofollow" href="https://membershipwebsiteslab.com">Membership Websites Lab</a></p>
+
+<p>&copy; <?php echo date("Y"); ?> <?php bloginfo( 'name' ); ?> | <a href="/privacy-policy">Privacy Policy</a></p>
 
 </div>
-	
-</div>	
+
+</div>
 </div>
 </footer>
 
