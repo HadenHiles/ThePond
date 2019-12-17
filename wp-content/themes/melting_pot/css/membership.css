@@ -698,7 +698,7 @@ top: .8rem; left: 0;}
 
 /*Login page*/
 
-.mepr-form{ background: #fff;  }
+.mepr-form{ background: #fff; padding: 15px;  }
 section.backgroundlogin {min-height: 75vh; padding:6rem 0;text-align:center; background-color: #069EDA; background-repeat:no-repeat; background-size: cover;background-position:center; }
 
 body.page-template-member_login{background: #ccc;}
