@@ -20,6 +20,15 @@ wp-content/plugins/hello.php
 /sitemap.xml
 /sitemap.xml.gz
 
+# Ignore paths that contain user-generated content.
+/wp-content/ai1wm-backups
+/wp-content/cache
+/wp-content/uploads/
+/wp-content/w3tc-config/
+/wp-content/advanced-cache.php
+/wp-content/db.php
+/wp-content/object-cache.php
+
 wp-config
 wp-config/*
 community
