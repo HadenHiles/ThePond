@@ -1532,3 +1532,99 @@ li.podcast-related-item .coursePrevImage {
 .user-points-wrapper h2.gamipress-rank-title {
 	font-size: 1.5em;
 }
+
+.course-container {
+	white-space: nowrap;
+	overflow-x: scroll;
+	-ms-overflow-style: none;
+}
+.course-container::-webkit-scrollbar {
+	display: none;
+}
+.course-container .inner {
+	clear: both;
+}
+.course-item {
+	display: inline-block;
+	width: 275px;
+	height: 130px;
+	margin: 10px 5px;
+	padding: 10px;
+  position: relative;
+	background-size: cover;
+	font-family: 'Teko', sans-serif;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-o-border-radius: 5px;
+}
+.course-item h5 {
+	position: absolute;
+	z-index: 2;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+	font-size: 1.6em;
+	color: #fff;
+	text-align: center;
+	transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-webkit-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+}
+.course-item:hover h5 {
+	opacity: 0.8;
+	top: 5px;
+	left: 5px;
+	transform: translate(0, 0);
+	margin-right: 0;
+	text-align: left;
+	font-size: 1.2em;
+	transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-webkit-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+}
+.course-item .overlay {
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.6);
+	transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-webkit-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+}
+.course-item:hover .overlay {
+	background: rgba(0, 0, 0, 0.45);
+	transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-webkit-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+}
+.course-item .progress-bar {
+	opacity: 0;
+	position: absolute;
+	z-index: 2;
+	bottom: 0;
+	left: 0;
+	padding: 10px;
+	background: #28a745;
+	color: #fff;
+	text-align: center;
+	transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-webkit-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+}
+.course-item:hover .progress-bar {
+	opacity: 1;
+	transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-webkit-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+}

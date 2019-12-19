@@ -69,7 +69,13 @@ To your dashboard
 	</ul>
 </div>
 <?php endif; ?>
-<div class="large-8 columns"></div>
+
+<!-- Skills progression timeline/stages -->
+<div class="large-8 columns">
+	<?php
+	do_shortcode('[ld_course_tags categories="skating,stickhandling,shooting,passing"]');
+	?>
+</div>
 
 <?php if (get_field('content_after_links')): ?>
 <div class="afterMainLinks"><?php the_field('content_after_links'); ?></div>
