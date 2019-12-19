@@ -7,7 +7,7 @@
  Template:     melting_pot
  Version:      1.0.0
  License:      GNU General Public License v2 or later
- License URI:  http://www.gnu.org/licenses/gpl-2.0.html 
+ License URI:  http://www.gnu.org/licenses/gpl-2.0.html
  Text Domain:  melt_default
 */
 
@@ -128,7 +128,7 @@ div.topic p, div.answer p {
 }
 
 /* Dashboard Links*/
-.dashboardbenefits {background: url('/wp-content/uploads/2019/10/Group-25.png')no-repeat, url('/wp-content/uploads/2019/10/Group-24.png')no-repeat, #262121;background-size:auto 130%, auto 130%;background-position:bottom -70px left,top -70px right;}
+.dashboardbenefits {background: url('/wp-content/themes/melting_pot/images/laying-down.jpg') #262121;background-size:cover;background-attachment: fixed;background-position: center right;}
 
 .wrap-benefit {}
 .wrap-benefit a h4 {color:#fff;-webkit-transition: all 0.5s ease-in-out;-moz-transition: all 0.5s ease-in-out;-ms-transition: all 0.5s ease-in-out;-o-transition: all 0.5s ease-in-out;transition: all 0.5s ease-in-out;}
@@ -289,19 +289,15 @@ section.CTABannerBG h2,.meetOwners h2,section.saleGuarantee h2,#Pricingboxes .sa
 
 /*
 
-@media only screen and (max-width: 1300px) {	
+@media only screen and (max-width: 1300px) {
 }
 
 
-@media only screen and (max-width: 768px) {	
+@media only screen and (max-width: 768px) {
 }
 
-@media only screen and (max-width: 500px) {	
+@media only screen and (max-width: 500px) {
 }
 
 
 */
-
-
-
-
