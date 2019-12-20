@@ -1589,11 +1589,6 @@ img {
 	-webkit-transition: all .3s ease-in-out;
   -o-transition: all .3s ease-in-out;
 }
-@media screen and (max-width: 1023px) {
-	.hide-for-medium {
-	  display: none;
-	}
-}
 .course-container {
 	white-space: nowrap;
 	overflow-x: auto;
@@ -1736,4 +1731,13 @@ img {
 	-webkit-transition: all .3s ease-in-out;
   -o-transition: all .3s ease-in-out;
 	transition-delay: 0.1s;
+}
+
+@media screen and (max-width: 1023px) {
+	.course-container {
+		min-height: 0px !important;
+	}
+	.hide-for-medium {
+	  display: none;
+	}
 }
