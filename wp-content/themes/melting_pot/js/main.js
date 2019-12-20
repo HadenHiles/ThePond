@@ -26,6 +26,9 @@ jQuery(document).ready(function () {
 	  slider.scrollLeft = scrollLeft - walk;
 	});
 
+	// Set the minimum hight for the course container
+	jQuery('.course-container').css('height', jQuery('.section-icons').css('height'));
+
 	var scrollDistance = jQuery('.course-item').width() * 1.5;
 	jQuery('#scroll-left-btn').click(function () {
 		jQuery('.course-container').animate({
