@@ -1529,7 +1529,7 @@ li.podcast-related-item .coursePrevImage {
 }
 /*end*/
 
-img {
+img, iframe {
 	max-width: 100%;
 }
 .user-points-wrapper h2.gamipress-rank-title {
