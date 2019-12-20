@@ -722,12 +722,12 @@ img.memberloginlogo{max-width: 60%; margin: 2rem 0 4rem 0;  }
 /*Dashboard*/
 
 section.memberbenefits{padding: 0; }
-ul.benefit-wrap{display: inline-block; margin: 4rem 0; width: 100%;  }
+ul.benefit-wrap{display: inline-block; margin: 1rem; width: 100%;  }
 /* Icon styles - Benefits section */
-.wrap-benefit {text-align: center; padding: 0 0; position: relative; }
+.wrap-benefit {text-align: center; padding: 5px 0; position: relative; }
 .wrap-benefit p{font-size:.9rem; line-height: 1.2rem; }
 .wrap-benefit svg {font-size: 80px; margin-bottom: 1.5rem;}
-.wrap-benefit img {height:150px;margin-bottom:1.5rem;}
+.wrap-benefit img {height:100px;margin-bottom:1.5rem;}
 .wrap-benefit a.BTN { margin: .7rem 0; position: absolute; bottom: 0; left: 15%; width: 70%;   }
 .wrap-benefit a h4 { color: #069EDA;}
 .wrap-benefit a h4:hover { color: #384044;}
@@ -739,7 +739,7 @@ ul.contentfeed li {width:100%;float:left;list-style:none;padding:20px 0;border-b
 ul.contentfeed li .contenttext {width:100%;float:left;padding-left:20px;}
 ul.contentfeed li .BTN {margin:10px 0 0 0;}
 ul.contentfeed li p{padding:0;margin:0; line-height: 1.6rem; }
-ul.contentfeed li #FeatureImage {width:100%;float:left;min-height:150px;}
+ul.contentfeed li #FeatureImage {width:100%;float:left;min-height:100px;}
 
 span.postLabel{background: #069EDA;
     padding: 3px 10px;
@@ -1529,20 +1529,101 @@ li.podcast-related-item .coursePrevImage {
 }
 /*end*/
 
+img {
+	max-width: 100%;
+}
 .user-points-wrapper h2.gamipress-rank-title {
 	font-size: 1.5em;
 }
 
+.course-container-wrapper {
+	width: 100%;
+	position: relative;
+	border-left: 5px solid #3AA6DE;
+}
+.course-container-wrapper .fadeout-left {
+	width: 90px;
+	height: 100%;
+	position: absolute;
+	z-index: 3;
+	top: 0;
+	left: 0;
+	background: linear-gradient(to right, #262121, transparent 40%);
+}
+.course-container-wrapper .fadeout-right {
+	width: 90px;
+	height: 100%;
+	position: absolute;
+	z-index: 3;
+	top: 0;
+	right: 0;
+	background: linear-gradient(to left, #262121, transparent 40%);
+}
+.course-container-wrapper #scroll-left-btn {
+	position: absolute;
+	z-index: 12;
+	top: 45%;
+	left: 30px;
+}
+.course-container-wrapper #scroll-right-btn {
+	position: absolute;
+	z-index: 12;
+	top: 45%;
+	right: 30px;
+}
+.course-container-wrapper #scroll-left-btn, .course-container-wrapper #scroll-right-btn {
+	font-size: 65px;
+	font-weight: lighter;
+	color: #404040;
+	transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-webkit-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+}
+.course-container-wrapper #scroll-left-btn:hover, .course-container-wrapper #scroll-right-btn:hover {
+	color: #3AA6DE;
+	transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-webkit-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+}
+@media screen and (max-width: 1023px) {
+	.course-container-wrapper {
+		border: none;
+		margin-left: -1em;
+	}
+	.hide-for-medium {
+	  display: none;
+	}
+}
 .course-container {
 	white-space: nowrap;
-	overflow-x: scroll;
+	overflow-x: auto;
 	-ms-overflow-style: none;
+	position: relative;
+	cursor: grab;
+	padding: 0 45px;
+}
+.course-container:active {
+	cursor: grabbing;
 }
 .course-container::-webkit-scrollbar {
 	display: none;
 }
-.course-container .inner {
-	clear: both;
+.course-container .category-icon-wrapper {
+	width: 100px;
+	float: left;
+	margin: 25px auto;
+}
+.course-container .category-icon-wrapper img.category-icon {
+	margin: 20px;
+	width: 60px;
+}
+.course-container .course-wrapper {
+	float: left;
+	width: -webkit-calc(100% - 100px);
+  width:    -moz-calc(100% - 100px);
+  width:         calc(100% - 100px);
 }
 .course-item {
 	display: inline-block;
@@ -1585,6 +1666,7 @@ li.podcast-related-item .coursePrevImage {
 	-moz-transition: all .3s ease-in-out;
 	-webkit-transition: all .3s ease-in-out;
   -o-transition: all .3s ease-in-out;
+	transition-delay: 0.1s;
 }
 .course-item .overlay {
 	position: absolute;
@@ -1605,6 +1687,7 @@ li.podcast-related-item .coursePrevImage {
 	-moz-transition: all .3s ease-in-out;
 	-webkit-transition: all .3s ease-in-out;
   -o-transition: all .3s ease-in-out;
+	transition-delay: 0.1s;
 }
 .course-item .progress-bar {
 	opacity: 0;
@@ -1627,4 +1710,5 @@ li.podcast-related-item .coursePrevImage {
 	-moz-transition: all .3s ease-in-out;
 	-webkit-transition: all .3s ease-in-out;
   -o-transition: all .3s ease-in-out;
+	transition-delay: 0.1s;
 }

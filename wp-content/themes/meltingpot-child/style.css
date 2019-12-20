@@ -131,12 +131,12 @@ div.topic p, div.answer p {
 .dashboardbenefits {background: url('/wp-content/themes/melting_pot/images/laying-down.jpg') #262121;background-size:cover;background-attachment: fixed;background-position: center right;}
 
 .wrap-benefit {}
-.wrap-benefit a h4 {color:#fff;-webkit-transition: all 0.5s ease-in-out;-moz-transition: all 0.5s ease-in-out;-ms-transition: all 0.5s ease-in-out;-o-transition: all 0.5s ease-in-out;transition: all 0.5s ease-in-out;}
+.wrap-benefit a h4 {font-size: 1.2em; color:#fff;-webkit-transition: all 0.5s ease-in-out;-moz-transition: all 0.5s ease-in-out;-ms-transition: all 0.5s ease-in-out;-o-transition: all 0.5s ease-in-out;transition: all 0.5s ease-in-out;}
 .wrap-benefit a:hover h4 {color:#CC3333;}
 .wrap-benefit a:hover .BTN {background:#CC3333;}
 .wrap-benefit a .BTN {margin-right:0;}
 .wrap-benefit p {color:#fff;}
-.benefitimage {border-radius:50%;float:none;display:inline-block;width:150px;height:150px;background:#fff;padding:20px;border:5px solid #3AA6DE;-webkit-transition: all 0.5s ease-in-out;-moz-transition: all 0.5s ease-in-out;-ms-transition: all 0.5s ease-in-out;-o-transition: all 0.5s ease-in-out;transition: all 0.5s ease-in-out;}
+.benefitimage {border-radius:50%;float:none;display:inline-block;width:95px;height:95px;background:#fff;padding:10px;border:5px solid #3AA6DE;-webkit-transition: all 0.5s ease-in-out;-moz-transition: all 0.5s ease-in-out;-ms-transition: all 0.5s ease-in-out;-o-transition: all 0.5s ease-in-out;transition: all 0.5s ease-in-out;}
 .benefitimage img {height:auto;margin:0;width:auto;float:left;display:inline-block;}
 
 .wrap-benefit a:hover .benefitimage {border:5px solid #CC3333;}

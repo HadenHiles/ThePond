@@ -64,3 +64,6 @@ add_filter( 'posts_distinct', 'cf_search_distinct' );
 
 /* Include shortcodes */
 require_once('shortcodes.php');
+
+/* Include scripts */
+require_once('scripts.php');
