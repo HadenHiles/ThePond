@@ -1735,7 +1735,7 @@ img {
 
 @media screen and (max-width: 1023px) {
 	.course-container {
-		min-height: 0px;
+		min-height: 0px !important;
 	}
 	.hide-for-medium {
 	  display: none;
