@@ -1354,21 +1354,31 @@ ul.topmemberNav {margin: 10px 58px 0 0;}
 
 .SavedContent li h4 a, .filtered_content li h4 a{font-size: 1.3rem; }
 
+.MemberheaderWrap {
+	padding: 1rem 0;
+}
 .MemberheaderWrap .headerlogo {
-float: left; max-width: 58%; padding: 0 0 0 10px;
+float: left; max-width: 12% !important; margin-top: -5px !important;
 }
 
-.MemberheaderWrap .NavBTN { top: 45px;}
+.MemberheaderWrap .NavBTN { top: 55px; z-index: 13;}
 .searchResults input[type="search"]{max-width: 100%; }
 #search input[type="search"]{top: 25%; font-size: 130%; }
 #search .btn{top: 33%; }
 
 .topmemberNav {
-margin: 40px 0 20px 0;
+margin: 0;
 padding: 0;
 width: 100%;
 }
-.topmemberNav li.menu_search a{margin-left: 10px; }
+.topmemberNav li.menu_search a{
+	position: absolute;
+	top: 65px;
+	right: 80px;
+}
+.topmemberNav li.menu-item:not(.menu_search) {
+	display: none;
+}
 
 .topmemberNav li a {
 padding: 10px 12px;
@@ -1378,7 +1388,9 @@ display: inline-block;
 
 		.topmemberNav li a i{display: block; font-size: 30px; }
 
-
+.topmemberNav .LoggedIn {
+	height: 0;
+}
 
 
 
@@ -1698,6 +1710,7 @@ iframe {
 	left: 0;
 	text-indent: .2em;
 	line-height: 1.8em;
+	letter-spacing: .05em;
 	background: #28a745;
 	color: #fff;
 	text-align: center;
