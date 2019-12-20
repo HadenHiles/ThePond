@@ -49,7 +49,7 @@ To your dashboard
 <!-- <div class="row"> -->
 <div>
 <?php if( have_rows('dashboard_benefits') ): $i = count(get_field('dashboard_benefits')); ?>
-<div class="large-2 hide-for-medium columns">
+<div class="section-icons large-2 hide-for-medium columns">
 	<ul class="benefit-wrap">
 	<?php while( have_rows('dashboard_benefits') ): the_row(); $gridsize = '';
 
@@ -73,7 +73,7 @@ To your dashboard
 <?php endif; ?>
 
 <!-- Skills progression timeline/stages -->
-<div class="large-10 columns">
+<div class="large-10 columns" style="padding: 0;">
 	<?php
 	do_shortcode('[ld_course_tags categories="skating,stickhandling,shooting,passing"]');
 	?>

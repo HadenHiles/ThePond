@@ -1536,10 +1536,12 @@ img {
 	font-size: 1.5em;
 }
 
+.section-icons {
+	border-right: 5px solid #3AA6DE;
+}
 .course-container-wrapper {
 	width: 100%;
 	position: relative;
-	border-left: 5px solid #3AA6DE;
 }
 .course-container-wrapper .fadeout-left {
 	width: 90px;
@@ -1588,10 +1590,6 @@ img {
   -o-transition: all .3s ease-in-out;
 }
 @media screen and (max-width: 1023px) {
-	.course-container-wrapper {
-		border: none;
-		margin-left: -1em;
-	}
 	.hide-for-medium {
 	  display: none;
 	}
