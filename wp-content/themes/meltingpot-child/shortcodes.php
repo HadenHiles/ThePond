@@ -90,19 +90,28 @@ function learndash_course_tags($atts = [], $content = null, $tag = ''){
 		}
 	}
 
-  $output .= '<div class="course-container">';
+  $output .=  '<div class="course-container-wrapper">'.
+                '<div class="fadeout-left"></div>'.
+                '<div class="fadeout-right"></div>'.
+                '<a id="scroll-left-btn"><i class="fa fa-angle-left"></i></a>'.
+                '<a id="scroll-right-btn"><i class="fa fa-angle-right"></i></a>'.
+              '<div class="course-container">';
   foreach ($courses_by_category as $key => $value) {
+    $courseCategoryTerm = get_term_by('slug', $key, 'ld_course_category');
+    $courseCategoryTermId = $courseCategoryTerm->term_id;
+    $categoryIcon = get_field('category_icon', 'ld_course_category_' . $courseCategoryTermId);
+    $output .= '<div class="category-icon-wrapper"><img src="' . $categoryIcon . '" class="category-icon" /></div>';
+    $output .= '<div class="course-wrapper">';
     foreach ($courses_by_category[$key] as $c) {
-      $output .=  '<div class="inner">'.
-                    '<a class="course-item" href="' . $c->post_url . '" style="background-image: url(\''. $c->img[0] . '\')">'.
-                      '<h5>' . $c->post_title . '</h5>'.
-                      '<div class="overlay"></div>'.
-                      '<div class="progress-bar" style="width: ' . $c->percentage . '%">' . $c->percentage . '%</div>'.
-                    '</a>'.
-                  '</div>';
+      $output .=  '<a class="course-item" href="' . $c->post_url . '" style="background-image: url(\''. $c->img[0] . '\')">'.
+                    '<h5>' . $c->post_title . '</h5>'.
+                    '<div class="overlay"></div>'.
+                    '<div class="progress-bar" style="width: ' . $c->percentage . '%">' . $c->percentage . '%</div>'.
+                  '</a>';
     }
+    $output .= '</div>';
   }
-  $output .= '</div>';
+  $output .= '</div></div>';
 
   echo $output;
 }

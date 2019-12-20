@@ -46,13 +46,14 @@ To your dashboard
 
 
 <section class="memberbenefits dashboardbenefits">
-<div class="row">
+<!-- <div class="row"> -->
+<div>
 <?php if( have_rows('dashboard_benefits') ): $i = count(get_field('dashboard_benefits')); ?>
-<div class="large-4 columns">
+<div class="large-2 hide-for-medium columns">
 	<ul class="benefit-wrap">
 	<?php while( have_rows('dashboard_benefits') ): the_row(); $gridsize = '';
 
-	if($i == 4) {$gridsize = 'large-6 medium-6';} elseif($i == 3){$gridsize ='large-4 medium-4';} elseif($i == 2){$gridsize ='large-6 medium-6';} ?>
+	if($i == 4) {$gridsize = 'large-12 medium-12';} elseif($i == 3){$gridsize ='large-12 medium-12';} elseif($i == 2){$gridsize ='large-12 medium-12';} ?>
 	<li class="<?php echo $gridsize; ?> columns">
 	<div class="wrap-benefit">
 	<a href="<?php echo the_sub_field('link_page')?>">
@@ -60,7 +61,7 @@ To your dashboard
 	<img src="<?php echo the_sub_field('image'); ?>" alt="<? echo the_sub_field('benefit-title'); ?> icon">
 	</div>
 	<h4><?php echo the_sub_field('benefit-title'); ?></h4>
-	<p><?php echo the_sub_field('benefit-small-text'); ?></p>
+	<!-- <p><?php echo the_sub_field('benefit-small-text'); ?></p> -->
 	<!-- <span class="BTN"><?php echo the_sub_field('button_text')?></span> -->
 	</a>
 	</div>
@@ -68,10 +69,11 @@ To your dashboard
 	<?php endwhile; ?>
 	</ul>
 </div>
+<!-- </div> -->
 <?php endif; ?>
 
 <!-- Skills progression timeline/stages -->
-<div class="large-8 columns">
+<div class="large-10 columns">
 	<?php
 	do_shortcode('[ld_course_tags categories="skating,stickhandling,shooting,passing"]');
 	?>

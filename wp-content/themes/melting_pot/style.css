@@ -2750,6 +2750,7 @@ display: inline-block;
 height: 40px;
 width: 40px;
 position: fixed;
+z-index: 11;
 bottom: 40px;
 right: 10px;
 box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
