@@ -1532,6 +1532,10 @@ li.podcast-related-item .coursePrevImage {
 img, iframe {
 	max-width: 100%;
 }
+iframe {
+	width: 1px;
+  min-width: 100%;
+}
 .user-points-wrapper h2.gamipress-rank-title {
 	font-size: 1.5em;
 }
