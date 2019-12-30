@@ -104,11 +104,19 @@ function learndash_course_tags($atts = [], $content = null, $tag = ''){
     $output .= '<div class="course-wrapper">';
     foreach ($courses_by_category[$key] as $c) {
       $output .=  '<a class="course-item" href="' . $c->post_url . '" style="background-image: url(\''. $c->img[0] . '\')">'.
-                    '<h5>' . $c->post_title . '</h5>'.
-                    '<div class="overlay"></div>'.
-                    '<div class="progress-bar" style="width: ' . $c->percentage . '%">' . $c->percentage . '%</div>'.
-                    '<div class="progress-bar-small" style="width: ' . $c->percentage . '%">&nbsp;</div>'.
-                  '</a>';
+                    '<h5>' . $c->post_title . '</h5>';
+      $output .=    '<div class="overlay"></div>';
+      if ($c->percentage >= 100) {
+        $output .=  '<h6 class="percentage">100%</h6>'.
+                    '<span class="complete fa-stack fa-1x">'.
+                      '<i class="fa fa-check fa-stack-1x"></i>'.
+                      '<i class="fa fa-circle-thin fa-stack-1x icon-background"></i>'.
+                    '</span>';
+      } else {
+        $output .=  '<div class="progress-bar" style="width: ' . $c->percentage . '%">' . $c->percentage . '%</div>';
+      }
+      $output .=    '<div class="progress-bar-small" style="width: ' . $c->percentage . '%">&nbsp;</div>';
+      $output .=  '</a>';
     }
     $output .= '</div>';
   }

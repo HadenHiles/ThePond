@@ -1742,7 +1742,54 @@ iframe {
   -o-transition: all .3s ease-in-out;
 }
 .course-item:hover .progress-bar-small {
+	/* opacity: 0; */
+	transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-webkit-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+	transition-delay: 0.1s;
+}
+.course-item .complete {
+	position: absolute;
+	z-index: 2;
+	bottom: 4px;
+	right: 0;
+	transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-webkit-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+}
+.course-item .complete .fa-check {
+	z-index: 3;
+	color: #fff;
+}
+.course-item .complete .icon-background {
+	z-index: 2;
+	color: #28a745;
+	font-size: 1.4em;
+}
+.course-item:hover .complete {
 	opacity: 0;
+	transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-webkit-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+	transition-delay: 0.1s;
+}
+.course-item h6.percentage {
+	position: absolute;
+	z-index: 2;
+	bottom: 4px;
+	right: 5px;
+	color: #fff;
+	opacity: 0;
+	transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-webkit-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+}
+.course-item:hover h6.percentage {
+	opacity: 1;
 	transition: all .3s ease-in-out;
 	-moz-transition: all .3s ease-in-out;
 	-webkit-transition: all .3s ease-in-out;
