@@ -24,6 +24,12 @@ Welcome
 To your dashboard
 <?php endif; ?>
 </p>
+<div class="large-4 medium-5 columns user-points-wrapper" style="font-family: 'Teko', sans-serif; color: #fff; font-size: 28px !important; font-weight: bold; text-align: right;">
+	<?php
+	echo do_shortcode('[gamipress_user_rank type="skilllevel" prev_rank="no" current_rank="yes" next_rank="no" current_user="yes" user_id="" columns="1" title="yes" link="no" thumbnail="no" excerpt="no" requirements="no" toggle="no" unlock_button="" earners="" earners_limit="0" layout="left"]');
+	echo do_shortcode('[gamipress_points type="pondpoints" thumbnail="no" label="yes" current_user="yes" user_id="" period="" period_start="" period_end="" inline="" columns="1" layout="left"]');
+	?>
+</div>
 <div class="large-4 medium-5 columns">
 
 
@@ -35,12 +41,6 @@ To your dashboard
 
 
 </a> </div>
-</div>
-<div class="large-4 medium-5 columns user-points-wrapper" style="font-family: 'Teko', sans-serif; color: #fff; font-size: 28px !important; font-weight: bold; text-align: right;">
-	<?php
-	echo do_shortcode('[gamipress_user_rank type="skilllevel" prev_rank="no" current_rank="yes" next_rank="no" current_user="yes" user_id="" columns="1" title="yes" link="no" thumbnail="no" excerpt="no" requirements="no" toggle="no" unlock_button="" earners="" earners_limit="0" layout="left"]');
-	echo do_shortcode('[gamipress_points type="pondpoints" thumbnail="no" label="yes" current_user="yes" user_id="" period="" period_start="" period_end="" inline="" columns="1" layout="left"]');
-	?>
 </div>
 </section>
 
