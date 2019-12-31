@@ -48,36 +48,35 @@ To your dashboard
 <section class="memberbenefits dashboardbenefits">
 <!-- <div class="row"> -->
 <div>
-<?php if( have_rows('dashboard_benefits') ): $i = count(get_field('dashboard_benefits')); ?>
-<div class="section-icons large-2 hide-for-medium columns">
-	<ul class="benefit-wrap">
-	<?php while( have_rows('dashboard_benefits') ): the_row(); $gridsize = '';
-
-	if($i == 4) {$gridsize = 'large-12 medium-12';} elseif($i == 3){$gridsize ='large-12 medium-12';} elseif($i == 2){$gridsize ='large-12 medium-12';} ?>
-	<li class="<?php echo $gridsize; ?> columns">
-	<div class="wrap-benefit">
-	<a href="<?php echo the_sub_field('link_page')?>">
-	<div class="benefitimage">
-	<img src="<?php echo the_sub_field('image'); ?>" alt="<? echo the_sub_field('benefit-title'); ?> icon">
+	<!-- Skills progression timeline/stages -->
+	<div class="large-10 columns" style="padding: 0;">
+		<?php
+		do_shortcode('[ld_course_tags categories="skating,stickhandling,shooting,passing"]');
+		?>
 	</div>
-	<h4><?php echo the_sub_field('benefit-title'); ?></h4>
-	<!-- <p><?php echo the_sub_field('benefit-small-text'); ?></p> -->
-	<!-- <span class="BTN"><?php echo the_sub_field('button_text')?></span> -->
-	</a>
-	</div>
-	</li>
-	<?php endwhile; ?>
-	</ul>
-</div>
-<!-- </div> -->
-<?php endif; ?>
+	<?php if( have_rows('dashboard_benefits') ): $i = count(get_field('dashboard_benefits')); ?>
+		<div class="section-icons large-2 hide-for-medium columns">
+			<ul class="benefit-wrap">
+			<?php while( have_rows('dashboard_benefits') ): the_row(); $gridsize = '';
 
-<!-- Skills progression timeline/stages -->
-<div class="large-10 columns" style="padding: 0;">
-	<?php
-	do_shortcode('[ld_course_tags categories="skating,stickhandling,shooting,passing"]');
-	?>
-</div>
+			if($i == 4) {$gridsize = 'large-12 medium-12';} elseif($i == 3){$gridsize ='large-12 medium-12';} elseif($i == 2){$gridsize ='large-12 medium-12';} ?>
+			<li class="<?php echo $gridsize; ?> columns">
+			<div class="wrap-benefit">
+			<a href="<?php echo the_sub_field('link_page')?>">
+			<div class="benefitimage">
+			<img src="<?php echo the_sub_field('image'); ?>" alt="<? echo the_sub_field('benefit-title'); ?> icon">
+			</div>
+			<h4><?php echo the_sub_field('benefit-title'); ?></h4>
+			<!-- <p><?php echo the_sub_field('benefit-small-text'); ?></p> -->
+			<!-- <span class="BTN"><?php echo the_sub_field('button_text')?></span> -->
+			</a>
+			</div>
+			</li>
+			<?php endwhile; ?>
+			</ul>
+		</div>
+		<!-- </div> -->
+	<?php endif; ?>
 
 <?php if (get_field('content_after_links')): ?>
 <div class="afterMainLinks"><?php the_field('content_after_links'); ?></div>
