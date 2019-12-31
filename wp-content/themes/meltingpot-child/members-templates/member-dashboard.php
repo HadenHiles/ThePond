@@ -24,12 +24,6 @@ Welcome
 To your dashboard
 <?php endif; ?>
 </p>
-<div class="large-4 medium-5 columns user-points-wrapper" style="font-family: 'Teko', sans-serif; color: #fff; font-size: 28px !important; font-weight: bold; text-align: right;">
-	<?php
-	echo do_shortcode('[gamipress_user_rank type="skilllevel" prev_rank="no" current_rank="yes" next_rank="no" current_user="yes" user_id="" columns="1" title="yes" link="no" thumbnail="no" excerpt="no" requirements="no" toggle="no" unlock_button="" earners="" earners_limit="0" layout="left"]');
-	echo do_shortcode('[gamipress_points type="pondpoints" thumbnail="no" label="yes" current_user="yes" user_id="" period="" period_start="" period_end="" inline="" columns="1" layout="left"]');
-	?>
-</div>
 <div class="large-4 medium-5 columns">
 
 
@@ -42,42 +36,47 @@ To your dashboard
 
 </a> </div>
 </div>
+<div class="large-4 medium-5 columns user-points-wrapper" style="font-family: 'Teko', sans-serif; color: #fff; font-size: 28px !important; font-weight: bold; text-align: right;">
+	<?php
+	echo do_shortcode('[gamipress_user_rank type="skilllevel" prev_rank="no" current_rank="yes" next_rank="no" current_user="yes" user_id="" columns="1" title="yes" link="no" thumbnail="no" excerpt="no" requirements="no" toggle="no" unlock_button="" earners="" earners_limit="0" layout="left"]');
+	echo do_shortcode('[gamipress_points type="pondpoints" thumbnail="no" label="yes" current_user="yes" user_id="" period="" period_start="" period_end="" inline="" columns="1" layout="left"]');
+	?>
+</div>
 </section>
 
 
 <section class="memberbenefits dashboardbenefits">
 <!-- <div class="row"> -->
 <div>
-<?php if( have_rows('dashboard_benefits') ): $i = count(get_field('dashboard_benefits')); ?>
-<div class="section-icons large-2 hide-for-medium columns">
-	<ul class="benefit-wrap">
-	<?php while( have_rows('dashboard_benefits') ): the_row(); $gridsize = '';
-
-	if($i == 4) {$gridsize = 'large-12 medium-12';} elseif($i == 3){$gridsize ='large-12 medium-12';} elseif($i == 2){$gridsize ='large-12 medium-12';} ?>
-	<li class="<?php echo $gridsize; ?> columns">
-	<div class="wrap-benefit">
-	<a href="<?php echo the_sub_field('link_page')?>">
-	<div class="benefitimage">
-	<img src="<?php echo the_sub_field('image'); ?>" alt="<? echo the_sub_field('benefit-title'); ?> icon">
+	<!-- Skills progression timeline/stages -->
+	<div class="large-10 columns" style="padding: 0;">
+		<?php
+		do_shortcode('[ld_course_tags categories="skating,stickhandling,shooting,passing"]');
+		?>
 	</div>
-	<h4><?php echo the_sub_field('benefit-title'); ?></h4>
-	<!-- <p><?php echo the_sub_field('benefit-small-text'); ?></p> -->
-	<!-- <span class="BTN"><?php echo the_sub_field('button_text')?></span> -->
-	</a>
-	</div>
-	</li>
-	<?php endwhile; ?>
-	</ul>
-</div>
-<!-- </div> -->
-<?php endif; ?>
+	<?php if( have_rows('dashboard_benefits') ): $i = count(get_field('dashboard_benefits')); ?>
+		<div class="section-icons large-2 hide-for-medium columns">
+			<ul class="benefit-wrap">
+			<?php while( have_rows('dashboard_benefits') ): the_row(); $gridsize = '';
 
-<!-- Skills progression timeline/stages -->
-<div class="large-10 columns" style="padding: 0;">
-	<?php
-	do_shortcode('[ld_course_tags categories="skating,stickhandling,shooting,passing"]');
-	?>
-</div>
+			if($i == 4) {$gridsize = 'large-12 medium-12';} elseif($i == 3){$gridsize ='large-12 medium-12';} elseif($i == 2){$gridsize ='large-12 medium-12';} ?>
+			<li class="<?php echo $gridsize; ?> columns">
+			<div class="wrap-benefit">
+			<a href="<?php echo the_sub_field('link_page')?>">
+			<div class="benefitimage">
+			<img src="<?php echo the_sub_field('image'); ?>" alt="<? echo the_sub_field('benefit-title'); ?> icon">
+			</div>
+			<h4><?php echo the_sub_field('benefit-title'); ?></h4>
+			<!-- <p><?php echo the_sub_field('benefit-small-text'); ?></p> -->
+			<!-- <span class="BTN"><?php echo the_sub_field('button_text')?></span> -->
+			</a>
+			</div>
+			</li>
+			<?php endwhile; ?>
+			</ul>
+		</div>
+		<!-- </div> -->
+	<?php endif; ?>
 
 <?php if (get_field('content_after_links')): ?>
 <div class="afterMainLinks"><?php the_field('content_after_links'); ?></div>
