@@ -28,6 +28,7 @@ $header_class  = $Youzer->header->get_class( 'user' );
 
 			<?php do_action( 'youzer_profile_header' ); ?>
 
+      <!-- Show the user's gammipress rank in their profile sidebar -->
       <div id="user-rank" style="opacity: 0;"><?php echo do_shortcode('[gamipress_user_rank type="skilllevel" prev_rank="no" current_rank="yes" next_rank="no" current_user="no" user_id="' . bp_displayed_user_id() . '" columns="1" title="yes" link="no" thumbnail="no" excerpt="no" requirements="no" toggle="no" unlock_button="" earners="" earners_limit="0" layout="left"]'); ?></div>
 
 		</header>
