@@ -151,7 +151,7 @@ section.memberDashWelc h1, section.clbHeader h1 {line-height:1.2em;}
 
 
 /* Footer */
-img.footerlogo{width:70px;margin-bottom:0;}
+img.footerlogo{width:200px;margin-bottom:0;}
 
 footer.footer.members a:hover {color:#CC3333;}
 .members-footer-menu ul li a {font-size:1rem;padding:0;margin:0 0 0 15px;}
