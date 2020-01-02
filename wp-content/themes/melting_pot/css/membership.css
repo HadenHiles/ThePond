@@ -722,7 +722,7 @@ img.memberloginlogo{max-width: 60%; margin: 2rem 0 4rem 0;  }
 /*Dashboard*/
 
 section.memberbenefits{padding: 0; }
-ul.benefit-wrap{display: inline-block; margin: 1rem; width: 100%;  }
+ul.benefit-wrap{display: inline-block; padding: 1rem; width: 100%;  }
 /* Icon styles - Benefits section */
 .wrap-benefit {text-align: center; padding: 5px 0; position: relative; }
 .wrap-benefit p{font-size:.9rem; line-height: 1.2rem; }
