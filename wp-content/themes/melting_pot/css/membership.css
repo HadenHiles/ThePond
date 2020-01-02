@@ -1804,3 +1804,14 @@ iframe {
 	  display: none;
 	}
 }
+
+/* Youzer Buddypress Profile */
+#user-rank {
+	display: inline-block;
+}
+.yzb-user-status {
+	opacity: 0;
+}
+.yzb-head-content .yz-user-status {
+	margin: 0 0 2px 5px !important;
+}

@@ -42,4 +42,12 @@ jQuery(document).ready(function () {
 	    }, 300);
 		});
 	}
+
+	//TODO: This is a hack - Move user rank to within profile info in community profile sidebar
+	jQuery('.yzb-user-status').insertAfter(jQuery('.yzb-head-username'));
+	if (jQuery('#user-rank').length > 0) {
+		jQuery('#user-rank').prependTo(jQuery('.yzb-user-status'));
+		jQuery('#user-rank').css({'opacity': '1'});
+	}
+	jQuery('.yzb-user-status').css({'opacity': '1'});
 });
