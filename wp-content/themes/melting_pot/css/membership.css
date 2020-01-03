@@ -1548,6 +1548,9 @@ iframe {
 	width: 1px;
   min-width: 100%;
 }
+button[type=submit] {
+	cursor: pointer;
+}
 .user-points-wrapper h2.gamipress-rank-title {
 	font-size: 1.5em;
 }
