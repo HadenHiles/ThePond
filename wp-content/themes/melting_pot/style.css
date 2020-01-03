@@ -2651,6 +2651,7 @@ float: left;
 width: 100%;
 padding: 3rem 0;
 color: #14345a;
+font-weight: bold;
 }
 
 footer.footer a{ color: #14345a;  }
