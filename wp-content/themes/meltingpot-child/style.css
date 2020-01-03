@@ -39,6 +39,16 @@ h6 {}
 
 .BTN,input[type="submit"],button[type="submit"],.wrap-benefit a.BTN,.memberReason a.BTN, .memberSupport a.BTN,.CourseFeed .blogpreview a.BTN,.learndash-wrapper .ld-button,.learndash-wrapper .ld-expand-button,.memberPromo a.BTN{background: #CC3333;padding:12px 25px;border-radius:25px;line-height:1em;min-width:0;}
 
+.cn-button {
+	background: #262121;
+}
+.cn-button#cn-accept-cookie {
+	background: #3AA6DE;
+}
+.cn-button#cn-accept-cookie:hover {
+	background: #262121;
+}
+
 
 
 .questionbox {background:#CC3333;}
