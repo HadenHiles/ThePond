@@ -37,7 +37,7 @@ h6 {}
 
 
 
-.BTN,input[type="submit"],button[type="submit"],.wrap-benefit a.BTN,.memberReason a.BTN, .memberSupport a.BTN,.CourseFeed .blogpreview a.BTN,.learndash-wrapper .ld-button,.learndash-wrapper .ld-expand-button,.memberPromo a.BTN{background: #CC3333;padding:12px 25px;border-radius:25px;line-height:1em;min-width:0;}
+.BTN,input[type="submit"],.wrap-benefit a.BTN,.memberReason a.BTN, .memberSupport a.BTN,.CourseFeed .blogpreview a.BTN,.learndash-wrapper .ld-button,.learndash-wrapper .ld-expand-button,.memberPromo a.BTN{background: #CC3333;padding:12px 25px;border-radius:25px;line-height:1em;min-width:0;}
 
 .cn-button {
 	background: #262121;
@@ -53,7 +53,14 @@ h6 {}
 
 .questionbox {background:#CC3333;}
 
-.BTN:hover,input[type="submit"]:hover,button[type="submit"]:hover,.wrap-benefit a.BTN:hover,.memberReason a.BTN:hover, .memberSupport a.BTN:hover,a.clCatLink:hover,.CourseFeed .blogpreview a.BTN:hover,.learndash-wrapper .ld-button:hover,.learndash-wrapper .ld-expand-button:hover,.memberPromo a.BTN:hover{background: #3AA6DE; color: #fff; }
+.BTN:hover,input[type="submit"]:hover,.wrap-benefit a.BTN:hover,.memberReason a.BTN:hover, .memberSupport a.BTN:hover,a.clCatLink:hover,.CourseFeed .blogpreview a.BTN:hover,.learndash-wrapper .ld-button:hover,.learndash-wrapper .ld-expand-button:hover,.memberPromo a.BTN:hover{background: #3AA6DE; color: #fff; }
+
+button[type="submit"] {
+	background: #CC3333 !important;
+}
+button[type="submit"]:hover {
+	background: #3AA6DE !important;
+}
 
 a.backBTN,.sectionHeader a.BTN,.mepr-login-actions a,.mepr-account-change-password a{background: #14345a;}
 a.backBTN:hover,.sectionHeader a.BTN:hover,.mepr-login-actions a:hover,.mepr-account-change-password a:hover{background: #3AA6DE;}
