@@ -2646,21 +2646,21 @@ h3#order_review_heading{padding-left: 2%; display: inline-block;  }
 
 /*Footer*/
 .footer {
-background: #262121;
+background: #eee;
 float: left;
 width: 100%;
 padding: 3rem 0;
-color: #fff;
+color: #14345a;
 }
 
-footer.footer a{ color: #fff;  }
+footer.footer a{ color: #14345a;  }
 footer.footer a.BTN{color: #fff; background: #dd3333; margin: 0;  }
-footer.footer a.BTN:hover{color: #fff; background: #069EDA; }
-footer.footer a:hover{ color: #dd3333; }
+footer.footer a.BTN:hover{color: #fff; background: #3AA6DE; }
+footer.footer a:hover{ color: #cc3333; }
 
 footer.footer p{display: block; font-size: .8rem; }
-footer.footer p a{color: #dd3333;}
-footer.footer p a:hover{color: #069EDA;}
+footer.footer p a{color: #14345a;}
+footer.footer p a:hover{color: #cc3333;}
 
 footer.footer .footerRight{text-align: right; }
 
