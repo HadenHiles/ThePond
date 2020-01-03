@@ -37,7 +37,7 @@ h6 {}
 
 
 
-.BTN,input[type="submit"],button[type="submit"],.wrap-benefit a.BTN,.memberReason a.BTN, .memberSupport a.BTN,.CourseFeed .blogpreview a.BTN,.learndash-wrapper .ld-button,.learndash-wrapper .ld-expand-button,.memberPromo a.BTN{background: #3AA6DE;padding:12px 25px;border-radius:25px;line-height:1em;min-width:0;}
+.BTN,input[type="submit"],button[type="submit"],.wrap-benefit a.BTN,.memberReason a.BTN, .memberSupport a.BTN,.CourseFeed .blogpreview a.BTN,.learndash-wrapper .ld-button,.learndash-wrapper .ld-expand-button,.memberPromo a.BTN{background: #14345a;padding:12px 25px;border-radius:25px;line-height:1em;min-width:0;}
 
 
 
@@ -45,7 +45,7 @@ h6 {}
 
 .BTN:hover,input[type="submit"]:hover,button[type="submit"]:hover,.wrap-benefit a.BTN:hover,.memberReason a.BTN:hover, .memberSupport a.BTN:hover,a.clCatLink:hover,.CourseFeed .blogpreview a.BTN:hover,.learndash-wrapper .ld-button:hover,.learndash-wrapper .ld-expand-button:hover,.memberPromo a.BTN:hover{background: #CC3333; color: #fff; }
 
-a.backBTN,.sectionHeader a.BTN,.mepr-login-actions a,.mepr-account-change-password a{background: #262121;}
+a.backBTN,.sectionHeader a.BTN,.mepr-login-actions a,.mepr-account-change-password a{background: #14345a;}
 a.backBTN:hover,.sectionHeader a.BTN:hover,.mepr-login-actions a:hover,.mepr-account-change-password a:hover{background: #3AA6DE;}
 
 
@@ -82,29 +82,37 @@ section.courseHeaderv2 .breadcrumbs a,section#CourseHeader .breadcrumbs a{color:
 
 #CourseHeader .progressWrapper .courseProgress{background: #262121;  }
 
-.MemberheaderWrap,span.postLabel,header .CourseMainNav ul li a,section#CourseHeader,.radial-progress .inset,#lessons_list .list-count, .expand_collapse, h4#learndash_course_content_title,#lessons_list > div h4 > a,.CourseOptions,nav#savedContentTabList li a,.CourseSoon,.courseProgress,.learndash-wrapper .ld-table-list .ld-table-list-header,.learndash-wrapper .ld-expand-button.ld-button-alternate .ld-icon,section.backgroundlogin{background: #CC3333;}
+.MemberheaderWrap,header .CourseMainNav ul li a,section#CourseHeader,.radial-progress .inset,#lessons_list .list-count, .expand_collapse, h4#learndash_course_content_title,#lessons_list > div h4 > a,.CourseOptions,nav#savedContentTabList li a,.CourseSoon,.learndash-wrapper .ld-table-list .ld-table-list-header,.learndash-wrapper .ld-expand-button.ld-button-alternate .ld-icon,section.backgroundlogin{background: #14345a;}
+span.postLabel, .courseProgress {
+	background: #3AA6DE;
+}
 
-section#CourseHeader {background:#3AA6DE;}
+section#CourseHeader {background:#83cdcf;}
 
 .learndash-wrapper .ld-expand-button.ld-button-alternate,.learndash-wrapper .ld-item-list .ld-item-list-item a.ld-item-name:hover{color: #CC3333;}
 
 
 
-.clResourcesBox.courseResources,.header .topmemberNav li.menu_search a,ul.clFilters li.filtr-active,#learndash_course_content .learndash_topic_dots ul > li a:hover,#learndash_next_prev_link a.next-link,#search .btn,#search .close,nav#savedContentTabList li a:hover, nav#savedContentTabList li a.active,header .CourseMainNav ul li a:hover,header .MainNav ul li.menu-item-has-children > ul > li,input[type="button"].wpProQuiz_button,footer.footer.members,.CourseIntroBoxV2,.clResourcesBox,.memberPromo{background: #262121;}
+.clResourcesBox.courseResources,.header .topmemberNav li.menu_search a,ul.clFilters li.filtr-active,#learndash_course_content .learndash_topic_dots ul > li a:hover,#learndash_next_prev_link a.next-link,#search .btn,#search .close,header .CourseMainNav ul li a:hover,header .MainNav ul li.menu-item-has-children > ul > li,input[type="button"].wpProQuiz_button,footer.footer.members,.CourseIntroBoxV2,.clResourcesBox,.memberPromo{background: #262121;}
+nav#savedContentTabList li a.active, nav#savedContentTabList li a:hover {
+	background: #3AA6DE;
+}
 
 
 .memberReason h3 strong, .memberSupport h3 strong, .memberPromo h3 strong{color: #CC3333;}
 
-
-a,.topmemberNav li a,.learndash_topic_dots a, .learndash_topic_dots a > span,.clResourcesBox li a,.SavedContent li h4 a:hover, .filtered_content li h4 a:hover,.filtr-item h4 a:hover,.wrap-benefit a h4,header .MemberheaderWrap .MainNav ul li a:hover{
-    color: #262121;
+a {
+	color: #CC3333;
+}
+.topmemberNav li a,.learndash_topic_dots a, .learndash_topic_dots a > span,.clResourcesBox li a,.SavedContent li h4 a:hover, .filtered_content li h4 a:hover,.filtr-item h4 a:hover,.wrap-benefit a h4,header .MemberheaderWrap .MainNav ul li a:hover{
+    color: #83cdcf;
 }
 
 header .MemberheaderWrap .MainNav ul li a {font-size:1.2em;font-family: 'Teko', sans-serif;}
 .topmemberNav li a {color:#fff;}
-.topmemberNav li a:hover {color:#262121;}
-.header .topmemberNav li.menu_search a {background:#fff;color: #CC3333;font-size:0.8em;}
-.header .topmemberNav li.menu_search a:hover {background:#262121;color:#CC3333}
+.topmemberNav li a:hover {color:#83cdcf;}
+.header .topmemberNav li.menu_search a {background:#fff;color: #14345a;font-size:0.8em;}
+.header .topmemberNav li.menu_search a:hover {background:#83cdcf;color:#14345a}
 
 
 a.topic-completed::before {background-color: #3AA6DE;}
@@ -132,14 +140,14 @@ div.topic p, div.answer p {
 
 .wrap-benefit {}
 .wrap-benefit a h4 {font-size: 1.2em; color:#fff;-webkit-transition: all 0.5s ease-in-out;-moz-transition: all 0.5s ease-in-out;-ms-transition: all 0.5s ease-in-out;-o-transition: all 0.5s ease-in-out;transition: all 0.5s ease-in-out;}
-.wrap-benefit a:hover h4 {color:#CC3333;}
-.wrap-benefit a:hover .BTN {background:#CC3333;}
+.wrap-benefit a:hover h4 {color:#3AA6DE;}
+.wrap-benefit a:hover .BTN {background:#3AA6DE;}
 .wrap-benefit a .BTN {margin-right:0;}
 .wrap-benefit p {color:#fff;}
-.benefitimage {border-radius:50%;float:none;display:inline-block;width:100px;height:100px;background:#fff;padding:10px;border:5px solid #3AA6DE;-webkit-transition: all 0.5s ease-in-out;-moz-transition: all 0.5s ease-in-out;-ms-transition: all 0.5s ease-in-out;-o-transition: all 0.5s ease-in-out;transition: all 0.5s ease-in-out;}
+.benefitimage {border-radius:50%;float:none;display:inline-block;width:100px;height:100px;background:#fff;padding:10px;border:5px solid #83cdcf;-webkit-transition: all 0.5s ease-in-out;-moz-transition: all 0.5s ease-in-out;-ms-transition: all 0.5s ease-in-out;-o-transition: all 0.5s ease-in-out;transition: all 0.5s ease-in-out;}
 .benefitimage img {height:auto;margin:0;width:auto;float:left;display:inline-block;}
 
-.wrap-benefit a:hover .benefitimage {border:5px solid #CC3333;}
+.wrap-benefit a:hover .benefitimage {border:5px solid #3AA6DE;}
 
 
 /*Dashboard Welcome*/
@@ -198,7 +206,7 @@ span.searchResult {color:#262121;}
 ul.clFilters li {border-radius:25px;}
 
 .filtr-item a.BTN {position:static;bottom:auto;left:auto;}
-.CourseOptions a:hover, a.post_tool_active {color:#262121;}
+.CourseOptions a:hover, a.post_tool_active {color:#83cdcf;}
 
 .searchtext h4 {font-size:1em;}
 .searchItem {margin:0 0 20px 0;}

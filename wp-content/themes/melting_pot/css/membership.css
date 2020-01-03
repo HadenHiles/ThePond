@@ -1241,9 +1241,9 @@ display: block; }
 
 /*FOOTER*/
 
-footer.footer.members{background: #384044; color: #fff; }
-footer.footer.members p, footer.footer.members a{ color: #fff; }
-footer.footer.members a:hover{ color: #069EDA; }
+footer.footer.members{background: #eee !important; color: #14345a; }
+footer.footer.members p, footer.footer.members a{ color: #14345a; font-weight: bold;}
+footer.footer.members a:hover{ color: #CC3333; }
 
 .members-footer-menu{ }
 
@@ -1553,7 +1553,7 @@ iframe {
 }
 
 .section-icons {
-	border-left: 5px solid #3AA6DE;
+	border-left: 5px solid #83cdcf;
 }
 .course-container-wrapper {
 	width: 100%;
