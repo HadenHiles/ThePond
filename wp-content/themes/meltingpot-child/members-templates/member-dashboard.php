@@ -9,38 +9,12 @@ get_header('members'); ?>
 
 <section class="memberDashWelc">
 <div class="row">
-<div class="large-8 medium-7 columns">
-<h1>
-<?php if (get_field('welcome_message')): ?>
-<?php the_field('welcome_message'); ?>
-<?php else: ?>
-Welcome
-<?php endif; ?>
-<?php echo  do_shortcode('[mepr-account-info field="first_name"]'); ?></h1>
-<p>
-<?php if (get_field('welcome_submessage')): ?>
-<?php the_field('welcome_submessage'); ?>
-<?php else: ?>
-To your dashboard
-<?php endif; ?>
-</p>
-<div class="large-4 medium-5 columns">
-
-
-<?php if (get_field('welcome_bar_link_text')): ?>
-<a href="<?php the_field('welcome_bar_link'); ?>" class="BTN dashBTN">
-<?php the_field('welcome_bar_link_text'); ?>
-<?php else: ?>
-<?php endif; ?>
-
-
-</a> </div>
-</div>
-<div class="large-4 medium-5 columns user-points-wrapper" style="font-family: 'Teko', sans-serif; color: #fff; font-size: 28px !important; font-weight: bold; text-align: right;">
-	<?php
-	echo do_shortcode('[gamipress_user_rank type="skilllevel" prev_rank="no" current_rank="yes" next_rank="no" current_user="yes" user_id="" columns="1" title="yes" link="no" thumbnail="no" excerpt="no" requirements="no" toggle="no" unlock_button="" earners="" earners_limit="0" layout="left"]');
-	echo do_shortcode('[gamipress_points type="pondpoints" thumbnail="no" label="yes" current_user="yes" user_id="" period="" period_start="" period_end="" inline="" columns="1" layout="left"]');
-	?>
+	<div class="large-12 medium-12 columns user-points-wrapper" style="font-family: 'Teko', sans-serif; color: #fff; font-size: 28px !important; font-weight: bold;">
+		<?php
+		echo do_shortcode('[gamipress_user_rank type="skilllevel" prev_rank="no" current_rank="yes" next_rank="no" current_user="yes" user_id="" columns="1" title="yes" link="no" thumbnail="no" excerpt="no" requirements="no" toggle="no" unlock_button="" earners="" earners_limit="0" layout="left"]');
+		echo do_shortcode('[gamipress_points type="pondpoints" thumbnail="no" label="yes" current_user="yes" user_id="" period="" period_start="" period_end="" inline="" columns="1" layout="left"]');
+		?>
+	</div>
 </div>
 </section>
 
