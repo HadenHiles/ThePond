@@ -1073,7 +1073,7 @@ margin: 0.4rem 0 0 1rem;
 header .NavOuter{
 position: static;
 left: 0;
-top: 0;
+top: 10px;
 height: 100%;
 background: none;
 text-align: center;
@@ -1302,9 +1302,9 @@ margin-top: 0;
 display: inline-block;
 margin: 0;
 position: fixed;
-right: 1.5rem;
+right: 0.5rem;
 z-index: 1;
-top: 35px;
+top: 5px;
 background: #069EDA;
 width: auto;
 height: auto;
@@ -1339,7 +1339,7 @@ width: 100%;
 header .NavOuter {
 position: absolute;
 right: 2.5em;
-top: 1.5em;
+top: 25px;
 height: auto;
 }
 

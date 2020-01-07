@@ -1288,10 +1288,11 @@ min-height: 335px;}
 font-size: 16px;
 }
 
-.topmemberNav{margin-right: 50px;}
+.topmemberNav{margin-right: 30px;}
 
 .memberlogo {
-max-width: 85%;
+max-width: none;
+height: 60px;
 }
 
 }
@@ -1357,47 +1358,15 @@ ul.topmemberNav {margin: 10px 58px 0 0;}
 .MemberheaderWrap {
 	padding: 1rem 0;
 }
-.MemberheaderWrap .headerlogo {
-float: left; max-width: 12% !important; margin: -15px auto !important; padding: 2px 0;
-}
 
-.MemberheaderWrap .NavBTN { top: 55px; z-index: 13;}
+.MemberheaderWrap .NavBTN { z-index: 13;}
 .searchResults input[type="search"]{max-width: 100%; }
 #search input[type="search"]{top: 25%; font-size: 130%; }
 #search .btn{top: 33%; }
 
-.topmemberNav {
-margin: 0;
-padding: 0;
-width: 100%;
-}
-.topmemberNav li.menu_search a{
-	position: absolute;
-	top: 65px;
-	right: 80px;
-}
-.topmemberNav li.menu-item:not(.menu_search) {
-	display: none;
-}
-
-.topmemberNav li a {
-padding: 10px 12px;
-font-size: 0;
-display: inline-block;
-}
-
-		.topmemberNav li a i{display: block; font-size: 30px; }
-
 .topmemberNav .LoggedIn {
 	height: 0;
 }
-
-
-
-.topmemberNav li.menu_search a {
-border-radius: 5px;
-font-size: 1rem;
-padding: 8px 15px;}
 
 .mepr-nav-item a{width: 100%; }
 .CourseContent {width: 100%;}
@@ -1808,7 +1777,19 @@ button[type=submit] {
 	transition-delay: 0.1s;
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 1024px) {
+	.MemberheaderWrap {
+		padding: 0;
+	}
+	.MemberheaderWrap .headerlogo {
+		margin-top: 0;
+	}
+	.topmemberNav {
+		margin-top: 12px;
+	}
+	#search input[type="search"] {
+		font-size: 40px;
+	}
 	.hide-for-medium {
 	  display: none;
 	}

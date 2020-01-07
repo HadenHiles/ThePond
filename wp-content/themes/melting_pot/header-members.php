@@ -87,7 +87,7 @@
 <div id="search" class="">
 <button type="button" class="close">×</button>
 <form role="search" method="get" action="<?php echo home_url();?>">
-<input type="search" class="search-field" placeholder="click to enter your keywords..." value="" name="s" title="Search the Academy:" autocomplete="off">
+<input type="search" class="search-field" placeholder="Enter your keywords..." value="" name="s" title="Search the Academy:" autocomplete="off">
 <input type="submit" class="btn btn-primary" value="Search">
 </form>
 </div>
