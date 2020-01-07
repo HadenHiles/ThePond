@@ -50,4 +50,10 @@ jQuery(document).ready(function () {
 		jQuery('#user-rank').css({'opacity': '1'});
 	}
 	jQuery('.yzb-user-status').css({'opacity': '1'});
+
+	jQuery('.topmemberNav .yz-primary-nav-settings' ).unbind('click');
+	jQuery('.topmemberNav .yz-primary-nav-area').click(function(e) {
+		e.preventDefault();
+		window.location.href = jQuery(this).closest('a').attr('href');
+	});
 });
