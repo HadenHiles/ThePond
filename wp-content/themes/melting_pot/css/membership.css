@@ -190,7 +190,7 @@ section.MembersContent{background: #f9f9f9; padding: 3rem 0;}
 a.BTN.dashBTN{ float: right; margin: 0.5rem 0 0 0;
     padding: 15px 20px;}
 
-.topmemberNav{float: right; width: auto; padding-right: 0.9375rem; margin-top: 10px;  }
+.topmemberNav{float: right; width: auto; padding-right: 0.9375rem; margin-top: 40px;  }
 .topmemberNav li{display: inline-block; text-align: right;  }
 .topmemberNav li a{padding: 7px 15px; color: #069EDA; font-size: 0.9rem; }
 .topmemberNav li a:hover{color: #2FAF8D;}
@@ -1089,7 +1089,7 @@ transform: rotate(-30deg); font-size: 12px;  }
 .filtr-item .CourseSoon{left: -100px;}
 
 .MemberheaderWrap{width: 100%;
-padding: 2rem 0 2rem 0;
+padding: 1rem 0 1rem 0;
 background: #384044;}
 
 section.memberDashWelc{background: #f5f5f5; padding: 2rem 0; }
@@ -1556,6 +1556,9 @@ button[type=submit] {
 }
 .user-points-wrapper h2.gamipress-rank-title {
 	font-size: 1.5em;
+}
+.bp-yz-home-nav a {
+	padding:  7px 0 7px 7px !important;
 }
 
 .section-icons {
