@@ -1789,6 +1789,7 @@ button {
 	}
 	#search input[type="search"] {
 		font-size: 40px;
+		line-height: 60px;
 	}
 	.hide-for-medium {
 	  display: none;
