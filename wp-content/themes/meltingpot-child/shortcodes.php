@@ -118,7 +118,7 @@ function learndash_course_tags($atts = [], $content = null, $tag = ''){
       $output .=    '<div class="progress-bar-small" style="width: ' . $c->percentage . '%">&nbsp;</div>';
       $output .=  '</a>';
     }
-    $output .= '</div>';
+    $output .= '</div><div class="clear"></div>';
   }
   $output .= '</div></div>';
 
