@@ -1306,7 +1306,7 @@ max-width: 85%;
     .upcommingEvent {display:none;}
 
 
-.memberlogo{max-width: 100%;  }
+.memberlogo{max-width: none; height: 60px; }
 .MemberheaderWrap .headerlogo{margin-top: 0; }
 
 ul.topmemberNav {margin: 10px 58px 0 0;}
@@ -1358,7 +1358,7 @@ ul.topmemberNav {margin: 10px 58px 0 0;}
 	padding: 1rem 0;
 }
 .MemberheaderWrap .headerlogo {
-float: left; max-width: 12% !important; margin-top: -5px !important;
+float: left; max-width: 12% !important; margin: -15px auto !important; padding: 2px 0;
 }
 
 .MemberheaderWrap .NavBTN { top: 55px; z-index: 13;}
