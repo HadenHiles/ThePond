@@ -1794,6 +1794,9 @@ button {
 	.hide-for-medium {
 	  display: none;
 	}
+	.yz-page {
+		overflow: hidden; /* This is so that tooltips won't affect the page width on smaller screens */
+	}
 	.course-container {
 		min-height: 0px !important;
 		padding: 0 25px;
