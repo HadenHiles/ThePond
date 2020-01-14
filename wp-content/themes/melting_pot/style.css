@@ -2082,10 +2082,6 @@ float: right;
 width: 20%;
 float: right;
 }
-.formbox .gform_footer input:hover {
-background: #fff;
-color: #384044;
-}
 .formbox p {
 margin: 20px 0 0 0;
 font-size: 14px;
