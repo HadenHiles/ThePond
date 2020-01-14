@@ -142,7 +142,7 @@ section.savedContent.Dashboard,section.memberDashWelc{ background: #eee;}
 
 /*Ask Section */
 .applyBTN {margin-top:10px;}
-.questionbox p, .questionbox .gform_confirmation_message a, .questionbox .gform_wrapper .top_label .gfield_label {color:#fff;}
+.questionbox p, .questionbox .gform_confirmation_message a, .questionbox .gform_wrapper .top_label .gfield_label {color:#384044;}
 span.question {font-weight:300;}
 div.topic p, div.answer p {
     width: 100%;
