@@ -687,7 +687,7 @@ function activate_plugin( $plugin, $redirect = '', $network_wide = false, $silen
 			update_site_option( 'active_sitewide_plugins', $current );
 		} else {
 			$current   = get_option( 'active_plugins', array() );
-			array_push($current, $plugin);
+			$current[] = $plugin;
 			sort( $current );
 			update_option( 'active_plugins', $current );
 		}
