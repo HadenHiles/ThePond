@@ -10,12 +10,14 @@ function mysql_set_sql_mode_traditional() {
 }
 
 /**
-* Manually trigger supervisord hook running on thepond DO droplet any time that elementor data is updated
+* Manually trigger supervisord hook running on thepond DO droplet any time that elementor data is updated or a buddypress avater is uploaded
 * - this is required so that styles will be applied
-* TODO: figure out a way to automatically expire the cache of modified files
+* TODO: figure out a way to automatically invalidate the cache of modified files
 */
-add_action( 'elementor/editor/after_save', function() {
-  // Curl code pulled from postman test
+add_action( 'elementor/editor/after_save', 'update_the_pond_cdn');
+add_action( 'bp_after_profile_avatar_upload_content', 'update_the_pond_cdn');
+function update_the_pond_cdn () {
+  // Push all changes in uploads folder to ThePondCDN
   $curl = curl_init();
 
   curl_setopt_array($curl, array(
@@ -32,7 +34,7 @@ add_action( 'elementor/editor/after_save', function() {
   $response = curl_exec($curl);
 
   curl_close($curl);
-});
+}
 
 add_action( 'wp_enqueue_scripts', 'child_theme_enqueue_styles' );
 function child_theme_enqueue_styles() {
