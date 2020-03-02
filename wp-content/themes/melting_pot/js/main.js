@@ -57,9 +57,15 @@ jQuery(document).ready(function () {
 		window.location.href = jQuery(this).closest('a').attr('href');
 	});
 
-	//If images get 404 try using wp uploads folder instead of ThePondCDN
-	jQuery('img').one('error', function() {
-		var newImgUrl = this.src.replace("https://cdn.thepond.howtohockey.com/", "https://thepond.howtohockey.com/wp-content/uploads/");
-		this.src = newImgUrl;
-	});
+});
+
+//If images get 404 try using wp uploads folder instead of ThePondCDN
+jQuery(window).load(function() {
+  jQuery('img').each(function() {
+    if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
+      // image was broken
+			var newImgUrl = this.src.replace("https://cdn.thepond.howtohockey.com/", "https://thepond.howtohockey.com/wp-content/uploads/");
+			this.src = newImgUrl;
+    }
+  });
 });
