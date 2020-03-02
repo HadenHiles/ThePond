@@ -64,7 +64,8 @@ jQuery(window).load(function() {
   jQuery('img').each(function() {
     if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
       // image was broken
-			var newImgUrl = this.src.replace("https://cdn.thepond.howtohockey.com/", "https://thepond.howtohockey.com/wp-content/uploads/");
+			var newImgUrl = this.src;
+			newImgUrl = newImgUrl.replace("https://cdn.thepond.howtohockey.com/", "https://thepond.howtohockey.com/wp-content/uploads/");
 			this.src = newImgUrl;
     }
   });
