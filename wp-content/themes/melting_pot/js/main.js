@@ -69,4 +69,18 @@ jQuery(window).load(function() {
 			this.src = newImgUrl;
     }
   });
+
+	var imageURLs = jQuery('div');
+	imageURLs.each(function(index, element) {
+	    var imageURL = jQuery(element).css('background-image').replace('url("', '').replace('")', '');
+	    if (imageURL != "none") {
+	        jQuery.ajax({
+	           url: imageURL,
+	           type: 'HEAD',
+	           error: function() {
+	              jQuery(element).css({'background-image': imageUrl.replace("https://cdn.thepond.howtohockey.com/", "https://thepond.howtohockey.com/wp-content/uploads/")});
+	           }
+	        });
+	    }
+	});
 });
