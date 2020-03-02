@@ -77,9 +77,12 @@ jQuery(window).load(function() {
 	        jQuery.ajax({
 	           url: imageURL,
 	           type: 'HEAD',
-	           error: function(xhr, error) {
-							 	var imageUrl = xhr.url;
-	              jQuery(element).css({'background-image': imageUrl.replace("https://cdn.thepond.howtohockey.com/", "https://thepond.howtohockey.com/wp-content/uploads/")});
+						 beforeSend: function(jqXHR, settings) {
+							 jqXHR.url = settings.url;
+						 },
+	           error: function(jqXHR, exception) {
+							 	var imageUrl = jqXHR.url;
+	              jQuery(element).css({'background-image': 'url("' + imageUrl.replace("https://cdn.thepond.howtohockey.com/", "https://thepond.howtohockey.com/wp-content/uploads/") + '")'});
 	           }
 	        });
 	    }
