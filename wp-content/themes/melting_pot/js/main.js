@@ -77,7 +77,8 @@ jQuery(window).load(function() {
 	        jQuery.ajax({
 	           url: imageURL,
 	           type: 'HEAD',
-	           error: function() {
+	           error: function(xhr, error) {
+							 	var imageUrl = xhr.url;
 	              jQuery(element).css({'background-image': imageUrl.replace("https://cdn.thepond.howtohockey.com/", "https://thepond.howtohockey.com/wp-content/uploads/")});
 	           }
 	        });
