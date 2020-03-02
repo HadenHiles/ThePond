@@ -10,6 +10,8 @@ wp-content/uploads/
 wp-content/mu-plugins/
 wp-content/plugins
 wp-content/plugins/*
+wp-content/mcloud-views
+wp-content/mcloud-views/*
 !wp-content/plugins/chartjs-shortcodes
 wp-content/wp-cache-config.php
 wp-content/plugins/hello.php
