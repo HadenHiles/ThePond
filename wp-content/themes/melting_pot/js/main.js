@@ -58,7 +58,7 @@ jQuery(document).ready(function () {
 	});
 
 	//If images get 404 try using wp uploads folder instead of ThePondCDN
-	$('img').one('error', function() {
+	jQuery('img').one('error', function() {
 		var newImgUrl = this.src.replace("https://cdn.thepond.howtohockey.com/", "https://thepond.howtohockey.com/wp-content/uploads/");
 		this.src = newImgUrl;
 	});
