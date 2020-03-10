@@ -20,6 +20,9 @@ add_action( 'bp_after_profile_edit_cover_image', 'update_the_pond_cdn');
 add_action( 'bp_before_profile_avatar_upload_content', 'update_the_pond_cdn');
 add_action( 'bp_after_profile_avatar_upload_content', 'update_the_pond_cdn');
 function update_the_pond_cdn () {
+  // sleep for 5 seconds
+  sleep(5);
+
   // Push all changes in uploads folder to ThePondCDN
   $curl = curl_init();
 
