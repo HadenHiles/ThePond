@@ -168,7 +168,7 @@ div.topic p, div.answer p {
 
 
 /*Dashboard Welcome*/
-section.memberDashWelc, section.clbHeader {background:url('/wp-content/uploads/2019/10/ice-blue-1024x799.png')no-repeat;background-size:cover;background-position:center;;padding:1rem 0}
+section.memberDashWelc, section.clbHeader {background:url('https://cdn.thepond.howtohockey.com/2019/10/ice-blue-1024x799.png')no-repeat;background-size:cover;background-position:center;;padding:1rem 0}
 section.memberDashWelc h1, section.memberDashWelc p, section.clbHeader h1, section.clbHeader p {color:#fff;}
 section.memberDashWelc p, section.clbHeader p {margin:0;}
 section.memberDashWelc h1, section.clbHeader h1 {line-height:1.2em;}
