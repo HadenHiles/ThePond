@@ -1,1 +1,0 @@
-A number of S3 compatible cloud storage solutions are available such as Stackpath, Caringo, DreamHost, etc.

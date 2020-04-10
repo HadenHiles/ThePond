@@ -1,1 +1,0 @@
-<p>To finish up, we'll run a quick test to make sure everything is working correctly.</p>

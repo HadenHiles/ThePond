@@ -1,1 +1,0 @@
-<p>Provide your Minio credentials.  Clicking on <strong>Next</strong> will verify your settings.</p>
