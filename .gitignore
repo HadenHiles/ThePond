@@ -1,38 +1,23 @@
-*.log
-wp-config.php
-wp-content/advanced-cache.php
-wp-content/backup-db/
-wp-content/backups/
-wp-content/blogs.dir/
-wp-content/cache/
-wp-content/upgrade/
-wp-content/uploads/
-wp-content/mu-plugins/
-wp-content/plugins
+# ignore everything in the root except the themes directory.
+/*
+!/wp-content/
+/wp-content/*
+!/wp-content/themes
+
+# ignore plugins
 wp-content/plugins/*
-wp-content/mcloud-views
-wp-content/mcloud-views/*
-!wp-content/plugins/chartjs-shortcodes
-wp-content/wp-cache-config.php
-wp-content/plugins/hello.php
 
-/.htaccess
-/license.txt
-/readme.html
-/sitemap.xml
-/sitemap.xml.gz
-/google551919644092de49.html
+# ignore non-custom themes
+wp-content/themes/*
 
-# Ignore paths that contain user-generated content.
-/wp-content/ai1wm-backups
-/wp-content/cache
-/wp-content/uploads/
-/wp-content/w3tc-config/
-/wp-content/advanced-cache.php
-/wp-content/db.php
-/wp-content/object-cache.php
+# ignore node dependency directories
+node_modules/
 
-wp-config
-wp-config/*
-community
-community/*
+# ignore log files and databases
+*.log
+*.sql
+*.sqlite
+
+# don't ignore our theme
+!wp-content/themes/melting_pot
+!wp-content/themes/meltingpot-child
