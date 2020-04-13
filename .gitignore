@@ -22,6 +22,6 @@ node_modules/
 !wp-content/themes/melting_pot
 !wp-content/themes/meltingpot-child
 
-# don't ignore these
+# don't ignore
 !.gitignore
 !README.md
