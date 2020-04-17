@@ -59,14 +59,23 @@ jQuery(document).ready(function () {
 
 
 	//If images get 404 try using wp uploads folder instead of ThePondCDN
-	jQuery('img').each(function() {
-    if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
-      // image was broken
-			var newImgUrl = this.src;
-			newImgUrl = newImgUrl.replace("https://cdn.thepond.howtohockey.com/", "https://thepond.howtohockey.com/wp-content/uploads/");
-			this.src = newImgUrl;
-    }
-  });
+	var imageURLs = jQuery('img');
+	imageURLs.each(function(index, element) {
+	    var imageURL = this.src;
+	    if (imageURL != null && imageURL != "") {
+	        jQuery.ajax({
+	           url: imageURL,
+	           type: 'HEAD',
+						 beforeSend: function(jqXHR, settings) {
+							 jqXHR.url = settings.url;
+						 },
+	           error: function(jqXHR, exception) {
+							 	var imageUrl = jqXHR.url;
+	              jQuery(element).attr('src', imageUrl.replace("https://cdn.thepond.howtohockey.com/", "https://thepond.howtohockey.com/wp-content/uploads/"));
+	           }
+	        });
+	    }
+	});
 
 	var imageURLs = jQuery('div');
 	imageURLs.each(function(index, element) {
