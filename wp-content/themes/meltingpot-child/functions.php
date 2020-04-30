@@ -1,4 +1,7 @@
 <?php
+// Set to allow cors from cdn
+header("Access-Control-Allow-Origin: *");
+
 /**
 * Fix sql strict mode
 */
