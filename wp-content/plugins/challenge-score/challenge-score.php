@@ -26,58 +26,8 @@
  * Domain Path:       /languages
  */
 
-function create_challenge_scores_table() {
-    global $table_prefix, $wpdb;
-
-    $tblname = 'challenge_scores';
-    $wp_track_table = $table_prefix . "$tblname";
-
-    #Check to see if the table exists already, if not, then create it
-    if($wpdb->get_var( "show tables like '$wp_track_table'" ) != $wp_track_table) {
-        $sql = "CREATE TABLE `". $wp_track_table . "` ( ";
-        $sql .= "  `id` int(11) NOT NULL auto_increment, ";
-        $sql .= "  `challenge_id` int(128) NOT NULL, ";
-        $sql .= "  `user_id` int(128) NOT NULL, ";
-        $sql .= "  `score` DECIMAL(8,4) NOT NULL, ";
-        $sql .= "  PRIMARY KEY `id` (`id`) ";
-        $sql .= ") ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ; ";
-        require_once( ABSPATH . '/wp-admin/includes/upgrade.php' );
-        dbDelta($sql);   
-    }
-}
-
-register_activation_hook( __FILE__, 'create_challenge_scores_table' );
-
-// Override the single content library template
-add_filter( 'template_include', 'single_content_library' );
-function single_content_library( $template )
-{
-    $template = plugin_dir_path( __FILE__ ) . 'single-content-library.php';
-    return $template;
-}
-
-// Add ajax endpoint for adding a challenge score
-add_action( 'wp_ajax_add_challenge_score', 'add_challenge_score' );
-function add_challenge_score() {
-    $challenge_id = $_POST['challenge_id'];
-    $user_id = $_POST['user_id'];
-    $score = $_POST['score'];
-
-    global $wpdb;
-    $table_name = $wpdb->prefix . "challenge_scores";
-    $wpdb->insert(
-        $table_name, 
-        array(
-            'challenge_id' => $challenge_id,
-            'user_id' => $user_id,
-            'score' => $score
-        ),
-        array(
-            '%d',
-            '%d',
-            '%d'
-        )
-    );
-}
-
- ?>
+require_once('actions.php');
+require_once('hooks.php');
+require_once('filters.php');
+require_once('enqueue.php');
+?>

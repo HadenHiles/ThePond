@@ -1,0 +1,41 @@
+.challenge-scores {
+    position: relative;
+}
+.challenge-scores .scores {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    border: 2px solid #e2e7ed;
+    border-radius: 6px;
+}
+.challenge-scores .scores .score {
+    font-size: 16px;
+    padding: 4px 8px;
+    margin: 4px;
+    border: 2px solid #e2e7ed;
+    border-radius: 6px;
+}
+.challenge-scores .scores .score a {
+    font-size: .8em;
+    position: relative;
+    top: -1px;
+}
+.challenge-scores .scores .score a svg {
+    cursor: pointer;
+}
+
+.challenge-scores .add-score {
+    display: flex;
+    flex-wrap: nowrap;
+    border: 2px solid #e2e7ed;
+    border-radius: 6px;
+    margin: 10px auto;
+}
+.challenge-scores .add-score input {
+    border: none;
+    margin: 0;
+    width: 90%;
+}
+.challenge-scores .add-score a#add-score {
+    margin: 10px;
+}

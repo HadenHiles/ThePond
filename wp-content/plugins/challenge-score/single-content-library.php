@@ -55,6 +55,35 @@ if(have_posts()): while (have_posts()): the_post();
 <?php  if ( has_post_thumbnail() ) { ?>
 <?php the_post_thumbnail('full'); ?>
 <?php } ?>
+
+
+<div class="challenge-scores">
+	<div class="ld-section-heading">
+		<h2>Your Scores</h2>
+	</div>
+	<div class="scores">
+		<div class="score">6 <a href="#"><i class="fa fa-trash"></i></a></div>
+		<div class="score">5 <a href="#"><i class="fa fa-trash"></i></a></div>
+		<div class="score">13.576 <a href="#"><i class="fa fa-trash"></i></a></div>
+		<div class="score">8 <a href="#"><i class="fa fa-trash"></i></a></div>
+		<div class="score">13.576 <a href="#"><i class="fa fa-trash"></i></a></div>
+		<div class="score">4 <a href="#"><i class="fa fa-trash"></i></a></div>
+		<div class="score">9 <a href="#"><i class="fa fa-trash"></i></a></div>
+		<div class="score">10 <a href="#"><i class="fa fa-trash"></i></a></div>
+	</div>
+	<div class="add-score">
+		<input type="hidden" name="challenge_id" id="challenge-id" value="<?php echo get_the_ID() ?>" />
+		<input type="hidden" name="user_id" id="user-id" value="<?php echo get_current_user_id() ?>" />
+		<input type="number" name="score" id="challenge-score" step="0.01" placeholder="Add Score" />
+		<a href="#" id="add-score"><i class="fa fa-plus-circle"></i></a>
+	</div>
+</div>
+
+
+
+
+
+
 <div class="relatedFeed">
 <h4>Related To This</h4>
 <?php
