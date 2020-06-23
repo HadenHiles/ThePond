@@ -3,6 +3,7 @@
 !/wp-content/
 /wp-content/*
 !/wp-content/themes
+!/wp-content/plugins
 
 # ignore plugins
 wp-content/plugins/*
@@ -25,3 +26,4 @@ node_modules/
 # don't ignore
 !.gitignore
 !README.md
+!wp-content/plugins/challenge-score
