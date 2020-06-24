@@ -25,17 +25,38 @@
 }
 
 .challenge-scores .add-score {
+    position: relative;
     display: flex;
     flex-wrap: nowrap;
     border: 2px solid #e2e7ed;
     border-radius: 6px;
     margin: 10px auto;
 }
+.challenge-scores .add-score.success {
+    border-color: #28a745;
+}
+.challenge-scores .add-score.error {
+    border-color: #dc3545;
+}
 .challenge-scores .add-score input {
     border: none;
     margin: 0;
     width: 90%;
+    border-radius: 6px;
 }
 .challenge-scores .add-score a#add-score {
     margin: 10px;
+}
+.challenge-scores .add-score label.message {
+    position: absolute;
+    top: -12px;
+    left: 5px;
+    font-size: .5em;
+    display: none;
+}
+.challenge-scores .add-score label.message.success {
+    color: #28a745;
+}
+.challenge-scores .add-score label.message.error {
+    color: #dc3545;
 }

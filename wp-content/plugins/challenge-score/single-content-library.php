@@ -74,7 +74,9 @@ if(have_posts()): while (have_posts()): the_post();
 	<div class="add-score">
 		<input type="hidden" name="challenge_id" id="challenge-id" value="<?php echo get_the_ID() ?>" />
 		<input type="hidden" name="user_id" id="user-id" value="<?php echo get_current_user_id() ?>" />
-		<input type="number" name="score" id="challenge-score" step="0.01" placeholder="Add Score" />
+		<label for="challenge-score" id="success-message" class="success message">Score added</label>
+		<label for="challenge-score" id="error-message" class="error message">Failed to add score</label>
+		<input type="number" name="score" id="challenge-score" step="0.01" min="0" placeholder="Add Score" />
 		<a href="#" id="add-score"><i class="fa fa-plus-circle"></i></a>
 	</div>
 </div>
