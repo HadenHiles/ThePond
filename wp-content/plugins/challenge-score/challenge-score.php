@@ -26,8 +26,10 @@
  * Domain Path:       /languages
  */
 
-require_once('actions.php');
+define('PLUGIN_FILE_URL', __FILE__);
+
 require_once('hooks.php');
+require_once('actions.php');
 require_once('filters.php');
 require_once('enqueue.php');
 ?>

@@ -10,7 +10,7 @@ function get_challenge_scores() {
 
         global $wpdb;
         $table_name = $wpdb->prefix . "challenge_scores";
-        $query =    "SELECT id, challenge_id, score FROM $table_name
+        $query =    "SELECT id, challenge_id, score, `date` FROM $table_name
                         WHERE challenge_id = %d
                         AND `user_id` = %d";
 

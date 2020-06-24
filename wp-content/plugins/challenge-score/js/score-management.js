@@ -58,7 +58,7 @@
                 var scoresHtml = '';
                 for (const [key, value] of Object.entries(response.data)) {
                     var score = parseFloat(value.score.toString());
-                    scoresHtml += '<div class="score">' + score + ' <a href="#" class="delete-challenge-score" data-challenge-id=' + value.id + '><i class="fa fa-trash"></i></a></div>\n';
+                    scoresHtml += '<div class="score">' + score + ' ' + value.date + '<a href="#" class="delete-challenge-score" data-challenge-id=' + value.id + '><i class="fa fa-trash"></i></a></div>\n';
                 }
 
                 $scores.html(scoresHtml);

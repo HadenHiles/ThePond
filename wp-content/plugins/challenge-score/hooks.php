@@ -7,17 +7,18 @@ function create_challenge_scores_table() {
 
     #Check to see if the table exists already, if not, then create it
     if($wpdb->get_var( "show tables like '$wp_track_table'" ) != $wp_track_table) {
-        $sql = "CREATE TABLE `". $wp_track_table . "` ( ";
+        $sql = "CREATE TABLE `$wp_track_table` ( ";
         $sql .= "  `id` int(11) NOT NULL auto_increment, ";
         $sql .= "  `challenge_id` int(128) NOT NULL, ";
         $sql .= "  `user_id` int(128) NOT NULL, ";
         $sql .= "  `score` DECIMAL(8,4) NOT NULL, ";
+        $sql .= "  `date` DATETIME DEFAULT NOW(), ";
         $sql .= "  PRIMARY KEY `id` (`id`) ";
-        $sql .= ") ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ; ";
-        require_once( ABSPATH . '/wp-admin/includes/upgrade.php' );
-        dbDelta($sql);   
+        $sql .= ") AUTO_INCREMENT=1 ; ";
+        require_once(ABSPATH . '/wp-admin/includes/upgrade.php' );
+        dbDelta($sql);
     }
 }
 
-register_activation_hook( __FILE__, 'create_challenge_scores_table' );
+register_activation_hook(PLUGIN_FILE_URL, 'create_challenge_scores_table' );
 ?>
