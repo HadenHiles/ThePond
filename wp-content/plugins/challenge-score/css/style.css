@@ -8,12 +8,20 @@
     border: 2px solid #e2e7ed;
     border-radius: 6px;
 }
+.challenge-scores .scores p.empty-result {
+    display: inline-block;
+    margin: 4px auto;
+    font-size: .8em;
+}
 .challenge-scores .scores .score {
     font-size: 16px;
     padding: 4px 8px;
     margin: 4px;
     border: 2px solid #e2e7ed;
     border-radius: 6px;
+}
+.challenge-scores .scores .score.deleting {
+    border-color: #dc3545;
 }
 .challenge-scores .scores .score a {
     font-size: .8em;
