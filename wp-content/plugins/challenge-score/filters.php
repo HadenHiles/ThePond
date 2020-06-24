@@ -3,7 +3,7 @@
 function single_content_library_template($single_template) {
     global $post;
 
-    if ($post->post_type == 'content-library') {
+    if ($post->post_type == 'content-library' && has_term('challenges', 'library_category', null) == 1) {
         $single_template = plugin_dir_path( __FILE__ ) . 'single-content-library.php';
     }
 

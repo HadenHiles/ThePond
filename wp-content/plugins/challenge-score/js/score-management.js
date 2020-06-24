@@ -62,7 +62,7 @@
                 }
 
                 $scores.html(scoresHtml);
-                if ($scores.children('.score').length == 0) {
+                if ($('#scores').children('.score').length == 0) {
                     $scores.html('<p class="empty-result">You haven\'t entered any scores yet!');
                 }
                 // console.log('Ajax response:', response);
