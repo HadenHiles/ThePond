@@ -57,20 +57,20 @@ if(have_posts()): while (have_posts()): the_post();
 <?php } ?>
 
 
-<div class="challenge-scores">
+<div class="challenge-scores" id="challenge-scores">
 	<div class="ld-section-heading">
 		<h2>Your Scores</h2>
 	</div>
 	<div class="scores" id="scores">
-		<i class="fa fa-spinner fa-spin" style="align-self: center; margin: 4px auto;"></i>
+		<i class="fa fa-spinner fa-spin" style="align-self: center; margin: 2% auto; position: relative; z-index: 5;"></i>
 	</div>
 	<div class="add-score">
 		<input type="hidden" name="challenge_id" id="challenge-id" value="<?php echo get_the_ID() ?>" />
 		<input type="hidden" name="user_id" id="user-id" value="<?php echo get_current_user_id() ?>" />
 		<label for="challenge-score" id="success-message" class="success message">Score added</label>
 		<label for="challenge-score" id="error-message" class="error message">Failed to add score</label>
-		<input type="number" name="score" id="challenge-score" step="0.01" min="0" placeholder="Add Score" />
-		<a href="#" id="add-score"><i class="fa fa-plus-circle"></i></a>
+		<input type="number" name="score" id="challenge-score" step="0.01" min="0" placeholder="Add your new best score" />
+		<a href="#" class="add-score-button" id="add-score"><i class="fa fa-plus-circle"></i></a>
 	</div>
 </div>
 
@@ -80,7 +80,7 @@ if(have_posts()): while (have_posts()): the_post();
 
 
 <div class="relatedFeed">
-<h4>Related To This</h4>
+<h4>More Challenges</h4>
 <?php
 $term_list = wp_get_post_terms(get_the_ID(), 'library_category', array("fields" => "ids"));
 $arg = array(

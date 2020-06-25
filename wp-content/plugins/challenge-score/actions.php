@@ -47,7 +47,7 @@ function add_challenge_score() {
                 '%d',
                 '%d',
                 '%d',
-                '%d'
+                '%f'
             )
         )) {
             send_response(array('success' => true));

@@ -4,29 +4,46 @@
 .challenge-scores .scores {
     display: flex;
     flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-evenly;
     padding: 10px;
     border: 2px solid #e2e7ed;
     border-radius: 6px;
 }
 .challenge-scores .scores p.empty-result {
     display: inline-block;
-    margin: 4px auto;
+    margin: 4% auto;
     font-size: .8em;
 }
 .challenge-scores .scores .score {
     font-size: 16px;
+    font-weight: bold;
     padding: 4px 8px;
-    margin: 4px;
+    margin: 2% auto;
     border: 2px solid #e2e7ed;
     border-radius: 6px;
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-end;
 }
 .challenge-scores .scores .score.deleting {
     border-color: #dc3545;
 }
+.challenge-scores .scores .score .number {
+    min-width: 75px;
+    margin-right: auto;
+}
+.challenge-scores .scores .score span.datetime {
+    font-size: 10px;
+    color: #999;
+    margin: auto 10px;
+}
 .challenge-scores .scores .score a {
     font-size: .8em;
     position: relative;
-    top: -1px;
+    top: .2em;
 }
 .challenge-scores .scores .score a svg {
     cursor: pointer;
@@ -35,6 +52,7 @@
 .challenge-scores .add-score {
     position: relative;
     display: flex;
+    justify-content: space-between;
     flex-wrap: nowrap;
     border: 2px solid #e2e7ed;
     border-radius: 6px;
@@ -49,11 +67,32 @@
 .challenge-scores .add-score input {
     border: none;
     margin: 0;
-    width: 90%;
     border-radius: 6px;
 }
-.challenge-scores .add-score a#add-score {
-    margin: 10px;
+.challenge-scores .add-score a.add-score-button {
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    border-radius: 0 4px 4px 0;
+    color: #fff;
+    background: #28a745;
+    padding: 10px;
+    font-size: 1.2em;
+}
+.challenge-scores .add-score a.add-score-button svg {
+    transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+}
+.challenge-scores .add-score a.add-score-button:hover svg {
+    transform: scale(1.1);
+    transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+}
+.challenge-scores .add-score a.add-score-button:focus svg {
+    transform: scale(.9);
 }
 .challenge-scores .add-score label.message {
     position: absolute;
@@ -67,4 +106,10 @@
 }
 .challenge-scores .add-score label.message.error {
     color: #dc3545;
+}
+
+@media screen and (max-width: 1024px) {
+    .challenge-scores .scores .score {
+        width: 100%;
+    }
 }
