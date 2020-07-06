@@ -101,3 +101,6 @@ require_once('shortcodes.php');
 
 /* Include scripts */
 require_once('scripts.php');
+
+/* Learndash Course Content Shortcode Fix TODO: Remove after learndash patches this bug */
+require_once dirname( dirname( dirname(__FILE__) ) ) . '/plugins/sfwd-lms/includes/shortcodes/ld_course_content.php';
