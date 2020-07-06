@@ -423,6 +423,3 @@ if( function_exists('acf_add_local_field_group') ):
         'description' => '',
     ));
 endif;
-
-/* Learndash Course Content Shortcode Fix TODO: Remove after learndash patches this bug */
-require_once dirname( dirname( dirname(__FILE__) ) ) . '/plugins/sfwd-lms/includes/shortcodes/ld_course_content.php';
