@@ -76,7 +76,7 @@ $parent_course_id = learndash_get_setting( $post, 'course' );
 	?>
 </div>
 
-<!-- Quick Tips list -->
+<!-- What To Practice list -->
 <div class="KeyLessonList">
 	<?php
 	// Check rows exists.
@@ -86,6 +86,23 @@ $parent_course_id = learndash_get_setting( $post, 'course' );
 		<?php
 		// Loop through rows.
 		keyLessonList('what_to_practice');
+	// No value.
+	else :
+		// Do something...
+	endif;
+	?>
+</div>
+
+<!-- You Should Be Able To list -->
+<div class="KeyLessonList">
+	<?php
+	// Check rows exists.
+	if( have_rows('you_should_be_able_to') ):
+		?>
+		<h3>You Should Be Able To</h3>
+		<?php
+		// Loop through rows.
+		keyLessonList('you_should_be_able_to');
 	// No value.
 	else :
 		// Do something...
