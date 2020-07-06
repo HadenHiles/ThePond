@@ -22,6 +22,77 @@ $parent_course_id = learndash_get_setting( $post, 'course' );
 <div class="CourseContent">
 <?php get_template_part('template-parts/courses/lesson-topic-fields'); ?>
 
+<!-- Tips for success list -->
+<div class="KeyLessonList">
+	<?php
+	// Check rows exists.
+	if( have_rows('tips_for_success') ):
+		$count = count(get_field('tips_for_success'));
+		?>
+		<h3><?=($count > 1) ? $count : ''?> Tips For Success</h3>
+		<?php
+		// Loop through rows.
+		keyLessonList('tips_for_success');
+	// No value.
+	else :
+		// Do something...
+	endif;
+	?>
+</div>
+
+<!-- Common mistakes list -->
+<div class="KeyLessonList">
+	<?php
+	// Check rows exists.
+	if( have_rows('common_mistakes') ):
+		$count = count(get_field('common_mistakes'));
+		?>
+		<h3><?=($count > 1) ? $count : ''?> Common Mistakes</h3>
+		<?php
+		// Loop through rows.
+		keyLessonList('common_mistakes');
+	// No value.
+	else :
+		// Do something...
+	endif;
+	?>
+</div>
+
+<!-- Quick Tips list -->
+<div class="KeyLessonList">
+	<?php
+	// Check rows exists.
+	if( have_rows('quick_tips') ):
+		$count = count(get_field('quick_tips'));
+		?>
+		<h3><?=($count > 1) ? $count : ''?> Quick Tips</h3>
+		<?php
+		// Loop through rows.
+		keyLessonList('quick_tips');
+	// No value.
+	else :
+		// Do something...
+	endif;
+	?>
+</div>
+
+<!-- Quick Tips list -->
+<div class="KeyLessonList">
+	<?php
+	// Check rows exists.
+	if( have_rows('what_to_practice') ):
+		?>
+		<h3>What To Practice</h3>
+		<?php
+		// Loop through rows.
+		keyLessonList('what_to_practice');
+	// No value.
+	else :
+		// Do something...
+	endif;
+	?>
+</div>
+
 <?php get_template_part('template-parts/courses/lesson-downloads'); ?>
 	
 	<?php get_template_part('template-parts/courses/coursehistory'); ?>	
@@ -49,4 +120,37 @@ $parent_course_id = learndash_get_setting( $post, 'course' );
 </div>
 </div>
 </section>
-<?php get_footer("members");?>
+<?php get_footer("members");
+
+function keyLessonList($listName) {
+	?>
+	<ol class="lesson-list">
+		<?php
+		while( have_rows($listName) ) : the_row();
+			?>
+			<li class="lesson-list-item">
+				<?php
+				// Load sub field values.
+				$title = get_sub_field('title');
+				$content = get_sub_field('content');
+				if (!empty($title)) {
+					?>
+					<div class="title"><?=$title?></div>
+					<?php
+				}
+				if (!empty($content)) {
+					?>
+					<div class="content"><?=$content?></div>
+					<?php
+				}
+				?>
+			</li>
+			<?php
+		// End loop.
+		endwhile;
+		?>
+		</ol>
+	<?php
+}
+
+?>
