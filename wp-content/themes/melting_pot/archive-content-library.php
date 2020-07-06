@@ -102,27 +102,23 @@ $rename_content_library = $smof_data['rename_content_library']  ? $smof_data['re
 		</div>
 </div>
 </section>
-<script>
-jQuery(document).ready(function($){
-var filterizd = $('.filtr-container').filterizr({
- 
-});
- jQuery('#filteringModeSingle li').click(function($) {
-		$('#filteringModeSingle .filtr').removeClass('filtr-active');
-		$(this).addClass('filtr-active');
-		var filter = $(this).data('fltr');
-		//filteringModeSingle.filterizr('filter', filter);
-});
-	
-jQuery('#clearFilter').click( function($){ 
-	$('#filtrSearch').val('');
-	$('.filtr-container').filterizr({
-	 
+<script type="text/javascript">
+(function($){
+	$(document).ready(function(){
+		var filterizd = $('.filtr-container').filterizr({});
+		$('#filteringModeSingle li').click(function() {
+			$('#filteringModeSingle .filtr').removeClass('filtr-active');
+			$(this).addClass('filtr-active');
+			var filter = $(this).data('fltr');
+			//filteringModeSingle.filterizr('filter', filter);
+		});
+			
+		$('#clearFilter').click( function(){ 
+			$('#filtrSearch').val('');
+			$('.filtr-container').filterizr({});
+		});
 	});
-});
-
-
-});
+})(jQuery);
 
 </script>
 <?php get_footer("members"); ?>
