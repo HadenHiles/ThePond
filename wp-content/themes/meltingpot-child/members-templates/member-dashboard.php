@@ -55,7 +55,7 @@ get_header('members'); ?>
 
 	<div class="large-12 columns" style="padding: 0;">
 		<?php
-		do_shortcode('[ld_course_tags categories="skating,stickhandling,shooting,passing"]');
+		do_shortcode('[ld_courses_by_categories categories="skating,stickhandling,shooting,passing"]');
 		?>
 	</div>
 

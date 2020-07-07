@@ -1,6 +1,6 @@
 <?php
-add_shortcode('ld_course_tags', 'learndash_course_tags');
-function learndash_course_tags($atts = [], $content = null, $tag = ''){
+add_shortcode('ld_courses_by_categories', 'learndash_courses_by_categories');
+function learndash_courses_by_categories($atts = [], $content = null, $tag = ''){
   $tmp_atts = array_change_key_case((array)$atts, CASE_LOWER);
 
   // override default attributes with user attributes
@@ -90,38 +90,54 @@ function learndash_course_tags($atts = [], $content = null, $tag = ''){
 		}
 	}
 
-  $output .=  '<div class="course-container-wrapper">'.
-                '<div class="fadeout-left"></div>'.
-                '<div class="fadeout-right"></div>'.
-                '<a id="scroll-left-btn"><i class="fa fa-angle-left"></i></a>'.
-                '<a id="scroll-right-btn"><i class="fa fa-angle-right"></i></a>'.
-              '<div class="course-container">';
-  foreach ($courses_by_category as $key => $value) {
-    $courseCategoryTerm = get_term_by('slug', $key, 'ld_course_category');
-    $courseCategoryTermId = $courseCategoryTerm->term_id;
-    $categoryIcon = get_field('category_icon', 'ld_course_category_' . $courseCategoryTermId);
-    $output .= '<div class="category-icon-wrapper"><img src="' . $categoryIcon . '" class="category-icon" /></div>';
-    $output .= '<div class="course-wrapper">';
-    foreach ($courses_by_category[$key] as $c) {
-      $output .=  '<a class="course-item" href="' . $c->post_url . '" style="background-image: url(\''. $c->img[0] . '\')">'.
-                    '<h5>' . $c->post_title . '</h5>';
-      $output .=    '<div class="overlay"></div>';
-      if ($c->percentage >= 100) {
-        $output .=  '<h6 class="percentage">100%</h6>'.
-                    '<span class="complete fa-stack fa-1x">'.
-                      '<i class="fa fa-check fa-stack-1x"></i>'.
-                      '<i class="fa fa-circle-thin fa-stack-1x icon-background"></i>'.
-                    '</span>';
-      } else {
-        $output .=  '<div class="progress-bar" style="width: ' . $c->percentage . '%">' . $c->percentage . '%</div>';
+  ?>
+  <div class="course-container-wrapper">
+    <div class="fadeout-left"></div>
+    <div class="fadeout-right"></div>
+    <a id="scroll-left-btn"><i class="fa fa-angle-left"></i></a>
+    <a id="scroll-right-btn"><i class="fa fa-angle-right"></i></a>
+    <div class="course-container">
+      <?php
+      foreach ($courses_by_category as $key => $value) {
+        $courseCategoryTerm = get_term_by('slug', $key, 'ld_course_category');
+        $courseCategoryTermId = $courseCategoryTerm->term_id;
+        $categoryIcon = get_field('category_icon', 'ld_course_category_' . $courseCategoryTermId);
+        ?>
+        <div class="category-icon-wrapper"><img src="<?=$categoryIcon?>" class="category-icon" /></div>
+        <div class="course-wrapper">
+          <?php
+          foreach ($courses_by_category[$key] as $c) {
+            ?>
+            <a class="course-item" href="<?=$c->post_url?>" style="background-image: url('<?=$c->img[0]?>')">
+              <h5><?=$c->post_title?></h5>
+              <div class="overlay"></div>
+              <?php
+              if ($c->percentage >= 100) {
+                ?>
+                <h6 class="percentage">100%</h6>
+                <span class="complete fa-stack fa-1x">
+                  <i class="fa fa-check fa-stack-1x"></i>
+                  <i class="fa fa-circle-thin fa-stack-1x icon-background"></i>
+                </span>
+                <?php
+              } else {
+                ?>
+                <div class="progress-bar" style="width: <?=$c->percentage?>%"><?=$c->percentage?>%</div>
+                <?php
+              }
+              ?>
+              <div class="progress-bar-small" style="width: <?=$c->percentage?>%">&nbsp;</div>
+            </a>
+            <?php
+          }
+          ?>
+        </div>
+        <div class="clear"></div>
+        <?php
       }
-      $output .=    '<div class="progress-bar-small" style="width: ' . $c->percentage . '%">&nbsp;</div>';
-      $output .=  '</a>';
-    }
-    $output .= '</div><div class="clear"></div>';
-  }
-  $output .= '</div></div>';
-
-  echo $output;
+      ?>
+    </div>
+  </div>
+  <?php
 }
 ?>
