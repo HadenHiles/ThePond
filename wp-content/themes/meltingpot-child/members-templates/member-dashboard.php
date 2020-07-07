@@ -25,7 +25,9 @@ get_header('members'); ?>
 <!-- <div class="row"> -->
 <div>
 	<!-- Skills progression timeline/stages -->
-	<?php if( have_rows('dashboard_benefits') ): $i = count(get_field('dashboard_benefits')); ?>
+	<?php 
+	/*
+	if( have_rows('dashboard_benefits') ): $i = count(get_field('dashboard_benefits')); ?>
 		<div class="section-icons large-2 hide-for-medium columns" style="float: right;">
 			<ul class="benefit-wrap">
 			<?php while( have_rows('dashboard_benefits') ): the_row(); $gridsize = '';
@@ -47,9 +49,11 @@ get_header('members'); ?>
 			</ul>
 		</div>
 		<!-- </div> -->
-	<?php endif; ?>
+	<?php endif; 
+	*/
+	?>
 
-	<div class="large-10 columns" style="padding: 0;">
+	<div class="large-12 columns" style="padding: 0;">
 		<?php
 		do_shortcode('[ld_course_tags categories="skating,stickhandling,shooting,passing"]');
 		?>
