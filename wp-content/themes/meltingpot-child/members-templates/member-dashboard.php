@@ -6,7 +6,8 @@ get_header('members'); ?>
 </header>
 
 
-
+<?php
+/*
 <section class="memberDashWelc">
 <div class="row">
 	<div class="large-12 medium-12 columns user-points-wrapper" style="font-family: 'Teko', sans-serif; color: #fff; font-size: 28px !important; font-weight: bold;">
@@ -17,7 +18,8 @@ get_header('members'); ?>
 	</div>
 </div>
 </section>
-
+*/
+?>
 
 <section class="memberbenefits dashboardbenefits">
 <!-- <div class="row"> -->
