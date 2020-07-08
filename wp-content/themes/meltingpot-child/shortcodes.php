@@ -19,6 +19,8 @@ function learndash_courses_by_categories($atts = [], $content = null, $tag = '')
 
   $args = array(
     'post_type' => array('sfwd-courses'),
+    'orderby' => 'order',
+    'order' => 'ASC',
 		'meta_query' => array(
       'relation' => 'AND',
 			array(
@@ -103,30 +105,48 @@ function learndash_courses_by_categories($atts = [], $content = null, $tag = '')
         $courseCategoryTermId = $courseCategoryTerm->term_id;
         $categoryIcon = get_field('category_icon', 'ld_course_category_' . $courseCategoryTermId);
         ?>
-        <div class="category-icon-wrapper"><img src="<?=$categoryIcon?>" class="category-icon" /></div>
+        <div class="category-icon-wrapper">
+          <h6 class="title"><?=$key?></h6>
+          <img src="<?=$categoryIcon?>" class="category-icon" />
+        </div>
         <div class="course-wrapper">
           <?php
           foreach ($courses_by_category[$key] as $c) {
             ?>
             <a class="course-item" href="<?=$c->post_url?>" style="background-image: url('<?=$c->img[0]?>')">
-              <h5><?=$c->post_title?></h5>
               <div class="overlay"></div>
-              <?php
-              if ($c->percentage >= 100) {
-                ?>
-                <h6 class="percentage">100%</h6>
-                <span class="complete fa-stack fa-1x">
-                  <i class="fa fa-check fa-stack-1x"></i>
-                  <i class="fa fa-circle-thin fa-stack-1x icon-background"></i>
-                </span>
+              <div class="title">
                 <?php
-              } else {
+                if ($c->percentage >= 100) {
+                  ?>
+                  <h6 class="percentage">100%</h6>
+                  <span class="complete fa-stack fa-1x">
+                    <i class="fa fa-check fa-stack-1x"></i>
+                    <i class="fa fa-circle-thin fa-stack-1x icon-background"></i>
+                  </span>
+                  <div class="progress-bar" style="width: <?=$c->percentage?>%"><?=$c->percentage?>%</div>
+                  <?php
+                } else if (empty($c->percentage) || $c->percentage == 0) {
+                  ?>
+                  <span class="incomplete fa-stack fa-1x">
+                    <i class="fa fa-check fa-stack-1x"></i>
+                    <i class="fa fa-circle-thin fa-stack-1x icon-background"></i>
+                  </span>
+                  <?php
+                } else {
+                  ?>
+                  <h6 class="percentage"><?=$c->percentage?></h6>
+                  <span class="incomplete fa-stack fa-1x">
+                    <i class="fa fa-check fa-stack-1x"></i>
+                    <i class="fa fa-circle-thin fa-stack-1x icon-background"></i>
+                  </span>
+                  <div class="progress-bar" style="width: <?=$c->percentage?>%"><?=$c->percentage?>%</div>
+                  <?php
+                }
                 ?>
-                <div class="progress-bar" style="width: <?=$c->percentage?>%"><?=$c->percentage?>%</div>
-                <?php
-              }
-              ?>
-              <div class="progress-bar-small" style="width: <?=$c->percentage?>%">&nbsp;</div>
+                <div class="progress-bar-small" style="width: <?=$c->percentage?>%">&nbsp;</div>
+                <h5><?=$c->post_title?></h5>
+              </div>
             </a>
             <?php
           }
