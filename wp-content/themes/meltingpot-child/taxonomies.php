@@ -7,7 +7,7 @@
  */
 function add_custom_taxonomies() {
     register_taxonomy('performance-level', 
-        array( 'post', 'sfwd-courses', 'sfwd-lessons', 'sfwd-drill' ), 
+        array( 'post', 'sfwd-courses', 'sfwd-lessons', 'sfwd-topic' ), 
         array(
             // Hierarchical taxonomy (like categories)
             'hierarchical' => true,
