@@ -122,7 +122,7 @@ function learndash_courses_by_categories($atts = [], $content = null, $tag = '')
                   <h6 class="percentage">100%</h6>
                   <span class="complete fa-stack fa-1x">
                     <i class="fa fa-check fa-stack-1x"></i>
-                    <i class="fa fa-circle-thin fa-stack-1x icon-background"></i>
+                    <i class="fa fa-circle fa-stack-1x icon-background"></i>
                   </span>
                   <div class="progress-bar" style="width: <?=$c->percentage?>%"><?=$c->percentage?>%</div>
                   <?php
@@ -130,7 +130,7 @@ function learndash_courses_by_categories($atts = [], $content = null, $tag = '')
                   ?>
                   <span class="incomplete fa-stack fa-1x">
                     <i class="fa fa-check fa-stack-1x"></i>
-                    <i class="fa fa-circle-thin fa-stack-1x icon-background"></i>
+                    <i class="fa fa-circle fa-stack-1x icon-background"></i>
                   </span>
                   <?php
                 } else {
@@ -138,7 +138,7 @@ function learndash_courses_by_categories($atts = [], $content = null, $tag = '')
                   <h6 class="percentage"><?=$c->percentage?></h6>
                   <span class="incomplete fa-stack fa-1x">
                     <i class="fa fa-check fa-stack-1x"></i>
-                    <i class="fa fa-circle-thin fa-stack-1x icon-background"></i>
+                    <i class="fa fa-circle fa-stack-1x icon-background"></i>
                   </span>
                   <div class="progress-bar" style="width: <?=$c->percentage?>%"><?=$c->percentage?>%</div>
                   <?php
