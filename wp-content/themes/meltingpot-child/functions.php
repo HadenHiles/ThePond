@@ -107,3 +107,6 @@ require_once('taxonomies.php');
 
 // ACF
 require_once('acf.php');
+
+// CPT
+require_once('cpt.php');

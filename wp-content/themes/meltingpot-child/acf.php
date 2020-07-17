@@ -1,5 +1,7 @@
 <?php
 if( function_exists('acf_add_local_field_group') ):
+
+    // Key Lesson Takeaway fields
     acf_add_local_field_group(array(
         'key' => 'group_5f0349af20871',
         'title' => 'Key Lesson Takeaways',
@@ -308,6 +310,13 @@ if( function_exists('acf_add_local_field_group') ):
                     'value' => 'sfwd-lessons',
                 ),
             ),
+            array(
+                array(
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'skills',
+                ),
+            ),
         ),
         'menu_order' => 0,
         'position' => 'acf_after_title',
@@ -318,5 +327,59 @@ if( function_exists('acf_add_local_field_group') ):
         'active' => true,
         'description' => '',
     ));
+
+
+    // Puck Level for Skills
+    acf_add_local_field_group(array(
+        'key' => 'group_5f10b29f6a623',
+        'title' => 'Skill',
+        'fields' => array(
+            array(
+                'key' => 'field_5f10b2a8e99b8',
+                'label' => 'Puck Level',
+                'name' => 'puck_level',
+                'type' => 'radio',
+                'instructions' => 'Frequency of use.',
+                'required' => 1,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'choices' => array(
+                    1 => '1',
+                    2 => '2',
+                    3 => '3',
+                    4 => '4',
+                    5 => '5',
+                ),
+                'allow_null' => 0,
+                'other_choice' => 0,
+                'default_value' => '',
+                'layout' => 'horizontal',
+                'return_format' => 'value',
+                'save_other_choice' => 0,
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'skills',
+                ),
+            ),
+        ),
+        'menu_order' => 0,
+        'position' => 'acf_after_title',
+        'style' => 'default',
+        'label_placement' => 'top',
+        'instruction_placement' => 'label',
+        'hide_on_screen' => '',
+        'active' => true,
+        'description' => '',
+    ));
+    
 endif;
 ?>

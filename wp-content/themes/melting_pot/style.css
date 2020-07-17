@@ -2900,17 +2900,3 @@ display: block !important;
 margin: 0 auto !important;
 }
 }
-
-/* THE POND CUSTOM STYLES */
-.KeyLessonList h3 {
-  margin: 25px auto 10px auto;
-}
-.KeyLessonList ol.lesson-list, 
-.KeyLessonList ol.lesson-list li.lesson-list-item {
-  list-style: decimal;
-  font-weight: bold;
-}
-.KeyLessonList .lesson-list .lesson-list-item .title,
-.KeyLessonList .lesson-list .lesson-list-item .content {
-  font-weight: normal;
-}

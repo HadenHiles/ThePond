@@ -173,7 +173,9 @@ div.topic p, div.answer p {
 
 
 /*Dashboard Welcome*/
-section.memberDashWelc, section.clbHeader {background:url('https://cdn.thepond.howtohockey.com/2019/10/ice-blue-1024x799.png')no-repeat;background-size:cover;background-position:center;;padding:1rem 0}
+section.memberDashWelc, section.clbHeader {
+	background: #83cdcf;
+}
 section.memberDashWelc h1, section.memberDashWelc p, section.clbHeader h1, section.clbHeader p {color:#fff;}
 section.memberDashWelc p, section.clbHeader p {margin:0;}
 section.memberDashWelc h1, section.clbHeader h1 {line-height:1.2em;}
@@ -331,3 +333,38 @@ section.CTABannerBG h2,.meetOwners h2,section.saleGuarantee h2,#Pricingboxes .sa
 
 
 */
+
+
+/* THE POND CUSTOM STYLES */
+.KeyLessonList h3 {
+	margin: 25px auto 10px auto;
+  }
+  .KeyLessonList ol.lesson-list, 
+  .KeyLessonList ol.lesson-list li.lesson-list-item {
+	list-style: decimal;
+	font-weight: bold;
+  }
+  .KeyLessonList .lesson-list .lesson-list-item .title,
+  .KeyLessonList .lesson-list .lesson-list-item .content {
+	font-weight: normal;
+  }
+
+  .memberDashWelc .title-content {
+	  float: left;
+  }
+  .memberDashWelc .puck-rating {
+	  float: right;
+  }
+  .memberDashWelc .puck-rating .puck-title {
+	  font-size: 34px;
+	  font-family: 'Teko', sans-serif;
+	  text-align: right;
+	  margin-bottom: -10px;
+  }
+  .memberDashWelc .puck-rating svg.puck {
+	  float: right;
+	  margin-left: 5px;
+	  width: 25px;
+	  height: auto;
+	  fill: #1a1a1a;
+  }
