@@ -5,7 +5,6 @@ global $smof_data;
 get_header('members'); ?>
 </header>
 
-
 <?php
 /*
 <section class="memberDashWelc">
@@ -65,6 +64,145 @@ get_header('members'); ?>
 	<?php endif; ?>
 </div>
 </section>
+
+<!-- Skills Vault -->
+<section class="skillsVault Dashboard">
+<div class="row">
+	<div class="sectionHeader">
+		<div class="large-12 columns">
+			<h3>Skills Vault</h3>
+			<div class="bootstrap-styles">
+				<ul class="nav nav-pills nav-fill mb-3" id="skills-tab" role="tablist">
+					<?php
+					$skillTypes = get_terms( array(
+						'taxonomy' => 'skill-type',
+						'hide_empty' => false,
+					) );
+
+					$x = 0;
+					foreach($skillTypes as $skillType) {
+						?>
+						<li class="nav-item" role="presentation">
+							<a class="nav-link <?=($x++ == 0) ? 'active' : ''?>" id="skills-<?=$skillType->slug?>-tab" data-toggle="pill" href="#skills-<?=$skillType->slug?>" role="tab" aria-controls="skills-<?=$skillType->slug?>" aria-selected="true"><?=$skillType->name?></a>
+						</li>
+						<?php
+					}
+					?>
+				</ul>
+				<div class="tab-content" id="skills-tabContent">
+					
+					<?php
+					$x = 0;
+					foreach($skillTypes as $skillType) {
+						?>
+						<div class="tab-pane fade <?=($x++ == 0) ? 'show active' : ''?>" id="skills-<?=$skillType->slug?>" role="tabpanel" aria-labelledby="pills-<?=$skillType->slug?>-tab">
+							<table class="table table-striped skills-vault-table" id="skill-<?=$skillType->slug?>-table">
+								<thead>
+									<tr>
+										<th scope="col">Skill</th>
+										<th scope="col">Performance Level</th>
+										<th scope="col">Frequency</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php
+									$skillsQuery = new WP_Query( array(
+										'post_type' => 'skills',
+										'tax_query' => array(
+											array (
+												'taxonomy' => 'skill-type',
+												'field' => 'slug',
+												'terms' => $skillType->slug,
+											)
+										),
+									) );
+									$skills = $skillsQuery->get_posts();
+
+									if(sizeof($skills) <= 0) {
+										?>
+										<tr>
+											<td colspan="4" class="center-text text-center">There are no skills for <?=$skillType->name?> yet.</td>
+											<td></td>
+											<td></td>
+										</tr>
+										<?php
+									} else {
+										foreach($skills as $skill) {
+											$name = get_the_title($skill->ID);
+											$url = get_post_permalink($skill->ID);
+											$puckLevel = intval(get_post_meta($skill->ID, 'puck_level', 1));
+											$skillTypes = get_the_terms( $skill->ID, 'skill-type' ); 
+											$skillTypeString = '';
+											if(sizeof($skillTypes) > 0) {
+												foreach($skillTypes as $skillType) {
+													if (++$count > 1 && $count <= sizeof($skillTypes)) {
+														$skillTypeString .= ', ';
+													}
+													$skillTypeString .= $skillType->name;
+												}
+											}
+											$performanceLevels = get_the_terms( $skill->ID, 'performance-level' ); 
+											$performanceLevelString = '';
+											if(sizeof($performanceLevels) > 0) {
+												$count = 0;
+												foreach($performanceLevels as $performanceLevel) {
+													if (++$count > 1 && $count <= sizeof($performanceLevels)) {
+														$performanceLevelString .= ', ';
+													}
+													$performanceLevelString .= $performanceLevel->name;
+												}
+											}
+											?>
+											<tr>
+												<td><a href="<?=$url?>"><?=$name?></a></td>
+												<td><?=$performanceLevelString?></td>
+												<td>
+												<?php
+												for ($x = 0; $x < $puckLevel; $x++) {
+													?>
+													<svg class="puck" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512"><path d="M0 160c0-53 114.6-96 256-96s256 43 256 96s-114.6 96-256 96S0 213 0 160zm0 82.2V352c0 53 114.6 96 256 96s256-43 256-96V242.2c-113.4 82.3-398.5 82.4-512 0z" /></svg>
+													<?php
+												}
+												?>
+												</td>
+											</tr>
+											<?php
+										}
+									}
+									?>
+								</tbody>
+							</table>
+							<script type="text/javascript">
+								(function($) {
+									$(document).ready(function() {
+										$('#skill-<?=$skillType->slug?>-table').DataTable({
+											paging: false,
+											searching: true,
+											responsive: true,
+											autoFill: true,
+											info: false,
+											fixedHeader: true,
+											language: {
+												searchPlaceholder: "Search <?=$skillType->name?> Skills"
+											},
+											oLanguage: {
+												sSearch: ""
+											}
+										});
+									});
+								})(jQuery);
+							</script>
+						</div>
+						<?php
+					}
+					?>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</section>
+
 <?php
 global $wpdb;
 $history=$wpdb->get_results("select DISTINCT lesson_id from " . $wpdb->prefix . "lessontracker where `user_id`=" . get_current_user_id() . " and `lesson_status` IN ( 5, 2, 1) order by `viewed` desc LIMIT 3",ARRAY_A);
@@ -146,6 +284,7 @@ if( $columnOption == 'four')
 
 ?>
 
+<? /*
 <section class="courses">
 <div class="row">
 <div class="sectionHeader">
@@ -256,6 +395,8 @@ echo "Start Course" ;
 
 </div>
 </section>
+*/
+?>
 
 <?php } ?>
 <!-- Main Section -->
