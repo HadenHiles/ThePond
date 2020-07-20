@@ -90,13 +90,14 @@ get_header('members'); ?>
 					?>
 				</ul>
 				<div class="skills-vault-table">
+					<a href="#" class="search-button" id="search-button"><i class="fa fa-search"></i></a>
 					<table class="table table-striped skills-vault-table" id="skills-vault-table" width="100%">
 						<thead>
 							<tr>
 								<th scope="col" style="min-width: 180px;">Skill</th>
 								<th scope="col">Frequency</th>
-								<th scope="col" style="min-width: 165px;">Performance Level</th>
-								<th scope="col">Type(s)</th>
+								<th scope="col" style="min-width: 110px;">Level</th>
+								<th scope="col" style="min-width: 110px;">Type(s)</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -123,6 +124,7 @@ get_header('members'); ?>
 									$skillTypes = get_the_terms( $skill->ID, 'skill-type' ); 
 									$skillTypeString = '';
 									if(sizeof($skillTypes) > 0) {
+										$count = 0;
 										foreach($skillTypes as $skillType) {
 											if (++$count > 1 && $count <= sizeof($skillTypes)) {
 												$skillTypeString .= ', ';

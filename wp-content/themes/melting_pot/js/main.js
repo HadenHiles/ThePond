@@ -109,5 +109,12 @@
 			var searchTerm = skillsVaultTable.columns(3).search()[0];
 			$('.dataTables_empty').text('No skills were found for "' + searchTerm + '"');
 		});
+
+		var $searchButton = $('.skillsVault #search-button');
+		$searchButton.appendTo('.dataTables_filter label');
+		$searchButton.click(function(e) {
+			e.preventDefault();
+			skillsVaultTable.search($('#skills-vault-table_filter input[type="search"]').val()).draw();
+		});
 	});
 })(jQuery);

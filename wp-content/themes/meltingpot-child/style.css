@@ -387,6 +387,13 @@ section.CTABannerBG h2,.meetOwners h2,section.saleGuarantee h2,#Pricingboxes .sa
 	padding-top: 70px;
 	position: relative;
 }
+.skillsVault .bootstrap-styles .skills-vault-table .search-button {
+	color: #cc3333;
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	font-size: 28px;
+}
 .skillsVault .bootstrap-styles .dataTables_filter {
 	float: none;
 	margin: 5px auto;
@@ -399,14 +406,18 @@ section.CTABannerBG h2,.meetOwners h2,section.saleGuarantee h2,#Pricingboxes .sa
 }
 .skillsVault .bootstrap-styles .dataTables_filter label {
 	width: 100%;
+	position: relative;
 }
 .skillsVault .bootstrap-styles .dataTables_filter input[type="search"] {
-	padding: 20px;
+	padding: 20px 45px 20px 20px;
 	margin: 0;
 	width: 100%;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
+}
+.skillsVault .bootstrap-styles .skills-vault-table .dataTables_scrollBody {
+	border: none;
 }
 .skillsVault .bootstrap-styles .table thead th,
 .skillsVault .bootstrap-styles .table tbody td {
