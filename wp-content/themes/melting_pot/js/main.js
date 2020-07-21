@@ -79,6 +79,9 @@
 			autoFill: false,
 			info: false,
 			fixedHeader: false,
+			paging: true,
+			pageLength: 50,
+			lengthChange: false,
 			language: {
 				searchPlaceholder: "Find a Skill",
 				emptyTable: "There are no skills in the skills vault yet.",
