@@ -99,7 +99,8 @@
 			skillsVaultTable.search($(this).val());
 		});
 
-		$('#skill-types-filter').on('click', 'li a.nav-link', function() {
+		$('#skill-types-filter').on('click', 'li a.nav-link', function(e) {
+			e.preventDefault();
 			if (!$(this).hasClass('active')) {
 				$('#skill-types-filter a.nav-link.active').removeClass('active');
 				skillsVaultTable.column(3).search($(this).text()).draw();	

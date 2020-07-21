@@ -95,9 +95,9 @@ get_header('members'); ?>
 						<thead>
 							<tr>
 								<th scope="col" style="min-width: 180px;">Skill</th>
-								<th scope="col">Frequency</th>
-								<th scope="col" style="min-width: 110px;">Level</th>
-								<th scope="col" style="min-width: 110px;">Type(s)</th>
+								<th scope="col" style="min-width: 110px;">Frequency</th>
+								<th scope="col" style="min-width: 100px;">Level</th>
+								<th scope="col" style="min-width: 100px;">Type(s)</th>
 							</tr>
 						</thead>
 						<tbody>
