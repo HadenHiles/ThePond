@@ -10,8 +10,8 @@ $imgAlt = get_post_meta($imgID,'_wp_attachment_image_alt', true);
 <section class="memberDashWelc">
 	<div class="row">
 		<div class="large-12 columns">
-            <div class="large-8 small-12 columns">
-                <h3 style="float: left; color: #fff;">
+            <div class="large-8 medium-6 small-12 columns title-content-left">
+                <h3>
                     <?php 
                     $parentTitle = get_the_title( $post->post_parent );
                     if (!empty($parentTitle) && $parentTitle != get_the_title($post->ID)) {
@@ -26,7 +26,7 @@ $imgAlt = get_post_meta($imgID,'_wp_attachment_image_alt', true);
                 $skillTypes = get_the_terms( $post->ID, 'skill-type' ); 
                 if(sizeof($skillTypes) > 0) {
                     ?>
-                    <p style="float: left; margin: 10px;">
+                    <p>
                     <?php
                     $count = 0;
                     foreach($skillTypes as $skillType) {
@@ -41,9 +41,9 @@ $imgAlt = get_post_meta($imgID,'_wp_attachment_image_alt', true);
                 }
                 ?>
                 <div class="clearfix"></div>
-                <a href="/member-dashboard" class="BTN" style="display: inline-block; float: left;"><i class="fa fa-caret-left"></i> Dashboard</a>
+                <a href="/member-dashboard" class="BTN"><i class="fa fa-caret-left"></i> Dashboard</a>
             </div>
-            <div class="large-4 small-12 columns puck-rating">
+            <div class="large-4 medium-6 small-12 columns puck-rating title-content-right">
                 <p class="puck-title">Frequency</p>
                 <?php
                 $puckLevel = intval(get_field('puck_level'));

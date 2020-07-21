@@ -342,14 +342,20 @@ section.CTABannerBG h2,.meetOwners h2,section.saleGuarantee h2,#Pricingboxes .sa
 	height: 0;
 	/* falls back to 16/9, but otherwise uses ratio from HTML */
 	padding-bottom: calc(var(--aspect-ratio, .5625) * 100%);
-  }
-  .videoWrapper iframe {
+}
+.videoWrapper iframe {
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
-  }
+}
+img[data-enlargable] {
+	cursor: -moz-zoom-in; 
+    cursor: -webkit-zoom-in; 
+    cursor: zoom-in;
+}
+/* End Utilities */
 
 /* Lesson styles*/
 .KeyLessonList h3 {
@@ -374,6 +380,18 @@ section.CTABannerBG h2,.meetOwners h2,section.saleGuarantee h2,#Pricingboxes .sa
   .memberDashWelc .puck-rating {
 	  float: right;
   }
+  .memberDashWelc .title-content-left h3 {
+	float: left;
+	color: #fff;
+  }
+  .memberDashWelc .title-content-left p {
+	float: left;
+	margin: 10px;
+  }
+  .memberDashWelc .title-content-left .BTN {
+	display: inline-block;
+	float: left;
+  }
   .memberDashWelc .puck-rating .puck-title {
 	  font-size: 34px;
 	  font-family: 'Teko', sans-serif;
@@ -387,7 +405,31 @@ section.CTABannerBG h2,.meetOwners h2,section.saleGuarantee h2,#Pricingboxes .sa
 	  height: auto;
 	  fill: #1a1a1a;
   }
-  /* End Lesson Styles */
+
+@media screen and (max-width: 640px) {
+	.memberDashWelc .title-content-left,
+	.memberDashWelc .title-content-right {
+		text-align: center;
+		float: none;
+	}
+	.memberDashWelc .title-content-left h3,
+	.memberDashWelc .title-content-left p,
+	.memberDashWelc .title-content-left .BTN {
+		float: none;
+		text-align: center;
+	  }
+	.memberDashWelc .title-content-right .puck-title {
+		text-align: center;
+	}
+	.memberDashWelc .title-content-right svg.puck {
+		float: none;
+	}
+	.memberDashWelc .title-content-right p {
+		float: none !important;
+		text-align: center !important;
+	}
+}
+/* End Lesson Styles */
 
 /* Skill Vault */
 .skillsVault .bootstrap-styles .nav-pills {
@@ -455,7 +497,7 @@ section.CTABannerBG h2,.meetOwners h2,section.saleGuarantee h2,#Pricingboxes .sa
 	color: #333;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 640px) {
 	.skillsVault .row,
 	.skillsVault .row .columns {
 		padding: 0 5px;
