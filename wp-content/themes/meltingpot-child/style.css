@@ -336,6 +336,22 @@ section.CTABannerBG h2,.meetOwners h2,section.saleGuarantee h2,#Pricingboxes .sa
 
 
 /* THE POND CUSTOM STYLES */
+/* Utilities */
+.videoWrapper {
+	position: relative;
+	height: 0;
+	/* falls back to 16/9, but otherwise uses ratio from HTML */
+	padding-bottom: calc(var(--aspect-ratio, .5625) * 100%);
+  }
+  .videoWrapper iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+  }
+
+/* Lesson styles*/
 .KeyLessonList h3 {
 	margin: 25px auto 10px auto;
   }
@@ -371,6 +387,7 @@ section.CTABannerBG h2,.meetOwners h2,section.saleGuarantee h2,#Pricingboxes .sa
 	  height: auto;
 	  fill: #1a1a1a;
   }
+  /* End Lesson Styles */
 
 /* Skill Vault */
 .skillsVault .bootstrap-styles .nav-pills {
@@ -465,3 +482,23 @@ section.CTABannerBG h2,.meetOwners h2,section.saleGuarantee h2,#Pricingboxes .sa
 		width: 100%;
 	}
 }
+/* End Skills Vault */
+
+/* Skill Example */
+.skill-example iframe {
+	width: 100% !important;
+}
+.skill-example .gifs {
+	display: flex;
+	justify-content: space-between;
+	align-content: flex-start;
+	flex-wrap: wrap;
+}
+.skill-example .gifs h2 {
+	width: 100%;
+}
+.skill-example .gifs .gif {
+	width: 100%;
+	margin: 0 auto 15px auto;
+}
+/* End Skill Example */

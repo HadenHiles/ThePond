@@ -1,5 +1,4 @@
-<?php 
-ini_set('display_errors', 1);
+<?php
 global $smof_data;
 get_header("members");
 if(has_post_thumbnail()) {
@@ -42,7 +41,7 @@ $imgAlt = get_post_meta($imgID,'_wp_attachment_image_alt', true);
                 }
                 ?>
                 <div class="clearfix"></div>
-                <a href="/member-dashboard" class="BTN" style="display: inline-block; float: left;"><i class="fa fa-caret-left"></i> All Skills</a>
+                <a href="/member-dashboard" class="BTN" style="display: inline-block; float: left;"><i class="fa fa-caret-left"></i> Dashboard</a>
             </div>
             <div class="large-4 small-12 columns puck-rating">
                 <p class="puck-title">Frequency</p>

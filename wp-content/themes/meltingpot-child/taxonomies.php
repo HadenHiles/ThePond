@@ -36,7 +36,7 @@ function add_custom_taxonomies() {
     ));
 
     register_taxonomy('skill-type', 
-        array( 'post', 'skills', 'sfwd-courses', 'sfwd-lessons', 'sfwd-topic' ), 
+        array( 'post', 'skills', 'skill-examples', 'sfwd-courses', 'sfwd-lessons', 'sfwd-topic' ), 
         array(
             // Hierarchical taxonomy (like categories)
             'hierarchical' => true,
