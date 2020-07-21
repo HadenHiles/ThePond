@@ -87,6 +87,10 @@ $imgAlt = get_post_meta($imgID,'_wp_attachment_image_alt', true);
 	<div class="<?php  if ( get_field('show_sidebar') == 'yes'): ?>large-8<?php else: ?>large-12<?php endif; ?> columns">
         <main role="main">
         <article>
+        <?php
+        echo get_field('video_code');
+        ?>
+        <br />
         <?php the_content();?>	
         </article>
         <article>

@@ -339,6 +339,9 @@ section.CTABannerBG h2,.meetOwners h2,section.saleGuarantee h2,#Pricingboxes .sa
 .KeyLessonList h3 {
 	margin: 25px auto 10px auto;
   }
+  .KeyLessonList ol.lesson-list {
+	  margin-left: 20px;
+  }
   .KeyLessonList ol.lesson-list, 
   .KeyLessonList ol.lesson-list li.lesson-list-item {
 	list-style: decimal;
@@ -422,7 +425,9 @@ section.CTABannerBG h2,.meetOwners h2,section.saleGuarantee h2,#Pricingboxes .sa
 .skillsVault .bootstrap-styles .table thead th,
 .skillsVault .bootstrap-styles .table tbody td {
 	padding: 20px;
-	text-align: left !important;
+}
+.skillsVault .bootstrap-styles .table tbody td.dataTables_empty {
+	text-align: center;
 }
 
 .skillsVault .bootstrap-styles .table tbody td a {
@@ -449,6 +454,11 @@ section.CTABannerBG h2,.meetOwners h2,section.saleGuarantee h2,#Pricingboxes .sa
 	.skillsVault .bootstrap-styles .skills-vault-table,
 	.skillsVault .bootstrap-styles .skills-vault-table table {
 		min-height: 10vh;
+	}
+	.skillsVault .bootstrap-styles .table thead th,
+	.skillsVault .bootstrap-styles .table tbody td,
+	.skillsVault .bootstrap-styles .table tbody td.dataTables_empty {
+		text-align: left;
 	}
 	.skillsVault .bootstrap-styles .dataTables_filter {
 		position: static;

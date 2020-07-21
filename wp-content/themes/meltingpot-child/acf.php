@@ -361,6 +361,20 @@ if( function_exists('acf_add_local_field_group') ):
                 'return_format' => 'value',
                 'save_other_choice' => 0,
             ),
+            array(
+                'key' => 'field_video_code',
+                'label' => 'Video Code',
+                'name' => 'video_code',
+                'type' => 'wysiwyg',
+                'tabs' => 'text',
+                'toolbar' => 'basic',
+                'instructions' => 'The video code to embed.',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'allow_null' => 0,
+                'default_value' => '',
+                'return_format' => 'value',
+            ),
         ),
         'location' => array(
             array(
