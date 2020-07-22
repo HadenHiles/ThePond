@@ -138,7 +138,7 @@ a.topic-completed::before {background-color: #3AA6DE;}
 .topmemberNav li a{font-weight: 700;}
 
 
-section.savedContent.Dashboard,section.memberDashWelc{ background: #eee;}
+section.savedContent.Dashboard,section.memberDashWelc.skill-header{ background: #eee;}
 
 /*Ask Section */
 .applyBTN {margin-top:10px;}
@@ -173,12 +173,12 @@ div.topic p, div.answer p {
 
 
 /*Dashboard Welcome*/
-section.memberDashWelc, section.clbHeader {
+section.memberDashWelc.skill-header, section.clbHeader {
 	background: #83cdcf;
 }
-section.memberDashWelc h1, section.memberDashWelc p, section.clbHeader h1, section.clbHeader p {color:#fff;}
-section.memberDashWelc p, section.clbHeader p {margin:0;}
-section.memberDashWelc h1, section.clbHeader h1 {line-height:1.2em;}
+section.memberDashWelc.skill-header h1, section.memberDashWelc.skill-header p, section.clbHeader h1, section.clbHeader p {color:#fff;}
+section.memberDashWelc.skill-header p, section.clbHeader p {margin:0;}
+section.memberDashWelc.skill-header h1, section.clbHeader h1 {line-height:1.2em;}
 
 
 
@@ -340,6 +340,7 @@ section.CTABannerBG h2,.meetOwners h2,section.saleGuarantee h2,#Pricingboxes .sa
 .videoWrapper {
 	position: relative;
 	height: 0;
+	padding: 0;
 	/* falls back to 16/9, but otherwise uses ratio from HTML */
 	padding-bottom: calc(var(--aspect-ratio, .5625) * 100%);
 }
@@ -374,31 +375,44 @@ img[data-enlargable] {
 	font-weight: normal;
   }
 
-  .memberDashWelc .title-content {
+  .memberDashWelc.skill-header .title-content {
 	  float: left;
   }
-  .memberDashWelc .puck-rating {
+  .memberDashWelc.skill-header .puck-rating {
 	  float: right;
   }
-  .memberDashWelc .title-content-left h3 {
-	float: left;
+  .title-content-left,
+  .title-content-right {
+	  width: 50%;
+  }
+  .memberDashWelc.skill-header .title-content-left h3,
+  .memberDashWelc.skill-header .title-content-right h3 {
+	width: 100%;
 	color: #fff;
   }
-  .memberDashWelc .title-content-left p {
-	float: left;
-	margin: 10px;
-  }
-  .memberDashWelc .title-content-left .BTN {
-	display: inline-block;
+  .memberDashWelc.skill-header .title-content-left h3 {
 	float: left;
   }
-  .memberDashWelc .puck-rating .puck-title {
+  .memberDashWelc.skill-header .title-content-right h3 {
+	float: right;
+	text-align: right;
+  }
+  .memberDashWelc.skill-header .title-content-left p {
+	display: block;
+	position: relative;
+	top: -15px;
+  }
+  .memberDashWelc.skill-header .title-content-left .BTN {
+	float: left;
+	margin-top: -15px;
+  }
+  .memberDashWelc.skill-header .puck-rating .puck-title {
 	  font-size: 34px;
 	  font-family: 'Teko', sans-serif;
 	  text-align: right;
 	  margin-bottom: -10px;
   }
-  .memberDashWelc .puck-rating svg.puck {
+  .memberDashWelc.skill-header .puck-rating svg.puck {
 	  float: right;
 	  margin-left: 5px;
 	  width: 25px;
@@ -407,24 +421,41 @@ img[data-enlargable] {
   }
 
 @media screen and (max-width: 640px) {
-	.memberDashWelc .title-content-left,
-	.memberDashWelc .title-content-right {
-		text-align: center;
-		float: none;
+	.memberDashWelc.skill-header .row {
+		padding: 0 5px;
 	}
-	.memberDashWelc .title-content-left h3,
-	.memberDashWelc .title-content-left p,
-	.memberDashWelc .title-content-left .BTN {
+	.memberDashWelc.skill-header .row .columns {
+		padding: 0 5px;
+	}
+	.memberDashWelc.skill-header .title-content-left h3,
+	.memberDashWelc.skill-header .title-content-left p {
+		text-align: left;
+	}
+	.memberDashWelc.skill-header .title-content-right .puck-title,
+	.memberDashWelc.skill-header .title-content-right h3 {
+		text-align: right;
+	}
+}
+@media screen and (max-width: 335px) {
+	.memberDashWelc.skill-header .title-content-left,
+	.memberDashWelc.skill-header .title-content-right {
+		width: 100%;
+	}
+	.memberDashWelc.skill-header .title-content-left h3,
+	.memberDashWelc.skill-header .title-content-left p,
+	.memberDashWelc.skill-header .title-content-left .BTN,
+	.memberDashWelc.skill-header .title-content-right .puck-title,
+	.memberDashWelc.skill-header .title-content-right h3 {
 		float: none;
 		text-align: center;
 	  }
-	.memberDashWelc .title-content-right .puck-title {
+	.memberDashWelc.skill-header .title-content-right .puck-title {
 		text-align: center;
 	}
-	.memberDashWelc .title-content-right svg.puck {
+	.memberDashWelc.skill-header .title-content-right svg.puck {
 		float: none;
 	}
-	.memberDashWelc .title-content-right p {
+	.memberDashWelc.skill-header .title-content-right p {
 		float: none !important;
 		text-align: center !important;
 	}

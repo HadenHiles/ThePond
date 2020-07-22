@@ -7,7 +7,7 @@ $img    = wp_get_attachment_image_src($imgID,'full', false, '');
 $imgAlt = get_post_meta($imgID,'_wp_attachment_image_alt', true);
 }
 ?>
-<section class="memberDashWelc">
+<section class="memberDashWelc skill-header">
 	<div class="row">
 		<div class="large-12 columns">
             <div class="large-8 medium-6 small-12 columns title-content-left">
@@ -44,7 +44,7 @@ $imgAlt = get_post_meta($imgID,'_wp_attachment_image_alt', true);
                 <a href="/member-dashboard" class="BTN"><i class="fa fa-caret-left"></i> Dashboard</a>
             </div>
             <div class="large-4 medium-6 small-12 columns puck-rating title-content-right">
-                <p class="puck-title">Frequency</p>
+                <h3>Frequency</h3>
                 <?php
                 $puckLevel = intval(get_field('puck_level'));
                 for ($x = 0; $x < $puckLevel; $x++) {
