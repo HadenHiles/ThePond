@@ -614,8 +614,8 @@ if( function_exists('acf_add_local_field_group') ):
             ),
             array(
                 'key' => 'field_5f1735b0156cd',
-                'label' => 'Gifs',
-                'name' => 'gifs',
+                'label' => 'Examples',
+                'name' => 'examples',
                 'type' => 'repeater',
                 'instructions' => 'Add one or more gifs to demonstrate this skill example',
                 'required' => 0,
@@ -629,7 +629,7 @@ if( function_exists('acf_add_local_field_group') ):
                 'min' => 0,
                 'max' => 0,
                 'layout' => 'block',
-                'button_label' => 'Add Gif',
+                'button_label' => 'Add Example',
                 'sub_fields' => array(
                     array(
                         'key' => 'field_5f1735df156ce',
@@ -637,7 +637,7 @@ if( function_exists('acf_add_local_field_group') ):
                         'name' => 'gif',
                         'type' => 'image',
                         'instructions' => '',
-                        'required' => 1,
+                        'required' => 0,
                         'conditional_logic' => 0,
                         'wrapper' => array(
                             'width' => '',
@@ -656,10 +656,36 @@ if( function_exists('acf_add_local_field_group') ):
                         'mime_types' => 'gif',
                     ),
                     array(
+                        'key' => 'field_5f185a0e65e22',
+                        'label' => 'Video Code',
+                        'name' => 'video_code',
+                        'type' => 'wysiwyg',
+                        'instructions' => '',
+                        'required' => 1,
+                        'conditional_logic' => array(
+                            array(
+                                array(
+                                    'field' => 'field_5f1735df156ce',
+                                    'operator' => '==empty',
+                                ),
+                            ),
+                        ),
+                        'wrapper' => array(
+                            'width' => '',
+                            'class' => '',
+                            'id' => '',
+                        ),
+                        'default_value' => '',
+                        'tabs' => 'text',
+                        'media_upload' => 0,
+                        'toolbar' => 'basic',
+                        'delay' => 0,
+                    ),
+                    array(
                         'key' => 'field_5f17436521193',
                         'label' => 'Description',
                         'name' => 'description',
-                        'type' => 'text',
+                        'type' => 'wysiwyg',
                         'instructions' => 'A description of the gif, detailing what to focus on and pay close attention to.',
                         'required' => 0,
                         'conditional_logic' => 0,
@@ -669,6 +695,10 @@ if( function_exists('acf_add_local_field_group') ):
                             'id' => '',
                         ),
                         'default_value' => '',
+                        'tabs' => 'all',
+                        'toolbar' => 'basic',
+                        'media_upload' => 1,
+                        'delay' => 1,
                     ),
                 ),
             ),

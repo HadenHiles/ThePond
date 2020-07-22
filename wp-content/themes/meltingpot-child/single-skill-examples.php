@@ -112,9 +112,10 @@ $imgAlt = get_post_meta($imgID,'_wp_attachment_image_alt', true);
                     <div class="bootstrap-styles gifs">
                         <?php
                         // Loop through gifs.
-                        while( have_rows('gifs') ) : the_row();
+                        while( have_rows('examples') ) : the_row();
                             // Load sub field values.
                             $gif = get_sub_field('gif');
+                            $video = get_sub_field('video_code');
                             $description = get_sub_field('description');
                             ?>
                             <div class="card gif">
@@ -123,13 +124,22 @@ $imgAlt = get_post_meta($imgID,'_wp_attachment_image_alt', true);
                                     ?>
                                     <img class="card-img-top" src="<?=$gif?>" alt="" data-enlargable />
                                     <?php
-                                    if (!empty($description)) {
-                                        ?>
-                                        <div class="card-body">
-                                            <p class="card-text"><?=$description?></p>
+                                } else if (!empty($video)) {
+                                    ?>
+                                    <div class="card-img-top">
+                                        <div class="videoWrapper">
+                                            <?=$video?>
                                         </div>
-                                        <?php
-                                    }
+                                    </div>
+                                    <?php
+                                }
+
+                                if ((!empty($gif) || !empty($video)) && !empty($description)) {
+                                    ?>
+                                    <div class="card-body">
+                                        <p class="card-text"><?=$description?></p>
+                                    </div>
+                                    <?php
                                 }
                                 ?>
                             </div>
