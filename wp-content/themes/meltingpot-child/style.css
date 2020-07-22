@@ -493,15 +493,18 @@ img[data-enlargable] {
 	font-size: 28px;
 }
 .skillsVault .bootstrap-styles .skills-vault-table .table tbody td.multiple-actions {
-	padding: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
 }
 .skillsVault .skills-vault-table a.action-button {
 	color: #fff !important;
-	margin: 0 auto 2px auto;
+	margin: 0 2px 2px 2px;
 	padding: .5rem 1rem;
 	font-size: 12px !important;
-	float: right;
 	position: relative;
+	white-space: nowrap;
 }
 .skillsVault .skills-vault-table a.action-button.custom-icon {
 	padding-left: 2rem;
@@ -554,6 +557,12 @@ img[data-enlargable] {
 	color: #333;
 }
 
+@media screen and (max-width: 1024px) {
+	.skillsVault .bootstrap-styles .skills-vault-table .table tbody td.multiple-actions {
+		padding: 5px;
+		flex-wrap: wrap;
+	}
+}
 @media screen and (max-width: 640px) {
 	.skillsVault .row,
 	.skillsVault .row .columns {

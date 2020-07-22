@@ -157,7 +157,6 @@ get_header('members'); ?>
 												<a class="BTN action-button" data-skill="<?=$name?>" data-url="<?=$url?>" data-video="<?=htmlspecialchars($videoCode, ENT_QUOTES)?>">
 													<i class="fa fa-play"></i>&nbsp;&nbsp;Tutorial
 												</a>
-												<div class="clearfix"></div>
 												<?php
 											}
 											if (sizeof($skillExamples) > 0) {
