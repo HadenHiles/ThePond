@@ -106,7 +106,7 @@ $imgAlt = get_post_meta($imgID,'_wp_attachment_image_alt', true);
             <article>
                 <?php
                 // Check rows exists.
-                if( have_rows('gifs') ):
+                if( have_rows('examples') ):
                     ?>
                     <h2>Examples</h2>
                     <div class="bootstrap-styles gifs">

@@ -510,8 +510,8 @@ if( function_exists('acf_add_local_field_group') ):
                 'elements' => array(
                     0 => 'featured_image',
                 ),
-                'min' => '',
-                'max' => '',
+                'min' => '0',
+                'max' => '1',
                 'return_format' => 'object',
             ),
         ),
