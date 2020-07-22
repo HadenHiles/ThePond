@@ -94,7 +94,7 @@ get_header('members'); ?>
 					<table class="table table-striped skills-vault-table" id="skills-vault-table" width="100%">
 						<thead>
 							<tr>
-								<th scope="col" style="min-width: 180px;">Skill</th>
+								<th scope="col" class="title">Skill</th>
 								<th class="actions" style="min-width: 75px;"></th>
 								<th scope="col" style="min-width: 110px;">Frequency</th>
 								<th scope="col" style="min-width: 100px;">Level</th>

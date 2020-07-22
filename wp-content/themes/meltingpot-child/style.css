@@ -558,6 +558,9 @@ img[data-enlargable] {
 }
 
 @media screen and (max-width: 1024px) {
+	.skillsVault .bootstrap-styles .skills-vault-table thead th.title {
+		min-width: 180px;
+	}
 	.skillsVault .bootstrap-styles .skills-vault-table .table tbody td.multiple-actions {
 		padding: 5px;
 		flex-wrap: wrap;
