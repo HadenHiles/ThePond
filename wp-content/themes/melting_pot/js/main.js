@@ -140,22 +140,24 @@
 		// Modal for skills vault
 		if ($('#skillsVaultModal').length == 1) {
 			$('a.action-button').click(function(e) {
-				e.preventDefault();
+				if ($(this).attr('href') == null) {
+					e.preventDefault();
 				
-				var button = $(this) // Button that triggered the modal
-				var skill = button.data('skill'); // Extract info from data-* attributes
-				var url = button.data('url');
-				var video = button.data('video');
-				// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-				// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-				var modal = $('#skillsVaultModal');
-				modal.find('.modal-title').text(skill);
-				modal.find('.modal-body .videoWrapper').html(video);
-				modal.find('a.action').attr('href', url);
+					var button = $(this) // Button that triggered the modal
+					var skill = button.data('skill'); // Extract info from data-* attributes
+					var url = button.data('url');
+					var video = button.data('video');
+					// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+					// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+					var modal = $('#skillsVaultModal');
+					modal.find('.modal-title').text(skill);
+					modal.find('.modal-body .videoWrapper').html(video);
+					modal.find('a.action').attr('href', url);
 
-				modal.modal({
-					backdrop: true
-				});
+					modal.modal({
+						backdrop: true
+					});
+				}
 			});
 		}
 	});
