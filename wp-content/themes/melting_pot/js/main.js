@@ -73,6 +73,8 @@
 		});
 
 		// Skills Vault
+		var frequencyColumn = 2;
+		var skillTypeColumn = 4;
 		var skillsVaultTable = $('#skills-vault-table').DataTable({
 			paging: false,
 			searching: true,
@@ -104,7 +106,7 @@
 			oLanguage: {
 				sSearch: ""
 			},
-			order: [1, 'desc']
+			order: [frequencyColumn, 'desc']
 		});
 
 		$('#skills-vault-table_filter input[type="search"]').on('keyup', function() {
@@ -117,14 +119,14 @@
 			e.preventDefault();
 			if (!$(this).hasClass('active')) {
 				$('#skill-types-filter a.nav-link.active').removeClass('active');
-				skillsVaultTable.column(3).search($(this).text()).draw();	
+				skillsVaultTable.column(skillTypeColumn).search($(this).text()).draw();	
 				$(this).addClass('active');
 			} else {
 				$(this).removeClass('active');
 				skillsVaultTable.columns().search('').draw();
 			}
 
-			var searchTerm = skillsVaultTable.columns(3).search()[0];
+			var searchTerm = skillsVaultTable.columns(skillTypeColumn).search()[0];
 			$('.dataTables_empty').text('No skills were found for "' + searchTerm + '"');
 		});
 
@@ -134,5 +136,27 @@
 			e.preventDefault();
 			skillsVaultTable.search($('#skills-vault-table_filter input[type="search"]').val()).draw();
 		});
+
+		// Modal for skills vault
+		if ($('#skillsVaultModal').length == 1) {
+			$('a.action-button').click(function(e) {
+				e.preventDefault();
+				
+				var button = $(this) // Button that triggered the modal
+				var skill = button.data('skill'); // Extract info from data-* attributes
+				var url = button.data('url');
+				var video = button.data('video');
+				// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+				// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+				var modal = $('#skillsVaultModal');
+				modal.find('.modal-title').text(skill);
+				modal.find('.modal-body .videoWrapper').html(video);
+				modal.find('a.action').attr('href', url);
+
+				modal.modal({
+					backdrop: true
+				});
+			});
+		}
 	});
 })(jQuery);

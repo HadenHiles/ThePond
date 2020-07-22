@@ -492,6 +492,27 @@ img[data-enlargable] {
 	right: 15px;
 	font-size: 28px;
 }
+.skillsVault .bootstrap-styles .skills-vault-table .table tbody td.multiple-actions {
+	padding: 5px;
+}
+.skillsVault .skills-vault-table a.action-button {
+	color: #fff !important;
+	margin: 0 auto 2px auto;
+	padding: .5rem 1rem;
+	font-size: 12px !important;
+	float: right;
+	position: relative;
+}
+.skillsVault .skills-vault-table a.action-button.custom-icon {
+	padding-left: 2rem;
+}
+.skillsVault .skills-vault-table a.action-button svg {
+	fill: #fff;
+	height: 18px;
+	position: absolute;
+	left: 10px;
+	top: 5px;
+}
 .skillsVault .bootstrap-styles .dataTables_filter {
 	float: none;
 	margin: 5px auto;
@@ -558,6 +579,54 @@ img[data-enlargable] {
 	.skillsVault .bootstrap-styles .dataTables_filter {
 		position: static;
 		width: 100%;
+	}
+}
+/* Modal */
+body.modal-open {
+    overflow: hidden;
+}
+.transparent-modal {
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	z-index: 100;
+}
+.transparent-modal .skills-vault-modal {
+	height: 100vh;
+	z-index: 101;
+	position: fixed;
+	background: rgba(0, 0, 0, 0.85);
+}
+.transparent-modal .skills-vault-modal .modal-dialog {
+	max-width: 50%;
+}
+.transparent-modal .skills-vault-modal .modal-dialog .modal-content,
+.transparent-modal .skills-vault-modal .modal-dialog .modal-content .modal-header,
+.transparent-modal .skills-vault-modal .modal-dialog .modal-content .modal-footer {
+	background: none;
+	border: none;
+	color: #fff !important;
+}
+.transparent-modal .skills-vault-modal .modal-dialog button.close span {
+	color: #fff;
+	text-shadow: none;
+}
+.transparent-modal .skills-vault-modal .modal-dialog .modal-footer a.BTN {
+	background: #cc3333;
+	color: #fff;
+	text-decoration: none;
+}
+.transparent-modal .skills-vault-modal .modal-dialog .modal-footer a.BTN:hover {
+	background: #069EDA;
+}
+@media screen and (max-width: 1440px) {
+	.transparent-modal .skills-vault-modal .modal-dialog {
+		max-width: 70% !important;
+	}
+}
+@media screen and (max-width: 1024px) {
+	.transparent-modal .skills-vault-modal .modal-dialog {
+		max-width: 100% !important;
 	}
 }
 /* End Skills Vault */
