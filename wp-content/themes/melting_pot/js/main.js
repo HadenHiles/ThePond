@@ -54,7 +54,7 @@
 				$('body').off('keyup.modal-close'); 
 			}
 			
-			modal = $('<div>').css({
+			modal = $('<div class="img-enlargable">').css({
 				background: 'RGBA(0,0,0,.75) url('+src+') no-repeat center',
 				backgroundSize: 'initial',
 				width:'100%', height:'100%',

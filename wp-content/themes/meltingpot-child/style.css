@@ -356,6 +356,11 @@ img[data-enlargable] {
     cursor: -webkit-zoom-in; 
     cursor: zoom-in;
 }
+@media screen and (max-width: 640px) {
+	.img-enlargable {
+		background-size: contain !important;
+	}
+}
 /* End Utilities */
 
 /* Lesson styles*/
