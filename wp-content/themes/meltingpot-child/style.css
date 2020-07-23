@@ -364,19 +364,19 @@ img[data-enlargable] {
 /* End Utilities */
 
 /* Lesson styles*/
-.KeyLessonList h3 {
+.ListWithHeading h3 {
 	margin: 25px auto 10px auto;
   }
-  .KeyLessonList ol.lesson-list {
+  .ListWithHeading ol.lesson-list {
 	  margin-left: 20px;
   }
-  .KeyLessonList ol.lesson-list, 
-  .KeyLessonList ol.lesson-list li.lesson-list-item {
+  .ListWithHeading ol.lesson-list, 
+  .ListWithHeading ol.lesson-list li.lesson-list-item {
 	list-style: decimal;
 	font-weight: bold;
   }
-  .KeyLessonList .lesson-list .lesson-list-item .title,
-  .KeyLessonList .lesson-list .lesson-list-item .content {
+  .ListWithHeading .lesson-list .lesson-list-item .title,
+  .ListWithHeading .lesson-list .lesson-list-item .content {
 	font-weight: normal;
   }
 
@@ -666,6 +666,21 @@ body.modal-open {
 	}
 }
 /* End Skills Vault */
+
+/* Skill */
+.skill-content .main,
+.skill-content .side {
+	display: flex;
+	align-content: space-between;
+	justify-content: stretch;
+	flex-wrap: wrap;
+}
+.skill-content .main .card,
+.skill-content .side .card {
+	width: 100%;
+	margin: .5em auto;
+}
+/* End Skill */
 
 /* Skill Example */
 .skill-example iframe {

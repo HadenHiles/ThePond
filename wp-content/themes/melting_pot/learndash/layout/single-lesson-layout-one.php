@@ -23,7 +23,7 @@ $parent_course_id = learndash_get_setting( $post, 'course' );
 <?php get_template_part('template-parts/courses/lesson-topic-fields'); ?>
 
 <!-- Tips for success list -->
-<div class="KeyLessonList">
+<div class="ListWithHeading">
 	<?php
 	// Check rows exists.
 	if( have_rows('tips_for_success') ):
@@ -41,7 +41,7 @@ $parent_course_id = learndash_get_setting( $post, 'course' );
 </div>
 
 <!-- Common mistakes list -->
-<div class="KeyLessonList">
+<div class="ListWithHeading">
 	<?php
 	// Check rows exists.
 	if( have_rows('common_mistakes') ):
@@ -58,26 +58,8 @@ $parent_course_id = learndash_get_setting( $post, 'course' );
 	?>
 </div>
 
-<!-- Quick Tips list -->
-<div class="KeyLessonList">
-	<?php
-	// Check rows exists.
-	if( have_rows('quick_tips') ):
-		$count = count(get_field('quick_tips'));
-		?>
-		<h3><?=($count > 1) ? $count : ''?> Quick Tips</h3>
-		<?php
-		// Loop through rows.
-		keyLessonList('quick_tips');
-	// No value.
-	else :
-		// Do something...
-	endif;
-	?>
-</div>
-
 <!-- What To Practice list -->
-<div class="KeyLessonList">
+<div class="ListWithHeading">
 	<?php
 	// Check rows exists.
 	if( have_rows('what_to_practice') ):
@@ -86,23 +68,6 @@ $parent_course_id = learndash_get_setting( $post, 'course' );
 		<?php
 		// Loop through rows.
 		keyLessonList('what_to_practice');
-	// No value.
-	else :
-		// Do something...
-	endif;
-	?>
-</div>
-
-<!-- You Should Be Able To list -->
-<div class="KeyLessonList">
-	<?php
-	// Check rows exists.
-	if( have_rows('you_should_be_able_to') ):
-		?>
-		<h3>You Should Be Able To</h3>
-		<?php
-		// Loop through rows.
-		keyLessonList('you_should_be_able_to');
 	// No value.
 	else :
 		// Do something...
