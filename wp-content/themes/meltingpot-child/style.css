@@ -613,6 +613,7 @@ body.modal-open {
 	height: 100vh;
 	z-index: 101;
 	position: fixed;
+	overflow-y: auto;
 	background: rgba(0, 0, 0, 0.85);
 }
 .transparent-modal .skills-vault-modal .modal-dialog {
