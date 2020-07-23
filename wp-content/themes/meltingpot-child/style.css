@@ -625,9 +625,22 @@ body.modal-open {
 	border: none;
 	color: #fff !important;
 }
+.transparent-modal .skills-vault-modal .modal-content .side {
+	display: flex;
+	align-content: space-between;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+}
+.transparent-modal .skills-vault-modal .modal-content .side .example {
+	width: 100%;
+}
 .transparent-modal .skills-vault-modal .modal-dialog button.close span {
 	color: #fff;
 	text-shadow: none;
+}
+.transparent-modal .skills-vault-modal .modal-dialog .modal-footer {
+	display: flex;
+	justify-content: center;
 }
 .transparent-modal .skills-vault-modal .modal-dialog .modal-footer a.BTN {
 	background: #cc3333;

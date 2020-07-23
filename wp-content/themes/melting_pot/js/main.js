@@ -45,31 +45,9 @@
 		}
 	
 		// Option to allow full screen image on click
-		$('img[data-enlargable]').addClass('img-enlargable').click(function(){
-			var src = $(this).attr('src');
-			var modal;
-			
-			function removeModal(){ 
-				modal.remove(); 
-				$('body').off('keyup.modal-close'); 
-			}
-			
-			modal = $('<div class="img-enlargable">').css({
-				background: 'RGBA(0,0,0,.75) url('+src+') no-repeat center',
-				backgroundSize: 'initial',
-				width:'100%', height:'100%',
-				position:'fixed',
-				zIndex:'10000',
-				top:'0', left:'0',
-				cursor: 'zoom-out'
-			}).click(function(){
-				removeModal();
-			}).appendTo('body');
-			
-			//handling ESC
-			$('body').on('keyup.modal-close', function(e){
-			  if(e.key==='Escape'){ removeModal(); } 
-			});
+		initFullScreenImageClick();
+		$('#skillsVaultModal').on('show.bs.modal', function (event) {
+			initFullScreenImageClick();
 		});
 
 		// Skills Vault
@@ -144,15 +122,19 @@
 					e.preventDefault();
 				
 					var button = $(this) // Button that triggered the modal
-					var skill = button.data('skill'); // Extract info from data-* attributes
+					var title = button.data('title'); // Extract info from data-* attributes
 					var url = button.data('url');
+					var buttonText = button.data('button');
 					var video = button.data('video');
+					var side = button.data('side');
 					// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
 					// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
 					var modal = $('#skillsVaultModal');
-					modal.find('.modal-title').text(skill);
+					modal.find('.modal-title').text(title);
 					modal.find('.modal-body .videoWrapper').html(video);
+					modal.find('.modal-body .side').html(side);
 					modal.find('a.action').attr('href', url);
+					modal.find('a.action').text(buttonText);
 
 					modal.modal({
 						backdrop: true
@@ -161,4 +143,42 @@
 			});
 		}
 	});
+	$('#skillsVaultModal').on('hide.bs.modal', function (event) {
+		var modal = $(this);
+		modal.find('.modal-title').text('');
+		modal.find('.modal-body .videoWrapper').html('');
+		modal.find('.modal-body .side').html('');
+		modal.find('a.action').attr('href', '');
+		modal.find('a.action').text('More');
+	});
+
+	// Option to allow full screen image on click
+	function initFullScreenImageClick() {
+		$('img[data-enlargable]').addClass('img-enlargable').click(function(){
+			var src = $(this).attr('src');
+			var modal;
+			
+			function removeModal(){ 
+				modal.remove(); 
+				$('body').off('keyup.modal-close'); 
+			}
+			
+			modal = $('<div class="img-enlargable">').css({
+				background: 'RGBA(0,0,0,.75) url('+src+') no-repeat center',
+				backgroundSize: 'initial',
+				width:'100%', height:'100%',
+				position:'fixed',
+				zIndex:'10000',
+				top:'0', left:'0',
+				cursor: 'zoom-out'
+			}).click(function(){
+				removeModal();
+			}).appendTo('body');
+			
+			//handling ESC
+			$('body').on('keyup.modal-close', function(e){
+			  if(e.key==='Escape'){ removeModal(); } 
+			});
+		});
+	}
 })(jQuery);
