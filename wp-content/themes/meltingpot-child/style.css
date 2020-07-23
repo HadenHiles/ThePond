@@ -498,7 +498,7 @@ img[data-enlargable] {
 .skillsVault .bootstrap-styles .skills-vault-table .table tbody td.multiple-actions {
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: flex-end;
 	text-align: center;
 }
 .skillsVault .skills-vault-table a.action-button {
