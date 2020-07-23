@@ -219,7 +219,7 @@ get_header('members'); ?>
 												<a class="BTN action-button custom-icon" 
 													data-title="<?=get_the_title($skillExamples[0]->ID)?>"
 													data-url="<?=get_post_permalink($skillExamples[0]->ID)?>"
-													data-button="More"
+													data-button="More Examples"
 													data-video="<?=htmlspecialchars(get_field('video_code', $skillExamples[0]->ID, false))?>"
 													data-side="<?=htmlspecialchars($examplesListHtml)?>">
 														<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 223 232.1" style="enable-background:new 0 0 223 232.1;" xml:space="preserve">

@@ -881,6 +881,125 @@ if( function_exists('acf_add_local_field_group') ):
         'active' => true,
         'description' => '',
     ));
+
+    // Course Goals & Skills
+    acf_add_local_field_group(array(
+        'key' => 'group_5f19e853b18ee',
+        'title' => 'Course Goals and Skills',
+        'fields' => array(
+            array(
+                'key' => 'field_5f19e87d2c833',
+                'label' => 'Prerequisite Skills',
+                'name' => 'prerequisite_skills',
+                'type' => 'relationship',
+                'instructions' => 'Select which skills the player should already be able to perform before starting this course.',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'post_type' => array(
+                    0 => 'skills',
+                ),
+                'taxonomy' => '',
+                'filters' => array(
+                    0 => 'search',
+                    1 => 'post_type',
+                    2 => 'taxonomy',
+                ),
+                'elements' => '',
+                'min' => '',
+                'max' => '',
+                'return_format' => 'object',
+            ),
+            array(
+                'key' => 'field_5f19eec92c835',
+                'label' => 'Goals',
+                'name' => 'goals',
+                'type' => 'repeater',
+                'instructions' => 'Goals for the player to accomplish by the end of the course',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'collapsed' => '',
+                'min' => 0,
+                'max' => 0,
+                'layout' => 'table',
+                'button_label' => '',
+                'sub_fields' => array(
+                    array(
+                        'key' => 'field_5f19ef022c836',
+                        'label' => 'Goal',
+                        'name' => 'goal',
+                        'type' => 'text',
+                        'instructions' => '',
+                        'required' => 1,
+                        'conditional_logic' => 0,
+                        'wrapper' => array(
+                            'width' => '',
+                            'class' => '',
+                            'id' => '',
+                        ),
+                        'default_value' => '',
+                        'placeholder' => '',
+                        'prepend' => '',
+                        'append' => '',
+                        'maxlength' => '',
+                    ),
+                ),
+            ),
+            array(
+                'key' => 'field_5f19e96d2c834',
+                'label' => 'Targeted Skills',
+                'name' => 'targeted_skills',
+                'type' => 'relationship',
+                'instructions' => 'Select which skills the the course will be targeting',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'post_type' => array(
+                    0 => 'skills',
+                ),
+                'taxonomy' => '',
+                'filters' => array(
+                    0 => 'search',
+                    1 => 'post_type',
+                    2 => 'taxonomy',
+                ),
+                'elements' => '',
+                'min' => '',
+                'max' => '',
+                'return_format' => 'object',
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'sfwd-courses',
+                ),
+            ),
+        ),
+        'menu_order' => 0,
+        'position' => 'acf_after_title',
+        'style' => 'default',
+        'label_placement' => 'top',
+        'instruction_placement' => 'label',
+        'hide_on_screen' => '',
+        'active' => true,
+        'description' => '',
+    ));
     
 endif;
 ?>
