@@ -23,35 +23,6 @@ get_header('members'); ?>
 <section class="memberbenefits dashboardbenefits">
 <!-- <div class="row"> -->
 <div>
-	<!-- Skills progression timeline/stages -->
-	<?php 
-	/*
-	if( have_rows('dashboard_benefits') ): $i = count(get_field('dashboard_benefits')); ?>
-		<div class="section-icons large-2 hide-for-medium columns" style="float: right;">
-			<ul class="benefit-wrap">
-			<?php while( have_rows('dashboard_benefits') ): the_row(); $gridsize = '';
-
-			if($i == 4) {$gridsize = 'large-12 medium-12';} elseif($i == 3){$gridsize ='large-12 medium-12';} elseif($i == 2){$gridsize ='large-12 medium-12';} ?>
-			<li class="<?php echo $gridsize; ?> columns">
-			<div class="wrap-benefit">
-			<a href="<?php echo the_sub_field('link_page')?>">
-			<div class="benefitimage">
-			<img src="<?php echo the_sub_field('image'); ?>" alt="<? echo the_sub_field('benefit-title'); ?> icon">
-			</div>
-			<h4><?php echo the_sub_field('benefit-title'); ?></h4>
-			<!-- <p><?php echo the_sub_field('benefit-small-text'); ?></p> -->
-			<!-- <span class="BTN"><?php echo the_sub_field('button_text')?></span> -->
-			</a>
-			</div>
-			</li>
-			<?php endwhile; ?>
-			</ul>
-		</div>
-		<!-- </div> -->
-	<?php endif; 
-	*/
-	?>
-
 	<div class="large-12 columns" style="padding: 0;">
 		<?php
 		do_shortcode('[ld_courses_by_categories categories="skating,stickhandling,shooting,passing"]');
@@ -124,6 +95,9 @@ get_header('members'); ?>
 									$url = get_post_permalink($skill->ID);
 									$puckLevel = intval(get_post_meta($skill->ID, 'puck_level', 1));
 									$skillExamples = get_field('skill_examples', $skill->ID);
+									$pros = get_field('skill_pros', $skill->ID);
+									$cons = get_field('skill_cons', $skill->ID);
+									$whenToUseIt = get_field('when_to_use_it', $skill->ID);
 									$videoCode = get_field('video_code', $skill->ID);
 									$skillTypes = get_the_terms( $skill->ID, 'skill-type' ); 
 									$skillTypeString = '';
@@ -152,14 +126,72 @@ get_header('members'); ?>
 										<td><a href="<?=$url?>"><?=$name?></a></td>
 										<td class="<?=sizeof($skillExamples) > 0 ? 'multiple-actions' : ''?>">
 											<?php
+											if (sizeof($pros) > 0 || sizeof($cons) > 0 || !empty($whenToUseIt)) {
+												$breakdownDetails = '';
+												//Pros
+												if (sizeof($pros) > 0) {
+													$breakdownDetails .=	
+													'<div class="card">'.
+														'<div class="card-body">
+															<div class="ListWithHeading">';
+																$breakdownDetails .= 
+																'<h2>Pros</h2>'.
+																'<ol class="list">';
+																	// Loop through rows.
+																	foreach($pros as $pro) {
+																		$breakdownDetails .=
+																		'<li class="item">'.
+																			'<div class="title">' . $pro['title'] . '</div>'.
+																			'<div class="content">' . $pro['content'] . '</div>'.
+																		'</li>';
+																	}
+																$breakdownDetails .= '</ol>';
+															$breakdownDetails .= '</div>'.
+														'</div>'.
+													'</div>';
+												}
+												//Cons
+												if (sizeof($cons) > 0) {
+													$breakdownDetails .=	
+													'<div class="card">'.
+														'<div class="card-body">
+															<div class="ListWithHeading">';
+																$breakdownDetails .= 
+																'<h2>Cons</h2>'.
+																'<ol class="list">';
+																	// Loop through rows.
+																	foreach($cons as $con) {
+																		$breakdownDetails .=
+																		'<li class="item">'.
+																			'<div class="title">' . $con['title'] . '</div>'.
+																			'<div class="content">' . $con['content'] . '</div>'.
+																		'</li>';
+																	}
+																$breakdownDetails .= '</ol>';
+															$breakdownDetails .= '</div>'.
+														'</div>'.
+													'</div>';
+												}
+												//When to use it
+												if (!empty($whenToUseIt)) {
+													$breakdownDetails .= 
+													'<div class="card">'.
+														'<div class="card-body">'.
+															'<h2>When To Use It</h2>'.
+															$whenToUseIt .
+														'</div>'.
+													'</div>';
+												}
+											}
 											if (!empty($videoCode)) {
 												?>
 												<a class="BTN action-button"
 													data-title="<?=$name?>"
 													data-url="<?=$url?>"
 													data-button="Full Tutorial"
-													data-video="<?=htmlspecialchars($videoCode)?>">
-														<i class="fa fa-play"></i>&nbsp;&nbsp;Tutorial
+													data-video="<?=htmlspecialchars($videoCode)?>"
+													data-side="<?=htmlspecialchars($breakdownDetails)?>">
+														<i class="fa fa-play"></i>&nbsp;&nbsp;Breakdown
 												</a>
 												<?php
 											}

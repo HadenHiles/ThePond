@@ -621,7 +621,8 @@ body.modal-open {
 }
 .transparent-modal .skills-vault-modal .modal-dialog .modal-content,
 .transparent-modal .skills-vault-modal .modal-dialog .modal-content .modal-header,
-.transparent-modal .skills-vault-modal .modal-dialog .modal-content .modal-footer {
+.transparent-modal .skills-vault-modal .modal-dialog .modal-content .modal-footer,
+.transparent-modal .skills-vault-modal .modal-dialog .modal-content .side .card {
 	background: none;
 	border: none;
 	color: #fff !important;
@@ -635,6 +636,21 @@ body.modal-open {
 	align-content: space-between;
 	justify-content: flex-start;
 	flex-wrap: wrap;
+}
+.transparent-modal .skills-vault-modal .modal-dialog .modal-content .side .card {
+	width: 100%;
+}
+.transparent-modal .skills-vault-modal .modal-dialog .modal-content .side .card .card-body,
+.transparent-modal .skills-vault-modal .modal-dialog .modal-content .side .card .card-body ol li {
+	width: 100%;
+	font-size: 14px;
+}
+.transparent-modal .skills-vault-modal .modal-dialog .modal-content .side .card .card-body {
+	padding: 0;
+}
+.transparent-modal .skills-vault-modal .modal-dialog .modal-content .side .card .card-body ol li {
+	list-style: decimal;
+	margin-left: 15px;
 }
 .transparent-modal .skills-vault-modal .modal-content .side .example {
 	width: 100%;
