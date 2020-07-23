@@ -424,6 +424,9 @@ img[data-enlargable] {
 	  height: auto;
 	  fill: #1a1a1a;
   }
+  .memberDashWelc.skill-header .puck-rating svg.puck.faded {
+	  opacity: 0.2;
+  }
 
 @media screen and (max-width: 640px) {
 	.memberDashWelc.skill-header .row {
@@ -515,6 +518,9 @@ img[data-enlargable] {
 	position: absolute;
 	left: 10px;
 	top: 5px;
+}
+.skillsVault .bootstrap-styles .skills-vault-table tr td svg.puck.faded {
+	opacity: 0.2;
 }
 .skillsVault .bootstrap-styles .dataTables_filter {
 	float: none;
