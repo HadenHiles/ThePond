@@ -52,7 +52,55 @@ if(have_posts()): while (have_posts()): the_post();
 					}
 					?>
 				</div>
+				
 				<?php get_template_part('template-parts/courses/lesson-topic-fields'); ?>
+					<?php
+					// Check rows exists.
+					if( have_rows('goals') ):
+						?>
+						<h2 style="margin-bottom: 5px;">Goals</h2>
+						<div class="bootstrap-styles skills-list">
+							<?php
+							// Loop through rows.
+							goalList('goals');
+							?>
+						</div>
+						<?php
+					// No value.
+					else :
+						// Do something...
+					endif;
+					?>
+
+				<h2 style="margin-bottom: 5px;">Skills</h2>
+				<div class="bootstrap-styles skills-list" style="margin-bottom: 10px;">
+					<?php
+					$targetedSkills = get_field('targeted_skills', $post->ID);
+					foreach($targetedSkills as $targetedSkill) {
+						$performanceLevels = get_the_terms( $targetedSkill->ID, 'performance-level' ); 
+						$performanceLevelString = '';
+						if(sizeof($performanceLevels) > 0) {
+							$count = 0;
+							foreach($performanceLevels as $performanceLevel) {
+								if (++$count > 1 && $count <= sizeof($performanceLevels)) {
+									$performanceLevelString .= ', ';
+								}
+								$performanceLevelString .= $performanceLevel->name;
+							}
+						}
+						?>
+						<div class="card skill">
+							<div class="card-body content">
+								<a href="<?=get_post_permalink($targetedSkill->ID)?>" class="ghost"></a>
+								<a href="<?=get_post_permalink($targetedSkill->ID)?>" class="title"><?=get_the_title($targetedSkill->ID)?></a>
+								<span class="level"><?=$performanceLevelString?></span>
+							</div>
+						</div>
+						<?php
+					}
+					?>
+				</div>
+
 				<?php get_template_part('template-parts/courses/course-downloads'); ?>
 					
 				<?php get_template_part('template-parts/courses/course-forum-link'); ?>
@@ -102,4 +150,27 @@ $lesson_class_bookmark=((check_lesson_track(get_the_id(),get_current_user_id(),'
 </section>
 
 
-<?php  get_footer("members"); ?>
+<?php  get_footer("members"); 
+
+function goalList($listName) {
+	$x = 1;
+	while( have_rows($listName) ) : the_row();
+		?>
+		<div class="card skill no-hover" style="width: 100%;">
+			<div class="card-body content">
+				<?php
+				// Load sub field values.
+				$goal = get_sub_field('goal');
+				if (!empty($goal)) {
+					?>
+					<div class="title"><span><?=$x++?>.</span><?=$goal?></div>
+					<?php
+				}
+				?>
+			</div>
+		</div>
+		<?php
+	// End loop.
+	endwhile;
+}
+?>

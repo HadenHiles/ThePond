@@ -723,6 +723,7 @@ body.modal-open {
 	justify-content: flex-start;
 	align-items: flex-start;
 	flex-wrap: wrap;
+	margin-bottom: 35px;
 }
 .CourseContent .skills-list .card.skill {
 	margin: 5px 5px 0 0;
@@ -731,7 +732,7 @@ body.modal-open {
 	-webkit-transition: .2s all ease-in-out;
 	position: relative;
 }
-.CourseContent .skills-list .card.skill:hover {
+.CourseContent .skills-list .card.skill:not(.no-hover):hover {
 	border-color:#cc3333;
 }
 .CourseContent .skills-list .card.skill .card-body.content a.ghost {
@@ -748,13 +749,25 @@ body.modal-open {
 	flex-wrap: nowrap;
 	padding: 10px;
 }
+.CourseContent .skills-list .card.skill.no-hover .card-body.content {
+	padding: 20px;
+}
+.CourseContent .skills-list .card.skill.no-hover .card-body.content .title {
+	font-size: 18px;
+}
+.CourseContent .skills-list .card.skill.no-hover .card-body.content .title span {
+	font-weight: bold;
+	font-size: 24px;
+	font-family: 'Teko', sans-serif;
+	margin-right: 10px;
+}
 .CourseContent .skills-list .card.skill .card-body.content .title {
 	color: #495255;
 	text-decoration: none;
 	font-size: 14px;
 	margin-right: 20px;
 }
-.CourseContent .skills-list .card.skill:hover .card-body.content .title {
+.CourseContent .skills-list .card.skill:not(.no-hover):hover .card-body.content .title {
 	color: #cc3333;
 }
 .CourseContent .skills-list .card.skill .card-body.content .level {
