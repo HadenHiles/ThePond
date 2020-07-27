@@ -25,6 +25,38 @@ if(have_posts()): while (have_posts()): the_post();
 		<article>
 			<div class="CourseContent">
 				<?php
+				$user_id =  get_current_user_id();
+				$course_status = learndash_course_status( $course_id, $user_id );
+				
+				$lessons = learndash_get_course_lessons_list( $course_id );
+				if (!empty($lessons)) {
+					$firstLesson = $lessons[0];
+					$continueLesson = false;
+					foreach($lessons as $lesson) {
+						if ($continueLesson == false) {
+							if ($lesson['status'] != 'completed') {
+								$continueLesson = $lesson;
+							}
+						}
+					}
+				
+					if ($continueLesson != false) {
+						$url = get_permalink($continueLesson["post"]->ID);
+						
+						if (!empty($url)) {
+							if ($course_status == "In Progress") {
+								?>
+								<a href="<?=esc_url($url)?>" class="BTN" style="width: 100%; margin: 5px 0 15px 0; padding: 15px; font-size: 16px; border-radius: 5px;">Resume Course <i class="fa fa-caret-right" style="font-size: 24px; position: relative; right: -10px; top: 3px; line-height: 16px;"></i></a>
+								<?php
+							} else {
+								?>
+								<a href="<?=esc_url($url)?>" class="BTN" style="width: 100%; margin: 5px 0 15px 0; padding: 15px; font-size: 16px; border-radius: 5px;">Start Course <i class="fa fa-caret-right" style="font-size: 24px; position: relative; right: -10px; top: 3px; line-height: 16px;"></i></a>
+								<?php
+							}
+						}
+					}
+				}
+
 				$prerequisiteSkills = get_field('prerequisite_skills', $post->ID);
 				if (!empty($prerequisiteSkills)) {
 					?>
@@ -131,38 +163,6 @@ if(have_posts()): while (have_posts()): the_post();
 <div class="large-4 medium-5 columns">
 <div class="courseSideList">
 <?php 
-$user_id =  get_current_user_id();
-$course_status = learndash_course_status( $course_id, $user_id );
-
-$lessons = learndash_get_course_lessons_list( $course_id );
-if (!empty($lessons)) {
-	$firstLesson = $lessons[0];
-	$continueLesson = false;
-	foreach($lessons as $lesson) {
-		if ($continueLesson == false) {
-			if ($lesson['status'] != 'completed') {
-				$continueLesson = $lesson;
-			}
-		}
-	}
-
-	if ($continueLesson != false) {
-		$url = get_permalink($continueLesson["post"]->ID);
-		
-		if (!empty($url)) {
-			if ($course_status == "In Progress") {
-				?>
-				<a href="<?=esc_url($url)?>" class="BTN" style="width: 100%; padding: 20px; font-size: 18px; border-radius: 5px;">Resume Course <i class="fa fa-caret-right" style="font-size: 26px; position: relative; right: -10px; top: 3px;"></i></a>
-				<?php
-			} else {
-				?>
-				<a href="<?=esc_url($url)?>" class="BTN" style="width: 100%; padding: 20px; font-size: 18px; border-radius: 5px;">Start Course <i class="fa fa-caret-right" style="font-size: 26px; position: relative; right: -10px; top: 3px;"></i></a>
-				<?php
-			}
-		}
-	}
-}
-
 echo do_shortcode('[course_content course_id="'.$course_id.'"]') ?>
 </div>
 
