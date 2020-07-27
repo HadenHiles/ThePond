@@ -25,6 +25,7 @@ if(have_posts()): while (have_posts()): the_post();
 		<article>
 			<div class="CourseContent">
 				<?php
+				$prerequisiteSkills = get_field('prerequisite_skills', $post->ID);
 				if (!empty($prerequisiteSkills)) {
 					?>
 					<h2 style="margin-bottom: 5px;">Prerequisite Skills</h2>
@@ -33,7 +34,6 @@ if(have_posts()): while (have_posts()): the_post();
 				?>
 				<div class="bootstrap-styles skills-list">
 					<?php
-					$prerequisiteSkills = get_field('prerequisite_skills', $post->ID);
 					if (!empty($prerequisiteSkills)) {
 						foreach($prerequisiteSkills as $prerequisiteSkill) {
 							$performanceLevels = get_the_terms( $prerequisiteSkill->ID, 'performance-level' ); 
@@ -81,6 +81,7 @@ if(have_posts()): while (have_posts()): the_post();
 					?>
 
 				<?php
+				$targetedSkills = get_field('targeted_skills', $post->ID);
 				if(!empty($targetedSkills)) {
 					?>
 					<h2 style="margin-bottom: 5px;">Skills</h2>
@@ -89,8 +90,6 @@ if(have_posts()): while (have_posts()): the_post();
 				?>
 				<div class="bootstrap-styles skills-list" style="margin-bottom: 10px;">
 					<?php
-					$targetedSkills = get_field('targeted_skills', $post->ID);
-					
 					if(!empty($targetedSkills)) {
 						foreach($targetedSkills as $targetedSkill) {
 							$performanceLevels = get_the_terms( $targetedSkill->ID, 'performance-level' ); 
