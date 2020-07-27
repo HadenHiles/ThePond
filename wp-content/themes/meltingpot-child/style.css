@@ -470,6 +470,17 @@ img[data-enlargable] {
 }
 /* End Lesson Styles */
 
+/* Dashboard */
+.Dashboard {
+	padding: 1rem 0;
+}
+.Dashboard.profile .ld-profile-stats .ld-profile-stat-certificates {
+	display: none;
+}
+.Dashboard.profile .ld-profile-stats .ld-profile-stat-completed {
+	border-right: none;
+}
+
 /* Skill Vault */
 .skillsVault .bootstrap-styles .nav-pills {
 	margin-top: 25px;

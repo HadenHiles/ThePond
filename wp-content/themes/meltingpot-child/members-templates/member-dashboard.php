@@ -41,7 +41,7 @@ get_header('members'); ?>
 
 		<div class="sectionHeader">
 			<div class="large-12 columns">
-				<?=do_shortcode('[ld_profile]');?>
+				<?=do_shortcode('[ld_profile course_points_user="false" show_quizzes="false"]');?>
 			</div>
 		</div>
 	</div>
