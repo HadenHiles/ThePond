@@ -483,6 +483,66 @@ if( function_exists('acf_add_local_field_group') ):
     ));
 
     acf_add_local_field_group(array(
+        'key' => 'group_5f1f276a2fe54',
+        'title' => 'Related Skills',
+        'fields' => array(
+            array(
+                'key' => 'field_5f1f2770e0255',
+                'label' => 'Skills',
+                'name' => 'skills',
+                'type' => 'relationship',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'post_type' => array(
+                    0 => 'skills',
+                ),
+                'taxonomy' => '',
+                'filters' => array(
+                    0 => 'search',
+                    1 => 'post_type',
+                    2 => 'taxonomy',
+                ),
+                'elements' => array(
+                    0 => 'featured_image',
+                ),
+                'min' => '',
+                'max' => '',
+                'return_format' => 'object',
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'sfwd-lessons',
+                ),
+            ),
+            array(
+                array(
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'sfwd-topic',
+                ),
+            ),
+        ),
+        'menu_order' => 0,
+        'position' => 'side',
+        'style' => 'default',
+        'label_placement' => 'top',
+        'instruction_placement' => 'label',
+        'hide_on_screen' => '',
+        'active' => true,
+        'description' => '',
+    ));
+
+    acf_add_local_field_group(array(
         'key' => 'group_5f173b7cb8012',
         'title' => 'Drill Skill Examples',
         'fields' => array(
