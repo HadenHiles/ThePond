@@ -24,31 +24,39 @@ if(have_posts()): while (have_posts()): the_post();
 	<main role="main">
 		<article>
 			<div class="CourseContent">
-				<h2 style="margin-bottom: 5px;">Prerequisite Skills</h2>
+				<?php
+				if (!empty($prerequisiteSkills)) {
+					?>
+					<h2 style="margin-bottom: 5px;">Prerequisite Skills</h2>
+					<?php
+				}
+				?>
 				<div class="bootstrap-styles skills-list">
 					<?php
 					$prerequisiteSkills = get_field('prerequisite_skills', $post->ID);
-					foreach($prerequisiteSkills as $prerequisiteSkill) {
-						$performanceLevels = get_the_terms( $prerequisiteSkill->ID, 'performance-level' ); 
-						$performanceLevelString = '';
-						if(sizeof($performanceLevels) > 0) {
-							$count = 0;
-							foreach($performanceLevels as $performanceLevel) {
-								if (++$count > 1 && $count <= sizeof($performanceLevels)) {
-									$performanceLevelString .= ', ';
+					if (!empty($prerequisiteSkills)) {
+						foreach($prerequisiteSkills as $prerequisiteSkill) {
+							$performanceLevels = get_the_terms( $prerequisiteSkill->ID, 'performance-level' ); 
+							$performanceLevelString = '';
+							if(sizeof($performanceLevels) > 0) {
+								$count = 0;
+								foreach($performanceLevels as $performanceLevel) {
+									if (++$count > 1 && $count <= sizeof($performanceLevels)) {
+										$performanceLevelString .= ', ';
+									}
+									$performanceLevelString .= $performanceLevel->name;
 								}
-								$performanceLevelString .= $performanceLevel->name;
 							}
-						}
-						?>
-						<div class="card skill">
-							<div class="card-body content">
-								<a href="<?=get_post_permalink($prerequisiteSkill->ID)?>" class="ghost"></a>
-								<a href="<?=get_post_permalink($prerequisiteSkill->ID)?>" class="title"><?=get_the_title($prerequisiteSkill->ID)?></a>
-								<span class="level"><?=$performanceLevelString?></span>
+							?>
+							<div class="card skill">
+								<div class="card-body content">
+									<a href="<?=get_post_permalink($prerequisiteSkill->ID)?>" class="ghost"></a>
+									<a href="<?=get_post_permalink($prerequisiteSkill->ID)?>" class="title"><?=get_the_title($prerequisiteSkill->ID)?></a>
+									<span class="level"><?=$performanceLevelString?></span>
+								</div>
 							</div>
-						</div>
-						<?php
+							<?php
+						}
 					}
 					?>
 				</div>
@@ -72,31 +80,40 @@ if(have_posts()): while (have_posts()): the_post();
 					endif;
 					?>
 
-				<h2 style="margin-bottom: 5px;">Skills</h2>
+				<?php
+				if(!empty($targetedSkills)) {
+					?>
+					<h2 style="margin-bottom: 5px;">Skills</h2>
+					<?php
+				}
+				?>
 				<div class="bootstrap-styles skills-list" style="margin-bottom: 10px;">
 					<?php
 					$targetedSkills = get_field('targeted_skills', $post->ID);
-					foreach($targetedSkills as $targetedSkill) {
-						$performanceLevels = get_the_terms( $targetedSkill->ID, 'performance-level' ); 
-						$performanceLevelString = '';
-						if(sizeof($performanceLevels) > 0) {
-							$count = 0;
-							foreach($performanceLevels as $performanceLevel) {
-								if (++$count > 1 && $count <= sizeof($performanceLevels)) {
-									$performanceLevelString .= ', ';
+					
+					if(!empty($targetedSkills)) {
+						foreach($targetedSkills as $targetedSkill) {
+							$performanceLevels = get_the_terms( $targetedSkill->ID, 'performance-level' ); 
+							$performanceLevelString = '';
+							if(sizeof($performanceLevels) > 0) {
+								$count = 0;
+								foreach($performanceLevels as $performanceLevel) {
+									if (++$count > 1 && $count <= sizeof($performanceLevels)) {
+										$performanceLevelString .= ', ';
+									}
+									$performanceLevelString .= $performanceLevel->name;
 								}
-								$performanceLevelString .= $performanceLevel->name;
 							}
-						}
-						?>
-						<div class="card skill">
-							<div class="card-body content">
-								<a href="<?=get_post_permalink($targetedSkill->ID)?>" class="ghost"></a>
-								<a href="<?=get_post_permalink($targetedSkill->ID)?>" class="title"><?=get_the_title($targetedSkill->ID)?></a>
-								<span class="level"><?=$performanceLevelString?></span>
+							?>
+							<div class="card skill">
+								<div class="card-body content">
+									<a href="<?=get_post_permalink($targetedSkill->ID)?>" class="ghost"></a>
+									<a href="<?=get_post_permalink($targetedSkill->ID)?>" class="title"><?=get_the_title($targetedSkill->ID)?></a>
+									<span class="level"><?=$performanceLevelString?></span>
+								</div>
 							</div>
-						</div>
-						<?php
+							<?php
+						}
 					}
 					?>
 				</div>
@@ -114,7 +131,40 @@ if(have_posts()): while (have_posts()): the_post();
 	
 <div class="large-4 medium-5 columns">
 <div class="courseSideList">
-<?php echo do_shortcode('[course_content course_id="'.$course_id.'"]') ?>
+<?php 
+$user_id =  get_current_user_id();
+$course_status = learndash_course_status( $course_id, $user_id );
+
+$lessons = learndash_get_course_lessons_list( $course_id );
+if (!empty($lessons)) {
+	$firstLesson = $lessons[0];
+	$continueLesson = false;
+	foreach($lessons as $lesson) {
+		if ($continueLesson == false) {
+			if ($lesson['status'] != 'completed') {
+				$continueLesson = $lesson;
+			}
+		}
+	}
+
+	if ($continueLesson != false) {
+		$url = get_permalink($continueLesson["post"]->ID);
+		
+		if (!empty($url)) {
+			if ($course_status == "In Progress") {
+				?>
+				<a href="<?=esc_url($url)?>" class="BTN" style="width: 100%; padding: 20px; font-size: 18px; border-radius: 5px;">Resume Course <i class="fa fa-caret-right" style="font-size: 26px; position: relative; right: -10px; top: 3px;"></i></a>
+				<?php
+			} else {
+				?>
+				<a href="<?=esc_url($url)?>" class="BTN" style="width: 100%; padding: 20px; font-size: 18px; border-radius: 5px;">Start Course <i class="fa fa-caret-right" style="font-size: 26px; position: relative; right: -10px; top: 3px;"></i></a>
+				<?php
+			}
+		}
+	}
+}
+
+echo do_shortcode('[course_content course_id="'.$course_id.'"]') ?>
 </div>
 
 	
