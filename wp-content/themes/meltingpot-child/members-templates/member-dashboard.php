@@ -36,6 +36,17 @@ get_header('members'); ?>
 </div>
 </section>
 
+<section class="profile Dashboard">
+	<div class="row">
+
+		<div class="sectionHeader">
+			<div class="large-12 columns">
+				<?=do_shortcode('[ld_profile]');?>
+			</div>
+		</div>
+	</div>
+</section>
+
 <!-- Skills Vault -->
 <section class="skillsVault Dashboard">
 <div class="row">
@@ -126,7 +137,7 @@ get_header('members'); ?>
 										<td><a href="<?=$url?>"><?=$name?></a></td>
 										<td class="<?=sizeof($skillExamples) > 0 ? 'multiple-actions' : ''?>">
 											<?php
-											if (sizeof($pros) > 0 || sizeof($cons) > 0 || !empty($whenToUseIt)) {
+											if ((!empty($pros) && sizeof($pros) > 0) || (!empty($cons) && sizeof($cons) > 0) || !empty($whenToUseIt)) {
 												$breakdownDetails = '';
 												//Pros
 												if (sizeof($pros) > 0) {
