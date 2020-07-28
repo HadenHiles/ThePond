@@ -1,4 +1,22 @@
 <?php
+add_shortcode('user_avatar', 'display_user_avatar');
+function display_user_avatar($atts = [], $content = null, $tag = '') {
+  $tmp_atts = array_change_key_case((array)$atts, CASE_LOWER);
+
+  // override default attributes with user attributes
+  $atts = shortcode_atts([
+    'size' => '50',
+    'url' => '/account'
+  ], $tmp_atts, $tag);
+
+  $user_id = get_current_user_id();
+  ?>
+  <a href="<?=$atts['url']?>" class="avatar" style="width: <?=$atts['size'];?>px; height: <?=$atts['size'];?>px;">
+    <?=get_wp_user_avatar($user_id, $atts['size'])?>
+  </a>
+  <?php
+}
+
 add_shortcode('ld_courses_by_categories', 'learndash_courses_by_categories');
 function learndash_courses_by_categories($atts = [], $content = null, $tag = ''){
   $tmp_atts = array_change_key_case((array)$atts, CASE_LOWER);

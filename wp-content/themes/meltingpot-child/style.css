@@ -363,6 +363,27 @@ img[data-enlargable] {
 }
 /* End Utilities */
 
+/* Avatar */
+.topmemberNav a.avatar {
+	float: left;
+	border: 2px solid #fff;
+	border-radius: 100%;
+	overflow: hidden;
+	margin-right: 5px;
+	transition: all .2s ease-in-out;
+	-moz-transition: all .2s ease-in-out;
+	-webkit-transition: all .2s ease-in-out;
+}
+.topmemberNav a.avatar:hover {
+	border-color: #83cdcf;
+	transition: all .2s ease-in-out;
+	-moz-transition: all .2s ease-in-out;
+	-webkit-transition: all .2s ease-in-out;
+}
+.topmemberNav #menu-member-top-menu {
+	float: left;
+}
+
 /* Lesson styles*/
 .ListWithHeading h3 {
 	margin: 25px auto 10px auto;
