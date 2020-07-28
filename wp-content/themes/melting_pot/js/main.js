@@ -184,16 +184,18 @@
 
 	/* Scroll to anchors */
 	$(".scroll a").click(function(e) {
-		e.preventDefault();
 		var url = $(this).attr('href');
 		var hash = url.substring(url.indexOf('#'));
-		if ($('html').hasClass('MenuActive')) {
-			$('.NavBTN.open').trigger('click');
-			setTimeout(function() {
-				scrollToHash(hash, 60);
-			}, 5);
-		} else {
-			scrollToHash(hash, 0);
+		if ($(hash).length > 0) {
+			e.preventDefault();
+			if ($('html').hasClass('MenuActive')) {
+				$('.NavBTN.open').trigger('click');
+				setTimeout(function() {
+					scrollToHash(hash, 60);
+				}, 5);
+			} else {
+				scrollToHash(hash, 0);
+			}
 		}
 	});
 	$(document).ready(function () {
