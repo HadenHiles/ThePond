@@ -14,8 +14,8 @@ $course_id = learndash_get_course_id();
 	?>
         <li>
         <a class="jumplink" data-jumptime="<?php echo $time ?>">
-        <span class="jumptitle"><i class="fad fa-hand-pointer"></i> <?php echo $title ?></span>
-        <span class="jumptime"><i class="fad fa-stopwatch"></i> <?php echo $time ?> Secs</span>
+        <span class="jumptitle"><i class="fa fa-hand-pointer"></i> <?php echo $title ?></span>
+        <span class="jumptime"><i class="fa fa-stopwatch"></i> <?php echo $time ?> Secs</span>
         </a>
         </li>
         <?php endwhile; ?>

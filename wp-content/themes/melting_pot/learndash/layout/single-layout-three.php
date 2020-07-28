@@ -125,10 +125,10 @@ if(have_posts()): while (have_posts()): the_post();
 	<?php } ?>
 
 	<?php if( trim($lesson_class_watchlist)  == 'post_tool_inactive') { ?>
-	 <li><a class="lesson_tool tool_watchlist<?php echo $lesson_class_watchlist; ?>" data-lesson-id="<?php echo get_the_id(); ?>" data-track-type="5"><i class="fas fa-star"></i><span> Add to Watchlist</span></a></li>
+	 <li><a class="lesson_tool tool_watchlist<?php echo $lesson_class_watchlist; ?>" data-lesson-id="<?php echo get_the_id(); ?>" data-track-type="5"><i class="fa fa-star"></i><span> Add to Watchlist</span></a></li>
 
 	<?php }else { ?>
-	<li><a class="lesson_tool tool_watchlist<?php echo $lesson_class_watchlist; ?>" data-lesson-id="<?php echo get_the_id(); ?>" data-track-type="5"><i class="fas fa-star"></i><span> Remove from  Watchlist</span></a></li>
+	<li><a class="lesson_tool tool_watchlist<?php echo $lesson_class_watchlist; ?>" data-lesson-id="<?php echo get_the_id(); ?>" data-track-type="5"><i class="fa fa-star"></i><span> Remove from  Watchlist</span></a></li>
 
 	<?php } ?>  
 </ul>

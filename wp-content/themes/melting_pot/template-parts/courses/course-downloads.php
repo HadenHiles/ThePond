@@ -8,7 +8,7 @@ $course_id = learndash_get_course_id();
 
     <?php if( have_rows('documents', $course_id ) ): ?>
     <div class="Documents">
-    <h4><i class="fad fa-download"></i> Course Downloads</h4>
+    <h4><i class="fa fa-download"></i> Course Downloads</h4>
       <ul>
         <?php while( have_rows('documents', $course_id) ): the_row(); 
 	// vars
@@ -24,7 +24,7 @@ $course_id = learndash_get_course_id();
     <!--END Docs Embed -->
     <?php if( have_rows('resources', $course_id) ): ?>
     <div class="Documents Resources">
-        <h4><i class="fad fa-link"></i> Course Resources</h4>
+        <h4><i class="fa fa-link"></i> Course Resources</h4>
       <ul>
         <?php while( have_rows('resources', $course_id) ): the_row(); 
 		// vars

@@ -41,7 +41,7 @@ $numbercase = get_field('number_of_case_study_columns')
 		<p class="timestamp">
         <?php  if ( get_field('client_name')): ?><span><i class="far fa-walking"></i><?php the_field('client_name'); ?></span><?php endif; ?>
         <?php  if ( get_field('company')): ?><span><i class="far fa-building"></i> <?php the_field('company'); ?></span><?php endif; ?>
-        <?php  if ( get_field('location')): ?><span><i class="fas fa-map-marker-alt"></i> <?php the_field('location'); ?></span></p><?php endif; ?>
+        <?php  if ( get_field('location')): ?><span><i class="fa fa-map-marker-alt"></i> <?php the_field('location'); ?></span></p><?php endif; ?>
 		 <p class="excerpt"><?php $customexerpt = get_the_content(); echo wp_trim_words( $customexerpt , '14' ); ?></p>
         <a href="<?php the_permalink();?>" alt="Case Study - <?php the_title();?>" class="BTN">Learn More</a>
 	    </div>
@@ -56,5 +56,5 @@ $numbercase = get_field('number_of_case_study_columns')
 
 
 
-<?php  if ( get_field('author')): ?><span><i class="fas fa-user"></i> <?php the_field('author'); ?></span><?php endif; ?>
+<?php  if ( get_field('author')): ?><span><i class="fa fa-user"></i> <?php the_field('author'); ?></span><?php endif; ?>
 					

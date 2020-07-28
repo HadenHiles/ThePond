@@ -8,7 +8,7 @@
 </div>
 <div class="large-4 columns">
 <a class="backBTN" href="/content-library/">
-<i class="fas fa-angle-left"></i> All Library Items</a>
+<i class="fa fa-angle-left"></i> All Library Items</a>
 </div>
 </div>
 </section>

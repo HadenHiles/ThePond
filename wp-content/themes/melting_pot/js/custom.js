@@ -205,7 +205,7 @@ jQuery(document).ready(function($) {
 	
 // Sub menu click function
 		 
-     $(this).find("li.menu-item-has-children").prepend('<span class="submenu-button"><i class="fas fa-plus-circle"></i><i class="fas fa-minus-circle"></i></span>');
+     $(this).find("li.menu-item-has-children").prepend('<span class="submenu-button"><i class="fa fa-plus-circle"></i><i class="fa fa-minus-circle"></i></span>');
      $(this).find('.submenu-button').on('click', function() {
 
        $(this).toggleClass('submenu-opened');
@@ -258,7 +258,7 @@ jQuery(document).ready(function($) {
 	
 // Sub menu click function
 		 
-     $(this).find(".CourseMainNav li.menu-item-has-children").prepend('<span class="course-submenu-button"><i class="fas fa-plus-circle"></i><i class="fas fa-minus-circle"></i></span>');
+     $(this).find(".CourseMainNav li.menu-item-has-children").prepend('<span class="course-submenu-button"><i class="fa fa-plus-circle"></i><i class="fa fa-minus-circle"></i></span>');
      $(this).find('.course-submenu-button').on('click', function() {
 
        $(this).toggleClass('course-submenu-opened');

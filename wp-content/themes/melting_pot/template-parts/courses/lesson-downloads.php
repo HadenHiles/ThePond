@@ -4,7 +4,7 @@
 <div class="clResourcesBox">
 <?php if( have_rows('documents')  ): ?>  
 <div class="Documents">
-<h4><i class="fad fa-download"></i> Related Downloads</h4>
+<h4><i class="fa fa-download"></i> Related Downloads</h4>
 <ul>
 <?php while( have_rows('documents') ): the_row(); 
 // vars
@@ -27,7 +27,7 @@ $exlink = get_sub_field('external_link');
 <?php if( have_rows('resources') ): ?>
  
 <div class="Documents Resources">
-<h4><i class="fad fa-link"></i> Related Resources</h4>
+<h4><i class="fa fa-link"></i> Related Resources</h4>
 <ul>
 <?php while( have_rows('resources') ): the_row(); 
 // vars

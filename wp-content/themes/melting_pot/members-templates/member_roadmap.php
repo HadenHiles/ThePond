@@ -76,11 +76,11 @@ $steps = get_option('road_map_complete_step');
 											<span>Item <? echo $counter ?></span>
 											 
 											<?php if( !in_array( $counter , $steps ) ) { ?>
-											<a class="markcompleteRoad icon-outer-r" href="javascript:void(0);" data-id="<? echo $counter ?>"> <i class="fad fa-times-circle"></i></a>
+											<a class="markcompleteRoad icon-outer-r" href="javascript:void(0);" data-id="<? echo $counter ?>"> <i class="fa fa-times-circle"></i></a>
 											<?php } ?>
 											 
 											<?php if( in_array(  $counter , $steps ) ) { ?>
-											<span class="if-comp"> <i class="fad fa-check-circle"></i></span>
+											<span class="if-comp"> <i class="fa fa-check-circle"></i></span>
 											<?php } ?>
 										 </span>
 										 <span class="accordion-button-icon fa fa-plus"></span>

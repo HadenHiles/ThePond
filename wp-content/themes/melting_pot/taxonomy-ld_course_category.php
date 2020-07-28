@@ -45,7 +45,7 @@ $user_id = get_current_user_id();
 </div>
 <div class="large-4 medium-4 columns">
 <a class="backBTN" href="/courses">
-<i class="fas fa-angle-left"></i> View All Courses</a>
+<i class="fa fa-angle-left"></i> View All Courses</a>
 </div>
 </div>
 </section>

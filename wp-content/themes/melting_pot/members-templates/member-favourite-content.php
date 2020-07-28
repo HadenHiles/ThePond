@@ -39,10 +39,10 @@ $current_user = wp_get_current_user();
 <h3 class="sectionhead"><i class="fa fa-check-circle"></i> Completed</h3>
 <?php echo do_shortcode('[lessonhistory type="tracking" status="3"]'); ?></div>
 <div class="filtered_content history_bookmarks">
-<h3 class="sectionhead"><i class="fas fa-bookmark"></i> Bookmarks</h3>
+<h3 class="sectionhead"><i class="fa fa-bookmark"></i> Bookmarks</h3>
 <?php echo do_shortcode('[lessonhistory type="tracking" status="1"]'); ?></div>
 <div class="filtered_content history_favorites">
-<h3 class="sectionhead"><i class="fas fa-heart"></i> Favorites</h3>
+<h3 class="sectionhead"><i class="fa fa-heart"></i> Favorites</h3>
 <?php echo do_shortcode('[lessonhistory type="tracking" status="2"]'); ?></div>
 </div> 
 </div>
@@ -52,9 +52,9 @@ $current_user = wp_get_current_user();
 <nav id="savedContentTabList">
 <ul id="tabs">
 <li><a class="filter_option active" data-tab="history_completed"><i class="fa fa-check-circle"></i> <?php echo (get_field('lang_tracker_completed','options') ? get_field('lang_tracker_completed','options') : "Completed"); ?></a></li>
-<li><a class="filter_option" data-tab="history_bookmarks"><i class="fas fa-bookmark"></i> <?php echo (get_field('lang_tracker_bookmarks','options') ? get_field('lang_tracker_bookmarks','options') : "Bookmarks"); ?></a></li>
-<li><a class="filter_option" data-tab="history_favorites"><i class="fas fa-heart"></i> <?php echo (get_field('lang_tracker_favorites','options') ? get_field('lang_tracker_favorites','options') : "Favorites"); ?></a></li>
-<li><a href="/account" alt="Account"><i class="fas fa-user-circle"></i> My Account</a></li>
+<li><a class="filter_option" data-tab="history_bookmarks"><i class="fa fa-bookmark"></i> <?php echo (get_field('lang_tracker_bookmarks','options') ? get_field('lang_tracker_bookmarks','options') : "Bookmarks"); ?></a></li>
+<li><a class="filter_option" data-tab="history_favorites"><i class="fa fa-heart"></i> <?php echo (get_field('lang_tracker_favorites','options') ? get_field('lang_tracker_favorites','options') : "Favorites"); ?></a></li>
+<li><a href="/account" alt="Account"><i class="fa fa-user-circle"></i> My Account</a></li>
 </ul>
 </nav>
 	

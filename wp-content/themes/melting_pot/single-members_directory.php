@@ -99,19 +99,19 @@ $imgAlt = get_post_meta($imgID,'_wp_attachment_image_alt', true);
         <div class="bioSocialLinks">
         <ul>
         <?php if( get_field('twitter_link') ): ?>
-        <li><a target="_blank" href="<?php the_field('twitter_link'); ?>"><i class="fab fa-twitter"></i></a></li>
+        <li><a target="_blank" href="<?php the_field('twitter_link'); ?>"><i class="fa fa-twitter"></i></a></li>
         <?php endif; ?>
             <?php if( get_field('facebook_link') ): ?>
-        <li><a target="_blank" href="<?php the_field('facebook_link'); ?>"><i class="fab fa-facebook-f"></i></a></li>
+        <li><a target="_blank" href="<?php the_field('facebook_link'); ?>"><i class="fa fa-facebook-f"></i></a></li>
         <?php endif; ?>
             <?php if( get_field('insta_link') ): ?>
-        <li><a target="_blank" href="<?php the_field('insta_link'); ?>"><i class="fab fa-instagram"></i></a></li>
+        <li><a target="_blank" href="<?php the_field('insta_link'); ?>"><i class="fa fa-instagram"></i></a></li>
         <?php endif; ?>
             <?php if( get_field('youtube_link') ): ?>
-        <li><a target="_blank" href="<?php the_field('youtube_link'); ?>"><i class="fab fa-youtube"></i></a></li>
+        <li><a target="_blank" href="<?php the_field('youtube_link'); ?>"><i class="fa fa-youtube"></i></a></li>
         <?php endif; ?>
             <?php if( get_field('linkedin_link') ): ?>
-        <li><a target="_blank" href="<?php the_field('linkedin_link'); ?>"><i class="fab fa-linkedin-in"></i></a></li>
+        <li><a target="_blank" href="<?php the_field('linkedin_link'); ?>"><i class="fa fa-linkedin-in"></i></a></li>
         <?php endif; ?>
         </ul>
         </div>

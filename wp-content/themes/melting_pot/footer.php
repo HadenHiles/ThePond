@@ -26,22 +26,22 @@
 
 <div class="SocialFooterSide">
 <?php if($smof_data['facebook_link']) : ?>
-<a href="<?php echo $smof_data['facebook_link'];?>" target="_blank" rel="nofollow"><i class="fab fa-facebook-f"></i></a>
+<a href="<?php echo $smof_data['facebook_link'];?>" target="_blank" rel="nofollow"><i class="fa fa-facebook-f"></i></a>
 <?php endif;?>
 <?php if($smof_data['twitter_link']) : ?>
-<a href="<?php echo $smof_data['twitter_link'];?>" target="_blank" rel="nofollow"><i class="fab fa-twitter"></i></a>
+<a href="<?php echo $smof_data['twitter_link'];?>" target="_blank" rel="nofollow"><i class="fa fa-twitter"></i></a>
 <?php endif;?>
 <?php if($smof_data['youtube_link']) : ?>
-<a href="<?php echo $smof_data['youtube_link']; ?>" target="_blank" rel="nofollow"><i class="fab fa-youtube"></i></a>
+<a href="<?php echo $smof_data['youtube_link']; ?>" target="_blank" rel="nofollow"><i class="fa fa-youtube"></i></a>
 <?php endif; ?>
 <?php if($smof_data['google_link']) : ?>
-<a href="<?php echo $smof_data['google_link']; ?>" target="_blank" rel="nofollow"><i class="fab fa-google-plus-g"></i></a>
+<a href="<?php echo $smof_data['google_link']; ?>" target="_blank" rel="nofollow"><i class="fa fa-google-plus-g"></i></a>
 <?php endif;?>
 <?php if($smof_data['linkedin_link']) : ?>
-<a href="<?php echo $smof_data['linkedin_link']; ?>" target="_blank" rel="nofollow"><i class="fab fa-linkedin-in"></i></a>
+<a href="<?php echo $smof_data['linkedin_link']; ?>" target="_blank" rel="nofollow"><i class="fa fa-linkedin-in"></i></a>
 <?php endif;?>
 <?php if($smof_data['insta_link']) : ?>
-<a href="<?php echo $smof_data['insta_link']; ?>" target="_blank" rel="nofollow"><i class="fab fa-instagram"></i></a>
+<a href="<?php echo $smof_data['insta_link']; ?>" target="_blank" rel="nofollow"><i class="fa fa-instagram"></i></a>
 <?php endif;?>
 </div>
 
