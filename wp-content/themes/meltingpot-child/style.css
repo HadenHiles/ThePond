@@ -33,6 +33,22 @@ h6 {}
 .MemberheaderWrap .headerlogo {max-width:20%;}
 .topmemberNav {padding-right:0;}
 
+@media screen and (max-width: 1023px) {
+	.MemberheaderWrap {
+		position: fixed;
+		z-index: 13;
+	}
+	section.memberbenefits {
+		padding-top: 60px;
+	}
+}
+@media screen and (max-width: 330px) {
+	.MemberheaderWrap .headerlogo {
+		position: relative;
+		left: -25px;
+	}
+}
+
 
 
 
@@ -363,7 +379,15 @@ img[data-enlargable] {
 }
 /* End Utilities */
 
-/* Avatar */
+/* Top Nav & Avatar */
+.topmemberNav {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+.topmemberNav ul {
+	margin-bottom: 0;
+}
 .topmemberNav a.avatar {
 	float: left;
 	border: 2px solid #fff;
@@ -382,7 +406,15 @@ img[data-enlargable] {
 }
 .topmemberNav #menu-member-top-menu {
 	float: left;
+	position: relative;
+	top: -2px;
 }
+@media screen and (max-width: 500px) {
+	.topmemberNav ul {
+		margin-bottom: 20px;
+	}
+}
+/* END Top Nav & Avatar */
 
 /* Lesson styles*/
 .ListWithHeading h3 {
