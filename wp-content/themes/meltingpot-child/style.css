@@ -33,6 +33,10 @@ h6 {}
 .MemberheaderWrap .headerlogo {max-width:20%;}
 .topmemberNav {padding-right:0;}
 
+.MemberheaderWrap .MainNav a {
+	cursor: pointer !important;
+}
+
 @media screen and (max-width: 1023px) {
 	.MemberheaderWrap {
 		position: fixed;
