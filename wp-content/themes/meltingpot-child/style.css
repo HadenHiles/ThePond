@@ -38,8 +38,8 @@ h6 {}
 		position: fixed;
 		z-index: 13;
 	}
-	section.memberbenefits {
-		padding-top: 60px;
+	header.header {
+		margin-bottom: 60px;
 	}
 }
 @media screen and (max-width: 330px) {
