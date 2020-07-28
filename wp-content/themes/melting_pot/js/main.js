@@ -181,4 +181,21 @@
 			});
 		});
 	}
+
+	/* Scroll to anchors */
+	$(".scroll a").click(function(e) {
+		var url = $(this).attr('href');
+		var aid = url.substring(url.indexOf('#'));
+		$('html,body').animate({
+			scrollTop: $(aid.toString()).offset().top
+		}, 'slow');
+	});
+	$(document).ready(function() {
+		var aid = window.location.hash;
+		if (aid != null && $(aid).length == 1) {
+			$('html,body').animate({
+				scrollTop: $(aid).offset().top
+			}, 'slow');
+		}
+	});
 })(jQuery);

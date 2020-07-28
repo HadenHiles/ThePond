@@ -20,7 +20,7 @@ get_header('members'); ?>
 */
 ?>
 
-<section class="memberbenefits dashboardbenefits">
+<section class="memberbenefits dashboardbenefits" id="courses">
 <!-- <div class="row"> -->
 <div>
 	<div class="large-12 columns" style="padding: 0;">
@@ -48,7 +48,7 @@ get_header('members'); ?>
 </section>
 
 <!-- Skills Vault -->
-<section class="skillsVault Dashboard">
+<section class="skillsVault Dashboard" id="skills-vault">
 <div class="row">
 	<div class="sectionHeader">
 		<div class="large-12 columns">
