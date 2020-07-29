@@ -213,6 +213,7 @@ function display_challenge_resources($atts = [], $content = null, $tag = '') {
                 <?php
               }
               ?>
+              <div class="clearfix"></div>
               <?=$content?>
           </div>
       </div>
