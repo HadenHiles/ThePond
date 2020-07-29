@@ -531,9 +531,6 @@ img[data-enlargable] {
 .Dashboard {
 	padding: 1rem 0;
 }
-.profile.Dashboard {
-	background: #eaeaea;
-}
 .Dashboard.profile .ld-profile-stats .ld-profile-stat-certificates {
 	display: none;
 }
