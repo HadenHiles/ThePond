@@ -867,8 +867,10 @@ body.modal-open {
 	display: inline-block;
 }
 .challenges-wrapper a.all-challenges {
-	float: right;
-	margin-left: 15px;
+	width: 200px;
+	max-width: 100%;
+	display: block;
+	margin: -50px auto 0 auto;
 }
 .challenges {
 	max-width: 1400px;
@@ -926,13 +928,6 @@ body.modal-open {
 	.challenges-wrapper h1 {
 		text-align: center;
 		display: block;
-	}
-	.challenges-wrapper a.all-challenges {
-		width: 200px;
-		max-width: 100%;
-		display: block;
-		margin: 0 auto;
-		float: none;
 	}
 	.challenges a.card.challenge {
 		flex-basis: 100%;

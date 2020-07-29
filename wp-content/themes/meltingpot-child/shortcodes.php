@@ -206,13 +206,6 @@ function display_challenge_resources($atts = [], $content = null, $tag = '') {
       <div class="row">
           <div class="large-12 columns">
               <h1><?=$title?></h1>
-              <?php
-              if (!empty($btnUrl)) {
-                ?>
-                <a href="<?=$btnUrl?>" class="BTN all-challenges"><?=$btn?></a>
-                <?php
-              }
-              ?>
               <div class="clearfix"></div>
               <?=$content?>
           </div>
@@ -256,6 +249,13 @@ function display_challenge_resources($atts = [], $content = null, $tag = '') {
           }
           ?>
       </div>
+      <?php
+      if (!empty($btnUrl)) {
+        ?>
+        <a href="<?=$btnUrl?>" class="BTN all-challenges"><?=$btn?></a>
+        <?php
+      }
+      ?>
     </div>
   <?php
 }
