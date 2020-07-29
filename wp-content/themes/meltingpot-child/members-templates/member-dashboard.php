@@ -335,7 +335,7 @@ get_header('members'); ?>
 </div>
 </section>
 
-<section class="challenges-dashboard Dashboard">
+<section class="challenges-dashboard Dashboard" id="challenges">
 	<?=do_shortcode('[list_challenges title="Latest Challenges" btn="All Challenges" btn-url="/challenges"]')?>
 </section>
 

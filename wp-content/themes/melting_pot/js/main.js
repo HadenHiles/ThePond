@@ -184,7 +184,32 @@
 
 	/* Scroll to anchors */
 	$(".scroll a").click(function(e) {
+		e.preventDefault();
 		var url = $(this).attr('href');
+
+		var hasHash = url.indexOf('#') > -1;
+		if (!hasHash) {
+			e.preventDefault();
+			var challengeCheck = url.match(/([^\/]*)\/*$/)[1];
+			if (challengeCheck == "challenges") {
+				e.preventDefault();
+				if ($('#challenges').length == 1) {
+					if ($('html').hasClass('MenuActive')) {
+						$('.NavBTN.open').trigger('click');
+						setTimeout(function() {
+							scrollToHash('#challenges', 60)
+						}, 5);
+					} else {
+						scrollToHash('#challenges', 0)
+					}
+				} else {
+					window.location.replace(url);
+				}
+			} else {
+				window.location.replace(url);
+			}
+		}
+
 		var hash = url.substring(url.indexOf('#'));
 		if ($(hash).length > 0) {
 			e.preventDefault();
@@ -196,6 +221,8 @@
 			} else {
 				scrollToHash(hash, 0);
 			}
+		} else {
+			window.location.replace(url);
 		}
 	});
 	$(document).ready(function () {
