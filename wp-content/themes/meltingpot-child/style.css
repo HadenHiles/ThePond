@@ -860,6 +860,9 @@ body.modal-open {
 .challenges-dashboard {
 	background: #eaeaea;
 }
+.challenges-wrapper .row {
+	padding-top: 75px;
+}
 .challenges-wrapper h1 {
 	display: inline-block;
 }
@@ -907,3 +910,32 @@ body.modal-open {
 	color: #cc3333;
 	transition: all .2s ease-in-out;
 }
+
+@media screen and (max-width: 1023px) {
+	.challenges-wrapper .row {
+		padding-top: 50px;
+	}
+	.challenges a.card.challenge {
+		flex-basis: 44%;
+	}
+}
+@media screen and (max-width: 600px) {
+	.challenges-wrapper .row {
+		padding-top: 25px;
+	}
+	.challenges-wrapper h1 {
+		text-align: center;
+		display: block;
+	}
+	.challenges-wrapper a.all-challenges {
+		width: 200px;
+		max-width: 100%;
+		display: block;
+		margin: 0 auto;
+		float: none;
+	}
+	.challenges a.card.challenge {
+		flex-basis: 100%;
+	}
+}
+/* END Challenges */

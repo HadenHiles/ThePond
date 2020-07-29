@@ -203,7 +203,7 @@ function display_challenge_resources($atts = [], $content = null, $tag = '') {
 
   ?>
     <div class="challenges-wrapper">
-      <div class="row" style="padding-top: 75px;">
+      <div class="row">
           <div class="large-12 columns">
               <h1><?=$title?></h1>
               <?php
