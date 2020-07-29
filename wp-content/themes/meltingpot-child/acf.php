@@ -531,6 +531,18 @@ if( function_exists('acf_add_local_field_group') ):
                     'value' => 'sfwd-topic',
                 ),
             ),
+            array(
+                array(
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'content-library',
+                ),
+                array(
+                    'param' => 'post_taxonomy',
+                    'operator' => '==',
+                    'value' => 'library_category:challenges',
+                ),
+            ),
         ),
         'menu_order' => 0,
         'position' => 'side',

@@ -788,73 +788,87 @@ body.modal-open {
 }
 /* End Skill Example */
 
-/* Course */
-.CourseContent .skills-list {
+/* Skills List */
+.skills-list {
 	display: flex;
 	justify-content: flex-start;
 	align-items: flex-start;
 	flex-wrap: wrap;
 	margin-bottom: 35px;
 }
-.CourseContent .skills-list .card.skill {
+.skills-list .card.skill {
 	margin: 5px 5px 0 0;
 	transition: .2s all ease-in-out;
 	-moz-transition: .2s all ease-in-out;
 	-webkit-transition: .2s all ease-in-out;
 	position: relative;
 }
-.CourseContent .skills-list .card.skill:not(.no-hover):hover {
+.skills-list .card.skill:not(.no-hover):hover {
 	border-color:#cc3333;
 }
-.CourseContent .skills-list .card.skill .card-body.content a.ghost {
+.skills-list .card.skill .card-body.content a.ghost {
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
 }
-.CourseContent .skills-list .card.skill .card-body.content {
+.skills-list .card.skill .card-body.content {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	flex-wrap: nowrap;
 	padding: 10px;
 }
-.CourseContent .skills-list .card.skill.no-hover .card-body.content {
+.skills-list .card.skill.no-hover .card-body.content {
 	padding: 20px;
 }
-.CourseContent .skills-list .card.skill.no-hover .card-body.content .title {
+.skills-list .card.skill.no-hover .card-body.content .title {
 	font-size: 18px;
 }
-.CourseContent .skills-list .card.skill.no-hover .card-body.content .title span {
+.skills-list .card.skill.no-hover .card-body.content .title span {
 	font-weight: bold;
 	font-size: 24px;
 	font-family: 'Teko', sans-serif;
 	margin-right: 10px;
 }
-.CourseContent .skills-list .card.skill .card-body.content .title {
+.skills-list .card.skill .card-body.content .title {
 	color: #495255;
 	text-decoration: none;
 	font-size: 14px;
 	margin-right: 20px;
 }
-.CourseContent .skills-list .card.skill:not(.no-hover):hover .card-body.content .title {
+.skills-list .card.skill:not(.no-hover):hover .card-body.content .title {
 	color: #cc3333;
 }
-.CourseContent .skills-list .card.skill .card-body.content .level {
+.skills-list .card.skill .card-body.content .level {
 	color: #495255;
 	font-size: 12px;
 }
 
+.courseSideList .skills-list {
+	display: flex;
+	justify-content: stretch;
+	align-items: flex-start;
+	flex-wrap: wrap;
+	margin-bottom: 5px;
+}
+.courseSideList .skills-list .card.skill {
+	flex-basis: 100%;
+}
+.courseSideList h2 {
+	font-size: 24px;
+}
+
 @media screen and (max-width: 640px) {
-	.CourseContent .skills-list .card.skill .card-body.content .title {
+	.skills-list .card.skill .card-body.content .title {
 		font-size: 12px;
 	}
-	.CourseContent .skills-list .card.skill .card-body.content .level {
+	.skills-list .card.skill .card-body.content .level {
 		font-size: 10px;
 	}
 }
-/* End Course */
+/* End Skills List */
 
 /* Challenges */
 .challenges-dashboard {

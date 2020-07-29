@@ -41,6 +41,44 @@ if(have_posts()): while (have_posts()): the_post();
 <main role="main">
 <article>
 <?php get_template_part('template-parts/courses/lesson-topic-fields'); ?>
+
+<?php
+$relatedSkills = get_field('skills', $post->ID);
+if (!empty($relatedSkills)) {
+	?>
+	<h2 style="margin-bottom: 5px;">Related Skills</h2>
+	<?php
+}
+?>
+<div class="bootstrap-styles skills-list">
+	<?php
+	if (!empty($relatedSkills)) {
+		foreach($relatedSkills as $relatedSkill) {
+			$performanceLevels = get_the_terms( $relatedSkill->ID, 'performance-level' ); 
+			$performanceLevelString = '';
+			if(sizeof($performanceLevels) > 0) {
+				$count = 0;
+				foreach($performanceLevels as $performanceLevel) {
+					if (++$count > 1 && $count <= sizeof($performanceLevels)) {
+						$performanceLevelString .= ', ';
+					}
+					$performanceLevelString .= $performanceLevel->name;
+				}
+			}
+			?>
+			<div class="card skill">
+				<div class="card-body content">
+					<a href="<?=get_post_permalink($relatedSkill->ID)?>" class="ghost"></a>
+					<a href="<?=get_post_permalink($relatedSkill->ID)?>" class="title"><?=get_the_title($relatedSkill->ID)?></a>
+					<span class="level"><?=$performanceLevelString?></span>
+				</div>
+			</div>
+			<?php
+		}
+	}
+	?>
+</div>
+
 <?php get_template_part('template-parts/courses/lesson-downloads'); ?>
 	<div class="cl-history">
 <?php get_template_part('template-parts/courses/coursehistory'); ?>	
