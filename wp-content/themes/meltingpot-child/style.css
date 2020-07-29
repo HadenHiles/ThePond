@@ -175,7 +175,7 @@ div.topic p, div.answer p {
 /* Dashboard Links*/
 /* .dashboardbenefits {background: url('/wp-content/themes/melting_pot/images/laying-down.jpg') #262121;background-size:cover;background-attachment: fixed;background-position: center right;} */
 .dashboardbenefits {
-	background: url('/wp-content/themes/meltingpot-child/images/snowbank.svg') no-repeat #eaeaea;
+	background: url('/wp-content/themes/meltingpot-child/images/snowbank.svg') no-repeat #e6e6e6;
 	background-size: 60%;
 	background-position: bottom right;
 }
@@ -531,6 +531,9 @@ img[data-enlargable] {
 .Dashboard {
 	padding: 1rem 0;
 }
+.profile.Dashboard {
+	background: #eaeaea;
+}
 .Dashboard.profile .ld-profile-stats .ld-profile-stat-certificates {
 	display: none;
 }
@@ -539,6 +542,9 @@ img[data-enlargable] {
 }
 
 /* Skill Vault */
+.skillsVault {
+	padding-top: 45px;
+}
 .skillsVault .bootstrap-styles .nav-pills {
 	margin-top: 25px;
 }
@@ -852,3 +858,55 @@ body.modal-open {
 	}
 }
 /* End Course */
+
+/* Challenges */
+.challenges-dashboard {
+	background: #eaeaea;
+}
+.challenges-wrapper h1 {
+	display: inline-block;
+}
+.challenges-wrapper a.all-challenges {
+	float: right;
+	margin-left: 15px;
+}
+.challenges {
+	max-width: 1400px;
+	margin: 0 auto;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: stretch;
+	justify-content: stretch;
+	padding: 1% 1% 75px 1%;
+}
+.challenges a.card.challenge {
+	flex-basis: 27.33333%;
+	flex-grow: 1;
+	margin: 1%;
+	color: #384044;
+	background: #fff;
+	border: none;
+	text-decoration: none;
+	transition: all .2s ease-in-out;
+}
+.challenges a.card.challenge:hover {
+	transform: scale(1.005);
+	transition: all .2s ease-in-out;
+}
+.challenges .card.challenge .card-img-top {
+	height: 250px;
+	background-size: cover;
+	background-position: center center;
+}
+.challenges .card.challenge .card-body h4 {
+	margin: 0;
+	transition: all .2s ease-in-out;
+}
+/* .challenges .card.challenge .card-body p.card-text {
+	height: 62px;
+	overflow: hidden;
+} */
+.challenges a.card.challenge:hover .card-body h4 {
+	color: #cc3333;
+	transition: all .2s ease-in-out;
+}

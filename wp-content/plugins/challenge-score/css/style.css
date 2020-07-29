@@ -1,5 +1,6 @@
 .challenge-scores {
     position: relative;
+    padding-top: 15px;
 }
 .challenge-scores .scores {
     display: flex;

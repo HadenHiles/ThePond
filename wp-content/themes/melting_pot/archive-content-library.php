@@ -35,11 +35,16 @@ $rename_content_library = $smof_data['rename_content_library']  ? $smof_data['re
 			?>
             	<ul class="clFilters" id="filteringModeSingle"> 
 				 <li class="filtr filtr-active" data-filter="all"> All </li>
-				<?php foreach( $categories as $cat) { ?>
+				<?php foreach( $categories as $cat) { 
+				
+					if ($cat->name != 'Challenges') {
+					?>
+					
+					<li class="filtr" data-filter="<?php echo $cat->term_id;?>"> <?php echo $cat->name;?> </li>
 				 
-				 <li class="filtr" data-filter="<?php echo $cat->term_id;?>"> <?php echo $cat->name;?> </li>
-				 
-				 <?php } ?>
+				<?php 
+					}
+				} ?>
 				  
 				</ul>
 				
@@ -60,44 +65,41 @@ $rename_content_library = $smof_data['rename_content_library']  ? $smof_data['re
 					$class='nolink';
 				}	
 				 
-			 ?>
-				 <div class="filtr-item <?php echo $class; ?>" data-category="<?php echo $terms[0]->term_id;?>" data-sort="value">
-					 
+				if ($terms[0]->name != "Challenges") {
+					?>
+					<div class="filtr-item <?php echo $class; ?>" data-category="<?php echo $terms[0]->term_id;?>" data-sort="value">
+						
 
-		
-			    <div class="coursePrevImage" style="background: url('<? echo $img; ?>')no-repeat;background-size:cover;background-position:center;">
-				<?php if ($terms[0]): ?> <span class="postLabel"><?php echo $terms[0]->name;?></span><?php endif; ?>
-					 
-		 <?php if( get_field('available') ){ ?>
-					
-			<a href="<? the_permalink();?>" class="courseImgOver"></a>
-			  
-			  
-				  
-			  </div>
-
-            <? }else {  ?>
-				  <div class="CourseSoon">Coming Soon</div>
-				  
-			  </div>
 			
-			<?php } ?>
-					 
-				  	<h4>
-					 <?php if( get_field('available') ){ ?>
-					<a href="<?php the_permalink();?>"><?php the_title();?></a>
-					 <?php }else{ ?>
-					 <?php the_title();?>
-					 <?php } ?>
-					 
-					</h4>
-					 <div class="filterDesc">
-					 <?php the_field('description_short'); ?>
-						 </div>
-					<!--<a class="BTN" href="<?php the_permalink();?>">View</a>-->
-					 
-				 </div>
-			 <?php endwhile; ?>	 
+					<div class="coursePrevImage" style="background: url('<? echo $img; ?>')no-repeat;background-size:cover;background-position:center;">
+					<?php if ($terms[0]): ?> <span class="postLabel"><?php echo $terms[0]->name;?></span><?php endif; ?>
+						
+					<?php if( get_field('available') ){ ?>
+						<a href="<? the_permalink();?>" class="courseImgOver"></a>
+						</div>
+					<? } else {  ?>
+						<div class="CourseSoon">Coming Soon</div>
+						</div>
+					
+					<?php } ?>
+							
+							<h4>
+							<?php if( get_field('available') ){ ?>
+							<a href="<?php the_permalink();?>"><?php the_title();?></a>
+							<?php }else{ ?>
+							<?php the_title();?>
+							<?php } ?>
+							
+							</h4>
+							<div class="filterDesc">
+							<?php the_field('description_short'); ?>
+								</div>
+							<!--<a class="BTN" href="<?php the_permalink();?>">View</a>-->
+							
+						</div>
+					<?php
+				}
+			endwhile; ?>	 
 				</div>
 		</div>
 </div>
