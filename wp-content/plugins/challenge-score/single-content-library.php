@@ -13,19 +13,26 @@ $imgAlt = get_post_meta($imgID,'_wp_attachment_image_alt', true);
 <div class="large-8 medium-8 columns">
 <h1><?php the_title(); ?></h1>
 <?php 
-$term_list = wp_get_post_terms(get_the_ID(), 'library_category', array("fields" => "all"));
+$category_list = wp_get_post_terms(get_the_ID(), 'library_category', array("fields" => "all"));
+$categories = [];
+foreach ($category_list as $category) {
+	$categories[] = $category->name;
+}
+
+$term_list = wp_get_post_terms(get_the_ID(), 'skill-type', array("fields" => "all"));
 if($term_list) { 
 foreach( $term_list as $term) {
 ?>
 
-<a class="clCatLink" href="<?php echo get_term_link($term); ?>"><?php echo $term->name; ?></a>
+<a class="clCatLink"><?php echo $term->name; ?></a>
 <?php } 
-} ?>
+}
+?>
 </div>
 
 <div class="large-4 medium-4 columns">
 <?php
-if ($term->name == 'Challenges') {
+if (in_array("Challenges", $categories)) {
 	?>
 	<a class="backBTN" href="/challenges/">
 	<i class="fas fa-angle-left"></i> All Challenges</a>
@@ -101,6 +108,18 @@ if (!empty($relatedSkills)) {
 </div>
 
 <div class="large-4 medium-4 columns">
+
+<?php
+$term_list = wp_get_post_terms(get_the_ID(), 'performance-level', array("fields" => "all"));
+if($term_list) { 
+	foreach( $term_list as $key => $term) {
+		?>
+		<a class="clCatLink"><?php echo $term->name; ?></a>
+		<?php
+	} 
+} ?>
+<div class="clearfix" style="margin-bottom: 10px;"></div>
+
 <?php  if ( has_post_thumbnail() ) { ?>
 <?php the_post_thumbnail('full'); ?>
 <?php } ?>
