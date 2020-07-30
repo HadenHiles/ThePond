@@ -24,8 +24,19 @@ foreach( $term_list as $term) {
 </div>
 
 <div class="large-4 medium-4 columns">
-<a class="backBTN" href="/content-library/">
-<i class="fas fa-angle-left"></i> All Library Items</a>
+<?php
+if ($term->name == 'Challenges') {
+	?>
+	<a class="backBTN" href="/challenges/">
+	<i class="fas fa-angle-left"></i> All Challenges</a>
+	<?php
+} else {
+	?>
+	<a class="backBTN" href="/content-library/">
+	<i class="fas fa-angle-left"></i> All Library Items</a>
+	<?php
+}
+?>
 </div>
 </div>
 </section>
