@@ -1,24 +1,19 @@
-<?php
-/**
-* Template Name: Challenges
-*
-* @package WordPress
-* @subpackage Meltingpot-child
-* @since Twenty Twenty
-*/
+<?php 
 global $smof_data;
 get_header("members"); 
+
+$rename_content_library = $smof_data['rename_content_library']  ? $smof_data['rename_content_library'] : "Content Library";
 ?> 
 </header>
 
 <section class="clbHeader">
 	<div class="row">
 		<div class="large-8 columns">
-        <h1>Challenges</h1>
+        <h1><?php echo $rename_content_library; ?></h1>
 		</div>
 		
 		<div class="large-4 columns">
-			<p class="searchText">Search Challenges</p>
+			<p class="searchText">Search the <?php echo $rename_content_library; ?></p>
 			<div class="searchfilter"><input type="text" id="filtrSearch" name="filtr-search" class="filtr-search" value="" placeholder="Enter you keyword here and press enter..." data-search>
 			<a id="clearFilter" class="backBTN" href="javascript:;">Clear</a></div>
 		</div>
@@ -29,7 +24,7 @@ get_header("members");
 <section class="memberbenefits dashboardbenefits" style="min-height: 80vh;">
 	<div class="challenges-wrapper">
 		<?php
-			$categories = get_terms( 'skill-type', array(
+			$categories = get_terms( 'library_category', array(
 				'orderby'    => 'count',
 				'hide_empty' => 0
 			) );
@@ -50,25 +45,9 @@ get_header("members");
 			<?php } ?>	
 			
 			<div class="filtr-container bootstrap-styles challenges">
-                <?php 
-                $challengesQuery = new WP_Query( array(
-                    'posts_per_page' => $limit,
-                    'post_status'    => 'publish',
-                    'post_type' => 'content-library',
-                    'order' => 'desc',
-                    'orderby' => 'post_date',
-                    'suppress_filters' => true,
-                    'tax_query' => array(
-                        array(
-                            'taxonomy' => 'library_category',
-                            'field' => 'slug',
-                            'terms' => 'challenges', //pass your term name here
-                            'include_children' => true
-                        )
-                    )
-                ));
-				while ($challengesQuery->have_posts()) : $challengesQuery->the_post();
-					$terms = get_the_terms(get_the_ID(), 'skill-type'); 
+				<?php 
+				while (have_posts()) : the_post();
+					$terms = get_the_terms(get_the_ID(), 'library_category'); 
 					
 					$post_thumbnail_id = get_post_thumbnail_id();
 					
@@ -118,22 +97,22 @@ get_header("members");
 (function($){
 	$(document).ready(function(){
 		var filterizd = $('.challenges').filterizr({
-            gridItemsSelector: '.challenge',
+			gridItemsSelector: '.challenge',
 			callbacks: {
 				onInit: removeFilterizrStyles()
 			}
 		});
 		$('#filteringModeSingle li').click(function() {
-            $('#filteringModeSingle .filtr').removeClass('filtr-active');
-            $(this).addClass('filtr-active');
-            var filter = $(this).data('fltr');
-            removeFilterizrStyles();
+			$('#filteringModeSingle .filtr').removeClass('filtr-active');
+			$(this).addClass('filtr-active');
+			var filter = $(this).data('fltr');
+			removeFilterizrStyles();
 		});
 			
 		$('#clearFilter').click( function(){ 
 			$('#filtrSearch').val('');
 			$('.challenges').filterizr({
-                gridItemsSelector: '.challenge',
+				gridItemsSelector: '.challenge',
 				callbacks: {
 					onInit: removeFilterizrStyles()
 				}
@@ -158,4 +137,3 @@ get_header("members");
 
 </script>
 <?php get_footer("members"); ?>
-

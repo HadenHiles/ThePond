@@ -44,7 +44,7 @@ if(have_posts()): while (have_posts()): the_post();
 <?php get_template_part('template-parts/courses/lesson-topic-fields'); ?>
 <?php get_template_part('template-parts/courses/lesson-downloads'); ?>
 	<div class="cl-history">
-<?php get_template_part('template-parts/courses/coursehistory'); ?>	
+<?php get_template_part('template-parts/courses/coursehistory'); ?>
 		</div>
 <?php the_content();?>
 </article>
