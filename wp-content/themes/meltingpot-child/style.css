@@ -894,7 +894,12 @@ body.modal-open {
 	align-items: stretch;
 	justify-content: stretch;
 	padding: 1% 1% 75px 1%;
-	transition: all .8s ease-in-out;
+	opacity: 1;
+	transition: all .2s ease-in-out;
+}
+.challenges.filtering {
+	opacity: 0;
+	transition: all .2s ease-in-out;
 }
 .challenges a.card.challenge {
 	flex-basis: 27.33333%;

@@ -14,7 +14,7 @@ $rename_content_library = $smof_data['rename_content_library']  ? $smof_data['re
 		
 		<div class="large-4 columns">
 			<p class="searchText">Search the <?php echo $rename_content_library; ?></p>
-			<div class="searchfilter"><input type="text" id="filtrSearch" name="filtr-search" class="filtr-search" value="" placeholder="Enter you keyword here and press enter..." data-search>
+			<div class="searchfilter"><input type="text" id="filterSearch" name="filtr-search" class="filtr-search" value="" placeholder="Enter you keyword here and press enter..." data-search>
 			<a id="clearFilter" class="backBTN" href="javascript:;">Clear</a></div>
 		</div>
 	</div>
@@ -33,10 +33,10 @@ $rename_content_library = $smof_data['rename_content_library']  ? $smof_data['re
 		if ( ! empty( $categories ) && ! is_wp_error( $categories ) ) {
 		?>
 			<ul class="clFilters" id="filteringModeSingle"> 
-				<li class="filtr filtr-active" data-filter="all"> All </li>
+				<li class="filtertoggle filtr-active" data-filter="all"> All </li>
 			<?php foreach( $categories as $cat) {
 				?>
-				<li class="filtr" data-filter="<?php echo $cat->term_id;?>"> <?php echo $cat->name;?> </li>
+				<li class="filtertoggle" data-filter="<?php echo $cat->term_id;?>"> <?php echo $cat->name;?> </li>
 				<?php
 			} ?>
 				
@@ -44,9 +44,17 @@ $rename_content_library = $smof_data['rename_content_library']  ? $smof_data['re
 			
 			<?php } ?>	
 			
-			<div class="filtr-container bootstrap-styles challenges">
-				<?php 
-				while (have_posts()) : the_post();
+			<div class="bootstrap-styles challenges">
+                <?php 
+                $challengesQuery = new WP_Query( array(
+                    'posts_per_page' => $limit,
+                    'post_status'    => 'publish',
+                    'post_type' => 'content-library',
+                    'order' => 'desc',
+                    'orderby' => 'post_date',
+                    'suppress_filters' => true
+                ));
+				while ($challengesQuery->have_posts()) : $challengesQuery->the_post();
 					$terms = get_the_terms(get_the_ID(), 'library_category'); 
 					
 					$post_thumbnail_id = get_post_thumbnail_id();
@@ -66,7 +74,7 @@ $rename_content_library = $smof_data['rename_content_library']  ? $smof_data['re
 					}
 
 					?>
-					<a href="<?php if(get_field('available')) { ?><? the_permalink(); } ?>" class="card shadow challenge <?php echo $class; ?>" data-category="<?=$termsString?>" data-sort="value">
+					<a href="<?php if(get_field('available')) { ?><? the_permalink(); } ?>" class="card shadow challenge filter <?php echo $class; ?>" data-category="<?=$termsString?>" data-sort="value" data-search="<?php the_title(); ?>\n<?php the_field('description_short'); ?>">
 						<div class="card-img-top" style="background-image: url('<? echo $img; ?>'); overflow: hidden; position: relative;">
 							<?php 
 							foreach ($terms as $term) {
@@ -96,43 +104,39 @@ $rename_content_library = $smof_data['rename_content_library']  ? $smof_data['re
 <script type="text/javascript">
 (function($){
 	$(document).ready(function(){
-		var filterizd = $('.challenges').filterizr({
-			gridItemsSelector: '.challenge',
-			callbacks: {
-				onInit: removeFilterizrStyles()
-			}
-		});
-		$('#filteringModeSingle li').click(function() {
-			$('#filteringModeSingle .filtr').removeClass('filtr-active');
-			$(this).addClass('filtr-active');
-			var filter = $(this).data('fltr');
-			removeFilterizrStyles();
-		});
+		$('#filteringModeSingle .filtertoggle').click(function() {
+            $('#filteringModeSingle .filtertoggle').removeClass('filtr-active');
+            $(this).addClass('filtr-active');
+
+            $('.challenges').filterize($(this).data('filter'), $('#filterSearch').val());
+        });
+        
+        $('#filterSearch').on('keyup change', function() {
+            $('.challenges').filterize($('.filtertoggle.filtr-active').data('filter'), $(this).val());
+        });
 			
-		$('#clearFilter').click( function(){ 
-			$('#filtrSearch').val('');
-			$('.challenges').filterizr({
-				gridItemsSelector: '.challenge',
-				callbacks: {
-					onInit: removeFilterizrStyles()
-				}
-			});
+		$('#clearFilter').click( function(){
+            $('#filterSearch').val('');
+			$('.challenges').filterize($('.filtertoggle.filtr-active').data('filter'), $('#filterSearch').val());
 		});
 	});
+    
+    $.fn.filterize = function(filter = 'all', search = '') {
+        this.addClass('filtering');
 
-	$(window).on('resize', function() {
-		setTimeout(() => {
-			removeFilterizrStyles();
-		}, 50);
-	});
+        var items = this.children('.filter');
+        items.show();
 
-	function removeFilterizrStyles() {
-		setTimeout(() => {
-			$('.challenges').attr('style', '').children('.challenge').each(function() {
-				$(this).attr('style', '');
-			});
-		}, 50);
-	}
+        if ((filter != '' || search != '') && filter != undefined && filter != null) {
+            items.filter(function() { 
+                return (!$(this).data("category").includes(filter) && filter != 'all') || !$(this).data('search').toLowerCase().includes(search.toLowerCase())
+            }).hide();
+        }
+
+        this.removeClass('filtering');
+
+      return this;
+   }; 
 })(jQuery);
 
 </script>

@@ -19,7 +19,7 @@ get_header("members");
 		
 		<div class="large-4 columns">
 			<p class="searchText">Search Challenges</p>
-			<div class="searchfilter"><input type="text" id="filtrSearch" name="filtr-search" class="filtr-search" value="" placeholder="Enter you keyword here and press enter..." data-search>
+			<div class="searchfilter"><input type="text" id="filterSearch" name="filtr-search" class="filtr-search" value="" placeholder="Enter you keyword here and press enter..." data-search>
 			<a id="clearFilter" class="backBTN" href="javascript:;">Clear</a></div>
 		</div>
 	</div>
@@ -38,10 +38,10 @@ get_header("members");
 		if ( ! empty( $categories ) && ! is_wp_error( $categories ) ) {
 		?>
 			<ul class="clFilters" id="filteringModeSingle"> 
-				<li class="filtr filtr-active" data-filter="all"> All </li>
+				<li class="filtertoggle filtr-active" data-filter="all"> All </li>
 			<?php foreach( $categories as $cat) {
 				?>
-				<li class="filtr" data-filter="<?php echo $cat->term_id;?>"> <?php echo $cat->name;?> </li>
+				<li class="filtertoggle" data-filter="<?php echo $cat->term_id;?>"> <?php echo $cat->name;?> </li>
 				<?php
 			} ?>
 				
@@ -49,7 +49,7 @@ get_header("members");
 			
 			<?php } ?>	
 			
-			<div class="filtr-container bootstrap-styles challenges">
+			<div class="bootstrap-styles challenges">
                 <?php 
                 $challengesQuery = new WP_Query( array(
                     'posts_per_page' => $limit,
@@ -87,7 +87,7 @@ get_header("members");
 					}
 
 					?>
-					<a href="<?php if(get_field('available')) { ?><? the_permalink(); } ?>" class="card shadow challenge <?php echo $class; ?>" data-category="<?=$termsString?>" data-sort="value">
+					<a href="<?php if(get_field('available')) { ?><? the_permalink(); } ?>" class="card shadow challenge filter <?php echo $class; ?>" data-category="<?=$termsString?>" data-sort="value" data-search="<?php the_title(); ?>\n<?php the_field('description_short'); ?>">
 						<div class="card-img-top" style="background-image: url('<? echo $img; ?>'); overflow: hidden; position: relative;">
 							<?php 
 							foreach ($terms as $term) {
@@ -117,43 +117,39 @@ get_header("members");
 <script type="text/javascript">
 (function($){
 	$(document).ready(function(){
-		var filterizd = $('.challenges').filterizr({
-            gridItemsSelector: '.challenge',
-			callbacks: {
-				onInit: removeFilterizrStyles()
-			}
-		});
-		$('#filteringModeSingle li').click(function() {
-            $('#filteringModeSingle .filtr').removeClass('filtr-active');
+		$('#filteringModeSingle .filtertoggle').click(function() {
+            $('#filteringModeSingle .filtertoggle').removeClass('filtr-active');
             $(this).addClass('filtr-active');
-            var filter = $(this).data('fltr');
-            removeFilterizrStyles();
-		});
+
+            $('.challenges').filterize($(this).data('filter'), $('#filterSearch').val());
+        });
+        
+        $('#filterSearch').on('keyup change', function() {
+            $('.challenges').filterize($('.filtertoggle.filtr-active').data('filter'), $(this).val());
+        });
 			
-		$('#clearFilter').click( function(){ 
-			$('#filtrSearch').val('');
-			$('.challenges').filterizr({
-                gridItemsSelector: '.challenge',
-				callbacks: {
-					onInit: removeFilterizrStyles()
-				}
-			});
+		$('#clearFilter').click( function(){
+            $('#filterSearch').val('');
+			$('.challenges').filterize($('.filtertoggle.filtr-active').data('filter'), $('#filterSearch').val());
 		});
 	});
+    
+    $.fn.filterize = function(filter = 'all', search = '') {
+        this.addClass('filtering');
 
-	$(window).on('resize', function() {
-		setTimeout(() => {
-			removeFilterizrStyles();
-		}, 50);
-	});
+        var items = this.children('.filter');
+        items.show();
 
-	function removeFilterizrStyles() {
-		setTimeout(() => {
-			$('.challenges').attr('style', '').children('.challenge').each(function() {
-				$(this).attr('style', '');
-			});
-		}, 50);
-	}
+        if ((filter != '' || search != '') && filter != undefined && filter != null) {
+            items.filter(function() { 
+                return (!$(this).data("category").includes(filter) && filter != 'all') || !$(this).data('search').toLowerCase().includes(search.toLowerCase())
+            }).hide();
+        }
+
+        this.removeClass('filtering');
+
+      return this;
+   }; 
 })(jQuery);
 
 </script>
