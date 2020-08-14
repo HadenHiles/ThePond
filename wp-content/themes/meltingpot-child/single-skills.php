@@ -93,130 +93,139 @@ $imgAlt = get_post_meta($imgID,'_wp_attachment_image_alt', true);
         <main role="main">
             <article>
                 <div class="bootstrap-styles main">
-                    <div class="card">
-                        <div class="card-img-top">
-                            <div class="videoWrapper">
-                                <?=get_field('video_code');?>	
-                            </div>
-                        </div>
-                        <?php
-                        if (!empty(get_the_content())) {
-                            ?>
-                            <div class="card-body">
-                                <?php the_content();?>
+                    <?php
+                    if (!empty(get_field('video_code')) || !empty(get_the_content())) {
+                        ?>
+                        <div class="card">
+                            <div class="card-img-top">
+                                <div class="videoWrapper">
+                                    <?=get_field('video_code');?>	
+                                </div>
                             </div>
                             <?php
-                        }
-                        ?>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <!-- Quick Tips -->
-                            <div class="ListWithHeading">
+                            if (!empty(get_the_content())) {
+                                ?>
+                                <div class="card-body">
+                                    <?php the_content();?>
+                                </div>
                                 <?php
-                                // Check rows exists.
-                                if( have_rows('skill_quick_tips') ):
-                                    $count = count(get_field('skill_quick_tips'));
-                                    ?>
+                            }
+                            ?>
+                        </div>
+                        <?php
+                    }
+
+                    // Check rows exists.
+                    if( have_rows('skill_quick_tips') ):
+                        $count = count(get_field('skill_quick_tips'));
+                        ?>
+                        <div class="card">
+                            <div class="card-body">
+                                <!-- Quick Tips -->
+                                <div class="ListWithHeading">
                                     <h2><?=($count > 1) ? $count : ''?> Quick Tips</h2>
                                     <?php
                                     // Loop through rows.
                                     skillBreakdownList('skill_quick_tips');
-                                // No value.
-                                else :
-                                    // Do something...
-                                endif;
-                                ?>
+                                    ?>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <!-- Common mistakes -->
-                            <div class="ListWithHeading">
-                                <?php
-                                // Check rows exists.
-                                if( have_rows('common_mistakes') ):
-                                    $count = count(get_field('common_mistakes'));
-                                    ?>
+                        <?php
+                    // No value.
+                    else :
+                        // Do something...
+                    endif;
+
+                    // Check rows exists.
+                    if( have_rows('common_mistakes') ):
+                        $count = count(get_field('common_mistakes'));
+                        ?>
+                        <div class="card">
+                            <div class="card-body">
+                                <!-- Common mistakes -->
+                                <div class="ListWithHeading">
                                     <h2><?=($count > 1) ? $count : ''?> Common Mistakes</h2>
                                     <?php
                                     // Loop through rows.
                                     skillBreakdownList('common_mistakes');
-                                // No value.
-                                else :
-                                    // Do something...
-                                endif;
-                                ?>
+                                    ?>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        <?php
+                    // No value.
+                    else :
+                        // Do something...
+                    endif;
+                    ?>
                 </div>
             </article>
         </main>
     </div>
     <div class="large-4 medium-6 columns" style="margin: 15px auto;">
         <div class="bootstrap-styles side">
-            <div class="card">
-                <div class="card-body">
-                    <!-- Pros -->
-                    <div class="ListWithHeading">
-                        <?php
-                        // Check rows exists.
-                        if( have_rows('skill_pros') ):
-                            ?>
+            <?php
+            // Check rows exists.
+            if( have_rows('skill_pros') ):
+                ?>
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Pros -->
+                        <div class="ListWithHeading">
                             <h1>Pros</h1>
                             <?php
                             // Loop through rows.
                             skillBreakdownList('skill_pros');
-                        // No value.
-                        else :
-                            // Do something...
-                        endif;
-                        ?>
+                            ?>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    <!-- Cons -->
-                    <div class="ListWithHeading">
-                        <?php
-                        // Check rows exists.
-                        if( have_rows('skill_cons') ):
-                            ?>
+                <?php
+            // No value.
+            else :
+                // Do something...
+            endif;
+
+            // Check rows exists.
+            if( have_rows('skill_cons') ):
+                ?>
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Cons -->
+                        <div class="ListWithHeading">
                             <h1>Cons</h1>
                             <?php
                             // Loop through rows.
                             skillBreakdownList('skill_cons');
-                        // No value.
-                        else :
-                            // Do something...
-                        endif;
-                        ?>
+                            ?>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    <!-- When to use it -->
-                    <div class="ListWithHeading">
-                        <?php
-                        // Check rows exists.
-                        $whenToUseIt = get_field('when_to_use_it', $post->ID);
-                        if( !empty($whenToUseIt) ):
-                            ?>
+                <?php
+            // No value.
+            else :
+                // Do something...
+            endif;
+            
+            // Check rows exists.
+            $whenToUseIt = get_field('when_to_use_it', $post->ID);
+            if( !empty($whenToUseIt) ):
+                ?>
+                <div class="card">
+                    <div class="card-body">
+                        <!-- When to use it -->
+                        <div class="ListWithHeading">
                             <h1>When To Use It</h1>
                             <?=$whenToUseIt?>
-                            <?php
-                        // No value.
-                        else :
-                            // Do something...
-                        endif;
-                        ?>
+                        </div>
                     </div>
                 </div>
-            </div>
+                <?php
+            else :
+                // Do something...
+            endif;
+            ?>
         </div>
     </div>
     <?php endwhile; endif;?>
