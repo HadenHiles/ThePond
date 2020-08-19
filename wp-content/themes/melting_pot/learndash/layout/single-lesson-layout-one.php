@@ -131,7 +131,9 @@ if (!empty($relatedSkills)) {
 				<div class="card-body content">
 					<a href="<?=get_post_permalink($relatedSkill->ID)?>" class="ghost"></a>
 					<a href="<?=get_post_permalink($relatedSkill->ID)?>" class="title"><?=get_the_title($relatedSkill->ID)?></a>
-					<span class="level"><?=$performanceLevelString?></span>
+					<div class="right">
+						<span class="level"><?=$performanceLevelString?></span>
+					</div>
 				</div>
 			</div>
 			<?php
