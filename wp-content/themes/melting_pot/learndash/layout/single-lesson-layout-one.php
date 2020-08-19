@@ -20,7 +20,11 @@ $parent_course_id = learndash_get_setting( $post, 'course' );
 <main role="main">
 <article>
 <div class="CourseContent">
-<?php get_template_part('template-parts/courses/lesson-topic-fields'); ?>
+<?php 
+if (current_user_can('mepr-active','rules:487')) {
+	get_template_part('template-parts/courses/lesson-topic-fields');
+}
+?>
 
 <?php
 if (current_user_can('mepr-active','rules:487')) {
