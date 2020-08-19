@@ -795,6 +795,7 @@ body.modal-open {
 	align-items: flex-start;
 	flex-wrap: wrap;
 	margin-bottom: 35px;
+	width: 100%;
 }
 .skills-list .card.skill {
 	margin: 5px 5px 0 0;
@@ -841,9 +842,26 @@ body.modal-open {
 .skills-list .card.skill:not(.no-hover):hover .card-body.content .title {
 	color: #cc3333;
 }
-.skills-list .card.skill .card-body.content .level {
+.skills-list .card.skill .card-body.content .right {
+	display: flex;
+	justify-content: flex-end;
+	align-content: space-between;
+	flex-wrap: wrap;
+}
+.skills-list .card.skill .card-body.content .level,
+.skills-list .card.skill .card-body.content .course {
 	color: #495255;
 	font-size: 12px;
+	width: 100%;
+	text-align: right;
+	padding: 2px;
+}
+.skills-list .card.skill .card-body.content .course a {
+	position: relative;
+	color: #495255;
+}
+.skills-list .card.skill .card-body.content .course a:hover {
+	color: #cc3333;
 }
 
 .courseSideList .skills-list {

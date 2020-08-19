@@ -228,6 +228,7 @@ $imgAlt = get_post_meta($imgID,'_wp_attachment_image_alt', true);
             ?>
 
             <?php
+            // Related Lessons
             $relatedLessons = get_field('skills', $post->ID);
             $relatedLessons = get_posts(array(
                 'post_type' => 'sfwd-lessons',
@@ -265,7 +266,15 @@ $imgAlt = get_post_meta($imgID,'_wp_attachment_image_alt', true);
                             <div class="card-body content">
                                 <a href="<?=get_post_permalink($relatedLesson->ID)?>" class="ghost"></a>
                                 <a href="<?=get_post_permalink($relatedLesson->ID)?>" class="title"><?=get_the_title($relatedLesson->ID)?></a>
-                                <span class="level"><?=$performanceLevelString?></span>
+                                <div class="right">
+                                    <span class="level"><?=$performanceLevelString?></span>
+                                    <?php
+                                    $course_id = learndash_get_course_id($relatedLesson->ID);
+                                    $courseTitle = get_the_title($course_id);
+                                    $courseUrl = get_permalink($course_id);
+                                    ?>
+                                    <span class="course"><a href="<?=$courseUrl?>"><?=$courseTitle?></a></span>
+                                </div>
                             </div>
                         </div>
                         <?php
