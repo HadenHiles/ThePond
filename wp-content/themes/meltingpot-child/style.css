@@ -43,7 +43,7 @@ h6 {}
 		z-index: 13;
 	}
 	header.header {
-		margin-bottom: 60px;
+		margin-top: 60px;
 	}
 }
 @media screen and (max-width: 330px) {
