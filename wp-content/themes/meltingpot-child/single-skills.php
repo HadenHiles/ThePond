@@ -97,18 +97,12 @@ $imgAlt = get_post_meta($imgID,'_wp_attachment_image_alt', true);
                 if(!current_user_can('mepr-active','rules:487')) {
                     ?>
                     <div class="bootstrap-styles main">
-                        <?php
-                        if (!empty(get_the_content())) {
-                            ?>
-                            <div class="card">
-                                <img src="https://cdn.thepond.howtohockey.com/2020/08/block-ad-final-scaled-1.jpg" alt="" class="card-img-top" />
-                                <div class="card-body">
-                                    <?php the_content();?>
-                                </div>
+                        <div class="card">
+                            <img src="https://cdn.thepond.howtohockey.com/2020/08/block-ad-final-scaled-1.jpg" alt="" class="card-img-top" />
+                            <div class="card-body">
+                                <?php the_content();?>
                             </div>
-                            <?php
-                        }
-                    ?>
+                        </div>
                     </div>
                     <?php
                 } else {
