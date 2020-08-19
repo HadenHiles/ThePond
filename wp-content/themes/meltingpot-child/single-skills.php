@@ -41,7 +41,13 @@ $imgAlt = get_post_meta($imgID,'_wp_attachment_image_alt', true);
                 }
                 ?>
                 <div class="clearfix"></div>
-                <a href="/member-dashboard" class="BTN"><i class="fa fa-caret-left"></i> Dashboard</a>
+                <?php
+                if(current_user_can('mepr-active','rules:487')) {
+                    ?>
+                    <a href="/member-dashboard" class="BTN"><i class="fa fa-caret-left"></i> Dashboard</a>
+                    <?php
+                }
+                ?>
             </div>
             <div class="large-4 medium-6 small-12 columns puck-rating title-content-right">
                 <h3>Frequency</h3>
