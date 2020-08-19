@@ -42,8 +42,8 @@ h6 {}
 		position: fixed;
 		z-index: 13;
 	}
-	header.header {
-		margin-bottom: 60px;
+	.memberDashWelc {
+		margin-top: 60px;
 	}
 }
 @media screen and (max-width: 330px) {
