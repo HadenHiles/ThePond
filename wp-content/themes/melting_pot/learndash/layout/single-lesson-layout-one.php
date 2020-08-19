@@ -40,48 +40,54 @@ $parent_course_id = learndash_get_setting( $post, 'course' );
 	?>
 </div>
 
-<!-- Common mistakes list -->
-<div class="ListWithHeading">
-	<?php
-	// Check rows exists.
-	if( have_rows('common_mistakes') ):
-		$count = count(get_field('common_mistakes'));
-		?>
-		<h3><?=($count > 1) ? $count : ''?> Common Mistakes</h3>
-		<?php
-		// Loop through rows.
-		keyLessonList('common_mistakes');
-	// No value.
-	else :
-		// Do something...
-	endif;
+<?php
+if (current_user_can('mepr-active','rules:487')) {
 	?>
-</div>
-
-<!-- What To Practice list -->
-<div class="ListWithHeading">
-	<?php
-	// Check rows exists.
-	if( have_rows('what_to_practice') ):
-		?>
-		<h3>What To Practice</h3>
+	<!-- Common mistakes list -->
+	<div class="ListWithHeading">
 		<?php
-		// Loop through rows.
-		keyLessonList('what_to_practice');
-	// No value.
-	else :
-		// Do something...
-	endif;
-	?>
-</div>
+		// Check rows exists.
+		if( have_rows('common_mistakes') ):
+			$count = count(get_field('common_mistakes'));
+			?>
+			<h3><?=($count > 1) ? $count : ''?> Common Mistakes</h3>
+			<?php
+			// Loop through rows.
+			keyLessonList('common_mistakes');
+		// No value.
+		else :
+			// Do something...
+		endif;
+		?>
+	</div>
 
-<?php get_template_part('template-parts/courses/lesson-downloads'); ?>
-	
-	<?php get_template_part('template-parts/courses/coursehistory'); ?>	
-	
-	<?php get_template_part('template-parts/courses/course-forum-link'); ?>
-</div>
-</article>	
+	<!-- What To Practice list -->
+	<div class="ListWithHeading">
+		<?php
+		// Check rows exists.
+		if( have_rows('what_to_practice') ):
+			?>
+			<h3>What To Practice</h3>
+			<?php
+			// Loop through rows.
+			keyLessonList('what_to_practice');
+		// No value.
+		else :
+			// Do something...
+		endif;
+		?>
+	</div>
+
+	<?php get_template_part('template-parts/courses/lesson-downloads'); ?>
+		
+		<?php get_template_part('template-parts/courses/coursehistory'); ?>	
+		
+		<?php get_template_part('template-parts/courses/course-forum-link'); ?>
+	</div>
+	</article>
+	<?php
+}
+?>	
 	
 <?php the_content();?>
 </main>
@@ -91,7 +97,11 @@ $parent_course_id = learndash_get_setting( $post, 'course' );
 	
 	
 	
-<?php echo do_shortcode('[course_content course_id="'.$course_id.'"]') ?>
+<?php 
+if (current_user_can('mepr-active','rules:487')) {
+	echo do_shortcode('[course_content course_id="'.$course_id.'"]');
+}
+?>
 
 <?php
 $relatedSkills = get_field('skills', $post->ID);
@@ -121,9 +131,7 @@ if (!empty($relatedSkills)) {
 				<div class="card-body content">
 					<a href="<?=get_post_permalink($relatedSkill->ID)?>" class="ghost"></a>
 					<a href="<?=get_post_permalink($relatedSkill->ID)?>" class="title"><?=get_the_title($relatedSkill->ID)?></a>
-					<div class="right">
-						<span class="level"><?=$performanceLevelString?></span>
-					</div>
+					<span class="level"><?=$performanceLevelString?></span>
 				</div>
 			</div>
 			<?php
@@ -132,7 +140,11 @@ if (!empty($relatedSkills)) {
 	?>
 </div>
 
-<?php get_template_part('template-parts/courses/course-downloads'); ?>
+<?php 
+if (current_user_can('mepr-active','rules:487')) {
+	get_template_part('template-parts/courses/course-downloads'); 
+}
+?>
 </div>
 
 </div>
