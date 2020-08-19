@@ -42,7 +42,7 @@ h6 {}
 		position: fixed;
 		z-index: 13;
 	}
-	.memberDashWelc {
+	.memberDashWelc, #CourseHeader {
 		margin-top: 60px;
 	}
 }
