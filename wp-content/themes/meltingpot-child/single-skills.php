@@ -139,10 +139,9 @@ $imgAlt = get_post_meta($imgID,'_wp_attachment_image_alt', true);
                         endif;
                         ?>
                         <div class="card">
-                            <img src="https://cdn.thepond.howtohockey.com/2020/08/block-ad-final-scaled-1.jpg" alt="" class="card-img-top" />
-                            <div class="card-body">
-                                <?php the_content();?>
-                            </div>
+                            <a href="/">
+                                <img src="https://cdn.thepond.howtohockey.com/2020/08/block-ad-final-scaled-1.jpg" alt="" class="card-img-top" />
+                            </a>
                         </div>
                     </div>
                     <?php
