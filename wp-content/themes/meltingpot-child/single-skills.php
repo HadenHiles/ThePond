@@ -97,6 +97,47 @@ $imgAlt = get_post_meta($imgID,'_wp_attachment_image_alt', true);
                 if(!current_user_can('mepr-active','rules:487')) {
                     ?>
                     <div class="bootstrap-styles main">
+                        <?php
+                        // Check rows exists.
+                        $whenToUseIt = get_field('when_to_use_it', $post->ID);
+                        if( !empty($whenToUseIt) ):
+                            ?>
+                            <div class="card">
+                                <div class="card-body">
+                                    <!-- When to use it -->
+                                    <div class="ListWithHeading">
+                                        <h1>When To Use It</h1>
+                                        <?=$whenToUseIt?>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php
+                        else :
+                            // Do something...
+                        endif;
+
+                        // Check rows exists.
+                        if( have_rows('common_mistakes') ):
+                            $count = count(get_field('common_mistakes'));
+                            ?>
+                            <div class="card">
+                                <div class="card-body">
+                                    <!-- Common mistakes -->
+                                    <div class="ListWithHeading">
+                                        <h2><?=($count > 1) ? $count : ''?> Common Mistakes</h2>
+                                        <?php
+                                        // Loop through rows.
+                                        skillBreakdownList('common_mistakes');
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php
+                        // No value.
+                        else :
+                            // Do something...
+                        endif;
+                        ?>
                         <div class="card">
                             <img src="https://cdn.thepond.howtohockey.com/2020/08/block-ad-final-scaled-1.jpg" alt="" class="card-img-top" />
                             <div class="card-body">
