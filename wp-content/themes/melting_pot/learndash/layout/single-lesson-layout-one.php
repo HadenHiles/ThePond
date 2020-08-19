@@ -22,27 +22,27 @@ $parent_course_id = learndash_get_setting( $post, 'course' );
 <div class="CourseContent">
 <?php get_template_part('template-parts/courses/lesson-topic-fields'); ?>
 
-<!-- Tips for success list -->
-<div class="ListWithHeading">
-	<?php
-	// Check rows exists.
-	if( have_rows('tips_for_success') ):
-		$count = count(get_field('tips_for_success'));
-		?>
-		<h3><?=($count > 1) ? $count : ''?> Tips For Success</h3>
-		<?php
-		// Loop through rows.
-		keyLessonList('tips_for_success');
-	// No value.
-	else :
-		// Do something...
-	endif;
-	?>
-</div>
-
 <?php
 if (current_user_can('mepr-active','rules:487')) {
 	?>
+	<!-- Tips for success list -->
+	<div class="ListWithHeading">
+		<?php
+		// Check rows exists.
+		if( have_rows('tips_for_success') ):
+			$count = count(get_field('tips_for_success'));
+			?>
+			<h3><?=($count > 1) ? $count : ''?> Tips For Success</h3>
+			<?php
+			// Loop through rows.
+			keyLessonList('tips_for_success');
+		// No value.
+		else :
+			// Do something...
+		endif;
+		?>
+	</div>
+	
 	<!-- Common mistakes list -->
 	<div class="ListWithHeading">
 		<?php
