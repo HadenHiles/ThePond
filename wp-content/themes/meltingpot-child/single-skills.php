@@ -226,6 +226,53 @@ $imgAlt = get_post_meta($imgID,'_wp_attachment_image_alt', true);
                 // Do something...
             endif;
             ?>
+
+            <?php
+            $relatedLessons = get_field('skills', $post->ID);
+            $relatedLessons = get_posts(array(
+                'post_type' => 'sfwd-lessons',
+                'meta_query' => array(
+                    array(
+                        'key' => 'skills', // name of custom field
+                        'value' => '"' . $post->ID . '"', // matches exactly "123", not just 123. This prevents a match for "1234"
+                        'compare' => 'LIKE'
+                    )
+                )
+            ));
+            if (!empty($relatedLessons)) {
+                ?>
+                <h2 style="margin-bottom: 5px;">Related Lessons</h2>
+                <?php
+            }
+            ?>
+            <div class="skills-list">
+                <?php
+                if (!empty($relatedLessons)) {
+                    foreach($relatedLessons as $relatedLesson) {
+                        $performanceLevels = get_the_terms( $relatedLesson->ID, 'performance-level' ); 
+                        $performanceLevelString = '';
+                        if(sizeof($performanceLevels) > 0) {
+                            $count = 0;
+                            foreach($performanceLevels as $performanceLevel) {
+                                if (++$count > 1 && $count <= sizeof($performanceLevels)) {
+                                    $performanceLevelString .= ', ';
+                                }
+                                $performanceLevelString .= $performanceLevel->name;
+                            }
+                        }
+                        ?>
+                        <div class="card skill">
+                            <div class="card-body content">
+                                <a href="<?=get_post_permalink($relatedLesson->ID)?>" class="ghost"></a>
+                                <a href="<?=get_post_permalink($relatedLesson->ID)?>" class="title"><?=get_the_title($relatedLesson->ID)?></a>
+                                <span class="level"><?=$performanceLevelString?></span>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                }
+                ?>
+            </div>
         </div>
     </div>
     <?php endwhile; endif;?>

@@ -199,7 +199,7 @@ get_header('members'); ?>
 												<a class="BTN action-button"
 													data-title="<?=$name?>"
 													data-url="<?=$url?>"
-													data-button="Full Tutorial"
+													data-button="Full Breakdown"
 													data-video="<?=htmlspecialchars($videoCode)?>"
 													data-side="<?=htmlspecialchars($breakdownDetails)?>">
 														<i class="fa fa-play"></i>&nbsp;&nbsp;Breakdown
