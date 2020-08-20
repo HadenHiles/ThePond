@@ -1,6 +1,7 @@
 <?php
 wp_enqueue_scripts( 'wp-utils' );
 
+wp_enqueue_script( 'jquery', get_template_directory_uri() . '/js/vendor/jquery.min.js', array(), null, true);
 wp_enqueue_style( 'datatables', get_template_directory_uri() . '/bootstrap-4.5.0/DataTables/datatables.min.css');
 wp_enqueue_script( 'datatables', get_template_directory_uri() . '/bootstrap-4.5.0/DataTables/datatables.min.js', array(), null, true);
 wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/bootstrap-4.5.0/dist/css/bootstrap.min.css');
