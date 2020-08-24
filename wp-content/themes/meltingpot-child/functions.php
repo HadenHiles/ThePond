@@ -122,6 +122,17 @@ function mepr_add_tabs($user) {
   }
   add_filter( 'edit_profile_url', 'modify_profile_url', 10, 3 );
 
+/**
+ * Enable excerpts for LearnDash Courses/Lessons and Skills/Skill Examples
+ */
+function add_custom_excerpts() {
+  add_post_type_support( 'sfwd-courses', 'excerpt' );
+  add_post_type_support( 'sfwd-lessons', 'excerpt' );
+  add_post_type_support( 'skill', 'excerpt' );
+  add_post_type_support( 'skill-examples', 'excerpt' );
+}
+add_action( 'init', 'add_custom_excerpts' );
+
 /* Shortcodes */
 require_once('shortcodes.php');
 

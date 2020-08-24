@@ -4,28 +4,26 @@ get_header('members');
 ?>
 </header>
  
-<section class="memberDashWelc" style="padding-bottom: 0;">
-	<div class="row">
-		<div class="large-12 columns centered">
-			<h1 class="page-title">
-<?php _e( 'Search results for:', 'meltdefault' ); ?>
- <span class="searchResult"><?php echo get_search_query(); ?></span>
-</h1>
-		
-			<div class="searchResults">
-		<form role="search" method="get" class="search-form" action="<?php echo site_url();?>">
-				    <input type="search" class="search-field" placeholder="Search..." value="<?php echo get_search_query(); ?>" name="s" title="Search">
-				    <input type="submit" class="search-submit" value="Search">
-				</form>
-			</div>
-			</div>
-	</div>
-</section> 
 <!-- section-->
-<section class="searchContent" style="padding: 1rem 0;">
+<section class="searchContent memberbenefits dashboardbenefits" style="min-height: 80vh; padding: 1rem 0;">
+<div class="row">
+    <div class="large-12 columns centered">
+        <h1 class="page-title">
+            <?php _e( 'Search results for:', 'meltdefault' ); ?>
+            <span class="searchResult"><?php echo get_search_query(); ?></span>
+        </h1>
+    
+        <div class="searchResults">
+            <form role="search" method="get" class="search-form" action="<?php echo site_url();?>">
+                <input type="search" class="search-field" placeholder="Search..." value="<?php echo get_search_query(); ?>" name="s" title="Search">
+                <input type="submit" class="search-submit" value="Search">
+            </form>
+        </div>
+    </div>
+</div>
 <div class="row">
 
-	<?php if ( have_posts() ) : ?>
+	<?php if ( have_posts() && !empty(get_search_query()) ) : ?>
 		<div class="large-12 challenges-wrapper">
 			<div class="bootstrap-styles challenges">
                 <?php 
@@ -68,7 +66,30 @@ get_header('members');
                         </div>
                         <div class="card-body">
                             <h4><? the_title(); ?></h4>
-                            <p class="filterDesc card-text"><?php the_excerpt(); ?></p>
+                            <?php
+                            if (!empty(get_the_excerpt())) {
+                                ?>
+                                <p class="filterDesc card-text"><?php the_excerpt(); ?></p>
+                                <?php
+                            } else if (!empty(get_field('above_media'))) {
+                                ?>
+                                <p class="filterDesc card-text"><?=limit_text(get_field('above_media'), 20)?></p>
+                                <?php
+                            }
+                            else if (!empty(get_field('below_media'))) {
+                                ?>
+                                <p class="filterDesc card-text"><?=limit_text(get_field('below_media'), 20)?></p>
+                                <?php
+                            } else if (!empty(get_field('when_to_use_it'))) {
+                                ?>
+                                <p class="filterDesc card-text"><?=limit_text(get_field('when_to_use_it'), 20)?></p>
+                                <?php
+                            } else if (!empty(get_the_content())) {
+                                ?>
+                                <p class="filterDesc card-text"><?=limit_text(get_the_content(), 20)?></p>
+                                <?php
+                            }
+                            ?>
                         </div>
                     </a>
                 <?php 
@@ -111,4 +132,15 @@ get_header('members');
 </div>
 </section>
 
-<?php get_footer('members'); ?>
+<?php 
+get_footer('members');
+
+function limit_text($text, $limit) {
+    if (str_word_count($text, 0) > $limit) {
+        $words = str_word_count($text, 2);
+        $pos   = array_keys($words);
+        $text  = substr($text, 0, $pos[$limit]) . '...';
+    }
+    return $text;
+}
+?>

@@ -1582,7 +1582,7 @@ function hide_course_from_feed( $query ) {
 
   
 }
-add_action( 'pre_get_posts', 'hide_course_from_feed', 99 );
+// add_action( 'pre_get_posts', 'hide_course_from_feed', 99 );
 
 
 add_action('wp_ajax_aj_custom_ajax_logout', 'aj_custom_ajax_logout');

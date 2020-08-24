@@ -31,7 +31,7 @@
 				 <li class="active" data-filter="all"> All </li>
 			  	 <li data-filter="sfwd-courses"> <?php echo "Course"; ?> </li>
 				 <li data-filter="sfwd-lessons"> <?php echo "Lesson"; ?> </li>
-				 <li data-filter="sfwd-drill"> <?php echo "Drill"; ?> </li>
+				 <li data-filter="sfwd-topic"> <?php echo "Topic"; ?> </li>
 				 <li data-filter="content-library"> <?php echo "Challenge/Resource"; ?> </li>
 				</ul>
 				
