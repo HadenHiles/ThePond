@@ -152,6 +152,14 @@
 		modal.find('a.action').text('More');
 	});
 
+	//Latest Challenge modal
+	$('a[href="#latestChallengeModal"]').click(function(e) {
+		e.preventDefault();
+		$($(this).attr('href')).modal({
+			backdrop: true
+		}).modal('toggle');
+	});
+
 	// Option to allow full screen image on click
 	function initFullScreenImageClick() {
 		$('img[data-enlargable]').addClass('img-enlargable').click(function(){

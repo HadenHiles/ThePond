@@ -42,7 +42,7 @@ h6 {}
 		position: fixed;
 		z-index: 13;
 	}
-	.memberDashWelc, #CourseHeader {
+	.memberDashWelc, #CourseHeader, .clbHeader {
 		margin-top: 60px;
 	}
 }
@@ -674,7 +674,7 @@ img[data-enlargable] {
 body.modal-open {
     overflow: hidden;
 }
-.transparent-modal {
+body.modal-open .transparent-modal {
 	width: 100vw;
 	height: 100vh;
 	position: fixed;
@@ -958,6 +958,10 @@ body.modal-open {
 	}
 	.challenges a.card.challenge {
 		flex-basis: 44%;
+	}
+	.latest-challenge .card .card-img-top .CourseSoon {
+		right: -170px !important;
+		bottom: 20px !important;
 	}
 }
 @media screen and (max-width: 600px) {

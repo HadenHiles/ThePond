@@ -27,6 +27,74 @@ get_header("members");
 
 <!-- section-->
 <section class="memberbenefits dashboardbenefits" style="min-height: 80vh;">
+	<?php
+	$challengesQuery = new WP_Query( array(
+		'posts_per_page' => $limit,
+		'post_status'    => 'publish',
+		'post_type' => 'content-library',
+		'order' => 'desc',
+		'orderby' => 'post_date',
+		'suppress_filters' => true,
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'library_category',
+				'field' => 'slug',
+				'terms' => 'challenges', //pass your term name here
+				'include_children' => true
+			)
+		)
+	));
+
+	$latestChallenge = $challengesQuery->posts[0];
+	$title = get_the_title($latestChallenge->ID);
+	$shortDescription = get_field('description_short', $latestChallenge->ID);
+	$videoCode = get_field('video_code', $latestChallenge->ID);
+	if (empty($videoCode)) {
+		$post_thumbnail_id = get_post_thumbnail_id($latestChallenge);
+		$img = wp_get_attachment_image_url( $post_thumbnail_id , 'full');
+		if (empty($img))
+			$img = '/wp-content/themes/meltingpot-child/images/placeholder.png';
+
+		$videoCode = '<img src="' . $img . '" alt="' . $title . '" />';
+
+	}
+	if (!current_user_can('mepr-active','rules:487')) {
+		?>
+		<div class="bootstrap-styles transparent-modal">
+			<div class="modal fade skills-vault-modal" id="latestChallengeModal" tabindex="-1" role="dialog" aria-labelledby="latestChallengeModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h2 class="modal-title"><?=$title?></h2>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<div class="medium-8 columns video">
+								<div class="videoWrapper">
+									<?php
+									if (!empty($videoCode)) {
+										?>
+										<?=$videoCode?>
+										<?php
+									}
+									?>
+								</div>
+							</div>
+							<div class="medium-4 columns side"><?=$shortDescription?></div>
+						</div>
+						<div class="modal-footer">
+							<p>For full access to The Pond</p>
+							<a class="BTN action" href="/">Join Now</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<?php
+	}
+	?>
 	<div class="challenges-wrapper">
 		<?php
 			$categories = get_terms( 'skill-type', array(
@@ -50,24 +118,9 @@ get_header("members");
 			<?php } ?>	
 			
 			<div class="bootstrap-styles challenges">
-                <?php 
-                $challengesQuery = new WP_Query( array(
-                    'posts_per_page' => $limit,
-                    'post_status'    => 'publish',
-                    'post_type' => 'content-library',
-                    'order' => 'desc',
-                    'orderby' => 'post_date',
-                    'suppress_filters' => true,
-                    'tax_query' => array(
-                        array(
-                            'taxonomy' => 'library_category',
-                            'field' => 'slug',
-                            'terms' => 'challenges', //pass your term name here
-                            'include_children' => true
-                        )
-                    )
-                ));
+				<?php
 				while ($challengesQuery->have_posts()) : $challengesQuery->the_post();
+					$isLatestChallenge = ($latestChallenge->ID == get_the_ID());
 					$terms = get_the_terms(get_the_ID(), 'skill-type'); 
 					
 					$post_thumbnail_id = get_post_thumbnail_id();
@@ -87,7 +140,20 @@ get_header("members");
 					}
 
 					?>
-					<a href="<?php if(get_field('available')) { ?><? the_permalink(); } ?>" class="card shadow challenge filter <?php echo $class; ?>" data-category="<?=$termsString?>" data-sort="value" data-search="<?php the_title(); ?>\n<?php the_field('description_short'); ?>">
+					<a 	href="<?php if(get_field('available') && (!$isLatestChallenge || current_user_can('mepr-active','rules:487'))) { ?><? the_permalink(); } else { ?>#latestChallengeModal<?php } ?>"
+						class="card shadow challenge filter <?php echo $class; ?>" 
+						<?php 
+						if ($isLatestChallenge && !current_user_can('mepr-active','rules:487')) { 
+							?>
+							data-toggle="modal"
+							data-target="latestChallengeModal"
+							<?php 
+						} 
+						?>
+						data-category="<?=$termsString?>"
+						data-sort="value"
+						data-search="<?php the_title(); ?>\n<?php the_field('description_short'); ?>"
+					>
 						<div class="card-img-top" style="background-image: url('<? echo $img; ?>'); overflow: hidden; position: relative;">
 							<?php 
 							foreach ($terms as $term) {
@@ -96,11 +162,19 @@ get_header("members");
 								<?php 
 							}
 							
-							if(!get_field('available')) {
+							if(!get_field('available') && (!$isLatestChallenge || current_user_can('mepr-active','rules:487'))) {
 								?>
 								<div class="CourseSoon" style="top: auto; left: auto; bottom: 25px; right: -150px; transform: rotate(-35deg); -webkit-transform: rotate(-35deg);">Coming Soon</div>
-								<?php 
-							} 
+								<?php
+							} else if ($isLatestChallenge && !current_user_can('mepr-active','rules:487')) {
+								?>
+								<div class="CourseSoon" style="background: #cc3333; top: auto; left: auto; bottom: 25px; right: -150px; transform: rotate(-35deg); -webkit-transform: rotate(-35deg);">Free Challenge</div>
+								<?php
+							} else if (!current_user_can('mepr-active','rules:487')) {
+								?>
+								<div class="CourseSoon" style="top: auto; left: auto; bottom: 25px; right: -150px; transform: rotate(-35deg); -webkit-transform: rotate(-35deg);">Members Only</div>
+								<?php
+							}
 							?>
 						</div>
 						<div class="card-body">
