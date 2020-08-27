@@ -1,4 +1,7 @@
 <?php
+// For score update count
+session_start();
+
 function get_challenge_scores() {
     try {
         $challenge_id = $_POST['challenge_id'];
@@ -35,8 +38,22 @@ function add_challenge_score() {
             throw new Exception('You don\'t have permission to add this score');
         }
 
+        if (empty($_SESSION['score_update_count'])) {
+            $_SESSION['score_update_count'] = 0;
+        }
+
         global $wpdb;
         $table_name = $wpdb->prefix . "challenge_scores";
+        $query =    "SELECT DATE(`date`) FROM $table_name
+                        WHERE `date` >= CURDATE()";
+
+        $scores = $wpdb->get_results( $query );
+        $todayScores = sizeof($scores);
+        if ($todayScores <= 4 && $_SESSION['score_update_count'] <= 4) {
+            $_SESSION['score_update_count'] = $_SESSION['score_update_count'] + 1;
+            do_shortcode('[mycred_give amount=25 log="Pond Points for doing a challenge" ref="pond_points"]');
+        }
+
         if ($wpdb->insert($table_name, array(
                 'id' => null,
                 'challenge_id' => $challenge_id,
