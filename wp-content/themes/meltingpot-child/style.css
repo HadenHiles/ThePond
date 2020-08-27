@@ -32,6 +32,23 @@ h6 {}
 
 .MemberheaderWrap .headerlogo {max-width:20%;}
 .topmemberNav {padding-right:0;}
+.topmemberNav span.pond-points {
+	color: #fff;
+	font-size: 22px;
+	font-family: 'Teko', sans-serif;
+	font-weight: bold;
+	padding: 5px 10px;
+	letter-spacing: 0.05em;
+}
+.topmemberNav span.pond-points .fa-stack {
+	margin-left: -15px;
+}
+.topmemberNav span.pond-points .square {
+	border: 1px solid #14345a;
+}
+.topmemberNav span.pond-points .pp {
+	color: #14345a;
+}
 
 .MemberheaderWrap .MainNav a {
 	cursor: pointer !important;

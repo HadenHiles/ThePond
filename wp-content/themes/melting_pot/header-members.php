@@ -37,6 +37,12 @@
       </div>
       <?php if (is_user_logged_in()) : ?>
 		<div class="topmemberNav">
+			<span class="pond-points"><?=do_shortcode('[mycred_total_balance]');?>
+				<span class="fa-stack fa-1x">
+					<i class="fas fa-square fa-stack-1x square"></i>
+					<i class="fab fa-pied-piper-pp fa-stack-1x fa-inverse pp"></i>
+				</span>
+			</span>
 	   <?php
 	   if ( has_nav_menu( 'member-account-menu' ) ) {
 				wp_nav_menu ( array (
