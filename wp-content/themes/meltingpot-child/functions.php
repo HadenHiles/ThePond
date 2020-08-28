@@ -98,29 +98,28 @@ add_filter( 'posts_distinct', 'cf_search_distinct' );
 
 /* Memberpress account tabs */
 function mepr_add_tabs($user) {
-    ?>
-      <span class="mepr-nav-item avatar">
-        <!-- KEEPS THE USER ON THE ACCOUNT PAGE -->
-        <a href="/account/?action=avatar">Avatar</a>
-      </span>
-    <?php
-  }
-  add_action('mepr_account_nav', 'mepr_add_tabs');
+  ?>
+    <span class="mepr-nav-item avatar">
+      <!-- KEEPS THE USER ON THE ACCOUNT PAGE -->
+      <a href="/account/?action=avatar">Avatar</a>
+    </span>
+  <?php
+}
+add_action('mepr_account_nav', 'mepr_add_tabs');
   
-  function mepr_add_tabs_content($action) {
-    if($action == 'avatar') {
-      echo do_shortcode('[avatar_upload]');
-    }
+function mepr_add_tabs_content($action) {
+  if($action == 'avatar') {
+    echo do_shortcode('[avatar_upload]');
   }
-  add_action('mepr_account_nav_content', 'mepr_add_tabs_content');
+}
+add_action('mepr_account_nav_content', 'mepr_add_tabs_content');
 
-  function modify_profile_url( $url, $user_id, $scheme )
-  {
-      // Makes the link to http://example.com/custom-profile
-      $url = site_url( '/account/?action=avatar' );
-      return $url;
-  }
-  add_filter( 'edit_profile_url', 'modify_profile_url', 10, 3 );
+function modify_profile_url( $url, $user_id, $scheme ) {
+    // Makes the link to http://example.com/custom-profile
+    $url = site_url( '/account/?action=avatar' );
+    return $url;
+}
+add_filter( 'edit_profile_url', 'modify_profile_url', 10, 3 );
 
 /**
  * Enable excerpts for LearnDash Courses/Lessons and Skills/Skill Examples
@@ -147,3 +146,6 @@ require_once('acf.php');
 
 // CPT
 require_once('cpt.php');
+
+// Classes
+require_once('HthMeprUser.class.php');

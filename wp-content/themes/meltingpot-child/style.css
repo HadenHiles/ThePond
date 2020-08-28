@@ -43,11 +43,27 @@ h6 {}
 .topmemberNav span.pond-points .fa-stack {
 	margin-left: -15px;
 }
+.topmemberNav span.pond-points .pp, .topmemberNav span.pond-points .square {
+	font-size: 26px;
+}
 .topmemberNav span.pond-points .square {
 	border: 1px solid #14345a;
 }
 .topmemberNav span.pond-points .pp {
 	color: #14345a;
+}
+.tooltip {
+	padding: 5px;
+	background: rgba(0, 0, 0, 0.8);
+}
+.tooltip .tooltip-inner {
+	color: #fff;
+	font-size: 16px;
+	letter-spacing: 0.02em;
+	font-family: 'Teko', sans-serif;
+}
+.tooltip .arrow {
+	background: rgba(0, 0, 0, 0.8);
 }
 
 .MemberheaderWrap .MainNav a {
@@ -553,6 +569,33 @@ img[data-enlargable] {
 }
 .Dashboard.profile .ld-profile-stats .ld-profile-stat-completed {
 	border-right: none;
+}
+.pond-points {
+	position: relative;
+	top: 10px;
+	font-weight: bold;
+	font-family: 'Teko', sans-serif;
+	font-size: 22px;
+	letter-spacing: 0.05em;
+}
+.pond-points .mycred-my-balance-wrapper {
+	float: left;
+	position: relative;
+	z-index: 2;
+}
+.pond-points .fa-stack {
+	margin-left: -15px;
+}
+.pond-points .pp, .Dashboard.profile .ld-profile-card .pond-points .square {
+	font-size: 26px;
+}
+.pond-points .pp {
+	transform: scale(1.1);
+}
+@media screen and (max-width: 1024px) {
+	.pond-points {
+		top: 2px;
+	}
 }
 
 /* Skill Vault */

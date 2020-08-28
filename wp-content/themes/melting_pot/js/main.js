@@ -43,6 +43,12 @@
 			}, 300);
 			});
 		}
+
+		// Move profile pond points to below edit profile link
+		$('#pond-points').appendTo('.ld-profile-card');
+
+		// Enable bootstrap tooltips
+		$('[data-toggle="tooltip"]').tooltip();
 	
 		// Option to allow full screen image on click
 		initFullScreenImageClick();

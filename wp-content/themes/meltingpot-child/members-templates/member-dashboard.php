@@ -42,6 +42,131 @@ get_header('members'); ?>
 		<div class="sectionHeader">
 			<div class="large-12 columns">
 				<?=do_shortcode('[ld_profile course_points_user="false" show_quizzes="false"]');?>
+				<div id="pond-points">
+					<span class="pond-points" data-toggle="tooltip" title="Pond Points"><?=do_shortcode('[mycred_total_balance]');?>
+						<span class="fa-stack fa-1x">
+							<i class="fas fa-square fa-stack-1x square"></i>
+							<i class="fab fa-pied-piper-pp fa-stack-1x fa-inverse pp"></i>
+						</span>
+					</span>
+				</div>
+
+				<?php
+				$hthMeprUser = new HthMeprUser();
+				$user_id = get_current_user_id();
+				$membershipIds = $hthMeprUser->get_memberships($user_id);
+				// get the 'coach' membership ID
+				$coachMembershipId = null;
+				if ($posts = 
+					get_posts(
+						array( 
+							'name' => 'coach', 
+							'post_type' => 'memberpressproduct',
+							'post_status' => 'publish',
+							'posts_per_page' => 1
+						)
+					)
+				) {
+					$coachMembershipId = $posts[0]->ID;
+				}
+
+				if(in_array($coachMembershipId, $membershipIds)) {
+					?>
+					<div class="clearfix"></div>
+					<br />
+					<br />
+					<br />
+					<h2>Your Team (Sub Accounts)</h2>
+					<br />
+					<div class="bootstrap-styles coach-team">
+						<div class="skills-list">
+							<?php
+							$subscriptionObjects = $hthMeprUser->get_subscriptions($user_id);
+
+							foreach ($subscriptionObjects as $key => $value) {
+								if ($value->product_id != $coachMembershipId) {
+									unset($subscriptionObjects[$key]);
+									$subscriptionObjects = array_values($subscriptionObjects);
+								}
+							}
+
+							global $wpdb;
+							$table_name = $wpdb->prefix . "mepr_corporate_accounts";
+							$corporateAccounts = array();
+							foreach ($subscriptionObjects as $subscriptionObject) {
+								$query =    "SELECT uuid FROM $table_name
+											WHERE user_id = %d
+											AND obj_id = %d
+											AND obj_type = %s
+											AND `status` = %s";
+								$results = $wpdb->get_results( $wpdb->prepare(
+									$query,
+									$user_id,
+									$subscriptionObject->subscription_id,
+									'subscriptions',
+									'enabled')
+								);
+								array_push($corporateAccounts, $results[0]);
+							}
+
+							$hasASubAccount = false;
+							if (class_exists('MPCA_Corporate_Account')) {
+								foreach($corporateAccounts as $corporateAccount) {
+									$ca = MPCA_Corporate_Account::find_by_uuid($corporateAccount->uuid);
+			
+									$perpage = 15;
+									$currpage = 1;
+									$search = '';
+									$res = $ca->sub_account_list_table('last_name','ASC',$currpage,$perpage,$search);
+									$subAccounts = $res['results'];
+
+									foreach ($subAccounts as $subAcc) {
+										$hasASubAccount = true;
+										?>
+										<div class="card skill no-hover" style="width: 100%;">
+											<div class="card-body content">
+												<span class="title">
+													<b><?=$subAcc->user_login?></b> (<?=$subAcc->first_name?> <?=$subAcc->last_name?>)
+													<br />
+													<span style="font-size: 0.8em;"><?=$subAcc->user_email?></span>
+												</span>
+												<div class="right">
+													<span class="pond-points" data-toggle="tooltip" title="Pond Points">
+														<?=do_shortcode('[mycred_my_balance user_id="'  . $user_id . '"]')?>
+														<span class="fa-stack fa-1x" style="float: right; top: -10px; left: 5px;">
+															<i class="fas fa-square fa-stack-1x square"></i>
+															<i class="fab fa-pied-piper-pp fa-stack-1x fa-inverse pp"></i>
+														</span>
+													</span>
+												</div>
+											</div>
+										</div>
+										<?php
+									}
+								}
+
+								if (sizeof($corporateAccounts) <= 0 || !$hasASubAccount) {
+									?>
+									<div class="card skill no-hover" style="width: 100%;">
+										<div class="card-body content" style="justify-content: center;">
+											<span class="title" style="padding: 2.5px;">
+												You currently have no players on your team.
+											</span>
+										</div>
+									</div>
+									<?php
+								}
+							}
+							?>
+						</div>
+					</div>
+					<div style="display: flex; justify-content: center;">
+						<a class="BTN" href="/account/?action=subscriptions" style="float: none;">Manage</a>
+					</div>
+					<?php
+				} else {
+				}
+				?>
 			</div>
 		</div>
 	</div>
