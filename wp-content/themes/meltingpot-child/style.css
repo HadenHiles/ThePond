@@ -39,6 +39,7 @@ h6 {}
 	font-weight: bold;
 	padding: 5px 10px;
 	letter-spacing: 0.05em;
+	top: 0;
 }
 .topmemberNav span.pond-points .fa-stack {
 	margin-left: -15px;
@@ -591,11 +592,6 @@ img[data-enlargable] {
 }
 .pond-points .pp {
 	transform: scale(1.1);
-}
-@media screen and (max-width: 1024px) {
-	.pond-points {
-		top: 2px;
-	}
 }
 
 /* Skill Vault */
