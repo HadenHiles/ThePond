@@ -132,7 +132,7 @@ get_header('members'); ?>
 												</span>
 												<div class="right">
 													<span class="pond-points" data-toggle="tooltip" title="Pond Points">
-														<?=do_shortcode('[mycred_my_balance user_id="'  . $user_id . '"]')?>
+														<?=do_shortcode('[mycred_my_balance user_id="'  . $subAcc->ID . '"]')?>
 														<span class="fa-stack fa-1x" style="float: right; top: -10px; left: 5px;">
 															<i class="fas fa-square fa-stack-1x square"></i>
 															<i class="fab fa-pied-piper-pp fa-stack-1x fa-inverse pp"></i>

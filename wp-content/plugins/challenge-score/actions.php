@@ -135,4 +135,5 @@ function send_response($data, Exception $e = null) {
     }
 }
 
+session_write_close();
 ?>
