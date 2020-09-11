@@ -168,17 +168,17 @@ function keyLessonList($listName) {
 				// Load sub field values.
 				$title = get_sub_field('title');
 				$content = get_sub_field('content');
-				if (!empty($title)) {
-					?>
-					<div class="title"><?=$title?></div>
-					<?php
-				}
-				if (!empty($content)) {
-					?>
-					<div class="content"><?=$content?></div>
-					<?php
-				}
 				?>
+				<div class="title">
+					<?php
+					if (!empty($title) && empty($content)) {
+						echo $title;
+					}
+					if (!empty($content)) {
+						echo $content;
+					}
+					?>
+				</div>
 			</li>
 			<?php
 		// End loop.
