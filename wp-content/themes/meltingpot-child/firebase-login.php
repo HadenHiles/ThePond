@@ -37,7 +37,7 @@ $imgAlt = get_post_meta($imgID,'_wp_attachment_image_alt', true);
                         <p class="btn-text"><b>Sign in with Facebook</b></p>
                     </div>
                     <div class="content" style="width: 100%; float: left; margin-top: 20px; padding-top: 10px; border-top: 2px solid #ccc;">
-                        <?=do_shortcode('[mepr-login-form use_redirect="true"]') ?>
+                        <?=wp_login_form(array("redirect" => "/account"))?>
                     </div>
                     <div style="display: none;">
                         <?=do_shortcode('[mo_firebase_auth_login]') ?>
