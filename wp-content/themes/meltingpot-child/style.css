@@ -1033,3 +1033,78 @@ body.modal-open .transparent-modal {
 	}
 }
 /* END Challenges */
+
+/* Google Login button */
+.google-btn {
+    float:left;
+	display: block;
+	position: relative;
+	width: 100%;
+	background-color: #4285f4;
+	border-radius: 5px;
+	padding-left: 40px;
+	margin: 5px auto;
+  }
+  .google-btn .google-icon-wrapper {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+	margin: 2px;
+	width: 40px;
+	height: 40px;
+	border-radius: 5px;
+	background-color: #fff;
+  }
+  .google-btn .google-icon {
+	float:left;
+	margin-top: 9px;
+	margin-left: 9px;
+	width: 22px;
+	height: 22px;
+  }
+  .google-btn .btn-text {
+    margin: 10px 5px 10px 20px;
+	color: #fff;
+	font-size: 16px;
+	font-family: "Roboto";
+  }
+  .google-btn:hover {
+      cursor: pointer;
+  }
+/* Facebook Login button */
+.facebook-btn {
+	display: block;
+	position: relative;
+    float:left;
+	width: 100%;
+	background-color: #3b5998 ;
+	border-radius: 5px;
+	padding-left: 40px;
+	margin: 5px auto;
+  }
+  .facebook-btn .facebook-icon-wrapper {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+	margin: 2px;
+	width: 40px;
+	height: 40px;
+	border-radius: 5px;
+	background-color: #fff;
+  }
+  .facebook-btn .fa-facebook-f {
+	float:left;
+	margin-top: 6px;
+	margin-left: 10px;
+	font-size: 34px;
+	color: #3b5998;
+  }
+  .facebook-btn .btn-text {
+    margin: 10px 5px 10px 20px;
+	color: #fff;
+	font-size: 16px;
+	font-family: "Roboto";
+  }
+  .facebook-btn:hover {
+      cursor: pointer;
+  }
