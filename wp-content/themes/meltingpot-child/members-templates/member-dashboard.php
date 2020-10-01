@@ -40,7 +40,7 @@ get_header('members'); ?>
 	<div class="row">
 
 		<div class="sectionHeader">
-			<div class="large-12 columns">
+			<div class="large-12 columns" id="courses">
 				<?=do_shortcode('[ld_profile course_points_user="false" show_quizzes="false"]');?>
 				<div id="pond-points">
 					<span class="pond-points" data-toggle="tooltip" title="Pond Points"><?=do_shortcode('[mycred_total_balance]');?>
