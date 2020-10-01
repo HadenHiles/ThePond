@@ -32,7 +32,9 @@ get_header("members");
                             <?= do_shortcode('[mo_firebase_auth_login]') ?>
                         </div>
                     </div>
-                    <?php the_content(); ?>
+                    <?php 
+                    the_content();
+                    ?>
 
                     <div class="trustIcons"></div>
 
