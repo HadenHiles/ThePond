@@ -141,7 +141,7 @@ function set_firebase_user_attributes($user, $user_attributes) {
   $user_id = $user->ID;
   
   // Code to store user attributes goes here
-  add_user_meta( $user_id, 'firebase_data', $user_attributes );
+  add_user_meta( $user_id, 'mo_firebase_jwt_data', $user_attributes );
 }
 
 /* Shortcodes */

@@ -1,7 +1,4 @@
 <?php
-// For score update count
-session_start();
-
 function get_challenge_scores() {
     try {
         $challenge_id = $_POST['challenge_id'];
@@ -134,6 +131,4 @@ function send_response($data, Exception $e = null) {
         );
     }
 }
-
-session_write_close();
 ?>
