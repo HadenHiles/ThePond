@@ -58,7 +58,7 @@ get_header("members");
 		$videoCode = '<img src="' . $img . '" alt="' . $title . '" />';
 
 	}
-	if (!current_user_can('mepr-active','rules:480')) {
+	if (!current_user_can('memberpress_authorized')) {
 		?>
 		<div class="bootstrap-styles transparent-modal">
 			<div class="modal fade skills-vault-modal" id="latestChallengeModal" tabindex="-1" role="dialog" aria-labelledby="latestChallengeModalLabel" aria-hidden="true">
@@ -140,10 +140,10 @@ get_header("members");
 					}
 
 					?>
-					<a 	href="<?php if(get_field('available') && (!$isLatestChallenge || current_user_can('mepr-active','rules:480'))) { ?><? the_permalink(); } else { ?>#latestChallengeModal<?php } ?>"
-						class="card shadow challenge filter <?php echo $class; ?>" 
+					<a 	href="<?php if(get_field('available') && (!$isLatestChallenge || current_user_can('memberpress_authorized'))) { ?><? the_permalink(); } else { ?>#latestChallengeModal<?php } ?>"
+						class="card shadow challenge filter <?php echo $class; ?>"
 						<?php 
-						if ($isLatestChallenge && !current_user_can('mepr-active','rules:480')) { 
+						if ($isLatestChallenge && !current_user_can('memberpress_authorized')) { 
 							?>
 							data-toggle="modal"
 							data-target="latestChallengeModal"
@@ -162,15 +162,15 @@ get_header("members");
 								<?php 
 							}
 							
-							if(!get_field('available') && (!$isLatestChallenge || current_user_can('mepr-active','rules:480'))) {
+							if(!get_field('available') && (!$isLatestChallenge || current_user_can('memberpress_authorized'))) {
 								?>
 								<div class="CourseSoon" style="top: auto; left: auto; bottom: 25px; right: -150px; transform: rotate(-35deg); -webkit-transform: rotate(-35deg);">Coming Soon</div>
 								<?php
-							} else if ($isLatestChallenge && !current_user_can('mepr-active','rules:480')) {
+							} else if ($isLatestChallenge && !current_user_can('memberpress_authorized')) {
 								?>
 								<div class="CourseSoon" style="background: #cc3333; top: auto; left: auto; bottom: 25px; right: -150px; transform: rotate(-35deg); -webkit-transform: rotate(-35deg);">Free Challenge</div>
 								<?php
-							} else if (!current_user_can('mepr-active','rules:480')) {
+							} else if (!current_user_can('memberpress_authorized')) {
 								?>
 								<div class="CourseSoon" style="top: auto; left: auto; bottom: 25px; right: -150px; transform: rotate(-35deg); -webkit-transform: rotate(-35deg);">Members Only</div>
 								<?php
