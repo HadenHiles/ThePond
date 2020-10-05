@@ -1,13 +1,5 @@
 <?php
-/**
-* Template Name: Login Funnel
-* Description: Only use for redirecting accordingly after login
-*
-* @package WordPress
-* @subpackage Meltingpot-child
-* @since Twenty Twenty
-*/
-get_header("members");
+require_once('../../../wp-load.php');
 
 $chosenMembership = $_COOKIE['selected_membership'];
 setcookie('selected_membership', null, -1, '/');
