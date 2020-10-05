@@ -132,6 +132,18 @@ function add_custom_excerpts() {
 }
 add_action( 'init', 'add_custom_excerpts' );
 
+// FIREBASE ACTIONS
+add_action('mo_firebase_user_attributes', 'set_firebase_user_attributes' , 10, 2);
+
+function set_firebase_user_attributes($user, $user_attributes) {
+  // $user : WP user belonging to Firebase jwt token
+  // $user_attributes : contains response received from Firebase
+  $user_id = $user->ID;
+  
+  // Code to store user attributes goes here
+  add_user_meta( $user_id, 'firebase_data', $user_attributes );
+}
+
 /* Shortcodes */
 require_once('shortcodes.php');
 
