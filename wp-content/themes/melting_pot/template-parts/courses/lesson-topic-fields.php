@@ -5,7 +5,7 @@
 <?php endif; ?>
     <?php
     //Unauthorized
-    if (!current_user_can('mepr-active','rules:487')) {
+    if (!current_user_can('memberpress_authorized')) {
         ?>
         <div class="bootstrap-styles">
             <div class="card">
