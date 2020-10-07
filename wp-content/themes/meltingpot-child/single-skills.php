@@ -42,7 +42,7 @@ $imgAlt = get_post_meta($imgID,'_wp_attachment_image_alt', true);
                 ?>
                 <div class="clearfix"></div>
                 <?php
-                if(current_user_can('mepr-active','rules:487')) {
+                if(current_user_can('memberpress_authorized')) {
                     ?>
                     <a href="/member-dashboard" class="BTN"><i class="fa fa-caret-left"></i> Dashboard</a>
                     <?php
@@ -100,7 +100,7 @@ $imgAlt = get_post_meta($imgID,'_wp_attachment_image_alt', true);
             <article>
                 <?php
                 //Unauthorized
-                if(!current_user_can('mepr-active','rules:487')) {
+                if(!current_user_can('memberpress_authorized')) {
                     ?>
                     <div class="bootstrap-styles main">
                         <?php
@@ -231,8 +231,8 @@ $imgAlt = get_post_meta($imgID,'_wp_attachment_image_alt', true);
     <div class="large-4 medium-6 columns" style="margin: 15px auto;">
         <div class="bootstrap-styles side">
             <?php
-            //Unauthorized
-            if(current_user_can('mepr-active','rules:487')) {
+            //Authorized
+            if(current_user_can('memberpress_authorized')) {
                 // Check rows exists.
                 if( have_rows('skill_pros') ):
                     ?>
