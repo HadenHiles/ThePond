@@ -26,7 +26,7 @@ setcookie($cookie_name, $cookie_value, time() + (3600 * 30), "/"); // 3600 = 1 h
                                 <div class="google-icon-wrapper">
                                     <img class="google-icon" src="https://cdn.thepond.howtohockey.com/2020/09/Google__G__Logo.svg">
                                 </div>
-                                <p class="btn-text"><b>Sign in with Google</b></p>
+                                <p class="btn-text"><b>Sign up with Google</b></p>
                             </div>
                             <div class="facebook-btn" id="mo_firebase_Facebook_provider_login">
                                 <div class="facebook-icon-wrapper">
@@ -34,10 +34,10 @@ setcookie($cookie_name, $cookie_value, time() + (3600 * 30), "/"); // 3600 = 1 h
                                         <path fill="currentColor" d="M76.7 512V283H0v-91h76.7v-71.7C76.7 42.4 124.3 0 193.8 0c33.3 0 61.9 2.5 70.2 3.6V85h-48.2c-37.8 0-45.1 18-45.1 44.3V192H256l-11.7 91h-73.6v229"></path>
                                     </svg><!-- <i class="fab fa-facebook-f"></i> -->
                                 </div>
-                                <p class="btn-text"><b>Sign in with Facebook</b></p>
+                                <p class="btn-text"><b>Sign up with Facebook</b></p>
                             </div>
                             <div style="display: none;">
-                                <?= do_shortcode('[mo_firebase_auth_login]') ?>
+                                <?=do_shortcode('[mo_firebase_auth_login]');?>
                             </div>
                         </div>
                         <?php 

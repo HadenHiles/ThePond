@@ -183,10 +183,9 @@
       <label for="mepr_no_val" class="mepr-visuallyhidden"><?php _ex('No val', 'ui', 'memberpress'); ?></label>
       <input type="text" id="mepr_no_val" name="mepr_no_val" class="mepr-form-input mepr-visuallyhidden mepr_no_val mepr-hidden" autocomplete="off" />
 
-      <input type="submit" class="mepr-submit" id="mepr-submit" value="<?php echo stripslashes($product->signup_button_text); ?>" />
+      <input type="submit" class="mepr-submit" value="<?php echo stripslashes($product->signup_button_text); ?>" />
       <img src="<?php echo admin_url('images/loading.gif'); ?>" style="display: none;" class="mepr-loading-gif" title="<?php _ex('Loading icon', 'ui', 'memberpress'); ?>" />
       <?php MeprView::render('/shared/has_errors', get_defined_vars()); ?>
     </div>
   </form>
-  <?php do_action('mo_custom_registration_form_end', 'user_email', 'mepr_user_password', 'mepr-submit'); ?>
 </div>

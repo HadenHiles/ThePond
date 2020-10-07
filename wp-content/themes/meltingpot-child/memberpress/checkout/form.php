@@ -154,10 +154,9 @@
 
     <div class="mp-form-submit">
       <h1>Test</h1>
-      <input type="submit" class="mepr-submit" id="mepr-submit" value="<?php echo stripslashes($product->signup_button_text); ?>" />
+      <input type="submit" class="mepr-submit" value="<?php echo stripslashes($product->signup_button_text); ?>" />
       <img src="<?php echo admin_url('images/loading.gif'); ?>" style="display: none;" class="mepr-loading-gif" />
       <?php MeprView::render('/shared/has_errors', get_defined_vars()); ?>
     </div>
   </form>
-  <?php do_action('mo_custom_registration_form_end', 'user_email', 'mepr_user_password', 'mepr-submit'); ?>
 </div>
