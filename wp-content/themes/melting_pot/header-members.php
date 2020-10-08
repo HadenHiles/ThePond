@@ -35,16 +35,19 @@
         <a href="/"><img class="logo" src="<?php echo $smof_data['header_logo']; ?>" alt="<?php bloginfo( 'name' ); ?> Logo" /></a>
         <?php endif;?>
       </div>
-		<?php
-		if ( has_nav_menu( 'member-account-menu' ) ) {
-			wp_nav_menu ( array (
-				'theme_location' => 'member-account-menu',
-				'menu_class' => 'LoggedIn',
-				'container' => false
-				)
-			);
+      <?php if (is_user_logged_in()) : ?>
+		<div class="topmemberNav">
+	   <?php
+	   if ( has_nav_menu( 'member-account-menu' ) ) {
+				wp_nav_menu ( array (
+					'theme_location' => 'member-account-menu',
+					'menu_class' => 'LoggedIn',
+					'container' => false
+					)
+				);
+
 		}
-		?>
+			?>
 
 
       </div>
