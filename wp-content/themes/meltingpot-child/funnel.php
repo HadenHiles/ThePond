@@ -15,7 +15,7 @@ if (empty($subscriptions)) {
     if (!empty($chosenMembership)) {
         header('location: ' . $chosenMembership);
     } else {
-        header('location: /choose-your-subscription');
+        header('location: /');
     }
 } else if (!empty($activeSubscriptions)) {
     header('location: /member-dashboard');
