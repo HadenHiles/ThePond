@@ -23,7 +23,7 @@ $parent_course_id = learndash_get_setting( $post, 'course' );
 <?php get_template_part('template-parts/courses/lesson-topic-fields'); ?>
 
 <?php
-if (current_user_can('mepr-active','rules:487')) {
+if (current_user_can('memberpress_authorized')) {
 	?>
 	<!-- Tips for success list -->
 	<div class="ListWithHeading">
@@ -98,7 +98,7 @@ if (current_user_can('mepr-active','rules:487')) {
 	
 	
 <?php 
-if (current_user_can('mepr-active','rules:487')) {
+if (current_user_can('memberpress_authorized')) {
 	echo do_shortcode('[course_content course_id="'.$course_id.'"]');
 }
 ?>
@@ -143,7 +143,7 @@ if (!empty($relatedSkills)) {
 </div>
 
 <?php 
-if (current_user_can('mepr-active','rules:487')) {
+if (current_user_can('memberpress_authorized')) {
 	get_template_part('template-parts/courses/course-downloads'); 
 }
 ?>

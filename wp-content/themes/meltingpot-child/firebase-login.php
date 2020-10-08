@@ -53,11 +53,7 @@ $imgAlt = get_post_meta($imgID,'_wp_attachment_image_alt', true);
                         ?>
                         <div style="text-align: center;">
                             <?php
-                            $mpUser = new MeprUser($wp_user->id);
-                            $activeSubscriptions = $mpUser->active_product_subscriptions('ids');
-                            $hasActiveMembership = !empty($activeSubscriptions);
-                            
-                            if ($hasActiveMembership) {
+                            if (!current_user_can('memberpress_authorized')) {
                                 ?>
                                 <div class="bootstrap-styles">
                                     <div class="alert alert-danger" role="alert">
