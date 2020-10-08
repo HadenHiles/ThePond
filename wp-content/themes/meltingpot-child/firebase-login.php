@@ -52,11 +52,21 @@ $imgAlt = get_post_meta($imgID,'_wp_attachment_image_alt', true);
                         $user = get_user_by('id', get_current_user_id());
                         ?>
                         <div style="text-align: center;">
-                            <div class="bootstrap-styles">
-                            <div class="alert alert-danger" role="alert">
-                                In order to access this content you must have an active subscription. <a href="/account?action=subscriptions">Manage Subscriptions</a>
-                            </div>
-                            </div>
+                            <?php
+                            $mpUser = new MeprUser($wp_user->id);
+                            $activeSubscriptions = $mpUser->active_product_subscriptions('ids');
+                            $hasActiveMembership = !empty($activeSubscriptions);
+                            
+                            if ($hasActiveMembership) {
+                                ?>
+                                <div class="bootstrap-styles">
+                                    <div class="alert alert-danger" role="alert">
+                                        In order to access this content you must have an active subscription. <a href="/account?action=subscriptions">Manage Subscriptions</a>
+                                    </div>
+                                </div>
+                                <?php
+                            }
+                            ?>
                             <h2><span style="font-size: .6em;">Currently signed in as</span> <?=$user->user_login?></h1>
                             <a href="#" class="BTN logout">Logout</a>
                         </div>
