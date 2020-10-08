@@ -42,14 +42,6 @@ get_header('members'); ?>
 		<div class="sectionHeader">
 			<div class="large-12 columns" id="courses">
 				<?=do_shortcode('[ld_profile course_points_user="false" show_quizzes="false"]');?>
-				<div id="pond-points">
-					<span class="pond-points" data-toggle="tooltip" title="Pond Points"><?=do_shortcode('[mycred_total_balance]');?>
-						<span class="fa-stack fa-1x">
-							<i class="fas fa-square fa-stack-1x square"></i>
-							<i class="fab fa-pied-piper-pp fa-stack-1x fa-inverse pp"></i>
-						</span>
-					</span>
-				</div>
 
 				<?php
 				$hthMeprUser = new HthMeprUser();

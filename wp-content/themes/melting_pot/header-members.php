@@ -35,25 +35,16 @@
         <a href="/"><img class="logo" src="<?php echo $smof_data['header_logo']; ?>" alt="<?php bloginfo( 'name' ); ?> Logo" /></a>
         <?php endif;?>
       </div>
-      <?php if (is_user_logged_in()) : ?>
-		<div class="topmemberNav bootstrap-styles">
-			<span class="pond-points" data-toggle="tooltip" title="Pond Points"><?=do_shortcode('[mycred_total_balance]');?>
-				<span class="fa-stack fa-1x">
-					<i class="fas fa-square fa-stack-1x square"></i>
-					<i class="fab fa-pied-piper-pp fa-stack-1x fa-inverse pp"></i>
-				</span>
-			</span>
-	   <?php
-	   if ( has_nav_menu( 'member-account-menu' ) ) {
-				wp_nav_menu ( array (
-					'theme_location' => 'member-account-menu',
-					'menu_class' => 'LoggedIn',
-					'container' => false
-					)
-				);
-
+		<?php
+		if ( has_nav_menu( 'member-account-menu' ) ) {
+			wp_nav_menu ( array (
+				'theme_location' => 'member-account-menu',
+				'menu_class' => 'LoggedIn',
+				'container' => false
+				)
+			);
 		}
-			?>
+		?>
 
 
       </div>
