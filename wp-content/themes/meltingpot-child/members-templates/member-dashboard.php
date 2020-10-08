@@ -44,6 +44,7 @@ get_header('members'); ?>
 				<?=do_shortcode('[ld_profile course_points_user="false" show_quizzes="false"]');?>
 
 				<?php
+				/*
 				$hthMeprUser = new HthMeprUser();
 				$user_id = get_current_user_id();
 				$membershipIds = $hthMeprUser->get_memberships($user_id);
@@ -158,6 +159,7 @@ get_header('members'); ?>
 					<?php
 				} else {
 				}
+				*/
 				?>
 			</div>
 		</div>
