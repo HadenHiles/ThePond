@@ -120,7 +120,7 @@ function learndash_courses_by_categories($atts = [], $content = null, $tag = '')
     <div class="fadeout-right"></div>
     <a id="scroll-left-btn"><i class="fa fa-angle-left"></i></a>
     <a id="scroll-right-btn"><i class="fa fa-angle-right"></i></a>
-    <div class="course-container">
+    <div class="course-container" id="dashboard-courses">
       <?php
       foreach ($courses_by_category as $key => $value) {
         $courseCategoryTerm = get_term_by('slug', $key, 'ld_course_category');
@@ -135,7 +135,7 @@ function learndash_courses_by_categories($atts = [], $content = null, $tag = '')
           <?php
           foreach ($courses_by_category[$key] as $c) {
             ?>
-            <a class="course-item <?=$c->coming_soon ? "coming-soon" : ""?>" href="<?=$c->coming_soon ? "#" : $c->post_url?>" style="background-image: url('<?=$c->img[0]?>')">
+            <a class="course-item <?=$c->coming_soon ? "coming-soon" : ""?>" url="<?=$c->coming_soon ? "#" : $c->post_url?>" style="background-image: url('<?=$c->img[0]?>')">
               <div class="overlay"></div>
               <?php
               ?>
@@ -152,7 +152,7 @@ function learndash_courses_by_categories($atts = [], $content = null, $tag = '')
                       <i class="fa fa-check fa-stack-1x"></i>
                       <i class="fa fa-circle fa-stack-1x icon-background"></i>
                     </span>
-                    <div class="progress-bar" style="width: <?=$c->percentage?>%"><?=$c->percentage?>%</div>
+                    <div class="progress-bar" style="width: <?=$c->percentage?>%">Complete</div>
                     <?php
                   } else if (empty($c->percentage) || $c->percentage == 0) {
                     ?>
@@ -163,7 +163,7 @@ function learndash_courses_by_categories($atts = [], $content = null, $tag = '')
                     <?php
                   } else {
                     ?>
-                    <h6 class="percentage"><?=$c->percentage?>%</h6>
+                    <?php /* <h6 class="percentage"><?=$c->percentage?>%</h6> */ ?>
                     <span class="incomplete fa-stack fa-1x">
                       <i class="fa fa-check fa-stack-1x"></i>
                       <i class="fa fa-circle fa-stack-1x icon-background"></i>

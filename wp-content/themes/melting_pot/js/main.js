@@ -262,4 +262,25 @@
 			});
 		}
 	}
+
+	$('#dashboard-courses .course-item').on('click', (e) => {
+		var url = $(e.target).closest('.course-item').attr('url');
+		if (url != null && url.length > 1) {
+			window.location.href = url;
+		}
+	});
+
+	$('#dashboard-courses .course-item').on('taphold', (e) => {
+		e.preventDefault();
+		if ($(this).hasClass('hovered')) {
+			window.location = $(this).attr('url');
+		}
+		
+		$('#dashboard-courses .course-item').each(() => {
+			$(this).removeClass('hovered');
+		});
+
+		$(this).addClass('hovered');
+	});
+
 })(jQuery);

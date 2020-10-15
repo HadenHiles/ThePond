@@ -1653,6 +1653,7 @@ button {
 	padding: 10px;
 	position: relative;
 	overflow: hidden;  
+	cursor: pointer;
 	background-size: cover;
 	background-position: bottom;
 	font-family: 'Teko', sans-serif;
@@ -1666,7 +1667,8 @@ button {
 	-webkit-transition: all .3s ease-in-out;
   	-o-transition: all .3s ease-in-out;
 }
-.course-item:hover:not(.coming-soon) {
+.course-item:hover:not(.coming-soon),
+.course-item.hovered:not(.coming-soon) {
 	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 	transition: all .3s ease-in-out;
 	-moz-transition: all .3s ease-in-out;
@@ -1702,7 +1704,8 @@ button {
 	-webkit-transition: all .3s ease-in-out;
   	-o-transition: all .3s ease-in-out;
 }
-.course-item:hover:not(.coming-soon) .title h5 {
+.course-item:hover:not(.coming-soon) .title h5,
+.course-item.hovered:not(.coming-soon) .title h5 {
 	opacity: 0;
 	transition: all .3s ease-in-out;
 	-moz-transition: all .3s ease-in-out;
@@ -1726,7 +1729,8 @@ button {
 	-webkit-transition: all .3s ease-in-out;
   -o-transition: all .3s ease-in-out;
 }
-.course-item:hover:not(.coming-soon) .overlay {
+.course-item:hover:not(.coming-soon) .overlay,
+.course-item.hovered:not(.coming-soon) .overlay {
 	background: rgba(0, 0, 0, 0);
 	transition: all .3s ease-in-out;
 	-moz-transition: all .3s ease-in-out;
@@ -1753,7 +1757,8 @@ button {
 	-webkit-transition: all .3s ease-in-out;
   -o-transition: all .3s ease-in-out;
 }
-.course-item:hover .progress-bar {
+.course-item:hover .progress-bar,
+.course-item.hovered .progress-bar {
 	opacity: 1;
 	transition: all .3s ease-in-out;
 	-moz-transition: all .3s ease-in-out;
@@ -1775,7 +1780,8 @@ button {
 	-webkit-transition: all .3s ease-in-out;
   -o-transition: all .3s ease-in-out;
 }
-.course-item:hover .progress-bar-small {
+.course-item:hover .progress-bar-small,
+.course-item.hovered .progress-bar-small {
 	transition: all .3s ease-in-out;
 	-moz-transition: all .3s ease-in-out;
 	-webkit-transition: all .3s ease-in-out;
@@ -1799,6 +1805,19 @@ button {
 	text-align: center;
 	padding: 5px 0 40px 0;
 	width: 140px;
+	transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-webkit-transition: all .3s ease-in-out;
+  	-o-transition: all .3s ease-in-out;
+}
+.course-item:hover .coming-soon,
+.course-item.hovered .coming-soon {
+	bottom: -140px;
+	right: -140px;
+	transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-webkit-transition: all .3s ease-in-out;
+  	-o-transition: all .3s ease-in-out;
 }
 .course-item .complete,
 .course-item .incomplete {
@@ -1809,7 +1828,7 @@ button {
 	transition: all .3s ease-in-out;
 	-moz-transition: all .3s ease-in-out;
 	-webkit-transition: all .3s ease-in-out;
-  -o-transition: all .3s ease-in-out;
+  	-o-transition: all .3s ease-in-out;
 }
 .course-item .complete .fa-check,
 .course-item .incomplete .fa-check {
@@ -1828,7 +1847,9 @@ button {
 	color: #cccccc;
 }
 .course-item:hover .complete,
-.course-item:hover .incomplete {
+.course-item:hover .incomplete,
+.course-item.hovered .complete,
+.course-item.hovered .incomplete {
 	/* opacity: 0; */
 	transition: all .3s ease-in-out;
 	-moz-transition: all .3s ease-in-out;
@@ -1848,7 +1869,8 @@ button {
 	-webkit-transition: all .3s ease-in-out;
   -o-transition: all .3s ease-in-out;
 }
-.course-item:hover h6.percentage {
+.course-item:hover h6.percentage,
+.course-item.hovered h6.percentage {
 	opacity: 0;
 	transition: all .3s ease-in-out;
 	-moz-transition: all .3s ease-in-out;
@@ -1865,7 +1887,7 @@ button {
 		margin-top: 0;
 	}
 	.topmemberNav {
-		margin-top: 2px;
+		margin-top: 0px;
 	}
 	#search input[type="search"] {
 		font-size: 40px;
@@ -1900,6 +1922,13 @@ button {
 		height: 105px;
 		margin: 5px;
 	}
+	.course-item .coming-soon {
+		bottom: -15px;
+		right: -40px;
+		font-size: 11px;
+		padding: 2px 0 30px 0;
+		width: 100px;
+	}
 	.course-item .title {
 		padding: 2px 8px;
 	}
@@ -1907,8 +1936,6 @@ button {
 		font-size: 0.8em;
 	}
 	.course-item .progress-bar {
-		top: -20px;
-		padding-top: 4px;
 		font-size: 0.8em;
 		text-indent: .1em;
 		line-height: 1em;
