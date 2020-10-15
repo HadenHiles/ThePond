@@ -1651,7 +1651,8 @@ button {
 	height: 180px;
 	margin: 10px 5px;
 	padding: 10px;
-  	position: relative;
+	position: relative;
+	overflow: hidden;  
 	background-size: cover;
 	background-position: bottom;
 	font-family: 'Teko', sans-serif;
@@ -1665,12 +1666,15 @@ button {
 	-webkit-transition: all .3s ease-in-out;
   	-o-transition: all .3s ease-in-out;
 }
-.course-item:hover {
+.course-item:hover:not(.coming-soon) {
 	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 	transition: all .3s ease-in-out;
 	-moz-transition: all .3s ease-in-out;
 	-webkit-transition: all .3s ease-in-out;
   -o-transition: all .3s ease-in-out;
+}
+.course-item.coming-soon {
+	cursor: default;
 }
 .course-item .title {
 	position: absolute;
@@ -1678,7 +1682,6 @@ button {
 	bottom: 0;
 	right: 0;
 	left: 0;
-	background: #fff;
 	padding: 10px;
 	border-radius: 0 0 10px 10px;
 	-moz-border-radius: 0 0 10px 10px;
@@ -1686,7 +1689,7 @@ button {
 	-o-border-radius: 0 0 10px 10px;
 }
 .course-item .title h5 {
-	color: #333;
+	color: #fff;
 	font-size: 1.2em;
 	text-align: left;
 	width: 92%;
@@ -1694,6 +1697,17 @@ button {
     line-height: 1em;
 	float: left;
 	white-space: break-spaces;
+	transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-webkit-transition: all .3s ease-in-out;
+  	-o-transition: all .3s ease-in-out;
+}
+.course-item:hover:not(.coming-soon) .title h5 {
+	opacity: 0;
+	transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-webkit-transition: all .3s ease-in-out;
+  	-o-transition: all .3s ease-in-out;
 }
 .course-item .overlay {
 	position: absolute;
@@ -1702,7 +1716,7 @@ button {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: rgba(0, 0, 0, 0.1);
+	background: rgba(0, 0, 0, 0.25);
 	border-radius: 10px;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
@@ -1712,7 +1726,7 @@ button {
 	-webkit-transition: all .3s ease-in-out;
   -o-transition: all .3s ease-in-out;
 }
-.course-item:hover .overlay {
+.course-item:hover:not(.coming-soon) .overlay {
 	background: rgba(0, 0, 0, 0);
 	transition: all .3s ease-in-out;
 	-moz-transition: all .3s ease-in-out;
@@ -1724,9 +1738,11 @@ button {
 	opacity: 0;
 	position: absolute;
 	z-index: 2;
-	top: -32px;
+	bottom: 0;
 	left: 0;
+	padding: 8px 1px;
 	text-indent: .2em;
+	font-size: 20px;
 	line-height: 1.8em;
 	letter-spacing: .05em;
 	background: #069EDA;
@@ -1750,7 +1766,7 @@ button {
 	opacity: 1;
 	position: absolute;
 	z-index: 2;
-	top: -4px;
+	bottom: 0;
 	left: 0;
 	height: 4px;
 	background: #069EDA;
@@ -1765,6 +1781,24 @@ button {
 	-webkit-transition: all .3s ease-in-out;
   -o-transition: all .3s ease-in-out;
 	transition-delay: 0.1s;
+}
+.course-item .coming-soon {
+	display: block;
+	position: absolute;
+	z-index: 2;
+	bottom: -15px;
+	right: -45px;
+	-webkit-transform: rotate(-40deg);
+    -moz-transform: rotate(-40deg);
+    -o-transform: rotate(-40deg);
+    -ms-transform: rotate(-40deg);
+    transform: rotate(-40deg);
+	background: #cc3333;
+	color: #fff;
+	font-size: 18px;
+	text-align: center;
+	padding: 5px 0 40px 0;
+	width: 140px;
 }
 .course-item .complete,
 .course-item .incomplete {
@@ -1805,17 +1839,17 @@ button {
 .course-item h6.percentage {
 	position: absolute;
 	z-index: 2;
-	bottom: 4px;
-	right: 5px;
+	bottom: 8px;
+	right: 35px;
 	color: #fff;
-	opacity: 0;
+	opacity: 1;
 	transition: all .3s ease-in-out;
 	-moz-transition: all .3s ease-in-out;
 	-webkit-transition: all .3s ease-in-out;
   -o-transition: all .3s ease-in-out;
 }
 .course-item:hover h6.percentage {
-	opacity: 1;
+	opacity: 0;
 	transition: all .3s ease-in-out;
 	-moz-transition: all .3s ease-in-out;
 	-webkit-transition: all .3s ease-in-out;

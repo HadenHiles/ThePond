@@ -85,7 +85,9 @@ function learndash_courses_by_categories($atts = [], $content = null, $tag = '')
 
 			$course->course_status = learndash_course_status( $course->course_id, $course->user_id );
 			$course->course_steps_count = learndash_get_course_steps_count( $course->course_id );
-			$course->completed = learndash_course_get_completed_steps( $course->user_id, $course->course_id );
+      $course->completed = learndash_course_get_completed_steps( $course->user_id, $course->course_id );
+      $course->coming_soon = get_field('coming_soon', $course->course_id);
+      $course->short_title = get_field('short_title', $course->course_id);
 
 			$ld_course_steps_object = LDLMS_Factory_Post::course_steps( $course->course_id );
 			$total = $ld_course_steps_object->get_steps_count();
@@ -133,39 +135,56 @@ function learndash_courses_by_categories($atts = [], $content = null, $tag = '')
           <?php
           foreach ($courses_by_category[$key] as $c) {
             ?>
-            <a class="course-item" href="<?=$c->post_url?>" style="background-image: url('<?=$c->img[0]?>')">
+            <a class="course-item <?=$c->coming_soon ? "coming-soon" : ""?>" href="<?=$c->coming_soon ? "#" : $c->post_url?>" style="background-image: url('<?=$c->img[0]?>')">
               <div class="overlay"></div>
-              <div class="title">
+              <?php
+              ?>
+              <div class="title <?=(!empty($c->short_title)) ? "short-title" : ""?>">
                 <?php
-                if ($c->percentage >= 100) {
+                if ($c->coming_soon == true) {
                   ?>
-                  <h6 class="percentage">100%</h6>
-                  <span class="complete fa-stack fa-1x">
-                    <i class="fa fa-check fa-stack-1x"></i>
-                    <i class="fa fa-circle fa-stack-1x icon-background"></i>
-                  </span>
-                  <div class="progress-bar" style="width: <?=$c->percentage?>%"><?=$c->percentage?>%</div>
-                  <?php
-                } else if (empty($c->percentage) || $c->percentage == 0) {
-                  ?>
-                  <span class="incomplete fa-stack fa-1x">
-                    <i class="fa fa-check fa-stack-1x"></i>
-                    <i class="fa fa-circle fa-stack-1x icon-background"></i>
-                  </span>
+                  <div class="coming-soon">Coming Soon</div>
                   <?php
                 } else {
-                  ?>
-                  <h6 class="percentage"><?=$c->percentage?></h6>
-                  <span class="incomplete fa-stack fa-1x">
-                    <i class="fa fa-check fa-stack-1x"></i>
-                    <i class="fa fa-circle fa-stack-1x icon-background"></i>
-                  </span>
-                  <div class="progress-bar" style="width: <?=$c->percentage?>%"><?=$c->percentage?>%</div>
-                  <?php
+                  if ($c->percentage >= 100) {
+                    ?>
+                    <span class="complete fa-stack fa-1x">
+                      <i class="fa fa-check fa-stack-1x"></i>
+                      <i class="fa fa-circle fa-stack-1x icon-background"></i>
+                    </span>
+                    <div class="progress-bar" style="width: <?=$c->percentage?>%"><?=$c->percentage?>%</div>
+                    <?php
+                  } else if (empty($c->percentage) || $c->percentage == 0) {
+                    ?>
+                    <span class="incomplete fa-stack fa-1x">
+                      <i class="fa fa-check fa-stack-1x"></i>
+                      <i class="fa fa-circle fa-stack-1x icon-background"></i>
+                    </span>
+                    <?php
+                  } else {
+                    ?>
+                    <h6 class="percentage"><?=$c->percentage?>%</h6>
+                    <span class="incomplete fa-stack fa-1x">
+                      <i class="fa fa-check fa-stack-1x"></i>
+                      <i class="fa fa-circle fa-stack-1x icon-background"></i>
+                    </span>
+                    <div class="progress-bar" style="width: <?=$c->percentage?>%"><?=$c->percentage?>%</div>
+                    <?php
+                  }
                 }
                 ?>
                 <div class="progress-bar-small" style="width: <?=$c->percentage?>%">&nbsp;</div>
-                <h5><?=$c->post_title?></h5>
+                <?php
+                if (!empty($c->short_title) && isset($c->short_title)) {
+                  ?>
+                  <h5><?=$c->short_title?></h5>
+                  <?php
+                } else {
+                  ?>
+                  <h5><?=$c->post_title?></h5>
+                  <?php
+                }
+                ?>
               </div>
             </a>
             <?php

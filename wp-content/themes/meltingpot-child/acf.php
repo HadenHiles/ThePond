@@ -1053,6 +1053,125 @@ if( function_exists('acf_add_local_field_group') ):
                 'max' => '',
                 'return_format' => 'object',
             ),
+            array(
+                'key' => 'field_5f88935ce865a',
+                'label' => 'Coming Soon',
+                'name' => 'coming_soon',
+                'type' => 'true_false',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'message' => '',
+                'default_value' => 0,
+                'ui' => 0,
+                'ui_on_text' => '',
+                'ui_off_text' => '',
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'sfwd-courses',
+                ),
+            ),
+        ),
+        'menu_order' => 0,
+        'position' => 'acf_after_title',
+        'style' => 'default',
+        'label_placement' => 'top',
+        'instruction_placement' => 'label',
+        'hide_on_screen' => '',
+        'active' => true,
+        'description' => '',
+    ));
+
+    // Coming Soon flag for courses
+    acf_add_local_field_group(array(
+        'key' => 'group_5f8892774f0c8',
+        'title' => 'Coming Soon',
+        'fields' => array(
+            array(
+                'key' => 'field_5f88935ce865a',
+                'label' => 'Coming Soon',
+                'name' => 'coming_soon',
+                'type' => 'true_false',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'message' => '',
+                'default_value' => 0,
+                'ui' => 0,
+                'ui_on_text' => '',
+                'ui_off_text' => '',
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'sfwd-courses',
+                ),
+            ),
+            array(
+                array(
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'content-library',
+                ),
+                array(
+                    'param' => 'post_taxonomy',
+                    'operator' => '==',
+                    'value' => 'library_category:challenges',
+                ),
+            ),
+        ),
+        'menu_order' => 0,
+        'position' => 'side',
+        'style' => 'default',
+        'label_placement' => 'top',
+        'instruction_placement' => 'label',
+        'hide_on_screen' => '',
+        'active' => true,
+        'description' => '',
+    ));
+
+    // Allow adding a shorter title for courses for displaying in dashboard
+    acf_add_local_field_group(array(
+        'key' => 'group_5f889ea92f4e1',
+        'title' => 'Short Course Title',
+        'fields' => array(
+            array(
+                'key' => 'field_5f889eb536e25',
+                'label' => 'Short Title',
+                'name' => 'short_title',
+                'type' => 'textarea',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'default_value' => '',
+                'placeholder' => 'Level 1',
+                'maxlength' => 10,
+                'rows' => 1,
+                'new_lines' => '',
+            ),
         ),
         'location' => array(
             array(
