@@ -234,6 +234,15 @@ section.memberDashWelc.skill-header h1, section.memberDashWelc.skill-header p, s
 section.memberDashWelc.skill-header p, section.clbHeader p {margin:0;}
 section.memberDashWelc.skill-header h1, section.clbHeader h1 {line-height:1.2em;}
 
+@media screen and (max-width: 1024px) {
+	section.clbHeader {
+		padding: 1.5rem 0;
+	}
+	section.clbHeader h1 {
+		font-size: 2em;
+		text-align: center;
+	}
+}
 
 
 /* Footer */

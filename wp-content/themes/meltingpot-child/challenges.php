@@ -18,15 +18,15 @@ get_header("members");
 		</div>
 		
 		<div class="large-4 columns">
-			<p class="searchText">Search Challenges</p>
-			<div class="searchfilter"><input type="text" id="filterSearch" name="filtr-search" class="filtr-search" value="" placeholder="Enter you keyword here and press enter..." data-search>
+			<!-- <p class="searchText">Search Challenges</p> -->
+			<div class="searchfilter" style="margin-top: 5px;"><input type="text" id="filterSearch" name="filtr-search" class="filtr-search" value="" placeholder="Search challenges" data-search>
 			<a id="clearFilter" class="backBTN" href="javascript:;">Clear</a></div>
 		</div>
 	</div>
 </section>
 
 <!-- section-->
-<section class="memberbenefits dashboardbenefits" style="min-height: 80vh;">
+<section class="dashboardbenefits" style="min-height: 80vh; padding: 0 0 2rem 0;">
 	<?php
 	$challengesQuery = new WP_Query( array(
 		'posts_per_page' => $limit,
