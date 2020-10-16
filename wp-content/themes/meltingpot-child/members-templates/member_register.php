@@ -15,7 +15,7 @@ setcookie($cookie_name, $cookie_value, time() + (3600 * 30), "/"); // 3600 = 1 h
             <div class="large-8 medium-8 columns">
                 <main>
 
-                    <h1><?php the_title(); ?></h1>
+                    <h1 style="margin-top: 25px;"><?php the_title(); ?></h1>
                     <h2>$<?=get_field('_mepr_product_price', $post->ID)?></h2>
                     <?php
                     if (!is_user_logged_in()) {
