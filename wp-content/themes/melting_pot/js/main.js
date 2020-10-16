@@ -1,5 +1,8 @@
 (function($) {
 	$(document).ready(function() {
+		/**
+		 * Dashboard courses side swipe/drag functionality
+		 */
 		if ($('.course-container').length > 0) {
 			const slider = document.querySelector('.course-container');
 			let isDown = false;
@@ -45,7 +48,7 @@
 		}
 
 		// Move profile pond points to below edit profile link
-		$('#pond-points').appendTo('.ld-profile-card');
+		// $('#pond-points').appendTo('.ld-profile-card');
 
 		// Enable bootstrap tooltips
 		$('[data-toggle="tooltip"]').tooltip();
@@ -166,7 +169,9 @@
 		}).modal('toggle');
 	});
 
-	// Option to allow full screen image on click
+	/**
+	 * Full screen image on click of images with data-enlargable attribute
+	 **/
 	function initFullScreenImageClick() {
 		$('img[data-enlargable]').addClass('img-enlargable').click(function(){
 			var src = $(this).attr('src');
@@ -196,7 +201,9 @@
 		});
 	}
 
-	/* Scroll to anchors */
+	/**
+	 * Scroll to anchors
+	 **/
 	$(".scroll a").click(function(e) {
 		e.preventDefault();
 		var url = $(this).attr('href');
@@ -263,13 +270,15 @@
 		}
 	}
 
+	/**
+	 * Dashboard courses mobile touch functionality
+	 **/
 	$('#dashboard-courses .course-item').on('click', (e) => {
 		var url = $(e.target).closest('.course-item').attr('url');
 		if (url != null && url.length > 1) {
 			window.location.href = url;
 		}
 	});
-
 	$('#dashboard-courses .course-item').on('taphold', (e) => {
 		e.preventDefault();
 		if ($(this).hasClass('hovered')) {
@@ -281,6 +290,23 @@
 		});
 
 		$(this).addClass('hovered');
+	});
+
+	/**
+	 * Show/hide the registration form when clicking "Sign up with Email" button
+	 */
+	$(document).ready(() => {
+		var $formWrapper = $('#register-form-wrapper');
+		var $emailBtn = $('#signup-with-email-btn');
+		if ($formWrapper.length == 1 && $emailBtn.length == 1) {
+			$emailBtn.click(() => {
+				$formWrapper.slideToggle({duration: 300, easing: "swing"});
+			});
+
+			if (window.location.hash) {
+				$formWrapper.slideToggle({duration: 300, easing: "swing"});
+			}
+		}
 	});
 
 })(jQuery);

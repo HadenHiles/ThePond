@@ -1109,3 +1109,41 @@ body.modal-open .transparent-modal {
   .facebook-btn:hover {
       cursor: pointer;
   }
+
+  /* Email Signup button */
+.email-btn {
+	display: block;
+	position: relative;
+    float:left;
+	width: 100%;
+	background-color: #666 ;
+	border-radius: 5px;
+	padding-left: 40px;
+	margin: 5px auto;
+  }
+  .email-btn .email-icon-wrapper {
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	margin: 2px;
+	width: 40px;
+	height: 40px;
+	border-radius: 5px;
+	background-color: #fff;
+  }
+  .email-btn .fa-envelope {
+	float:left;
+	margin-top: 7px;
+	margin-left: 7px;
+	font-size: 26px;
+	color: #666;
+  }
+  .email-btn .btn-text {
+    margin: 10px 5px 10px 20px;
+	color: #fff;
+	font-size: 16px;
+	font-family: "Noto-Sans", sans-serif;
+  }
+  .email-btn:hover {
+      cursor: pointer;
+  }
