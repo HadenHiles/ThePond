@@ -82,7 +82,7 @@ if (current_user_can('memberpress_authorized')) {
 		
 		<?php get_template_part('template-parts/courses/coursehistory'); ?>	
 		
-		<?php get_template_part('template-parts/courses/course-forum-link'); ?>
+		<?php /* get_template_part('template-parts/courses/course-forum-link'); */ ?>
 	</div>
 	</article>
 	<?php
