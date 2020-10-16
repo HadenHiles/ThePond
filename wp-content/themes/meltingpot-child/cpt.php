@@ -118,4 +118,10 @@ function skill_examples_post_type() {
 * unnecessarily executed. 
 */
 add_action( 'init', 'skill_examples_post_type', 0 );
+
+function add_lesson_comments() {
+    add_post_type_support('sfwd-lessons', 'comments');
+}
+
+add_action('init', 'add_lesson_comments', 100);
 ?>

@@ -90,6 +90,11 @@ if (current_user_can('memberpress_authorized')) {
 ?>	
 	
 <?php the_content();?>
+<?php 
+if (is_single()) {
+	comments_template();
+}
+?>
 </main>
 </div>
 <div class="medium-4 columns">
