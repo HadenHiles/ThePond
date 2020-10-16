@@ -155,19 +155,23 @@ function learndash_courses_by_categories($atts = [], $content = null, $tag = '')
                     <div class="progress-bar" style="width: <?=$c->percentage?>%">Complete</div>
                     <?php
                   } else if (empty($c->percentage) || $c->percentage == 0) {
+                    /*
                     ?>
                     <span class="incomplete fa-stack fa-1x">
                       <i class="fa fa-check fa-stack-1x"></i>
                       <i class="fa fa-circle fa-stack-1x icon-background"></i>
                     </span>
                     <?php
+                    */
                   } else {
                     ?>
-                    <?php /* <h6 class="percentage"><?=$c->percentage?>%</h6> */ ?>
+                    <?php 
+                    /* <h6 class="percentage"><?=$c->percentage?>%</h6> ?>
                     <span class="incomplete fa-stack fa-1x">
                       <i class="fa fa-check fa-stack-1x"></i>
                       <i class="fa fa-circle fa-stack-1x icon-background"></i>
-                    </span>
+                    </span> */
+                    ?>
                     <div class="progress-bar" style="width: <?=$c->percentage?>%"><?=$c->percentage?>%</div>
                     <?php
                   }
