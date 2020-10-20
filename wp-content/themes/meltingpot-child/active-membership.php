@@ -14,6 +14,9 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 
 $wp_user = get_user_by('login', $email);
+if (empty($wp_user)) {
+    $wp_user = get_user_by('email', $email);
+}
 
 if (empty($wp_user)) {
     $response['error'] = "No user exists for the email: $email";
