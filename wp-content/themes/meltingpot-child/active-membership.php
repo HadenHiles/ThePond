@@ -3,22 +3,20 @@ require_once('../../../wp-load.php');
 header('Content-Type: application/json');
 
 $email = $_POST['email'];
+$response = array("subscriptions" => array(), "error" => null);
 
 if (empty($email) || !isset($email)) {
-    echo json_encode("{ 'subscriptions': null, 'error': 'Please provide an email address' }");
-    exit();
+    $response['error'] = "No email address provided";
 }
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    echo json_encode("{ 'subscriptions': null, 'error': 'Invalid email format'}");
-    exit();
+    $response['error'] = "Invalid email address";
 }
 
 $wp_user = get_user_by('login', $email);
 
 if (empty($wp_user)) {
-    echo json_encode("{ 'subscriptions': null, 'error': 'No user exists for the email: ${$email}' }");
-    exit(); 
+    $response['error'] = "No user exists for the email: $email";
 }
 
 $mpUser = new MeprUser($wp_user->id);
@@ -43,9 +41,8 @@ foreach($activeSubscriptions as $s) {
 $hasActiveMembership = !empty($activeSubscriptions);
 
 if ($hasActiveMembership) {
-    echo json_encode("{ 'subscriptions': " . json_encode($subs) . ", 'error': null }");
-    exit();
+    $response['subscriptions'] = $subs;
 }
 
-echo json_encode("{ 'subscriptions': null, 'error': null }");
+echo json_encode($response);
 exit();
