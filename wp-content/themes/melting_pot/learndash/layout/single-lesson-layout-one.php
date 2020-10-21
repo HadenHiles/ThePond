@@ -22,7 +22,7 @@ $parent_course_id = learndash_get_setting($post, 'course');
 <section class="MembersContent">
 	<div class="row">
 		<?php if (have_posts()) : the_post(); ?>
-			<div class="medium-8 columns">
+			<div class="medium-7 columns">
 				<main role="main">
 					<article>
 						<div class="CourseContent">
@@ -98,7 +98,7 @@ $parent_course_id = learndash_get_setting($post, 'course');
 				<?php the_content(); ?>
 				</main>
 			</div>
-			<div class="medium-4 columns">
+			<div class="medium-5 columns">
 				<div class="courseSideList">
 
 

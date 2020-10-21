@@ -20,7 +20,7 @@ $course_id = learndash_get_course_id();
 if(have_posts()): while (have_posts()): the_post();
 
 ?>
-<div class="large-8 medium-7 columns">
+<div class="large-7 medium-7 columns">
 	<main role="main">
 		<article>
 			<div class="CourseContent">
@@ -160,7 +160,7 @@ if(have_posts()): while (have_posts()): the_post();
 	</main>
 </div>
 	
-<div class="large-4 medium-5 columns">
+<div class="large-5 medium-5 columns">
 <div class="courseSideList">
 <?php 
 echo do_shortcode('[course_content course_id="'.$course_id.'"]') ?>
