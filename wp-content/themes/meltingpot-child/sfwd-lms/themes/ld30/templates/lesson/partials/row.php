@@ -82,7 +82,7 @@ if ( isset( $sections[ $lesson['post']->ID ] ) ) :
 
 endif; ?>
 
-<div class="<?php learndash_lesson_row_class( $lesson, $has_access ); ?>" id="<?php echo esc_attr( 'ld-expand-' . $lesson['post']->ID ); ?>" <?php echo wp_kses_post( $atts ); ?>>
+<div class="<?php learndash_lesson_row_class( $lesson, $has_access ); ?> <?=get_the_ID() == $lesson['post']->ID ? 'current' : '' ?>" id="<?php echo esc_attr( 'ld-expand-' . $lesson['post']->ID ); ?>" <?php echo wp_kses_post( $atts ); ?>>
 	<div class="ld-item-list-item-preview">
 		<?php
 		/**
@@ -98,13 +98,6 @@ endif; ?>
 		?>
 
 		<a class="ld-item-name ld-primary-color-hover" href="<?php echo esc_attr( learndash_get_step_permalink( $lesson['post']->ID, $course_id ) ); ?>">
-			<?php
-			$lessonImage = get_the_post_thumbnail_url($lesson['post']->ID);
-			if (empty($lessonImage)) {
-				$lessonImage = '/wp-content/themes/meltingpot-child/images/placeholder.png';
-			}
-			?>
-			<div class="lesson-featured-image" style="background-image: url('<?=$lessonImage?>');"></div>
 			<?php
 			$lesson_progress = learndash_lesson_progress( $lesson['post'] );
 			if ( is_array( $lesson_progress ) ) {
@@ -308,7 +301,15 @@ endif; ?>
 
 			endif;
 			?>
-		</div> <!--/.ld-item-details-->
+        </div> <!--/.ld-item-details-->
+        
+        <?php
+			$lessonImage = get_the_post_thumbnail_url($lesson['post']->ID);
+			if (empty($lessonImage)) {
+				$lessonImage = '/wp-content/themes/meltingpot-child/images/placeholder.png';
+			}
+			?>
+			<div class="lesson-featured-image" style="background-image: url('<?=$lessonImage?>');"></div>
 
 		<?php
 		/**

@@ -1162,19 +1162,25 @@ body.modal-open .transparent-modal {
 	  overflow: hidden;
 	  min-width: 300px;
   }
-  .ld-item-list .ld-item-list-item .ld-item-name {
-	  justify-content: flex-start;
-	  align-items: center;
+  .ld-item-list .ld-item-list-item .ld-item-list-item-preview {
+	  flex-direction: row !important;
   }
-  .ld-item-list .ld-item-name .lesson-featured-image {
+  .ld-item-list .ld-item-list-item .lesson-featured-image {
 	  display: flex;
+	  align-self: flex-end;
 	  position: relative;
 	  top: -20px;
-	  left: -20px;
+	  right: -20px;
 	  margin-bottom: -40px;
 	  width: 100px;
 	  min-width: 100px;
 	  height: 100px;
 	  background-position: center center;
 	  background-size: cover;
+  }
+  .ld-item-list .ld-item-list-item .ld-item-details {
+	  align-self: center;
+  }
+  .ld-item-list .ld-item-list-item.current {
+	  border: 2px solid #83cdcf;
   }
