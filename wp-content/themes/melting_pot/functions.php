@@ -931,7 +931,8 @@ function aj_breadcrumbs() {
 		$get_dashboard_text      = '' ;
 		$get_dashboard_link      = '';
 		//$get_dashboard_separator = '>';
-		$course_archive_link     = aj_build_anchor_links( get_post_type_archive_link( 'sfwd-courses' ), esc_html__( $course_label, 'uncanny-learndash-toolkit' ) );
+		// $course_archive_link     = aj_build_anchor_links( get_post_type_archive_link( 'sfwd-courses' ), esc_html__( $course_label, 'uncanny-learndash-toolkit' ) );
+		$course_archive_link = "<a href='/member-dashboard#courses'>Courses</a>";
 		//$course_archive_link     = self::uo_build_anchor_links( get_post_type_archive_link( 'sfwd-courses' ), esc_html__( 'Courses', 'uncanny-learndash-toolkit' ) );
 
 		if ( strlen( trim( $get_dashboard_text ) ) ) {
