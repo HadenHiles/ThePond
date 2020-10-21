@@ -1,6 +1,9 @@
 <?php
 require_once('../../../wp-load.php');
 
+$redirectUrl = $_COOKIE['redirect_to'];
+setcookie('redirect_to', null, -1, '/');
+
 $chosenMembership = $_COOKIE['selected_membership'];
 setcookie('selected_membership', null, -1, '/');
 $hasActiveSubscription = false;
@@ -18,7 +21,11 @@ if (empty($subscriptions)) {
         header('location: /choose-your-subscription/');
     }
 } else if (!empty($activeSubscriptions)) {
-    header('location: /member-dashboard');
+    if(empty($redirectUrl)) {
+        header('location: /member-dashboard');
+    } else {
+        header("location: $redirectUrl");
+    }
 } else {
     header('location: /account?action=subscriptions');
 }
