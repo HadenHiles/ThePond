@@ -922,10 +922,10 @@ function aj_breadcrumbs() {
 		$course_label      =  "Courses" ;
 		// Define main variables
 		$trail   = array();
-		$trail[] =  aj_build_anchor_links( get_permalink(253), esc_html__( 'Dashboard', 'uncanny-learndash-toolkit' ) );
+		$trail[] =  aj_build_anchor_links( '/member-dashboard', esc_html__( 'Dashboard', 'uncanny-learndash-toolkit' ) );
 		//$dashboard_link      = get_post_type_archive_link( 'sfwd-courses' );
 		$dashboard_link      = '';
-		$dashboard_text      = 'Course';
+		$dashboard_text      = '';
 		$dashboard_separator = '&raquo;';
 
 		$get_dashboard_text      = '' ;
