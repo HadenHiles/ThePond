@@ -812,7 +812,7 @@ section.post-custom {
 .learndash-wrapper .ld-status-complete {
 	background-color: #2FAF8D;}
 
-.learndash-wrapper .learndash_mark_complete_button{background-color: #2FAF8D;}
+.learndash-wrapper .learndash_mark_complete_button{background-color: #2FAF8D; margin-left: 0 !important; min-width: 200px;}
 
 .learndash-wrapper .ld-status-in-progress {
     border: 4px solid #e2e7ed;
