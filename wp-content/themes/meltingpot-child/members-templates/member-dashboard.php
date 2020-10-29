@@ -259,7 +259,7 @@ get_header('members'); ?>
 											if ((!empty($pros) && sizeof($pros) > 0) || (!empty($cons) && sizeof($cons) > 0) || !empty($whenToUseIt)) {
 												$breakdownDetails = '';
 												//Pros
-												if (sizeof($pros) > 0) {
+												if (sizeof($pros) > 0 && !empty($pros)) {
 													$breakdownDetails .=	
 													'<div class="card">'.
 														'<div class="card-body">
@@ -281,7 +281,7 @@ get_header('members'); ?>
 													'</div>';
 												}
 												//Cons
-												if (sizeof($cons) > 0) {
+												if (sizeof($cons) > 0 && !empty($cons)) {
 													$breakdownDetails .=	
 													'<div class="card">'.
 														'<div class="card-body">
@@ -330,13 +330,15 @@ get_header('members'); ?>
 												<?php /*<a href="<?=get_post_permalink($skillExamples[0]->ID)?>" class="BTN action-button custom-icon">*/ ?>
 												<?php
 												$examplesList = get_field('examples', $skillExamples[0]->ID);
-												$examplesList = array_slice($examplesList, 0, 2);
+												$exampleVideoCode = get_field('video_code', $skillExamples[0]->ID);
+												$examplesList = array_slice($examplesList, 0, 4);
 												$examplesListHtml = '';
 												foreach($examplesList as $example) {
 													// Load sub field values.
 													$gif = $example['gif'];
 													$video = $example['video_code'];
 													$description = $example['description'];
+													
 													$examplesListHtml .= '<div class="example">';
 													if (!empty($gif)) {
 														$examplesListHtml .= '<img src="' . $gif . '" alt="' . $description . '" data-enlargable />';
@@ -350,10 +352,19 @@ get_header('members'); ?>
 													?>
 													<a class="BTN action-button custom-icon" 
 														data-title="<?=get_the_title($skillExamples[0]->ID)?>"
-														data-url="<?=get_post_permalink($skillExamples[0]->ID)?>"
+														data-url="<?=$url?>" <?php /* <?=get_post_permalink($skillExamples[0]->ID)?> */ ?>
 														data-button="More Examples"
-														data-video="<?=htmlspecialchars(get_field('video_code', $skillExamples[0]->ID, false))?>"
-														data-side="<?=htmlspecialchars($examplesListHtml)?>">
+														<?php
+														$vidCode = htmlspecialchars(get_field('video_code', $skillExamples[0]->ID, false));
+														$sideOnly = "all";
+														if (!empty($exampleVideoCode)) {
+															$sideOnly = "side";
+															?>
+															data-video="<?=$vidCode?>"
+															<?php
+														}
+														?>
+														data-<?=$sideOnly?>="<?=htmlspecialchars($examplesListHtml)?>">
 															<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 223 232.1" style="enable-background:new 0 0 223 232.1;" xml:space="preserve">
 																<path d="M183.7,203.1c1.6-3.2,1.6-3.2,3.6-3.7c-1.4-0.8-2.8-1.8-4.3-2.5c-1.5-0.7-3.1-1-4.6-1.7c-11.6-5.8-22.2-13-32.4-21
 																	c-0.9-0.7-1.9-1.4-2.8-2.3c-2-1.9-4.4-3-6.9-4c-2.4-1-4.4-2.6-6.3-4.4c-3.5-3.3-7.1-6.5-10.7-9.9c-0.3,0.7-0.6,1.3-0.9,1.8

@@ -136,12 +136,17 @@
 					var buttonText = button.data('button');
 					var video = button.data('video');
 					var side = button.data('side');
+					var all = button.data('all');
 					// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
 					// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
 					var modal = $('#skillsVaultModal');
 					modal.find('.modal-title').text(title);
+					modal.find('.modal-body').html('<div class="medium-8 columns video"><div class="videoWrapper"></div></div><div class="medium-4 columns side"></div>');
 					modal.find('.modal-body .videoWrapper').html(video);
 					modal.find('.modal-body .side').html(side);
+					if (all != undefined) {
+						modal.find('.modal-body').html(all);
+					}
 					modal.find('a.action').attr('href', url);
 					modal.find('a.action').text(buttonText);
 
