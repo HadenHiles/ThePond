@@ -355,62 +355,66 @@ if (has_post_thumbnail()) {
                     </div>
                 </div>
 
-                <div class="large-12 columns">
-                    <?php
-                    $skillExamples = get_field('skill_examples', $post->ID);
 
-                    if (sizeof($skillExamples) > 0)
-                    ?>
-                    <div class="card">
-                        <div class="card-body">
-                            <h1 style="margin-bottom: 5px;">Examples</h1>
-                            <div class="skill-examples bootstrap-styles gifs">
-                                <?php
-                            // Loop through gifs.
-                            foreach ($skillExamples as $skillExample) {
-                                // Load sub field values.
-                                $examplesList = get_field('examples', $skillExample->ID);
-                                $examplesListHtml = '';
-                                foreach ($examplesList as $example) {
-                                    // Load sub field values.
-                                    $gif = $example['gif'];
-                                    $video = $example['video_code'];
-                                    $description = $example['description'];
+                <?php
+                $skillExamples = get_field('skill_examples', $post->ID);
 
-                                ?>
-                                    <div class="card gif">
-                                        <?php
-                                        if (!empty($gif)) {
-                                        ?>
-                                            <img class="card-img-top" src="<?= $gif ?>" alt="" data-enlargable />
-                                        <?php
-                                        } else if (!empty($video)) {
-                                        ?>
-                                            <div class="card-img-top">
-                                                <div class="videoWrapper">
-                                                    <?= $video ?>
-                                                </div>
+                if (sizeof($skillExamples) > 0 && !empty($skillExamples)) {
+                ?>
+                    <div class="large-12 columns">
+                        <div class="card">
+                            <div class="card-body">
+                                <h1 style="margin-bottom: 5px;">Examples</h1>
+                                <div class="skill-examples bootstrap-styles gifs">
+                                    <?php
+                                    // Loop through gifs.
+                                    foreach ($skillExamples as $skillExample) {
+                                        // Load sub field values.
+                                        $examplesList = get_field('examples', $skillExample->ID);
+                                        $examplesListHtml = '';
+                                        foreach ($examplesList as $example) {
+                                            // Load sub field values.
+                                            $gif = $example['gif'];
+                                            $video = $example['video_code'];
+                                            $description = $example['description'];
+
+                                            ?>
+                                            <div class="card gif">
+                                                <?php
+                                                if (!empty($gif)) {
+                                                ?>
+                                                    <img class="card-img-top" src="<?= $gif ?>" alt="" data-enlargable />
+                                                <?php
+                                                } else if (!empty($video)) {
+                                                ?>
+                                                    <div class="card-img-top">
+                                                        <div class="videoWrapper">
+                                                            <?= $video ?>
+                                                        </div>
+                                                    </div>
+                                                <?php
+                                                }
+
+                                                if ((!empty($gif) || !empty($video)) && !empty($description)) {
+                                                ?>
+                                                    <div class="card-body">
+                                                        <p class="card-text"><?= $description ?></p>
+                                                    </div>
+                                                <?php
+                                                }
+                                                ?>
                                             </div>
-                                        <?php
+                                            <?php
                                         }
-
-                                        if ((!empty($gif) || !empty($video)) && !empty($description)) {
-                                        ?>
-                                            <div class="card-body">
-                                                <p class="card-text"><?= $description ?></p>
-                                            </div>
-                                        <?php
-                                        }
-                                        ?>
-                                    </div>
-                                <?php
-                                }
-                            }
-                                ?>
+                                    }
+                                    ?>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                <?php
+                }
+                ?>
         <?php endwhile;
         endif; ?>
     </div>
