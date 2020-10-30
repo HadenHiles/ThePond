@@ -759,8 +759,8 @@ body.modal-open .transparent-modal {
 .transparent-modal .skills-vault-modal .modal-dialog .modal-body {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-evenly;
-	align-items: stretch;
+	justify-content: center;
+	align-items: flex-start;
 	flex-basis: 50%;
 	flex-wrap: wrap;
 }
