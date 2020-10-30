@@ -205,7 +205,8 @@ get_header('members'); ?>
 						<tbody>
 							<?php
 							$skillsQuery = new WP_Query( array(
-								'post_type' => 'skills'
+								'post_type' => 'skills',
+								'posts_per_page' => -1
 							) );
 							$skills = $skillsQuery->get_posts();
 

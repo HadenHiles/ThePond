@@ -63,7 +63,6 @@
 		var frequencyColumn = 2;
 		var skillTypeColumn = 4;
 		var skillsVaultTable = $('#skills-vault-table').DataTable({
-			paging: false,
 			searching: true,
 			// responsive: {
 			// 	details: {
