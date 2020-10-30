@@ -760,7 +760,7 @@ body.modal-open .transparent-modal {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	align-items: flex-start;
+	align-items: center;
 	flex-basis: 50%;
 	flex-wrap: wrap;
 }
