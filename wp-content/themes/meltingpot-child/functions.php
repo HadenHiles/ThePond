@@ -144,6 +144,13 @@ function set_firebase_user_attributes($user, $user_attributes) {
   add_user_meta( $user_id, 'mo_firebase_jwt_data', $user_attributes );
 }
 
+/* Get the Firebase user object via MiniOrange hook */
+global $fb_user;
+add_action( 'mo_firebase_auth_get_social_user', 'get_user', 10, 1 );
+function get_user( $user ) {
+    $fb_user = $user;
+}
+
 /* Shortcodes */
 require_once('shortcodes.php');
 

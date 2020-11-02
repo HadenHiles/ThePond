@@ -11,5 +11,9 @@ wp_enqueue_script( 'datatables-responsive', get_template_directory_uri() . '/boo
 wp_enqueue_script( 'datatables-fixedheader', get_template_directory_uri() . '/bootstrap-4.5.0/DataTables/FixedHeader-3.1.7/js/dataTables.fixedHeader.min.js', array(), null, true);
 wp_enqueue_script( 'filterizr', get_template_directory_uri() . '/js/jquery.filterizr.min.js', array(), null, true);
 
+wp_enqueue_script( 'firebase_app', '/wp-content/plugins/miniorange-firebase-authentication-enterprise/admin/js/firebase-app.js', null, null, true);
+wp_enqueue_script( 'firebase_auth', '/wp-content/plugins/miniorange-firebase-authentication-enterprise/admin/js/firebase-auth.js', null, null, true);
+wp_enqueue_script( 'firebase_firestore', '/wp-content/plugins/miniorange-firebase-authentication-enterprise/admin/js/firebase-firestore.js', null, null, true);
+wp_enqueue_script( 'firebase_hth', '/wp-content/themes/meltingpot-child/js/firebase.js', array('jquery', 'firebase_app', 'firebase_auth', 'firebase_firestore'), null, true);
 wp_enqueue_script( 'main', get_template_directory_uri() . '/js/main.js', array('jquery'), null, true);
 ?>
