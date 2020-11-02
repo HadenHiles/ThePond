@@ -113,9 +113,9 @@ add_action('mepr_account_nav', 'mepr_add_tabs');
 function mepr_add_tabs_content($action) {
   $useFbAvatar = get_user_meta(get_current_user_id(), 'use_firebase_avatar');
   $useFbAvatar = $useFbAvatar[0];
+  $fbAvatar = get_user_meta(get_current_user_id(), 'avatar_url');
   if ($action == 'avatar') {
     if ($useFbAvatar && !empty($fbAvatar[0])) {
-      $fbAvatar = get_user_meta(get_current_user_id(), 'avatar_url');
       ?>
       <img alt='avatar' src='<?= $fbAvatar[0] ?>' height='100' width='100' />
       <a href="/account?action=custom_avatar" class="BTN">Change</a>
