@@ -41,10 +41,6 @@ get_header('members'); ?>
 
 		<div class="sectionHeader">
 			<div class="large-12 columns" id="courses">
-				<?php
-				global $fb_user;
-				var_dump($fb_user);
-				?>
 				<?=do_shortcode('[ld_profile course_points_user="false" show_quizzes="false"]');?>
 
 				<?php
