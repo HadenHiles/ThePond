@@ -1,3 +1,4 @@
+// Should only enqueue this on pages where it's needed 
 jQuery(document).ready(function() {
 	var a_key            = "AIzaSyCoSWim4GptSro0gly6dN8dClVQMcxeCbA";
 	var pid              = "the-pond-app";
@@ -18,7 +19,7 @@ jQuery(document).ready(function() {
     // var db = firebase.firestore();
     
     // db.collection("test").add({
-    //     name: "Test"
+    //     name: "Hi"
     // })
     // .then(function(docRef) {
     //     console.log("Document written with ID: ", docRef.id);
