@@ -82,7 +82,7 @@
 			info: false,
 			fixedHeader: false,
 			paging: true,
-			pageLength: 50,
+			pageLength: 25,
 			lengthChange: false,
 			language: {
 				searchPlaceholder: "Find a Skill",
