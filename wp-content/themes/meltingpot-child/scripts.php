@@ -11,15 +11,20 @@ wp_enqueue_script('datatables-responsive', get_template_directory_uri() . '/boot
 wp_enqueue_script('datatables-fixedheader', get_template_directory_uri() . '/bootstrap-4.5.0/DataTables/FixedHeader-3.1.7/js/dataTables.fixedHeader.min.js', array(), null, true);
 wp_enqueue_script('filterizr', get_template_directory_uri() . '/js/jquery.filterizr.min.js', array(), null, true);
 
+wp_enqueue_script('main', get_template_directory_uri() . '/js/main.js', array('jquery'), null, true);
+
 add_action('wp_enqueue_scripts', 'enqueue_firebase');
 function enqueue_firebase() {
-    wp_dequeue_script('mo_firebase_app_script');
-    wp_dequeue_script('mo_firebase_auth_script');
-    wp_dequeue_script('mo_firebase_firestore_script');
-    wp_enqueue_script('firebase_app', '/wp-content/plugins/miniorange-firebase-authentication-enterprise/admin/js/firebase-app.js', null, null, true);
-    wp_enqueue_script('firebase_auth', '/wp-content/plugins/miniorange-firebase-authentication-enterprise/admin/js/firebase-auth.js', array('firebase_app'), null, true);
-    wp_enqueue_script('firebase_firestore', '/wp-content/plugins/miniorange-firebase-authentication-enterprise/admin/js/firebase-firestore.js', array('firebase_app'), null, true);
+    if (!wp_script_is( '/wp-content/plugins/miniorange-firebase-authentication-enterprise/admin/js/firebase-app.js', 'enqueued')) {
+        wp_enqueue_script('mo_firebase_app_script', '/wp-content/plugins/miniorange-firebase-authentication-enterprise/admin/js/firebase-app.js', null, null, true);
+    }
+    if (!wp_script_is( '/wp-content/plugins/miniorange-firebase-authentication-enterprise/admin/js/firebase-auth.js', 'enqueued')) {
+        wp_enqueue_script('mo_firebase_auth_script', '/wp-content/plugins/miniorange-firebase-authentication-enterprise/admin/js/firebase-auth.js', array('mo_firebase_app_script'), null, true);
+    }
+    if (!wp_script_is( '/wp-content/plugins/miniorange-firebase-authentication-enterprise/admin/js/firebase-firestore.js', 'enqueued')) {
+        wp_enqueue_script('mo_firebase_firestore_script', '/wp-content/plugins/miniorange-firebase-authentication-enterprise/admin/js/firebase-firestore.js', array('mo_firebase_app_script'), null, true);
+    }
+    
     // Should only enqueue this on pages where it's needed
-    wp_enqueue_script('firebase_hth', '/wp-content/themes/meltingpot-child/js/firebase.js', array('jquery', 'firebase_app', 'firebase_auth', 'firebase_firestore'), null, true);
+    wp_enqueue_script('firebase_hth', '/wp-content/themes/meltingpot-child/js/firebase.js', array('jquery', 'mo_firebase_app_script', 'mo_firebase_auth_script', 'mo_firebase_firestore_script'), null, true);
 }
-wp_enqueue_script('main', get_template_directory_uri() . '/js/main.js', array('jquery'), null, true);
