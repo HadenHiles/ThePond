@@ -340,7 +340,7 @@
 					$('#mepr_user_or_email').val(), null)
 					.then(function () {
 						// Password reset email sent.
-						$('#pw_reset_result p').html(`An email has been sent to ${$('#mepr_user_or_email')} with instructions on how to reset your password.`).css({ 'color': '#4BB543' });
+						$('#pw_reset_result p').html(`An email has been sent to ${$('#mepr_user_or_email').val()} with instructions on how to reset your password.`).css({ 'color': '#4BB543' });
 						$('#mepr_forgot_password_form').submit();
 						$('#mepr_forgot_password_form #wp-submit').attr('disabled', true);
 					})
@@ -351,6 +351,7 @@
 						$('#mepr_forgot_password_form #wp-submit').attr('disabled', true);
 
 						setTimeout(() => {
+                                                        $('#pw_reset_result p').html('').css({ 'color': '#cc3333' });
 							$('#mepr_forgot_password_form #wp-submit').attr('disabled', false);
 						}, 10000);
 					});
