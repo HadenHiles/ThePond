@@ -317,6 +317,7 @@
 	if ($('#mepr_forgot_password_form').length == 1) {
 		$('#mepr_forgot_password_form').submit((e) => {
 			e.preventDefault();
+			$('#mepr_forgot_password_form #wp-submit').attr('disabled', true);
 
 			if ($('#mepr_user_or_email').val().length > 0) {
 				var a_key = "AIzaSyCoSWim4GptSro0gly6dN8dClVQMcxeCbA";
@@ -336,22 +337,26 @@
 
 				var auth = firebase.auth();
 
-				auth.sendPasswordResetEmail(
-					$('#mepr_user_or_email').val(), null)
+				auth.sendPasswordResetEmail($('#mepr_user_or_email').val(), null)
 					.then(function () {
 						// Password reset email sent.
 						$('#pw_reset_result p').html(`An email has been sent to ${$('#mepr_user_or_email').val()} with instructions on how to reset your password.`).css({ 'color': '#4BB543' });
 						$('#mepr_forgot_password_form').submit();
-						$('#mepr_forgot_password_form #wp-submit').attr('disabled', true);
 					})
 					.catch(function (error) {
-						// Error occurred. Inspect error.code.
+						var errMsg = "Error sending password reset email.";
+						
+						// Set error.code specific error messages
+						if (error.code == "auth/too-many-requests") {
+							errMsg = "Too many reset attempts, please try again later.";
+						}
+
 						$('#pw_reset_result p').html('');
-						$('#pw_reset_result p').html('Error sending password reset email.');
+						$('#pw_reset_result p').html(errMsg).css({ 'color': '#cc3333' });
 						$('#mepr_forgot_password_form #wp-submit').attr('disabled', true);
 
 						setTimeout(() => {
-                                                        $('#pw_reset_result p').html('').css({ 'color': '#cc3333' });
+							$('#pw_reset_result p').html('').css({ 'color': '#000' });
 							$('#mepr_forgot_password_form #wp-submit').attr('disabled', false);
 						}, 10000);
 					});
