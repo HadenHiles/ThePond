@@ -13,13 +13,13 @@
         font: 40px "Teko", "Lucida Grande", "Lucida Sans Unicode", Tahoma, Verdana, sans-serif;
     }
     </style>
-    <header style="width: 100%; background: #14345a; padding: 20px; text-align: center;">
+    <header style="width: 600px; max-width: 100%; margin: 50px auto 0 auto; background: #14345a; padding: 15px; text-align: center;">
     <div class="logo" style="width: 150px; margin: 0 auto;">
         <img src="https://cdn.thepond.howtohockey.com/2020/11/THEPOND_RGB_WHITE_WORDMARK_RAW.png" alt="The Pond" style="max-width: 100%;" />
     </div>
     </header>
 
-    <div style="position: relative; z-index: 1;">
+    <div style="position: relative; z-index: 1; width: 600px; margin:  0 auto; max-width: 95%; padding: 15px; background: #fff;">
       <?php echo $body; ?>
     </div>
 
