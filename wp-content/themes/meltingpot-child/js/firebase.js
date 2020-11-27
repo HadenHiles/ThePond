@@ -65,6 +65,33 @@
                     }
                 });
             }
+
+            /* Password update */
+            if ($('#mepr-newpassword-form').length == 1) {
+                $('#mepr-newpassword-form').submit((e) => {
+                    e.preventDefault();
+
+                    var $confirmPass = $('#mepr-newpassword-form #mepr_user_password_confirm');
+                    var passwordStrength = $('#mepr-newpassword-form .mp-password-strength-display').text();
+                    if (!$confirmPass.hasClass('invalid') && $confirmPass.val() != null && passwordStrength.toLowerCase() == "medium" || passwordStrength.toLowerCase() == "strong") {
+                        // Get the password
+                        var newPass = $confirmPass.val();
+                        // update the user's password in firebase and continue submitting the form
+                        auth.currentUser.updatePassword(newPass).then(() => {
+                            console.log(`Password updated for: ${auth.currentUser.displayName}`);
+                            $('#mepr-newpassword-form').submit();
+                        });
+                    } else {
+                        console.log("Invalid password.");
+                        var url = window.location.href;
+                        url = new URL(url);
+                        var error = url.searchParams.get("error");
+                        if (error == null) {
+                            window.location.href = window.location.href + "&error=weak";
+                        }
+                    }
+                });
+            }
         }
     });
 })(jQuery);
