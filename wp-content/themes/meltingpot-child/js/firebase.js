@@ -71,9 +71,13 @@
                 $('#mepr-newpassword-form').submit((e) => {
                     e.preventDefault();
 
+                    var $newPass = $('#mepr-newpassword-form #mepr-new-password');
                     var $confirmPass = $('#mepr-newpassword-form #mepr_user_password_confirm');
                     var passwordStrength = $('#mepr-newpassword-form .mp-password-strength-display').text();
-                    if (!$confirmPass.hasClass('invalid') && $confirmPass.val() != null && (passwordStrength.toLowerCase() == "medium" || passwordStrength.toLowerCase() == "strong")) {
+                    if (!$confirmPass.hasClass('invalid') && 
+                        $confirmPass.val() != null && 
+                        $confirmPass.val() == $newPass.val() &&
+                        (passwordStrength.toLowerCase() == "medium" || passwordStrength.toLowerCase() == "strong")) {
                         // Get the password
                         var newPass = $confirmPass.val();
                         // update the user's password in firebase and continue submitting the form
