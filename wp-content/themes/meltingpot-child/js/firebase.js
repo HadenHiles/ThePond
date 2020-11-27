@@ -72,7 +72,7 @@
                     e.preventDefault();
 
                     var $newPass = $('#mepr-newpassword-form #mepr-new-password');
-                    var $confirmPass = $('#mepr-newpassword-form #mepr_user_password_confirm');
+                    var $confirmPass = $('#mepr-newpassword-form #mepr-confirm-password');
                     var passwordStrength = $('#mepr-newpassword-form .mp-password-strength-display').text();
                     if (!$confirmPass.hasClass('invalid') && 
                         $confirmPass.val() != null && 
