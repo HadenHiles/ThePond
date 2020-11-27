@@ -69,8 +69,6 @@
             /* Password update */
             if ($('#mepr-newpassword-form').length == 1) {
                 $('#mepr-newpassword-form').submit((e) => {
-                    e.preventDefault();
-
                     var $newPass = $('#mepr-newpassword-form #mepr-new-password');
                     var $confirmPass = $('#mepr-newpassword-form #mepr-confirm-password');
                     var passwordStrength = $('#mepr-newpassword-form .mp-password-strength-display').text();
