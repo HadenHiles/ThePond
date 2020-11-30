@@ -84,6 +84,7 @@
             /* Password update */
             if ($('#mepr-newpassword-form').length == 1) {
                 $('#mepr-newpassword-form').submit((e) => {
+                    e.preventDefault();
                     var $newPass = $('#mepr-newpassword-form #mepr-new-password');
                     var $confirmPass = $('#mepr-newpassword-form #mepr-confirm-password');
                     var passwordStrength = $('#mepr-newpassword-form .mp-password-strength-display').text();
@@ -96,7 +97,10 @@
                         // update the user's password in firebase and continue submitting the form
                         auth.currentUser.updatePassword(newPass).then(() => {
                             console.log(`Password updated for: ${auth.currentUser.displayName}`);
-                            $('#mepr-newpassword-form').submit();
+                            $('#success-msg').show();
+                        }).catch((error) => {
+                            $('#success-msg').hide();
+                            $('#error-msg').show();
                         });
                     } else {
                         console.log("Invalid password.");

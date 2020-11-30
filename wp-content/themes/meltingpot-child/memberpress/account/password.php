@@ -1,4 +1,6 @@
-<?php if(!defined('ABSPATH')) {die('You are not allowed to call this page directly.');} ?>
+<?php if (!defined('ABSPATH')) {
+  die('You are not allowed to call this page directly.');
+} ?>
 
 <div class="mp_wrapper">
   <?php MeprView::render('/shared/errors', get_defined_vars()); ?>
@@ -6,10 +8,28 @@
   <form action="<?php echo parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH); ?>" id="mepr-newpassword-form" class="mepr-newpassword-form mepr-form" method="post" novalidate>
     <input type="hidden" name="plugin" value="mepr" />
     <input type="hidden" name="action" value="updatepassword" />
-    <?php wp_nonce_field( 'update_password', 'mepr_account_nonce' ); ?>
+    <?php wp_nonce_field('update_password', 'mepr_account_nonce'); ?>
+
+    <div class="mp_wrapper" id="success-msg" style="display: none;">
+      <div class="mepr_updated" id="mepr_jump">
+        <ul>
+          <li><strong>Success</strong>: Password set successfully.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="mp_wrapper" id="error-msg" style="display: none;">
+      <div class="mepr_error" id="mepr_jump">
+        <ul>
+          <li><strong>ERROR</strong>: Error updating password. Please try logging out and trying again.</li>
+        </ul>
+      </div>
+    </div>
 
     <div class="mp-form-row mepr_new_password">
-      <p>Please set a password for your account</p>
+      <?php
+      $currentUser = wp_get_current_user();
+      ?>
+      <p style="color: #cc3333;">Setting a password will ensure you'll always be able to access The Pond with your email address (<?=$currentUser->user_email?>) and password.</p>
       <label for="mepr-new-password"><?php _ex('New Password', 'ui', 'memberpress'); ?></label>
       <input type="password" name="mepr-new-password" id="mepr-new-password" class="mepr-form-input mepr-new-password" required />
     </div>
