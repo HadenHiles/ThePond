@@ -9,6 +9,7 @@
     <?php wp_nonce_field( 'update_password', 'mepr_account_nonce' ); ?>
 
     <div class="mp-form-row mepr_new_password">
+      <p>Please set a password for your account</p>
       <label for="mepr-new-password"><?php _ex('New Password', 'ui', 'memberpress'); ?></label>
       <input type="password" name="mepr-new-password" id="mepr-new-password" class="mepr-form-input mepr-new-password" required />
     </div>

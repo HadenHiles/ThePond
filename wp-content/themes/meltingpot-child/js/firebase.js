@@ -16,6 +16,21 @@
             firebase.initializeApp(firebaseConfig);
             var auth = firebase.auth();
 
+            /* New password redirect */
+            var checkFirebaseInitialized = setInterval(function () {
+                if (auth.currentUser != null) {
+                    var passwordProviderData = auth.currentUser.providerData.filter((provider) => {
+                        return provider.providerId == "password";
+                    });
+
+                    if (passwordProviderData.length < 1 && !window.location.href.match(`.*\/account.*`) && !window.location.href.match(`.*\/login.*`)) {
+                        window.location.href = "/account/?action=newpassword";
+                    }
+
+                    clearInterval(checkFirebaseInitialized);
+                }
+            }, 100);
+
             /* Password reset */
             if ($('#mepr_forgot_password_form').length == 1) {
                 $('#mepr_forgot_password_form').submit((e) => {
@@ -72,8 +87,8 @@
                     var $newPass = $('#mepr-newpassword-form #mepr-new-password');
                     var $confirmPass = $('#mepr-newpassword-form #mepr-confirm-password');
                     var passwordStrength = $('#mepr-newpassword-form .mp-password-strength-display').text();
-                    if (!$confirmPass.hasClass('invalid') && 
-                        $confirmPass.val() != null && 
+                    if (!$confirmPass.hasClass('invalid') &&
+                        $confirmPass.val() != null &&
                         $confirmPass.val() == $newPass.val() &&
                         (passwordStrength.toLowerCase() == "medium" || passwordStrength.toLowerCase() == "strong")) {
                         // Get the password
