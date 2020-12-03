@@ -30,3 +30,4 @@ wp-content/themes/melting_pot/bootstrap-4.5.0
 !.gitignore
 !README.md
 !wp-content/plugins/challenge-score
+!wp-content/plugins/facebook-group-secret
