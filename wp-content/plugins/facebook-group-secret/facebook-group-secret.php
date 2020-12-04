@@ -27,6 +27,7 @@
  */
 
 define('FB_GROUP_SECRET_PLUGIN_FILE_URL', __FILE__);
+define('FB_GROUP_SECRET_PLUGIN_PATH', substr(__DIR__, strlen($_SERVER['DOCUMENT_ROOT'])));
 
 require_once('hooks.php');
 require_once('ajax.php');
@@ -35,7 +36,7 @@ require_once('ajax.php');
 add_action('admin_menu', 'facebook_group_secret_menu');
 function facebook_group_secret_menu() {
     $page_title = 'Facebook Group Member Validation';
-    $menu_title = 'Group Validation';
+    $menu_title = 'Secret Phrase';
     $capability = 'manage_options';
     $menu_slug  = 'facebook-group-member-validation';
     $function   = 'facebook_group_secret_page';
@@ -50,14 +51,10 @@ if (!function_exists("facebook_group_secret_page")) {
     function facebook_group_secret_page() {
 ?>
         <div style="max-width: 600px; margin: 50px auto; text-align: center;">
-            <h2>Facebook Group - Member Validation</h2>
+            <h2>Facebook Group - Secret Phrase Validation</h2>
 
             <form id="member-validation">
                 <table class="form-table">
-                    <tr valign="top">
-                        <th scope="row">Email:</th>
-                        <td><input type="text" name="email" id="email" value="" /></td>
-                    </tr>
                     <tr>
                         <th scope="row">Phrase:</th>
                         <td><input type="text" name="phrase" id="phrase" value="" /></td>
@@ -74,17 +71,15 @@ if (!function_exists("facebook_group_secret_page")) {
                     $('#member-validation').submit((e) => {
                         e.preventDefault();
 
-                        var email = $('#email').val();
                         var phrase = $('#phrase').val();
 
-                        if (email != "" && phrase != "") {
+                        if (phrase != "") {
                             $('#validate').attr('disabled', true).addClass('disabled');
 
                             var valid = false;
 
                             var data = {
                                 action: 'validate_facebook_group_phrase',
-                                email: email,
                                 phrase: phrase
                             };
 

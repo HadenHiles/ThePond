@@ -116,17 +116,3 @@
         }
     });
 })(jQuery);
-
-
-
-
-
-
-var slangWords = [];
-$('.article-table tr td:first-child').each(() => {
-    var text = $(this).text();
-    if (text != "Phrase") {
-        slangWords.push(text);
-    }
-});
-console.log(slangWords);
