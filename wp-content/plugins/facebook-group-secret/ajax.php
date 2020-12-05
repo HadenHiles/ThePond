@@ -489,7 +489,7 @@ function generate_facebook_group_phrase() {
                 '%s'
             )
         )) {
-            cleanup_unused_phrases($user_id);
+            cleanup_unused_phrases($user_id, $phrase);
             send_res(array('success' => true, 'phrase' => $phrase));
         } else {
             throw new Exception('Failed to generate new phrase');
@@ -501,18 +501,19 @@ function generate_facebook_group_phrase() {
 
 add_action('wp_ajax_generate_facebook_group_phrase', 'generate_facebook_group_phrase');
 
-function cleanup_unused_phrases($user_id) {
+function cleanup_unused_phrases($user_id, $latestPhrase) {
     global $wpdb;
     $table_name = $wpdb->prefix . "facebook_group_secret_phrases";
 
-    $query =    "SELECT id, facebook_id FROM $table_name
+    $query =    "SELECT id, phrase, facebook_id FROM $table_name
                     WHERE `user_id` = %d
+                    AND phrase <>%s
                     AND facebook_id IS NULL";
 
-    $results = $wpdb->get_results($wpdb->prepare($query, $user_id));
+    $results = $wpdb->get_results($wpdb->prepare($query, $user_id, $latestPhrase));
 
     foreach ($results as $result) {
-        $wpdb->delete($table_name, array('id' => $result['id']));
+        $wpdb->delete($table_name, array('id' => $result->id));
     }
 }
 
