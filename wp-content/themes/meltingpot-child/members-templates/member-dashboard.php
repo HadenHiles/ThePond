@@ -192,7 +192,7 @@ get_header('members'); ?>
 				</ul>
 				<div class="skills-vault-table">
 					<a href="#" class="search-button" id="search-button"><i class="fa fa-search"></i></a>
-					<table class="table table-striped skills-vault-table" id="skills-vault-table" width="100%">
+					<table class="table skills-vault-table" id="skills-vault-table" width="100%">
 						<thead>
 							<tr>
 								<th scope="col" class="title">Skill</th>
