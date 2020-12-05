@@ -486,7 +486,7 @@ function generate_facebook_group_phrase() {
             array(
                 '%d',
                 '%d',
-                '%f'
+                '%s'
             )
         )) {
             cleanup_unused_phrases($user_id);

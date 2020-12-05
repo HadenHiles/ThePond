@@ -429,7 +429,7 @@ function fb_group_generate_phrase() {
             array(
                 '%d',
                 '%d',
-                '%f'
+                '%s'
             )
         );
     }
