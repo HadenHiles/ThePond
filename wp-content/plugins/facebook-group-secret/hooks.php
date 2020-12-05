@@ -26,8 +26,9 @@ function fb_group_get_phrase() {
     $user_id = get_current_user_id();
     global $wpdb;
     $table_name = $wpdb->prefix . "facebook_group_secret_phrases";
-    $query =    "SELECT id, `user_id`, phrase FROM $table_name
+    $query =    "SELECT id, `user_id`, phrase, `timestamp` FROM $table_name
                 WHERE `user_id` = %d
+                ORDER BY `timestamp` DESC
                 LIMIT 1";
 
     $results = $wpdb->get_results($wpdb->prepare($query, $user_id));
