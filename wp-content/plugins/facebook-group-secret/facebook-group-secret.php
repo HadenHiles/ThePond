@@ -91,7 +91,7 @@ if (!function_exists("facebook_group_secret_page")) {
                                     valid = response.data != null ? response.data.valid : false;
 
                                     if (valid) {
-                                        $('#valid-icon').show();
+                                        $('#valid-icon').html("Valid for user: " + response.data.user.data.user_login + " (" + response.data.user.data.user_email + ")").show();
                                         $('#invalid-icon').hide();
                                     } else {
                                         $('#invalid-icon').show();
@@ -100,7 +100,7 @@ if (!function_exists("facebook_group_secret_page")) {
                                 },
                                 complete: function() {
                                     setTimeout(() => {
-                                        $('#valid-icon').hide();
+                                        $('#valid-icon').html("Valid").hide();
                                         $('#invalid-icon').hide();
                                         $('#validate').attr('disabled', false).removeClass('disabled');
                                     }, 2000);

@@ -56,6 +56,7 @@ function validate_facebook_group_phrase() {
                 throw new Exception("No active subscriptions for user $wp_user->user_email", 1);
             }
 
+            $response['user'] = $wp_user;
             send_res($response);
         } catch (Exception $e) {
             $response['valid'] = false;
