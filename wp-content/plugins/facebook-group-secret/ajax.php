@@ -458,13 +458,13 @@ function generate_facebook_group_phrase() {
             $digits = 2;
             $twoDigitNum = rand(pow(10, $digits - 1), pow(10, $digits) - 1);
 
-            if (strlen($slang) >= 13) {
+            if (strlen($slang) >= 15) {
                 $phrase = $slang .= $twoDigitNum;
-            } else if (strlen($slang) <= 8 && strlen($animalOrThing) <= 6) {
+            } else if (strlen($slang) <= 10 && strlen($animalOrThing) <= 8) {
                 $phrase = rand(0, 1) == 0
                     ? $slang . $animalOrThing . $twoDigitNum
                     : $animalOrThing . $slang . $twoDigitNum;
-            } else if (strlen($slang) <= 6 && strlen($animalOrThing) <= 8) {
+            } else if (strlen($slang) <= 8 && strlen($animalOrThing) <= 10) {
                 $phrase = rand(0, 1) == 0
                     ? $slang . $animalOrThing . $twoDigitNum
                     : $animalOrThing . $slang . $twoDigitNum;
