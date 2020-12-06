@@ -1,4 +1,17 @@
 <?php
+function update_user_facebook_id() {
+    $user_id = get_current_user_id();
+    $facebook_id = $_POST['facebook_id'];
+
+    $userMeta = update_user_meta($user_id, 'facebook_id', $facebook_id);
+    $response['success'] = true;
+    $response['user_meta'] = $userMeta;
+    
+    send_res($response);
+}
+
+add_action('wp_ajax_update_user_facebook_id', 'update_user_facebook_id');
+
 function validate_facebook_group_phrase()
 {
     $phrase = $_POST['phrase'];
@@ -83,9 +96,9 @@ function get_facebook_group_phrase()
 
         global $wpdb;
         $table_name = $wpdb->prefix . "facebook_group_secret_phrases";
-        $query =    "SELECT id, phrase, `timestamp` FROM $table_name
+        $query =    "SELECT id, phrase, `created` FROM $table_name
                     WHERE `user_id` = %d
-                    ORDER BY `timestamp` DESC
+                    ORDER BY `created` DESC
                     LIMIT 1";
 
         $results = $wpdb->get_results($wpdb->prepare($query, $user_id));
@@ -499,11 +512,13 @@ function generate_facebook_group_phrase()
             array(
                 'id' => null,
                 'user_id' => $user_id,
-                'phrase' => $phrase
+                'phrase' => $phrase,
+                'owner_facebook_id' => get_user_meta($user_id, 'facebook_id', true)
             ),
             array(
                 '%d',
                 '%d',
+                '%s',
                 '%s'
             )
         )) {
