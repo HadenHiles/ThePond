@@ -394,18 +394,32 @@ function fb_group_generate_phrase() {
             $digits = 2;
             $twoDigitNum = rand(pow(10, $digits - 1), pow(10, $digits) - 1);
 
-            if (strlen($slang) >= 15) {
-                $phrase = $slang .= $twoDigitNum;
-            } else if (strlen($slang) <= 10 && strlen($animalOrThing) <= 8) {
-                $phrase = rand(0, 1) == 0
-                    ? $slang . $animalOrThing . $twoDigitNum
-                    : $animalOrThing . $slang . $twoDigitNum;
-            } else if (strlen($slang) <= 8 && strlen($animalOrThing) <= 10) {
-                $phrase = rand(0, 1) == 0
-                    ? $slang . $animalOrThing . $twoDigitNum
-                    : $animalOrThing . $slang . $twoDigitNum;
-            } else {
+            if (strlen($slang) >= 13) {
                 $phrase = $slang . $twoDigitNum;
+            } else if ((strlen($slang) + strlen($animalOrThing)) < 13 && strlen($slang) <= 6) {
+                $newSlang = str_replace(' ', '', $slangs[rand(0, sizeof($slangs))]);
+
+                $phrase = strlen($newSlang) >= strlen($animalOrThing)
+                    ? $newSlang . $animalOrThing . $twoDigitNum
+                    : $animalOrThing . $newSlang . $twoDigitNum;
+
+                if (strlen($newSlang) + strlen($animalOrThing) + 2 < 11) {
+                    $phrase .= rand(pow(10, $digits - 1), pow(10, $digits) - 1);
+                }
+            } else if ((strlen($slang) + strlen($animalOrThing)) < 13 && strlen($animalOrThing) <= 6) {
+                $newAnimalOrThing = str_replace(' ', '', $animals[rand(0, sizeof($animals))]);
+
+                $phrase = strlen($slang) >= strlen($newAnimalOrThing)
+                    ? $slang . $newAnimalOrThing . $twoDigitNum
+                    : $newAnimalOrThing . $slang . $twoDigitNum;
+
+                    if (strlen($slang) + strlen($newAnimalOrThing) + 2 < 11) {
+                        $phrase .= rand(pow(10, $digits - 1), pow(10, $digits) - 1);
+                    }
+            } else {
+                $phrase = strlen($slang) >= strlen($animalOrThing)
+                    ? $slang . $animalOrThing . $twoDigitNum
+                    : $animalOrThing . $slang . $twoDigitNum;
             }
 
             global $wpdb;

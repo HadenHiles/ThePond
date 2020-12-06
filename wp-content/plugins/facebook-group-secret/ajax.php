@@ -1,5 +1,6 @@
 <?php
-function validate_facebook_group_phrase() {
+function validate_facebook_group_phrase()
+{
     $phrase = $_POST['phrase'];
     $response = array("subscriptions" => array(), "error" => null, "valid" => false);
 
@@ -71,7 +72,8 @@ function validate_facebook_group_phrase() {
 add_action('wp_ajax_validate_facebook_group_phrase', 'validate_facebook_group_phrase');
 add_action('wp_ajax_nopriv_validate_facebook_group_phrase', 'validate_facebook_group_phrase');
 
-function get_facebook_group_phrase() {
+function get_facebook_group_phrase()
+{
     try {
         $user_id = $_POST['user_id'];
 
@@ -96,7 +98,8 @@ function get_facebook_group_phrase() {
 
 add_action('wp_ajax_get_facebook_group_phrase', 'get_facebook_group_phrase');
 
-function generate_facebook_group_phrase() {
+function generate_facebook_group_phrase()
+{
     try {
         $user_id = !empty($_POST['user_id']) ? intval($_POST['user_id']) : get_current_user_id();
 
@@ -458,18 +461,32 @@ function generate_facebook_group_phrase() {
             $digits = 2;
             $twoDigitNum = rand(pow(10, $digits - 1), pow(10, $digits) - 1);
 
-            if (strlen($slang) <= 12 && strlen($animalOrThing) <= 8) {
-                $phrase = rand(0, 1) == 0
-                    ? $slang . $animalOrThing . $twoDigitNum
-                    : $animalOrThing . $slang . $twoDigitNum;
-            } else if (strlen($slang) <= 8 && strlen($animalOrThing) <= 12) {
-                $phrase = rand(0, 1) == 0
-                    ? $slang . $animalOrThing . $twoDigitNum
-                    : $animalOrThing . $slang . $twoDigitNum;
-            } else if (strlen($slang) >= 12) {
+            if (strlen($slang) >= 13) {
                 $phrase = $slang . $twoDigitNum;
+            } else if ((strlen($slang) + strlen($animalOrThing)) < 13 && strlen($slang) <= 6) {
+                $newSlang = str_replace(' ', '', $slangs[rand(0, sizeof($slangs))]);
+
+                $phrase = strlen($newSlang) >= strlen($animalOrThing)
+                    ? $newSlang . $animalOrThing . $twoDigitNum
+                    : $animalOrThing . $newSlang . $twoDigitNum;
+
+                if (strlen($newSlang) + strlen($animalOrThing) + 2 < 11) {
+                    $phrase .= rand(pow(10, $digits - 1), pow(10, $digits) - 1);
+                }
+            } else if ((strlen($slang) + strlen($animalOrThing)) < 13 && strlen($animalOrThing) <= 6) {
+                $newAnimalOrThing = str_replace(' ', '', $animals[rand(0, sizeof($animals))]);
+
+                $phrase = strlen($slang) >= strlen($newAnimalOrThing)
+                    ? $slang . $newAnimalOrThing . $twoDigitNum
+                    : $newAnimalOrThing . $slang . $twoDigitNum;
+
+                    if (strlen($slang) + strlen($newAnimalOrThing) + 2 < 11) {
+                        $phrase .= rand(pow(10, $digits - 1), pow(10, $digits) - 1);
+                    }
             } else {
-                $phrase = $slang . $twoDigitNum . rand(pow(10, $digits - 1), pow(10, $digits) - 1);
+                $phrase = strlen($slang) >= strlen($animalOrThing)
+                    ? $slang . $animalOrThing . $twoDigitNum
+                    : $animalOrThing . $slang . $twoDigitNum;
             }
 
             $results = $wpdb->get_results($wpdb->prepare($query, $phrase));
@@ -502,7 +519,8 @@ function generate_facebook_group_phrase() {
 
 add_action('wp_ajax_generate_facebook_group_phrase', 'generate_facebook_group_phrase');
 
-function cleanup_unused_phrases($user_id, $latestPhrase) {
+function cleanup_unused_phrases($user_id, $latestPhrase)
+{
     global $wpdb;
     $table_name = $wpdb->prefix . "facebook_group_secret_phrases";
 
@@ -521,7 +539,8 @@ function cleanup_unused_phrases($user_id, $latestPhrase) {
 /**
  * Send a formatted json response to the client
  */
-function send_res($data, Exception $e = null) {
+function send_res($data, Exception $e = null)
+{
     if (empty($e)) {
         wp_send_json(
             array(
