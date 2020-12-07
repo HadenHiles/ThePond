@@ -1,4 +1,13 @@
 <?php
+/*
+*   CORS
+*/
+add_filter('allowed_http_origins', 'add_allowed_origins', 10, 1);
+function add_allowed_origins($origins) {
+    $origins[] = "https://www.facebook.com";
+    return $origins;
+}
+
 /* For setting the user's facebook_id meta value before showing them their secret phrase */
 function update_user_facebook_id() {
     $user_id = get_current_user_id();
@@ -26,15 +35,26 @@ function validate_facebook_group_phrase() {
     try {
         global $wpdb;
         $table_name = $wpdb->prefix . "facebook_group_secret_phrases";
-        $query =    "SELECT id, phrase, `user_id` FROM $table_name
+        $query =    "SELECT id, phrase, `user_id`, created FROM $table_name
                     WHERE phrase = %s
+                    ORDER BY created DESC
+                    LIMIT 1";
+        $latestPhraseQuery =    "SELECT id, phrase, `user_id`, created FROM $table_name
+                    WHERE `user_id` = %d
+                    ORDER BY created DESC
                     LIMIT 1";
 
-        $results = $wpdb->get_results($wpdb->prepare($query, $phrase));
+        $result = $wpdb->get_results($wpdb->prepare($query, $phrase));
+        $latestPhraseResult = $wpdb->get_results($wpdb->prepare($latestPhraseQuery, $result[0]->user_id));
 
-        $response['valid'] = sizeof($results) == 1;
+        if ($result[0]->phrase == $latestPhraseResult[0]->phrase) {
+            $response['valid'] = true;
+        } else {
+            $response['error'] = "The phrase: $phrase has expired";
+            $response['valid'] = false;
+        }
 
-        $wp_user = get_user_by('id', $results[0]->user_id);
+        $wp_user = get_user_by('id', $latestPhraseResult[0]->user_id);
 
         if (empty($wp_user)) {
             $response['error'] = "No user exists with the phrase: $phrase";
@@ -548,7 +568,8 @@ function use_phrase() {
         global $wpdb;
         $table_name = $wpdb->prefix . "facebook_group_secret_phrases";
         $query =    "SELECT id, phrase, `user_id`, owner_facebook_id, created FROM $table_name
-                    WHERE owner_facebook_id IS NOT NULL
+                    WHERE phrase = %s
+                    AND owner_facebook_id IS NOT NULL
                     ORDER BY created DESC
                     LIMIT 1";
 

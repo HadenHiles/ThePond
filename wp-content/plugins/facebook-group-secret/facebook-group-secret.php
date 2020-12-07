@@ -49,7 +49,7 @@ function facebook_group_secret_menu() {
 /* Admin page */
 if (!function_exists("facebook_group_secret_page")) {
     function facebook_group_secret_page() {
-?>
+        ?>
         <div style="max-width: 600px; margin: 50px auto; text-align: center;">
             <h2>Facebook Group - Secret Phrase Validation</h2>
 
@@ -111,7 +111,7 @@ if (!function_exists("facebook_group_secret_page")) {
                 })(jQuery);
             </script>
         </div>
-<?php
+        <?php
     }
 }
 ?>
