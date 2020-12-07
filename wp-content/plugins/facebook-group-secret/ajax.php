@@ -1,4 +1,5 @@
 <?php
+/* For setting the user's facebook_id meta value before showing them their secret phrase */
 function update_user_facebook_id() {
     $user_id = get_current_user_id();
     $facebook_id = $_POST['facebook_id'];
@@ -6,14 +7,13 @@ function update_user_facebook_id() {
     $userMeta = update_user_meta($user_id, 'facebook_id', $facebook_id);
     $response['success'] = true;
     $response['user_meta'] = $userMeta;
-    
+
     send_res($response);
 }
-
 add_action('wp_ajax_update_user_facebook_id', 'update_user_facebook_id');
 
-function validate_facebook_group_phrase()
-{
+/* Validate that a phrase exists and is owned by a member with an active memberpress subscription */
+function validate_facebook_group_phrase() {
     $phrase = $_POST['phrase'];
     $response = array("subscriptions" => array(), "error" => null, "valid" => false);
 
@@ -81,12 +81,11 @@ function validate_facebook_group_phrase()
         send_res($response, $e);
     }
 }
-
 add_action('wp_ajax_validate_facebook_group_phrase', 'validate_facebook_group_phrase');
 add_action('wp_ajax_nopriv_validate_facebook_group_phrase', 'validate_facebook_group_phrase');
 
-function get_facebook_group_phrase()
-{
+// Return the user's current secret phrase
+function get_facebook_group_phrase() {
     try {
         $user_id = $_POST['user_id'];
 
@@ -108,11 +107,10 @@ function get_facebook_group_phrase()
         send_res(null, $e);
     }
 }
-
 add_action('wp_ajax_get_facebook_group_phrase', 'get_facebook_group_phrase');
 
-function generate_facebook_group_phrase()
-{
+// Generate a new phrase for the user and cleanup any unused phrases
+function generate_facebook_group_phrase() {
     try {
         $user_id = !empty($_POST['user_id']) ? intval($_POST['user_id']) : get_current_user_id();
 
@@ -493,9 +491,9 @@ function generate_facebook_group_phrase()
                     ? $slang . $newAnimalOrThing . $twoDigitNum
                     : $newAnimalOrThing . $slang . $twoDigitNum;
 
-                    if (strlen($slang) + strlen($newAnimalOrThing) + 2 < 11) {
-                        $phrase .= rand(pow(10, $digits - 1), pow(10, $digits) - 1);
-                    }
+                if (strlen($slang) + strlen($newAnimalOrThing) + 2 < 11) {
+                    $phrase .= rand(pow(10, $digits - 1), pow(10, $digits) - 1);
+                }
             } else {
                 $phrase = strlen($slang) >= strlen($animalOrThing)
                     ? $slang . $animalOrThing . $twoDigitNum
@@ -513,7 +511,8 @@ function generate_facebook_group_phrase()
                 'id' => null,
                 'user_id' => $user_id,
                 'phrase' => $phrase,
-                'owner_facebook_id' => get_user_meta($user_id, 'facebook_id', true)
+                'owner_facebook_id' => get_user_meta($user_id, 'facebook_id', true),
+                'used' => null
             ),
             array(
                 '%d',
@@ -531,11 +530,91 @@ function generate_facebook_group_phrase()
         send_res(null, $e);
     }
 }
-
 add_action('wp_ajax_generate_facebook_group_phrase', 'generate_facebook_group_phrase');
 
-function cleanup_unused_phrases($user_id, $latestPhrase)
-{
+// Record a phrase that has been used
+function use_phrase() {
+    $phrase = $_POST['phrase'];
+    $facebook_id = $_POST['facebook_id'];
+    $response = array("error" => null);
+
+    if (empty($phrase) || empty($facebook_id)) {
+        $response['error'] = "Missing post parameters [phrase, facebook_id]";
+        send_res($response);
+    }
+
+    /* Lookup the secret phrase from the database for that user */
+    try {
+        global $wpdb;
+        $table_name = $wpdb->prefix . "facebook_group_secret_phrases";
+        $query =    "SELECT id, phrase, `user_id`, owner_facebook_id, created FROM $table_name
+                    WHERE owner_facebook_id IS NOT NULL
+                    ORDER BY created DESC
+                    LIMIT 1";
+
+        $results = $wpdb->get_results($wpdb->prepare($query, $phrase));
+
+        if (sizeof($results) > 0 && $results[0]->phrase == $phrase) {
+            if ($results[0]->owner_facebook_id == $facebook_id) {
+                if ($wpdb->update(
+                    $table_name,
+                    // Data
+                    array(
+                        'facebook_id' => $facebook_id,
+                        'used' => current_time('mysql')
+                    ),
+                    // Where
+                    array(
+                        'id' => $results[0]->id
+                    )
+                )) {
+                    $response['success'] = true;
+                } else {
+                    throw new Exception('Failed to update phrase for phrase owner');
+                }
+            } else {
+                if ($wpdb->insert(
+                    $table_name,
+                    array(
+                        'id' => null,
+                        'user_id' => $results[0]->user_id,
+                        'phrase' => $phrase,
+                        'facebook_id' => $facebook_id,
+                        'created' => $results[0]->created,
+                        'owner_facebook_id' => $results[0]->owner_facebook_id
+                    ),
+                    array(
+                        '%d',
+                        '%d',
+                        '%s',
+                        '%s',
+                        '%s',
+                        '%s'
+                    )
+                )) {
+                    $response['success'] = true;
+                } else {
+                    throw new Exception('Failed to insert new phrase');
+                }
+            }
+        } else {
+            throw new Exception('Invalid phrase');
+        }
+
+        send_res($response);
+    } catch (Exception $e) {
+        send_res($response, $e);
+    }
+}
+add_action('wp_ajax_use_phrase', 'use_phrase');
+add_action('wp_ajax_nopriv_use_phrase', 'use_phrase');
+
+/*
+*   Utility functions
+*/
+
+// Utility function for removing any unused phrases (don't have a facebook_id)
+function cleanup_unused_phrases($user_id, $latestPhrase) {
     global $wpdb;
     $table_name = $wpdb->prefix . "facebook_group_secret_phrases";
 
@@ -551,11 +630,8 @@ function cleanup_unused_phrases($user_id, $latestPhrase)
     }
 }
 
-/**
- * Send a formatted json response to the client
- */
-function send_res($data, Exception $e = null)
-{
+// Send a formatted json response to the client
+function send_res($data, Exception $e = null) {
     if (empty($e)) {
         wp_send_json(
             array(

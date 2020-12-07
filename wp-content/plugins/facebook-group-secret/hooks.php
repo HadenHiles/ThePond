@@ -444,7 +444,8 @@ function fb_group_generate_phrase()
                 'id' => null,
                 'user_id' => $user_id,
                 'phrase' => $phrase,
-                'owner_facebook_id' => get_user_meta($user_id, 'facebook_id', true)
+                'owner_facebook_id' => get_user_meta($user_id, 'facebook_id', true),
+                'used' => ''
             ),
             array(
                 '%d',
@@ -528,7 +529,6 @@ function mepr_add_facebook_tab_content($action)
                             type: 'POST',
                             data: data,
                             success: function(response) {
-                                console.log(response);
                                 success = response.data.success;
 
                                 if (success) {
