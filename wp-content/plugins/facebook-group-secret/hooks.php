@@ -554,7 +554,7 @@ function mepr_add_facebook_tab_content($action)
                     var elem = document.getElementById(id);
 
                     jQuery('#copyButton').css("color", "green");
-                    jQuery('#copyButton').html("<span style='color: green; font-size: 12px;'>Phrase Copied</span>");
+                    jQuery('#copyButton').html("<span style='color: green; font-size: 12px;'>Copied</span>");
 
                     setTimeout(() => {
                         jQuery('#copyButton').css("color", "#777");
