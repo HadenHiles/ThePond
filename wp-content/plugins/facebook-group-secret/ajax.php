@@ -4,7 +4,7 @@
 */
 add_filter('allowed_http_origins', 'add_allowed_origins', 10, 1);
 function add_allowed_origins($origins) {
-    $origins[] = "https://www.facebook.com";
+    $origins[] = "*";
     return $origins;
 }
 
@@ -24,6 +24,7 @@ add_action('wp_ajax_update_user_facebook_id', 'update_user_facebook_id');
 /* Validate that a phrase exists and is owned by a member with an active memberpress subscription */
 function validate_facebook_group_phrase() {
     $phrase = $_POST['phrase'];
+    $dataOnly = $_POST['data_only'] == "true" || $_POST['data_only'] == true;
     $response = array("subscriptions" => array(), "error" => null, "valid" => false);
 
     if (empty($phrase)) {
@@ -91,14 +92,14 @@ function validate_facebook_group_phrase() {
             }
 
             $response['user'] = $wp_user;
-            send_res($response);
+            send_res($response, null, $dataOnly);
         } catch (Exception $e) {
             $response['valid'] = false;
-            send_res($response, $e);
+            send_res($response, $e, $dataOnly);
         }
     } catch (Exception $e) {
         $response['valid'] = false;
-        send_res($response, $e);
+        send_res($response, $e, $dataOnly);
     }
 }
 add_action('wp_ajax_validate_facebook_group_phrase', 'validate_facebook_group_phrase');
@@ -652,14 +653,21 @@ function cleanup_unused_phrases($user_id, $latestPhrase) {
 }
 
 // Send a formatted json response to the client
-function send_res($data, Exception $e = null) {
+function send_res($data, Exception $e = null, $data_only = false) {
     if (empty($e)) {
-        wp_send_json(
-            array(
-                'data' => $data
-            ),
-            200
-        );
+        if ($data_only) {
+            wp_send_json(
+                $data,
+                200
+            );
+        } else {
+            wp_send_json(
+                array(
+                    'data' => $data
+                ),
+                200
+            );
+        }
     } else {
         wp_send_json(
             array(
