@@ -130,6 +130,71 @@ function get_facebook_group_phrase() {
 }
 add_action('wp_ajax_get_facebook_group_phrase', 'get_facebook_group_phrase');
 
+// Get the wordpress user from their facebook id and indicate if they have an active memberpress subscription
+function get_facebook_user_info() {
+    try {
+        $facebook_id = $_POST['facebook_id'];
+
+        if (empty($facebook_id)) {
+            throw new Exception('No facebook_id provided.');
+        }
+
+        global $wpdb;
+        $table_name = $wpdb->prefix . "facebook_group_secret_phrases";
+        $query =    "SELECT id, `user_id`, phrase, facebook_id, owner_facebook_id, `created` FROM $table_name
+                    WHERE owner_facebook_id = %s
+                    AND facebook_id = owner_facebook_id
+                    ORDER BY `created` DESC
+                    LIMIT 1";
+
+        $phrases = $wpdb->get_results($wpdb->prepare($query, $facebook_id));
+        $user = get_user_by('id', $phrases[0]->user_id);
+
+        $response = array(
+            "member" => false,
+            "active" => false,
+            "since" => null
+        );
+
+        if ($user != null) {
+            /* Check for active memberpress subscriptions */
+            $mpUser = new MeprUser($user->id);
+            $activeSubscriptions = $mpUser->active_product_subscriptions("transactions");
+
+            $subs = array();
+            foreach ($activeSubscriptions as $s) {
+                $sub = array(
+                    "id" => $s->product_id,
+                    "price" => $s->amount,
+                    "created_at" => $s->created_at,
+                    "expires_at" => $s->expires_at,
+                    "transaction_type" => $s->txn_type,
+                    "transaction_num" => $s->trans_num,
+                    "gateway" => $s->gateway,
+                    "status" => $s->status
+                );
+
+                $subs[] = $sub;
+            }
+
+            $hasActiveMembership = !empty($activeSubscriptions);
+
+            if ($hasActiveMembership) {   
+                $response['active'] = true;
+            }
+
+            $response['member'] = true;
+            $response['since'] = $mpUser->get_user_registration_date($user->id);
+        }
+
+        send_res($response);
+    } catch (Exception $e) {
+        send_res(null, $e);
+    }
+}
+add_action('wp_ajax_get_facebook_user_info', 'get_facebook_user_info');
+add_action('wp_ajax_nopriv_get_facebook_user_info', 'get_facebook_user_info');
+
 // Generate a new phrase for the user and cleanup any unused phrases
 function generate_facebook_group_phrase() {
     try {
