@@ -5,6 +5,7 @@ function enqueue_jqueryui() {
     if (strpos($_SERVER['REQUEST_URI'], '/skills') !== false) {
         wp_enqueue_script('jquery-ui', 'https://code.jquery.com/ui/1.11.4/jquery-ui.min.js', array(), null, true);
         wp_enqueue_style('jquery-ui', 'https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css');
+        wp_enqueue_script('touch-punch', '//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js', array(), null, true);
         wp_enqueue_script('competency-slider', $plugin_url . 'js/competency-slider.js', array('jquery'), null, true);
         wp_enqueue_style('competency-slider', $plugin_url . 'css/style.css');
     }
