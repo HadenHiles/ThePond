@@ -1,0 +1,26 @@
+/* Skill competency slider styles */
+#competency-slider {
+    width: 100%;
+	margin: 20px auto;
+	float: left;
+    background-image: -webkit-linear-gradient(left, rgb(255,0,0) 0%, rgb(255, 166, 0) 50%, rgb(0, 195, 0) 100%);
+    background-image: -moz-linear-gradient(left, rgb(255,0,0) 0%, rgb(255, 166, 0) 50%, rgb(0, 195, 0) 100%);
+    background-image: -o-linear-gradient(left, rgb(255,0,0) 0%, rgb(255, 166, 0) 50%, rgb(0, 195, 0) 100%);
+    background-image: linear-gradient(left, rgb(255,0,0) 0%, rgb(255, 166, 0) 50%, rgb(0, 195, 0) 100%);
+}
+.scale-indicators {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+	width: 100%;
+	clear: both;
+}
+.scale-indicators span.lowest, .scale-indicators span.highest {
+	display: block;
+}
+#current-competency-color {
+    width: 25px;
+	height: 25px;
+	float: right;
+    margin: 5px;
+}

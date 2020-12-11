@@ -1,5 +1,4 @@
 <?php
-global $smof_data;
 get_header("members");
 if (has_post_thumbnail()) {
     $imgID  = get_post_thumbnail_id($post->ID);
@@ -178,6 +177,9 @@ if (has_post_thumbnail()) {
                                         </div>
                                     <?php
                                     }
+                                    ?>
+                                    <?=do_shortcode('[skill_competency_slider skill_id="' . get_the_ID() . '" user_id="' . get_current_user_id() . '"]')?>
+                                    <?php
 
                                     // Check rows exists.
                                     if (have_rows('skill_quick_tips')) :
