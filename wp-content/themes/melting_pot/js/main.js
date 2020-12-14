@@ -60,8 +60,8 @@
 		});
 
 		// Skills Vault
-		var frequencyColumn = 2;
-		var skillTypeColumn = 4;
+		var frequencyColumn = 3;
+		var skillTypeColumn = 5;
 		var skillsVaultTable = $('#skills-vault-table').DataTable({
 			searching: true,
 			// responsive: {

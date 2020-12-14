@@ -1,8 +1,9 @@
 <?php
-function get_skill_competency_rating() {
+function get_skill_competency_rating($user_id, $skill_id) {
     try {
-        $skillId = intval($_POST['skill_id']);
-        $userId = intval($_POST['user_id']);
+        $raw = (!empty($user_id) && !empty($skill_id));
+        $skillId = !$raw ? intval($_POST['skill_id']) : $skill_id;
+        $userId = !$raw ? intval($_POST['user_id']) : $user_id;
 
         if ($userId != get_current_user_id()) {
             throw new Exception('You don\'t have permission to view this rating');
@@ -17,15 +18,22 @@ function get_skill_competency_rating() {
 
         $results = $wpdb->get_results($wpdb->prepare($query, $skillId, $userId));
 
-        
+        if ($raw) {
+            return $results[0];
+        }
         send_response($results[0]);
     } catch (Exception $e) {
+        if ($raw) {
+            return array(null, "error" => $e);
+        }
         send_response(null, $e);
     }
 }
 
 // Add ajax endpoint for retrieving their rating
 add_action('wp_ajax_get_skill_competency_rating', 'get_skill_competency_rating');
+
+add_filter('get_skill_competency_rating', 'get_skill_competency_rating', 10, 2 );
 
 function update_skill_competency_rating() {
     try {

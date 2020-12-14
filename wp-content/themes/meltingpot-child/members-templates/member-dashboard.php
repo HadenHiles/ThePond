@@ -196,6 +196,7 @@ get_header('members'); ?>
 						<thead>
 							<tr>
 								<th scope="col" class="title">Skill</th>
+								<th scope="col" style="min-width: 40px;">Rating</th>
 								<th class="actions" style="min-width: 75px;">Resources</th>
 								<th scope="col" style="min-width: 110px;">Frequency</th>
 								<th scope="col" style="min-width: 100px;">Level</th>
@@ -214,6 +215,7 @@ get_header('members'); ?>
 								?>
 								<tr>
 									<td colspan="4" class="center-text text-center">There are no skills yet.</td>
+									<td></td>
 									<td></td>
 									<td></td>
 									<td></td>
@@ -255,6 +257,9 @@ get_header('members'); ?>
 									?>
 									<tr>
 										<td><a href="<?=$url?>"><?=$name?></a></td>
+										<?php 
+										do_shortcode('[skill_rating_box skill_id="' . $skill->ID . '"]');
+										?>
 										<td class="<?=sizeof($skillExamples) > 0 ? 'multiple-actions' : ''?>">
 											<?php
 											if ((!empty($pros) && sizeof($pros) > 0) || (!empty($cons) && sizeof($cons) > 0) || !empty($whenToUseIt)) {
