@@ -476,7 +476,12 @@ img[data-enlargable] {
 }
 @media screen and (max-width: 500px) {
 	.topmemberNav ul {
-		margin-bottom: 20px;
+		margin-bottom: 32px;
+	}
+}
+@media screen and (max-width: 1024px) {
+	.topmemberNav #menu-member-top-menu {
+		top: -5px !important;
 	}
 }
 /* END Top Nav & Avatar */
