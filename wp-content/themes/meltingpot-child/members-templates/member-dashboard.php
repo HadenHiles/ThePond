@@ -196,7 +196,7 @@ get_header('members'); ?>
 						<thead>
 							<tr>
 								<th scope="col" class="title">Skill</th>
-								<th scope="col" style="min-width: 40px;">Rating</th>
+								<th scope="col" style="min-width: 20px;"><i class="fa fa-star" aria-hidden="true"></i></th>
 								<th class="actions" style="min-width: 75px;">Resources</th>
 								<th scope="col" style="min-width: 110px;">Frequency</th>
 								<th scope="col" style="min-width: 100px;">Level</th>
