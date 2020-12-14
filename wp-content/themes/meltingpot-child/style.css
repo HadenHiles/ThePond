@@ -186,9 +186,20 @@ a {
 header .MemberheaderWrap .MainNav ul li a {font-size:1.2em;font-family: 'Teko', sans-serif;}
 .topmemberNav li a {color:#fff;}
 .topmemberNav li a:hover {color:#83cdcf;}
-.header .topmemberNav li.menu_search a {background:#fff;color: #14345a;font-size:0.8em;}
+.header .topmemberNav li.menu_search a {background:#fff;color: #14345a;font-size:0.8em; padding: 6px 12px;}
 .header .topmemberNav li.menu_search a:hover {background:#83cdcf;color:#14345a}
 
+.header .topmemberNav li.menu_facebook {
+	padding: 0;
+	position: relative;
+	top: 6px;
+}
+.header .topmemberNav li.menu_facebook a {
+	padding: 10px 10px 10px 5px;
+}
+.header .topmemberNav li.menu_facebook a svg {
+	font-size: 32px;
+}
 
 a.topic-completed::before {background-color: #3AA6DE;}
 
@@ -445,6 +456,8 @@ img[data-enlargable] {
 	border: 2px solid #fff;
 	border-radius: 100%;
 	overflow: hidden;
+	position: relative;
+	top: 2px;
 	margin-right: 5px;
 	transition: all .2s ease-in-out;
 	-moz-transition: all .2s ease-in-out;
