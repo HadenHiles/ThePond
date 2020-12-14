@@ -3,10 +3,10 @@
     width: 100%;
 	margin: 20px auto;
 	float: left;
-    background-image: -webkit-linear-gradient(left, rgb(255,0,0) 0%, rgb(255, 166, 0) 50%, rgb(0, 195, 0) 100%);
-    background-image: -moz-linear-gradient(left, rgb(255,0,0) 0%, rgb(255, 166, 0) 50%, rgb(0, 195, 0) 100%);
-    background-image: -o-linear-gradient(left, rgb(255,0,0) 0%, rgb(255, 166, 0) 50%, rgb(0, 195, 0) 100%);
-    background-image: linear-gradient(left, rgb(255,0,0) 0%, rgb(255, 166, 0) 50%, rgb(0, 195, 0) 100%);
+    background-image: -webkit-linear-gradient(left, rgb(255,0,0) 0%, rgb(255, 113, 0) 20%, rgb(255, 113, 0) 40%, rgb(255, 166, 0) 60%, rgb(255, 166, 0) 80%, rgb(0, 195, 0) 100%);
+    background-image: -moz-linear-gradient(left, rgb(255,0,0) 0%, rgb(255, 113, 0) 20%, rgb(255, 113, 0) 40%, rgb(255, 166, 0) 60%, rgb(255, 166, 0) 80%, rgb(0, 195, 0) 100%);
+    background-image: -o-linear-gradient(left, rgb(255,0,0) 0%, rgb(255, 113, 0) 20%, rgb(255, 113, 0) 40%, rgb(255, 166, 0) 60%, rgb(255, 166, 0) 80%, rgb(0, 195, 0) 100%);
+    background-image: linear-gradient(left, rgb(255,0,0) 0%, rgb(255, 113, 0) 20%, rgb(255, 113, 0) 40%, rgb(255, 166, 0) 60%, rgb(255, 166, 0) 80%, rgb(0, 195, 0) 100%);
 }
 .scale-indicators {
 	display: flex;
@@ -15,7 +15,7 @@
 	width: 100%;
 	clear: both;
 }
-.scale-indicators span.lowest, .scale-indicators span.highest {
+.scale-indicators span {
 	display: block;
 }
 #current-competency-color {
@@ -23,4 +23,10 @@
 	height: 25px;
 	float: right;
     margin: 5px;
+}
+
+@media screen and (max-width: 568px) {
+	.scale-indicators span {
+		font-size: 12px;
+	}
 }

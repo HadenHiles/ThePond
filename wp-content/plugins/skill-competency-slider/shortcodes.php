@@ -17,8 +17,9 @@ function display_skill_competency_slider($atts = [], $content = null, $tag = '')
             <br />
             <br />
             <div class="scale-indicators">
-                <span class="lowest">Can't do it</span>
-                <span class="highest">Amazing at it</span>
+                <span class="lowest">Working on it</span>
+                <span>Can do it in a game</span>
+                <span class="highest">Game Changer</span>
             </div>
             <div id="competency-slider" data-skill-id="<?= esc_attr($skill_id) ?>" data-user-id="<?= esc_attr($user_id) ?>"></div>
         </div>
@@ -36,13 +37,24 @@ function skill_rating_box($atts = [], $content = null, $tag = '') {
         'skill_id' => 'skill_id'
     ), $tmp_atts));
 
-    $result = apply_filters('get_skill_competency_rating', get_current_user_id(), $skill_id);
-    if (empty($result->error) && (!empty($result->rgb) && !empty($result->percentage))) {
-        ?>
-        <td data-order="<?=$result->percentage?>">
-            <div style="width: 20px; height: 20px; float: right; background-color: <?=$result->rgb ?>"></div>
-        </td>            
-        <?php
+    $result = apply_filters('get_skill_rating', $skill_id);
+    $result = $result->data;
+    if (!empty($result) && (!empty($result->rgb) && !empty($result->percentage))) {
+        if ($result->percentage >= 99) {
+            ?>
+            <td data-order="<?=$result->percentage?>">
+                <div style="width: 20px; height: 20px; float: right;">
+                    <img src="/wp-content/plugins/skill-competency-slider/images/hth_logo.png" style="width: 100%;" />
+                </div>
+            </td>            
+            <?php
+        } else {
+            ?>
+            <td data-order="<?=$result->percentage?>">
+                <div style="width: 20px; height: 20px; float: right; background-color: <?=$result->rgb ?>"></div>
+            </td>            
+            <?php
+        }
     } else {
         ?>
         <td data-order="0">

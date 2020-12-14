@@ -5,7 +5,19 @@
             [255, 0, 0]
         ],
         [
-            50,
+            20,
+            [255, 113, 0]
+        ],
+        [
+            40,
+            [255, 113, 0]
+        ],
+        [
+            60,
+            [255, 166, 0]
+        ],
+        [
+            80,
             [255, 166, 0]
         ],
         [
@@ -33,19 +45,26 @@
             data: data,
             success: function (response) {
                 if (response.error == null) {
-                    // console.log('Rating:', response.data);
+                    console.log('Rating:', response.data);
 
                     if (response.data != null) {
                         $("#competency-slider").slider({value: response.data.percentage});
-                        $('#current-competency-color').css({"background-color": response.data.rgb})
+                        
+                        if (response.data.percentage >= 99) {
+                            $('#current-competency-color').css({"background-color": ""});
+                            $('#current-competency-color').html('<img src="/wp-content/plugins/skill-competency-slider/images/hth_logo.png" style="width: 100%;" />');
+                        } else {
+                            $('#current-competency-color').html("");
+                            $('#current-competency-color').css({"background-color": response.data.rgb});
+                        }
                     }
                 } else {
                     // error(response.error.message);
-                    // console.error('Ajax error: ' + response.error.message + '. code: ' + response.error.code);
+                    console.error('Ajax error: ' + response.error.message + '. code: ' + response.error.code);
                 }
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                // console.error('Ajax server error: ' + textStatus + ': ' + errorThrown);
+                console.error('Ajax server error: ' + textStatus + ': ' + errorThrown);
             }
         });
     });
@@ -75,7 +94,13 @@
             //Get the color with pickHex
             var result = pickHex(secondcolor, firstcolor, ratio);
 
-            $('#current-competency-color').css("background-color", 'rgb(' + result.join() + ')');
+            if (ui.value >= 99) {
+                $('#current-competency-color').css({"background-color": ""});
+                $('#current-competency-color').html('<img src="/wp-content/plugins/skill-competency-slider/images/hth_logo.png" style="width: 100%;" />');
+            } else {
+                $('#current-competency-color').html("");
+                $('#current-competency-color').css({"background-color": 'rgb(' + result.join() + ')'});
+            }
 
         },
         change: (event, ui) => {
@@ -93,9 +118,9 @@
                 data: data,
                 success: function (response) {
                     if (response.error == null) {
-                        console.log('Ajax response:', response);
+                        // console.log('Ajax response:', response);
                     } else {
-                        error(response.error.message);
+                        // error(response.error.message);
                         console.error('Ajax error: ' + response.error.message + '. code: ' + response.error.code);
                     }
                 },

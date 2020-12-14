@@ -1,11 +1,17 @@
 <?php
-function get_skill_competency_rating($user_id, $skill_id) {
+function get_skill_rating($skill_id) {
+    $result = new stdClass();
+    $result->data = null;
+    $result->error = null;
     try {
-        $raw = (!empty($user_id) && !empty($skill_id));
-        $skillId = !$raw ? intval($_POST['skill_id']) : $skill_id;
-        $userId = !$raw ? intval($_POST['user_id']) : $user_id;
-
-        if ($userId != get_current_user_id()) {
+        $user_id = get_current_user_id();
+        if (empty($skill_id)) {
+            $skill_id = $_POST['skill_id'];
+        }
+        if (empty($skill_id)) {
+            throw new Exception('Missing parameter skill_id');
+        }
+        if ($user_id != get_current_user_id()) {
             throw new Exception('You don\'t have permission to view this rating');
         }
 
@@ -16,16 +22,28 @@ function get_skill_competency_rating($user_id, $skill_id) {
                         AND `user_id` = %d
                         LIMIT 1";
 
-        $results = $wpdb->get_results($wpdb->prepare($query, $skillId, $userId));
+        $results = $wpdb->get_results($wpdb->prepare($query, $skill_id, $user_id));
 
-        if ($raw) {
-            return $results[0];
-        }
-        send_response($results[0]);
+        $result->data = $results[0];
+        return $result;
     } catch (Exception $e) {
-        if ($raw) {
-            return array(null, "error" => $e);
+        $result->error = $e;
+        return $result;
+    }
+}
+
+function get_skill_competency_rating() {
+    try {
+        $skillId = intval($_POST['skill_id']);
+
+        $result = get_skill_rating($skillId);
+
+        if (empty($result->error)) {
+            send_response($result->data);
+        } else {
+            send_response(null, $result->error);
         }
+    } catch (Exception $e) {
         send_response(null, $e);
     }
 }
@@ -33,7 +51,7 @@ function get_skill_competency_rating($user_id, $skill_id) {
 // Add ajax endpoint for retrieving their rating
 add_action('wp_ajax_get_skill_competency_rating', 'get_skill_competency_rating');
 
-add_filter('get_skill_competency_rating', 'get_skill_competency_rating', 10, 2 );
+add_filter('get_skill_rating', 'get_skill_rating', 10, 1 );
 
 function update_skill_competency_rating() {
     try {
