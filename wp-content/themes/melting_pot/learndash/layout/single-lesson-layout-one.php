@@ -1,5 +1,8 @@
 <?php
 get_header('members');
+if(!current_user_can('memberpress_authorized')) {
+	header('location: /wp-content/themes/meltingpot-child/funnel.php?redirect_to=' . $_SERVER['REQUEST_URI']);
+}
 if (has_post_thumbnail()) {
 	$imgID  = get_post_thumbnail_id($post->ID);
 	$img    = wp_get_attachment_image_src($imgID, 'full', false, '');
