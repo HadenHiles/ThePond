@@ -11,7 +11,10 @@ wp_enqueue_script('datatables-responsive', get_template_directory_uri() . '/boot
 wp_enqueue_script('datatables-fixedheader', get_template_directory_uri() . '/bootstrap-4.5.0/DataTables/FixedHeader-3.1.7/js/dataTables.fixedHeader.min.js', array(), null, true);
 wp_enqueue_script('filterizr', get_template_directory_uri() . '/js/jquery.filterizr.min.js', array(), null, true);
 
-wp_enqueue_script('main', get_template_directory_uri() . '/js/main.js', array('jquery'), null, true);
+add_action('wp_enqueue_scripts', 'enqueue_main_script');
+function enqueue_main_script() {
+    wp_enqueue_script('main', get_template_directory_uri() . '/js/main.js', array('jquery'), null, true);
+}
 
 add_action('wp_enqueue_scripts', 'enqueue_firebase');
 function enqueue_firebase() {

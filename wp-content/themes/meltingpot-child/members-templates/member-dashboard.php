@@ -138,7 +138,7 @@ get_header('members'); ?>
 									}
 								}
 
-								if (sizeof($corporateAccounts) <= 0 || !$hasASubAccount) {
+								if (count($corporateAccounts) <= 0 || !$hasASubAccount) {
 									?>
 									<div class="card skill no-hover" style="width: 100%;">
 										<div class="card-body content" style="justify-content: center;">
@@ -211,7 +211,7 @@ get_header('members'); ?>
 							) );
 							$skills = $skillsQuery->get_posts();
 
-							if(sizeof($skills) <= 0) {
+							if(count($skills) <= 0) {
 								?>
 								<tr>
 									<td colspan="4" class="center-text text-center">There are no skills yet.</td>
@@ -234,10 +234,10 @@ get_header('members'); ?>
 									$videoCode = get_field('video_code', $skill->ID);
 									$skillTypes = get_the_terms( $skill->ID, 'skill-type' ); 
 									$skillTypeString = '';
-									if(sizeof($skillTypes) > 0) {
+									if(count($skillTypes) > 0) {
 										$count = 0;
 										foreach($skillTypes as $skillType) {
-											if (++$count > 1 && $count <= sizeof($skillTypes)) {
+											if (++$count > 1 && $count <= count($skillTypes)) {
 												$skillTypeString .= ', ';
 											}
 											$skillTypeString .= $skillType->name;
@@ -245,10 +245,10 @@ get_header('members'); ?>
 									}
 									$performanceLevels = get_the_terms( $skill->ID, 'performance-level' ); 
 									$performanceLevelString = '';
-									if(sizeof($performanceLevels) > 0) {
+									if(count($performanceLevels) > 0) {
 										$count = 0;
 										foreach($performanceLevels as $performanceLevel) {
-											if (++$count > 1 && $count <= sizeof($performanceLevels)) {
+											if (++$count > 1 && $count <= count($performanceLevels)) {
 												$performanceLevelString .= ', ';
 											}
 											$performanceLevelString .= $performanceLevel->name;
@@ -260,12 +260,12 @@ get_header('members'); ?>
 										<?php 
 										do_shortcode('[skill_rating_box skill_id="' . $skill->ID . '"]');
 										?>
-										<td class="<?=sizeof($skillExamples) > 0 ? 'multiple-actions' : ''?>">
+										<td class="<?=count($skillExamples) > 0 ? 'multiple-actions' : ''?>">
 											<?php
-											if ((!empty($pros) && sizeof($pros) > 0) || (!empty($cons) && sizeof($cons) > 0) || !empty($whenToUseIt)) {
+											if ((!empty($pros) && count($pros) > 0) || (!empty($cons) && count($cons) > 0) || !empty($whenToUseIt)) {
 												$breakdownDetails = '';
 												//Pros
-												if (sizeof($pros) > 0 && !empty($pros)) {
+												if (count($pros) > 0 && !empty($pros)) {
 													$breakdownDetails .=	
 													'<div class="card">'.
 														'<div class="card-body">
@@ -287,7 +287,7 @@ get_header('members'); ?>
 													'</div>';
 												}
 												//Cons
-												if (sizeof($cons) > 0 && !empty($cons)) {
+												if (count($cons) > 0 && !empty($cons)) {
 													$breakdownDetails .=	
 													'<div class="card">'.
 														'<div class="card-body">
@@ -331,7 +331,7 @@ get_header('members'); ?>
 												</a>
 												<?php
 											}
-											if (sizeof($skillExamples) > 0) {
+											if (count($skillExamples) > 0) {
 												?>
 												<?php /*<a href="<?=get_post_permalink($skillExamples[0]->ID)?>" class="BTN action-button custom-icon">*/ ?>
 												<?php
@@ -354,7 +354,7 @@ get_header('members'); ?>
 													$examplesListHtml .= '</div>';
 												}
 												
-												if (sizeof($examplesList) > 0) {
+												if (count($examplesList) > 0) {
 													?>
 													<a class="BTN action-button custom-icon" 
 														data-title="<?=get_the_title($skillExamples[0]->ID)?>"
