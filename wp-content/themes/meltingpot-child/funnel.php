@@ -20,7 +20,7 @@ $activeSubscriptions = $meprUser->active_product_subscriptions('ids');
 if (get_current_user_id() == 0 && !empty($recentLogin)) {
     setcookie('redirect_to', $redirectUrl, -1, '/');
     header('location: /login');
-} else if (get_current_user_id() == 0 && empty($recentLogin)) {
+} else if (get_current_user_id() == 0 && empty($recentLogin) && empty($subscriptions)) {
     header('location: /#choose-your-subscription');
 } else {
     // Refresh the recent_login cookie
