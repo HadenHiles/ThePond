@@ -17,22 +17,21 @@
             var auth = firebase.auth();
 
             /* New password redirect */
-            
-            var checkFirebaseInitialized = setInterval(function () {
-                if (window.location.href.includes("/account")) {
-                    if (auth.currentUser != null) {
-                        var passwordProviderData = auth.currentUser.providerData.filter((provider) => {
-                            return provider.providerId == "password";
-                        });
+            // var checkFirebaseInitialized = setInterval(function () {
+            //     if (window.location.href.includes("/account")) {
+            //         if (auth.currentUser != null) {
+            //             var passwordProviderData = auth.currentUser.providerData.filter((provider) => {
+            //                 return provider.providerId == "password";
+            //             });
     
-                        if (passwordProviderData.length < 1 && !window.location.href.includes(`action=newpassword`) && !window.location.href.includes(`/login`)) {
-                            window.location.href = "/account/?action=newpassword";
-                        }
+            //             if (passwordProviderData.length < 1 && !window.location.href.includes(`action=newpassword`) && !window.location.href.includes(`/login`)) {
+            //                 window.location.href = "/account/?action=newpassword";
+            //             }
     
-                        clearInterval(checkFirebaseInitialized);
-                    }
-                }
-            }, 100);
+            //             clearInterval(checkFirebaseInitialized);
+            //         }
+            //     }
+            // }, 100);
 
             /* Password reset */
             if ($('#mepr_forgot_password_form').length == 1) {
