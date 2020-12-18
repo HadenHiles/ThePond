@@ -17,17 +17,20 @@
             var auth = firebase.auth();
 
             /* New password redirect */
+            
             var checkFirebaseInitialized = setInterval(function () {
-                if (auth.currentUser != null) {
-                    var passwordProviderData = auth.currentUser.providerData.filter((provider) => {
-                        return provider.providerId == "password";
-                    });
-
-                    if (passwordProviderData.length < 1 && !window.location.href.match(`.*\/account.*`) && !window.location.href.match(`.*\/login.*`)) {
-                        window.location.href = "/account/?action=newpassword";
+                if (window.location.href.includes("/account")) {
+                    if (auth.currentUser != null) {
+                        var passwordProviderData = auth.currentUser.providerData.filter((provider) => {
+                            return provider.providerId == "password";
+                        });
+    
+                        if (passwordProviderData.length < 1 && !window.location.href.includes(`action=newpassword`) && !window.location.href.includes(`/login`)) {
+                            window.location.href = "/account/?action=newpassword";
+                        }
+    
+                        clearInterval(checkFirebaseInitialized);
                     }
-
-                    clearInterval(checkFirebaseInitialized);
                 }
             }, 100);
 
