@@ -313,4 +313,23 @@
 		}
 	});
 
+	/**
+	 * Don't let users register through instagram or facebook browsers since firebase won't work
+	 */
+	$(document).ready(() => {
+		var $registerForm = $('#register-form-wrapper');
+		var $loginForm = $('#mepr_loginform');
+		if ($registerForm.length > 0 || $loginForm.length > 0) {
+			if (isMobileAppBrowser()) {
+				alert("To avoid potential sign-in issues, please open this page in your web browser (Chrome, Safari, etc.). Thank you!");
+				window.location.href = "/";
+			}
+		}
+	});
+
 })(jQuery);
+
+function isMobileAppBrowser() {
+	var ua = navigator.userAgent || navigator.vendor || window.opera;
+	return (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1 || ua.indexOf('Instagram') > -1);
+}
