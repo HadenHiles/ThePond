@@ -1,0 +1,29 @@
+.mo_firebase_auth_login_button{
+    display:block;
+    border:1px solid #008ec2;
+    border-radius:3px;
+    margin-bottom:5px;
+    width:100%;
+    height:28px;
+    cursor:pointer;
+    box-shadow: 2px 2px 5px #ccc;
+    background-color:#008ec2;
+}
+
+.mo_firebase_auth_login_button_icon{
+    display:inline-block;
+    color:white;
+    margin-left:15px;
+    margin-right:15px;
+    font-size:15px;
+    border-right: 1px solid #3274ad;
+    height: 23px;
+    padding-right: 15px;
+    padding-top: 6px;
+}
+
+.mo_firebase_auth_login_button_text{
+    margin-left:5px;
+    color:white;
+    display:inline-block;
+}
