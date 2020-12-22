@@ -29,6 +29,7 @@ wp-content/themes/melting_pot/bootstrap-4.5.0
 # don't ignore
 !.gitignore
 !README.md
+!join
 !wp-content/plugins/challenge-score
 !wp-content/plugins/facebook-group-secret
 !wp-content/plugins/skill-competency-slider
