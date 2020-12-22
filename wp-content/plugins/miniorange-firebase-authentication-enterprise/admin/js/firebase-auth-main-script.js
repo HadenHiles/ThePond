@@ -180,7 +180,7 @@ function mo_firebase_auth_provider_firebaseAuthentication(provider_method, pid, 
 	}*/
 
 	if (isMobileAppBrowser()) {
-		window.location.href = "/open-in-web-browser/";
+		window.location.href = "/open-in-web-browser";
 	} else {
 		var re = new RegExp(/^.*\//);
 		var url = re.exec(window.location.href);
