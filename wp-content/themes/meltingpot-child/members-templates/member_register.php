@@ -19,10 +19,12 @@ setcookie($cookie_name, $cookie_value, time() + (3600 * 30), "/"); // 3600 = 1 h
                         <h1 style="margin-top: 25px;float: left;"><?php the_title(); ?></h1>
                         <h2 style="float: left; margin: 35px 15px; color: #cc3333;">$<?= get_field('_mepr_product_price', $post->ID) ?></h2>
                     </div>
-                    <h4 style="margin-top: 10px; float: left; width: 100%; font-size: 24px;">Choose how you would like to login to The Pond</h4>
+                    <div style="clear: both;"></div>
                     <?php
                     if (!is_user_logged_in()) {
                     ?>
+                        <h4 style="margin-top: 10px; float: left; width: 100%; font-size: 24px;">Choose how you would like to login to The Pond</h4>
+                        <div style="clear: both;"></div>
                         <div style="display: inline-block; width: 100%;">
                             <div class="google-btn" id="mo_firebase_Google_provider_login">
                                 <div class="google-icon-wrapper">

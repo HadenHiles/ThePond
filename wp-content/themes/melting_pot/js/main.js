@@ -301,15 +301,14 @@
 	 */
 	$(document).ready(() => {
 		var $formWrapper = $('#register-form-wrapper');
+		$formWrapper.slideToggle({ duration: 300, easing: "swing" }); // Show the email signup by default
 		var $emailBtn = $('#signup-with-email-btn');
 		if ($formWrapper.length == 1 && $emailBtn.length == 1) {
 			$emailBtn.click(() => {
-				$formWrapper.slideToggle({ duration: 300, easing: "swing" });
+				if (!$formWrapper.is(":visible")) {
+					$formWrapper.slideToggle({ duration: 300, easing: "swing" });
+				}
 			});
-
-			if (window.location.hash) {
-				$formWrapper.slideToggle({ duration: 300, easing: "swing" });
-			}
 		}
 	});
 
