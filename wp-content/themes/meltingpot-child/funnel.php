@@ -28,16 +28,14 @@ if (empty($chosenMembership)) {
 if (empty($subscriptions)) {
     // Check if the user already chose a subscription
     if (!empty($chosenMembership)) {
-        setcookie('selected_membership', null, -1, '/');
         header('location: ' . $chosenMembership);
     } else {
         header('location: /#choose-your-subscription');
     }
 } else if (!empty($activeSubscriptions)) {
-    // Refresh the recent_login cookie
-    setcookie("recent_login", true, strtotime( '+30 days' ), "/"); // expire in 30 days
-
+    // Reset the relevant cookies
     setcookie('selected_membership', null, -1, '/');
+    setcookie("recent_login", true, strtotime( '+30 days' ), "/"); // expire in 30 days
 
     if(empty($redirectUrl)) {
         header('location: /member-dashboard');
