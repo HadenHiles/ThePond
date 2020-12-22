@@ -180,8 +180,7 @@ function mo_firebase_auth_provider_firebaseAuthentication(provider_method, pid, 
 	}*/
 
 	if (isMobileAppBrowser()) {
-		alert("To avoid potential sign-in issues, please open this page in your web browser (Chrome, Safari, etc.). Thank you!");
-		window.location.href = "/";
+		window.location.href = "/open-in-web-browser/";
 	} else {
 		var re = new RegExp(/^.*\//);
 		var url = re.exec(window.location.href);
