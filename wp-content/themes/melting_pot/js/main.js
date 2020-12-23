@@ -317,7 +317,7 @@
 	 */
 	$(document).ready(() => {
 		if (isMobileAppBrowser() && !window.location.href.includes("/open-in-web-browser")) {
-			window.location.href = "/open-in-web-browser";
+			window.location.href = "/join/index.php?path=" + window.location.href;
 		}
 	});
 
