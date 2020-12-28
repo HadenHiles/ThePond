@@ -1,6 +1,8 @@
 <?php
 global $smof_data;
 
+wp_body_open();
+
 /*  Template Name: Member Dashboard*/
 get_header('members'); ?>
 </header>
