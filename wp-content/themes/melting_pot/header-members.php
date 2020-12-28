@@ -5,6 +5,11 @@
 <?php if( $smof_data['googletagmanager']) { echo  $smof_data['googletagmanager']; } ?>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<style type="text/css">
+	.easy-notification-bar, .easy-notification-bar .enb-textcenter {
+		display: block !important;
+	}
+</style>
 <?php wp_head();?>
 <?php if( $smof_data['head_script']) { echo  $smof_data['head_script']; } ?>
 <script>
@@ -14,6 +19,9 @@
 </script>
 </head>
 <body class="vidFull fitvidcontiner">
+<?php
+wp_body_open();
+?>
 <div id="sitecontainer" <?php body_class(); ?>  >
 
 <?php if( $smof_data['googletagmanagernoscript']) { echo  $smof_data['googletagmanagernoscript']; } ?>
