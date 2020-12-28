@@ -316,8 +316,13 @@
 	 * Don't let users register through instagram or facebook browsers since firebase won't work
 	 */
 	$(document).ready(() => {
-		if (isMobileAppBrowser() && !window.location.href.includes("/open-in-web-browser")) {
-			window.location.href = "/join/index.php?path=" + window.location.href;
+		if (isMobileAppBrowser()) {
+			var redirectUrl = getCookie('request_path');
+			if (redirectUrl != null) {
+				window.location.href = "/join/index.php?path=" + redirectUrl;
+			} else {
+				window.location.href = "/join/index.php?path=" + window.location.pathname;
+			}
 		}
 	});
 
@@ -326,4 +331,27 @@
 function isMobileAppBrowser() {
 	var ua = navigator.userAgent || navigator.vendor || window.opera;
 	return (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1 || ua.indexOf('Instagram') > -1);
+}
+
+function setCookie(name,value,days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+}
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+function eraseCookie(name) {   
+    document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
