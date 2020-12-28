@@ -6,7 +6,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <style type="text/css">
-	.easy-notification-bar, .easy-notification-bar .enb-textcenter {
+	.easy-notification-bar .enb-textcenter {
 		display: block !important;
 	}
 </style>
