@@ -1256,6 +1256,9 @@ body.modal-open .transparent-modal {
 	  border: 2px solid #83cdcf;
   }
 
+  .easy-notification-bar {
+	z-index: 12 !important;
+  }
   @media screen and (max-width: 1024px) {
 	.easy-notification-bar {
 		position: fixed !important;
