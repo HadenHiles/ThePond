@@ -20,7 +20,7 @@ get_header('members'); ?>
 */
 ?>
 
-<section class="memberbenefits dashboardbenefits">
+<section id="member-dashboard" class="memberbenefits dashboardbenefits">
 	<!-- <div class="row"> -->
 	<div>
 		<div class="large-12 columns" style="padding: 0;">

@@ -327,23 +327,45 @@
 	});
 
 	/**
-	 * Allow user to close notification
+	 * Notification Announcement
+	 * - Allow user to close notification
+	 * - Add necessary top margin to member dashboard course section if the notification is fixed over top of it
 	 */
 	$(document).ready(() => {
-		var notificationClosed = getCookie("notification_closed");
-		if (notificationClosed) {
-			$('.easy-notification-bar').attr('style', 'display: none !important');
-		} else {
-			$('.easy-notification-bar').attr('style', 'display: block !important');
-			var $closeBtn = $('#close-easy-notification');
-			$('.easy-notification-bar').css({"position": "relative"});
-			$closeBtn.html('<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" class="svg-inline--fa fa-times fa-w-11" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg>');
-			$closeBtn.css({"font-size": "20px", "text-decoration": "none", "position": "absolute", "right": "10px", "top": "5px"});
-			$closeBtn.click((e) => {
-				e.preventDefault();
+		if ($('#member-dashboard').length > 0) {
+			var notificationClosed = getCookie("notification_closed");
+			if (notificationClosed) {
 				$('.easy-notification-bar').attr('style', 'display: none !important');
-				setCookie("notification_closed", true, 1);
+			} else {
+				$('.easy-notification-bar').attr('style', 'display: block !important');
+				var $closeBtn = $('#close-easy-notification');
+				$('.easy-notification-bar').css({ "position": "relative" });
+				$closeBtn.html('<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" class="svg-inline--fa fa-times fa-w-11" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg>');
+				$closeBtn.css({ "font-size": "20px", "text-decoration": "none", "position": "absolute", "right": "10px", "top": "5px" });
+				$closeBtn.click((e) => {
+					e.preventDefault();
+					$('.easy-notification-bar').attr('style', 'display: none !important');
+					$('section.memberbenefits').css({ "margin-top": "110px !important" });
+					if ($('.easy-notification-bar').css('position') == 'fixed' && $('.easy-notification-bar').is(":hidden")) {
+						$('section.memberbenefits').attr('style', '');
+					}
+					setCookie("notification_closed", true, 1);
+				});
+			}
+
+			if ($('.easy-notification-bar').is(":visible") && $('.easy-notification-bar').css('position') == 'fixed') {
+				$('section.memberbenefits').attr('style', 'margin-top: 110px !important');
+			}
+
+			$(window).resize(() => {
+				if ($('.easy-notification-bar').is(":visible") && $('.easy-notification-bar').css('position') == 'fixed') {
+					$('section.memberbenefits').attr('style', 'margin-top: 110px !important');
+				} else {
+					$('section.memberbenefits').attr('style', '');
+				}
 			});
+		} else {
+			$('.easy-notification-bar').attr('style', 'display: none !important');
 		}
 	});
 
@@ -354,25 +376,25 @@ function isMobileAppBrowser() {
 	return (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1 || ua.indexOf('Instagram') > -1);
 }
 
-function setCookie(name,value,days) {
-    var expires = "";
-    if (days) {
-        var date = new Date();
-        date.setTime(date.getTime() + (days*24*60*60*1000));
-        expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+function setCookie(name, value, days) {
+	var expires = "";
+	if (days) {
+		var date = new Date();
+		date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+		expires = "; expires=" + date.toUTCString();
+	}
+	document.cookie = name + "=" + (value || "") + expires + "; path=/";
 }
 function getCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0;i < ca.length;i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-    }
-    return null;
+	var nameEQ = name + "=";
+	var ca = document.cookie.split(';');
+	for (var i = 0; i < ca.length; i++) {
+		var c = ca[i];
+		while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+	}
+	return null;
 }
-function eraseCookie(name) {   
-    document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+function eraseCookie(name) {
+	document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }

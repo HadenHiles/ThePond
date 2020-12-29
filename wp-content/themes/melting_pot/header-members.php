@@ -19,9 +19,6 @@
 </script>
 </head>
 <body class="vidFull fitvidcontiner">
-<?php
-wp_body_open();
-?>
 <div id="sitecontainer" <?php body_class(); ?>  >
 
 <?php if( $smof_data['googletagmanagernoscript']) { echo  $smof_data['googletagmanagernoscript']; } ?>
@@ -92,6 +89,9 @@ wp_body_open();
     </div>
   </div>
 </div>
+<?php
+wp_body_open();
+?>
 <div id="search" class="">
 <button type="button" class="close">×</button>
 <form role="search" method="get" action="<?php echo home_url();?>">
