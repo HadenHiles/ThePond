@@ -350,7 +350,7 @@
 					if ($('.easy-notification-bar').css('position') == 'fixed' && $('.easy-notification-bar').is(":hidden")) {
 						$('section.memberbenefits').attr('style', '');
 					}
-					setCookie("notification_closed", $('.easy-notification-bar-message').text().trim(), 1);
+					setCookie("notification_closed", $('.easy-notification-bar-message').text().trim(), 7);
 				});
 			}
 
