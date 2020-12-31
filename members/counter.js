@@ -39,6 +39,7 @@
             url: "./count.php", // this will point to admin-ajax.php
             type: 'GET',
             success: function (response) {
+                response = JSON.parse(response);
                 count = response.count != null ? response.count : 0;
                 fullCount = count.toString().padStart(6, "0");
 
