@@ -85,8 +85,11 @@ get_header("members");
 							<div class="medium-4 columns side"><?=$shortDescription?></div>
 						</div>
 						<div class="modal-footer">
-							<p>For full access to The Pond</p>
-							<a class="BTN action" href="/">Join Now</a>
+							<p>To try more challenges, and view the rest of our material on The Pond, please join now or login.</p>
+							<div class="actions">
+								<a class="BTN action" href="/">Join Now</a>
+								<a class="BTN action loginBTN" href="/">Login</a>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -164,15 +167,15 @@ get_header("members");
 							
 							if(!get_field('available') && (!$isLatestChallenge || current_user_can('memberpress_authorized'))) {
 								?>
-								<div class="CourseSoon" style="top: auto; left: auto; bottom: 25px; right: -150px; transform: rotate(-35deg); -webkit-transform: rotate(-35deg);">Coming Soon</div>
+								<div class="CourseSoon" style="bottom: 0; right: 0; left: 0;">Coming Soon</div>
 								<?php
 							} else if ($isLatestChallenge && !current_user_can('memberpress_authorized')) {
 								?>
-								<div class="CourseSoon" style="background: #cc3333; top: auto; left: auto; bottom: 25px; right: -150px; transform: rotate(-35deg); -webkit-transform: rotate(-35deg);">Free Challenge</div>
+								<div class="CourseSoon" style="background: #cc3333; bottom: 0; right: 0; left: 0;">Free Challenge</div>
 								<?php
 							} else if (!current_user_can('memberpress_authorized')) {
 								?>
-								<div class="CourseSoon" style="top: auto; left: auto; bottom: 25px; right: -150px; transform: rotate(-35deg); -webkit-transform: rotate(-35deg);">Members Only</div>
+								<div class="CourseSoon" style="bottom: 0; right: 0; left: 0;">Members Only</div>
 								<?php
 							}
 							?>

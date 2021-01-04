@@ -13,7 +13,7 @@ $rename_content_library = $smof_data['rename_content_library']  ? $smof_data['re
 		</div>
 		
 		<div class="large-4 columns">
-			<p class="searchText">Search the <?php echo $rename_content_library; ?></p>
+			<p class="searchText">Hi Search the <?php echo $rename_content_library; ?></p>
 			<div class="searchfilter"><input type="text" id="filterSearch" name="filtr-search" class="filtr-search" value="" placeholder="Enter you keyword here and press enter..." data-search>
 			<a id="clearFilter" class="backBTN" href="javascript:;">Clear</a></div>
 		</div>
@@ -85,7 +85,7 @@ $rename_content_library = $smof_data['rename_content_library']  ? $smof_data['re
 							
 							if(!get_field('available')) {
 								?>
-								<div class="CourseSoon" style="top: auto; left: auto; bottom: 25px; right: -150px; transform: rotate(-35deg); -webkit-transform: rotate(-35deg);">Coming Soon</div>
+								<div class="CourseSoon" style="bottom: 0; left: 0; right: 0;">Coming Soon</div>
 								<?php 
 							} 
 							?>

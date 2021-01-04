@@ -857,6 +857,12 @@ body.modal-open .transparent-modal {
 .transparent-modal .skills-vault-modal .modal-dialog .modal-footer a.BTN:hover {
 	background: #069EDA;
 }
+.transparent-modal .skills-vault-modal .modal-dialog .modal-footer a.loginBTN {
+	background: #14345a;
+}
+.transparent-modal .skills-vault-modal .modal-dialog .modal-footer a.loginBTN:hover {
+	background: #069EDA;
+}
 @media screen and (max-width: 1440px) {
 	.transparent-modal .skills-vault-modal .modal-dialog {
 		max-width: 70% !important;
@@ -1152,10 +1158,6 @@ body.modal-open .transparent-modal {
 	}
 	.challenges a.card.challenge {
 		flex-basis: 44%;
-	}
-	.latest-challenge .card .card-img-top .CourseSoon {
-		right: -170px !important;
-		bottom: 20px !important;
 	}
 }
 @media screen and (max-width: 600px) {
