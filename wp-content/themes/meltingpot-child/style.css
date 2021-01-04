@@ -882,6 +882,9 @@ body.modal-open .transparent-modal {
 	width: 100%;
 	margin: .5em auto;
 }
+.main .card.unauthorized {
+	margin: 15px 0;
+}
 .main .card.unauthorized .card-img-top {
 	position: relative;
 	padding: 5px;
@@ -901,8 +904,16 @@ body.modal-open .transparent-modal {
 	right: 0;
 	width: 100%;
 	height: 100%;
+	padding: 10%;
 	text-align: center;
 	color: #fff;
+}
+.main .card.unauthorized .card-img-top .unauthorized-message-wrapper h2 {
+	font-size: 1.8rem;
+	margin: 25px 0 5px 0;
+}
+.main .card.unauthorized .card-img-top .unauthorized-message-wrapper p {
+	margin-bottom: 10px;
 }
 .main .card.unauthorized .card-img-top .unauthorized-message-wrapper .actions {
 	display: flex;
@@ -979,6 +990,7 @@ body.modal-open .transparent-modal {
 	-moz-transition: .2s all ease-in-out;
 	-webkit-transition: .2s all ease-in-out;
 	position: relative;
+	min-width: 48%;
 }
 .skills-list .card.skill:not(.no-hover):hover {
 	border-color:#cc3333;
@@ -1014,6 +1026,7 @@ body.modal-open .transparent-modal {
 	text-decoration: none;
 	font-size: 14px;
 	margin-right: 20px;
+	width: 100%;
 }
 .skills-list .card.skill:not(.no-hover):hover .card-body.content .title {
 	color: #cc3333;
@@ -1054,12 +1067,17 @@ body.modal-open .transparent-modal {
 	font-size: 24px;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 1024px) {
 	.skills-list .card.skill .card-body.content .title {
 		font-size: 12px;
 	}
 	.skills-list .card.skill .card-body.content .level {
 		font-size: 10px;
+	}
+}
+@media screen and (max-width: 768px) {
+	.skills-list .card.skill {
+		width: 100%;
 	}
 }
 /* End Skills List */
