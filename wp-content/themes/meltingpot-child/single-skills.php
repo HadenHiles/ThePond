@@ -104,6 +104,32 @@ if (has_post_thumbnail()) {
                             if (!current_user_can('memberpress_authorized')) {
                             ?>
                                 <div class="bootstrap-styles main">
+                                    <div class="card unauthorized">
+                                        <div class="card-img-top">
+                                            <?php
+                                            $thumbnail_url = get_the_post_thumbnail_url();
+                                            $thumbnail_url = !empty($thumbnail_url) ? $thumbnail_url : "https://cdn.thepond.howtohockey.com/2021/01/vimeo-postroll-thumbnail.jpg";
+                                            ?>
+                                            <img src="<?=$thumbnail_url?>" />
+                                            <div class="unauthorized-message-wrapper">
+                                                <h2>This content is for members of The Pond only</h2>
+                                                <p>To view please join now or login</p>
+                                                <div class="actions">
+                                                    <a href="/" class="BTN joinBTN">Join now</a>
+                                                    <a href="/login" class="BTN askBTN">Login</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <?php
+                                        if (!empty(get_the_content())) {
+                                        ?>
+                                            <div class="card-body">
+                                                <?php the_content(); ?>
+                                            </div>
+                                        <?php
+                                        }
+                                        ?>
+                                    </div>
                                     <?php
                                     // Check rows exists.
                                     $whenToUseIt = get_field('when_to_use_it', $post->ID);
@@ -145,11 +171,6 @@ if (has_post_thumbnail()) {
                                     // Do something...
                                     endif;
                                     ?>
-                                    <div class="card">
-                                        <a href="/">
-                                            <img src="https://cdn.thepond.howtohockey.com/2020/08/block-ad-final-scaled-1.jpg" alt="" class="card-img-top" />
-                                        </a>
-                                    </div>
                                 </div>
                             <?php
                             } else {
@@ -178,7 +199,7 @@ if (has_post_thumbnail()) {
                                     <?php
                                     }
                                     ?>
-                                    <?=do_shortcode('[skill_competency_slider skill_id="' . get_the_ID() . '" user_id="' . get_current_user_id() . '"]')?>
+                                    <?= do_shortcode('[skill_competency_slider skill_id="' . get_the_ID() . '" user_id="' . get_current_user_id() . '"]') ?>
                                     <?php
 
                                     // Check rows exists.
@@ -380,7 +401,7 @@ if (has_post_thumbnail()) {
                                             $video = $example['video_code'];
                                             $description = $example['description'];
 
-                                            ?>
+                                    ?>
                                             <div class="card gif">
                                                 <?php
                                                 if (!empty($gif)) {
@@ -406,7 +427,7 @@ if (has_post_thumbnail()) {
                                                 }
                                                 ?>
                                             </div>
-                                            <?php
+                                    <?php
                                         }
                                     }
                                     ?>

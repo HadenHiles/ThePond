@@ -882,6 +882,45 @@ body.modal-open .transparent-modal {
 	width: 100%;
 	margin: .5em auto;
 }
+.main .card.unauthorized .card-img-top {
+	position: relative;
+	padding: 5px;
+}
+.main .card.unauthorized .card-img-top img {
+	filter: blur(5px) brightness(80%);
+	-webkit-filter: blur(5px) brightness(80%);
+}
+.main .card.unauthorized .card-img-top .unauthorized-message-wrapper {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	color: #fff;
+}
+.main .card.unauthorized .card-img-top .unauthorized-message-wrapper .actions {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+.main .card.unauthorized .card-img-top .unauthorized-message-wrapper .actions a {
+	margin: 10px 5px;
+	text-decoration: none;
+	color: #fff;
+	padding: 12px 25px;
+}
+.main .card.unauthorized .card-img-top .unauthorized-message-wrapper .actions a.askBTN {
+	background: #14345a;
+}
+.main .card.unauthorized .card-img-top .unauthorized-message-wrapper .actions a.askBTN:hover {
+	background: #3AA6DE;
+}
 .skill-content .skill-examples {
 	display: flex;
 	flex-direction: row;

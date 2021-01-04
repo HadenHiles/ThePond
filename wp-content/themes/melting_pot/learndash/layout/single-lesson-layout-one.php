@@ -1,8 +1,5 @@
 <?php
 get_header('members');
-if(!current_user_can('memberpress_authorized')) {
-	header('location: /wp-content/themes/meltingpot-child/funnel.php?redirect_to=' . $_SERVER['REQUEST_URI']);
-}
 if (has_post_thumbnail()) {
 	$imgID  = get_post_thumbnail_id($post->ID);
 	$img    = wp_get_attachment_image_src($imgID, 'full', false, '');
@@ -26,13 +23,42 @@ $parent_course_id = learndash_get_setting($post, 'course');
 	<div class="row">
 		<?php if (have_posts()) : the_post(); ?>
 			<div class="medium-7 columns">
-				<main role="main">
+				<main role="main" class="main">
 					<article>
 						<div class="CourseContent">
-							<?php get_template_part('template-parts/courses/lesson-topic-fields'); ?>
-
 							<?php
-							if (current_user_can('memberpress_authorized')) {
+							if (!current_user_can('memberpress_authorized')) {
+								?>
+								<div class="card unauthorized">
+									<div class="card-img-top">
+										<?php
+										$thumbnail_url = get_the_post_thumbnail_url();
+										$thumbnail_url = !empty($thumbnail_url) ? $thumbnail_url : "https://cdn.thepond.howtohockey.com/2021/01/vimeo-postroll-thumbnail.jpg";
+										?>
+										<img src="<?= $thumbnail_url ?>" />
+										<div class="unauthorized-message-wrapper">
+											<h2>This content is for members of The Pond only</h2>
+											<p>To view please join now or login</p>
+											<div class="actions">
+												<a href="/" class="BTN joinBTN">Join now</a>
+												<a href="/login" class="BTN askBTN">Login</a>
+											</div>
+										</div>
+									</div>
+									<?php
+									if (!empty(get_the_content())) {
+									?>
+										<div class="card-body">
+											<?php the_content(); ?>
+										</div>
+									<?php
+									}
+									?>
+								</div>
+								<?php
+							} else {
+								get_template_part('template-parts/courses/lesson-topic-fields');
+
 							?>
 								<!-- Tips for success list -->
 								<div class="ListWithHeading">
@@ -98,7 +124,11 @@ $parent_course_id = learndash_get_setting($post, 'course');
 							}
 				?>
 
-				<?php the_content(); ?>
+				<?php
+				if (current_user_can('memberpress_authorized')) {
+					the_content();
+				}
+				?>
 				</main>
 			</div>
 			<div class="medium-5 columns">
@@ -107,9 +137,7 @@ $parent_course_id = learndash_get_setting($post, 'course');
 
 
 					<?php
-					if (current_user_can('memberpress_authorized')) {
-						echo do_shortcode('[course_content course_id="' . $course_id . '"]');
-					}
+					echo do_shortcode('[course_content course_id="' . $course_id . '"]');
 					?>
 
 					<?php
