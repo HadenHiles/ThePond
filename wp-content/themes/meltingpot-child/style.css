@@ -626,6 +626,35 @@ img[data-enlargable] {
 	transform: scale(1.1);
 }
 
+/* Facebook Secret Phrase */
+.facebook-secret-phrase-section {
+	width: 500px;
+	max-width: 100%;
+	padding: 0 15px;
+	text-align: center;
+	margin: 35px auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+}
+.facebook-secret-phrase-section .secret-phrase-wrapper {
+	clear: both !important;
+	display: flex;
+	flex-direction: column;
+}
+.facebook-secret-phrase-section div {
+	width: 100% !important;
+}
+.facebook-secret-phrase-section div small {
+	margin-top: 10px;
+	float: left;
+}
+.facebook-secret-phrase-section a.BTN {
+	clear: both;
+	margin: 0 auto;
+}
+
 /* Skill Vault */
 .skillsVault {
 	padding-top: 45px;
