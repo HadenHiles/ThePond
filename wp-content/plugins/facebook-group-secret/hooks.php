@@ -509,8 +509,8 @@ function facebook_secret_phrase($atts = [], $content = null, $tag = '') {
                         <br />
                         <div class="copy-able-input" style="position: relative; padding-right: 40px;">
                             <input type="text" name="phrase" id="phrase" value="<?= $phraseRow->phrase ?>" readonly />
-                            <a href="#" id="copyButton" onclick="copyToClipboard('phrase')" style="position: absolute; right: 48px; top: 10px; color: #777;"><i class="fa fa-clipboard"></i></a>
-                            <a href="#" id="generate-new-phrase" style="position: absolute; right: 5px; top: 10px;"><i class="fas fa-sync"></i></a>
+                            <a href="" id="copyButton" onclick="copyToClipboard('phrase')" style="position: absolute; right: 48px; top: 10px; color: #777;"><i class="fa fa-clipboard"></i></a>
+                            <a href="" id="generate-new-phrase" style="position: absolute; right: 5px; top: 10px;"><i class="fas fa-sync"></i></a>
                         </div>
                         <br />
                         <label for="phrase">Provide this phrase when you request to join the private <a href="https://www.facebook.com/groups/thepond.howtohockey" target="_blank">Facebook group</a></label>
@@ -624,7 +624,7 @@ function facebook_secret_phrase($atts = [], $content = null, $tag = '') {
             ?>
             <div style="float: left; padding: 23px 0;" class="secret-phrase-wrapper">
                 <p>To view your secret phrase and join the private <a href="https://www.facebook.com/groups/thepond.howtohockey" target="_blank">Facebook group</a>, please login with your Facebook account.</p>
-                <a href="#" id="facebook-login-btn" class="BTN" style="background: #3b5998;"><i class="fab fa-facebook" style="margin-right: 5px;"></i> Login with Facebook</a>
+                <a href="" id="facebook-login-btn" class="BTN" style="background: #3b5998;"><i class="fab fa-facebook" style="margin-right: 5px;"></i> Login with Facebook</a>
             </div>
 
             <script type="text/javascript">
