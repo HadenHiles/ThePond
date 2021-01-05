@@ -509,7 +509,7 @@ function facebook_secret_phrase($atts = [], $content = null, $tag = '') {
                         <br />
                         <div class="copy-able-input" style="position: relative; padding-right: 40px;">
                             <input type="text" name="phrase" id="phrase" value="<?= $phraseRow->phrase ?>" readonly />
-                            <a href="" id="copyButton" onclick="copyToClipboard('phrase')" style="position: absolute; right: 48px; top: 10px; color: #777;"><i class="fa fa-clipboard"></i></a>
+                            <a href="" id="copyButton" style="position: absolute; right: 48px; top: 10px; color: #777;"><i class="fa fa-clipboard"></i></a>
                             <a href="" id="generate-new-phrase" style="position: absolute; right: 5px; top: 10px;"><i class="fas fa-sync"></i></a>
                         </div>
                         <br />
@@ -556,6 +556,11 @@ function facebook_secret_phrase($atts = [], $content = null, $tag = '') {
                                 console.log(error);
                             }
                         });
+                    });
+
+                    $('#copyButton').click((e) => {
+                        e.preventDefault();
+                        copyToClipboard('phrase');
                     });
                 })(jQuery);
 
