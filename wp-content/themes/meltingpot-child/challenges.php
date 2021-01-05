@@ -157,8 +157,24 @@ get_header("members");
 						data-sort="value"
 						data-search="<?php the_title(); ?>\n<?php the_field('description_short'); ?>"
 					>
-						<div class="card-img-top" style="background-image: url('<? echo $img; ?>'); overflow: hidden; position: relative;">
-							<?php 
+						<?php
+						$isMembersOnlyChallenge = false;
+						if(	!(!get_field('available') && (!$isLatestChallenge || current_user_can('memberpress_authorized'))) &&
+							!($isLatestChallenge && !current_user_can('memberpress_authorized')) &&
+							!current_user_can('memberpress_authorized')) {
+								$isMembersOnlyChallenge = true;
+						}
+
+						if (!$isMembersOnlyChallenge) {
+							?>
+							<div class="card-img-top" style="background-image: url('<? echo $img; ?>'); overflow: hidden; position: relative;">
+							<?php
+						} else {
+							?>
+							<div class="card-img-top" style="background-image: url('<? echo $img; ?>'); overflow: hidden; position: relative; filter: blur(5px) brightness(80%); -webkit-filter: blur(5px) brightness(80%);"></div>
+							<div class="card-img-top" style="overflow: hidden; position: absolute;">
+							<?php
+						}
 							foreach ($terms as $term) {
 								?> 
 								<span class="postLabel" style="float: right; margin: 10px 10px 0 0;"><?=$term->name;?></span>
@@ -175,7 +191,7 @@ get_header("members");
 								<?php
 							} else if (!current_user_can('memberpress_authorized')) {
 								?>
-								<div class="CourseSoon" style="bottom: 0; right: 0; left: 0;">Members Only</div>
+								<div class="CourseSoon" style="background: none; top: 42%; bottom: 0; right: 0; left: 0; font-family: 'Teko', Noto-sans, sans-serif; font-size: 2rem;">Members Only</div>
 								<?php
 							}
 							?>
