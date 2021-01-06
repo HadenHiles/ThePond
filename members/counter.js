@@ -74,6 +74,6 @@
 
         setInterval(function () {
             updateMemberCount(true);
-        }, 1000);
+        }, 60000);
     });
 })(jQuery);
