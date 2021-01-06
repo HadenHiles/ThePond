@@ -23,8 +23,8 @@ if (empty($chosenMembership)) {
         setcookie('redirect_to', $redirectUrl, -1, '/');
         header('location: /login');
     } else if (!empty($_COOKIE['request_path'])) {
-        header('location: ' . $_COOKIE['request_path']);
         setcookie('request_path', null, -1, '/');
+        header('location: ' . $_COOKIE['request_path']);
     } else if (!is_user_logged_in()) {
         header('location: /#choose-your-subscription');
     }
@@ -32,11 +32,17 @@ if (empty($chosenMembership)) {
 
 if (empty($subscriptions)) {
     // Check if the user already chose a subscription
-    if (!empty($chosenMembership)) {
+    if (!empty($recentLogin)) {
+        setcookie('redirect_to', $redirectUrl, -1, '/');
+        setcookie('selected_membership', null, -1, '/');
+        setcookie('request_path', null, -1, '/');
+        header('location: /login');
+    } else if (!empty($chosenMembership)) {
+        setcookie('selected_membership', null, -1, '/');
         header('location: ' . $chosenMembership);
     } else if (!empty($_COOKIE['request_path'])) {
-        header('location: ' . $_COOKIE['request_path']);
         setcookie('request_path', null, -1, '/');
+        header('location: ' . $_COOKIE['request_path']);
     } else {
         header('location: /#choose-your-subscription');
     }
