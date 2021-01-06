@@ -507,7 +507,7 @@ function facebook_secret_phrase($atts = [], $content = null, $tag = '') {
                     <div style="float: left; width: 300px; max-width: 100%; padding: 0 10px;">
                         <small>Your Secret Phrase:</small>
                         <br />
-                        <div class="copy-able-input" style="position: relative; padding-right: 40px;">
+                        <div class="copy-able-input" style="display: flex; position: relative; padding-right: 40px;">
                             <input type="text" name="phrase" id="phrase" value="<?= $phraseRow->phrase ?>" readonly />
                             <a href="" id="copyButton" style="position: absolute; right: 48px; top: 10px; color: #777;"><i class="fa fa-clipboard"></i></a>
                             <a href="" id="generate-new-phrase" style="position: absolute; right: 5px; top: 10px;"><i class="fas fa-sync"></i></a>
