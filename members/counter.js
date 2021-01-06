@@ -1,6 +1,6 @@
 (($) => {
     var count = getCookie("member_count") ?? 0;
-    var firstLoad = true;
+    // var firstLoad = true;
 
     function flipTo(digit, n) {
         var current = digit.attr('data-num');
@@ -43,7 +43,7 @@
                     response = JSON.parse(response);
                 }
                 
-                setCookie("member_count", response.count != null ? response.count : 0, 2);
+                count = response.count != null ? response.count : 0;
                 fullCount = count.toString().padStart(6, "0");
 
                 updateDigit('six', fullCount.charAt(0), flip);
@@ -53,12 +53,14 @@
                 updateDigit('two', fullCount.charAt(4), flip);
                 updateDigit('one', fullCount.charAt(5), flip);
 
-                if (!firstLoad && count > prevCount) {
+                if (count > prevCount) {
                     var audio = document.querySelector('#new-member-sound');
                     audio.play();
                 }
 
-                firstLoad = false;
+                setCookie("member_count", count, 2)
+
+                // firstLoad = false;
             },
             complete: function () {
                 setTimeout(() => {
