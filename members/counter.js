@@ -81,7 +81,7 @@
 
 function setCookie(name, value, minutes) {
 	var expires = "";
-	if (days) {
+	if (minutes) {
 		var date = new Date();
 		date.setTime(date.getTime() + (minutes * 60 * 1000));
 		expires = "; expires=" + date.toUTCString();
