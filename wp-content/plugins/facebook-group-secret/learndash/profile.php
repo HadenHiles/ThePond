@@ -62,7 +62,7 @@ endif; ?>
 		 */
 		if (isset($shortcode_atts['show_header']) && 'yes' === $shortcode_atts['show_header']) :
 		?>
-			<div class="ld-profile-summary">
+			<div class="ld-profile-summary" id="profile">
 				<div class="profile-info">
 					<div class="ld-profile-card">
 						<div class="ld-profile-avatar">
