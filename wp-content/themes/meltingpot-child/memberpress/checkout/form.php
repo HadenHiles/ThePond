@@ -153,8 +153,12 @@
     <div class="mepr_spacer">&nbsp;</div>
 
     <div class="mp-form-submit">
-      <h1>Test</h1>
-      <input type="submit" class="mepr-submit" value="<?php echo stripslashes($product->signup_button_text); ?>" />
+      <script type="text/javascript">
+        document.write('<input type="submit" class="mepr-submit" value="<?php echo stripslashes($product->signup_button_text); ?>" />');
+      </script>
+      <noscript>
+        <p style="color: #cc3333;"><b><i>Please enable JavaScript in your browser settings to continue.</i></b><p>
+      </noscript>
       <img src="<?php echo admin_url('images/loading.gif'); ?>" style="display: none;" class="mepr-loading-gif" />
       <?php MeprView::render('/shared/has_errors', get_defined_vars()); ?>
     </div>
