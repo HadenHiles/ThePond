@@ -543,6 +543,18 @@ if( function_exists('acf_add_local_field_group') ):
                     'value' => 'library_category:challenges',
                 ),
             ),
+            array(
+                array(
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'content-library',
+                ),
+                array(
+                    'param' => 'post_taxonomy',
+                    'operator' => '==',
+                    'value' => 'library_category:routines',
+                ),
+            ),
         ),
         'menu_order' => 0,
         'position' => 'side',

@@ -39,7 +39,7 @@ if (has_post_thumbnail()) {
 				<?php
 			} if (in_array("Routines", $categories)) {
 				?>
-				<a class="backBTN" href="/content-library/">
+				<a class="backBTN" href="/routines/">
 				<i class="fas fa-angle-left"></i> All Routines</a>
 				<?php
 			} else {
