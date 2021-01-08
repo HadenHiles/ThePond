@@ -58,7 +58,7 @@
                     audio.play();
                 }
 
-                setCookie("member_count", count, 2)
+                setCookie("member_count", count, 1);
 
                 // firstLoad = false;
             },
