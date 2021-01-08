@@ -130,14 +130,14 @@ if (has_post_thumbnail()) {
 											?>
 										</div>
 
-										<?php 
+										<?php
 										if (current_user_can("memberpress_authorized")) {
-											get_template_part('template-parts/courses/lesson-downloads'); 
-											?>
+											get_template_part('template-parts/courses/lesson-downloads');
+										?>
 											<div class="cl-history">
 												<?php get_template_part('template-parts/courses/coursehistory'); ?>
 											</div>
-											<?php 
+										<?php
 											the_content();
 										}
 										?>
@@ -164,64 +164,79 @@ if (has_post_thumbnail()) {
 					<?php } */ ?>
 
 					<?php
-					if (!current_user_can("memberpress_authorized")) {
-						?>
-						<div class="challenge-scores" id="challenge-scores">
-							<div class="ld-section-heading">
-								<h2>Your Scores</h2>
+					if (in_array("Challenges", $categories)) {
+						if (!current_user_can("memberpress_authorized")) {
+					?>
+							<div class="challenge-scores" id="challenge-scores">
+								<div class="ld-section-heading">
+									<h2>Your Scores</h2>
+								</div>
+								<p style="font-size: 14px;">To keep track of your score, please <a href="/" style="color: #cc3333;">join now</a> or <a href="/login/" style="color: #cc3333;">login</a></p>
 							</div>
-							<p style="font-size: 14px;">To keep track of your score, please <a href="/" style="color: #cc3333;">join now</a> or <a href="/login/" style="color: #cc3333;">login</a></p>
-						</div>
 						<?php
-					} else {
+						} else {
 						?>
-						<div class="challenge-scores" id="challenge-scores">
-							<div class="ld-section-heading">
-								<h2>Your Scores</h2>
+							<div class="challenge-scores" id="challenge-scores">
+								<div class="ld-section-heading">
+									<h2>Your Scores</h2>
+								</div>
+								<div class="scores" id="scores">
+									<i class="fa fa-spinner fa-spin" style="align-self: center; margin: 2% auto; position: relative; z-index: 5;"></i>
+								</div>
+								<div class="add-score">
+									<input type="hidden" name="challenge_id" id="challenge-id" value="<?php echo get_the_ID() ?>" />
+									<input type="hidden" name="user_id" id="user-id" value="<?php echo get_current_user_id() ?>" />
+									<label for="challenge-score" id="success-message" class="success message">Score added</label>
+									<label for="challenge-score" id="error-message" class="error message">Failed to add score</label>
+									<input type="number" name="score" id="challenge-score" step="0.01" min="0" placeholder="Add your new best score" />
+									<a href="#" class="add-score-button" id="add-score"><i class="fa fa-plus-circle"></i></a>
+								</div>
 							</div>
-							<div class="scores" id="scores">
-								<i class="fa fa-spinner fa-spin" style="align-self: center; margin: 2% auto; position: relative; z-index: 5;"></i>
-							</div>
-							<div class="add-score">
-								<input type="hidden" name="challenge_id" id="challenge-id" value="<?php echo get_the_ID() ?>" />
-								<input type="hidden" name="user_id" id="user-id" value="<?php echo get_current_user_id() ?>" />
-								<label for="challenge-score" id="success-message" class="success message">Score added</label>
-								<label for="challenge-score" id="error-message" class="error message">Failed to add score</label>
-								<input type="number" name="score" id="challenge-score" step="0.01" min="0" placeholder="Add your new best score" />
-								<a href="#" class="add-score-button" id="add-score"><i class="fa fa-plus-circle"></i></a>
-							</div>
-						</div>
-						<?php
+					<?php
+						}
 					}
 					?>
 
 					<div class="relatedFeed">
-						<h4>More Challenges</h4>
 						<?php
-						$term_list = wp_get_post_terms(get_the_ID(), 'library_category', array("fields" => "ids"));
-						$arg = array(
-							'post_type' => 'content-library',
-							'post_per_page' => 5,
-							'post__not_in' => array(get_the_ID()),
-							'tax_query' => array(
-								array(
-									'taxonomy' => 'library_category',
-									'field' => 'id',
-									'terms' => $term_list,
-								),
-							),
-						);
-						$newQuery = new WP_Query($arg);
+						if (in_array("Challenges", $categories)) {
 						?>
-						<ul>
-							<?php
-							if ($newQuery->have_posts()) : while ($newQuery->have_posts()) : $newQuery->the_post();
+							<h4>More Challenges</h4>
+						<?php
+						} else if (in_array("Routines", $categories)) {
+						?>
+							<h4>More Routines</h4>
+						<?php
+						}
+
+						if (in_array("Challenges", $categories) || in_array("Routines", $categories)) {
+							$term_list = wp_get_post_terms(get_the_ID(), 'library_category', array("fields" => "ids"));
+							$arg = array(
+								'post_type' => 'content-library',
+								'post_per_page' => 5,
+								'post__not_in' => array(get_the_ID()),
+								'tax_query' => array(
+									array(
+										'taxonomy' => 'library_category',
+										'field' => 'id',
+										'terms' => $term_list,
+									),
+								),
+							);
+							$newQuery = new WP_Query($arg);
 							?>
-									<li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a> </li>
-							<?php endwhile;
-							endif;
-							wp_reset_query(); ?>
-						</ul>
+							<ul>
+								<?php
+								if ($newQuery->have_posts()) : while ($newQuery->have_posts()) : $newQuery->the_post();
+								?>
+										<li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a> </li>
+								<?php endwhile;
+								endif;
+								wp_reset_query(); ?>
+							</ul>
+							<?php
+						}
+						?>
 					</div>
 				</div>
 
