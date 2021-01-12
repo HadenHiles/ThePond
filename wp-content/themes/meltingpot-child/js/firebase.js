@@ -92,7 +92,7 @@
             if ($('#mepr_account_form').length == 1 && $('#mepr_account_form #user_email').length == 1) {
                 var passwordProviders = user.providerData.filter((p) => p.providerId == "password");
                 if (user == null || passwordProviders.length < 1) {
-                    $(('<p id="email-update-disabled-message" style="margin: 0;">You must set a password before you can update your email address.</p>')).insertAfter('#mepr_account_form #user_email');
+                    $(('<p id="email-update-disabled-message" style="margin: 0;">You must <a href="/account/?action=newpassword">set a password</a> before you can update your email address.</p>')).insertAfter('#mepr_account_form #user_email');
                     $('#mepr_account_form #user_email').attr('disabled', true).removeAttr('id');
                 }
 
