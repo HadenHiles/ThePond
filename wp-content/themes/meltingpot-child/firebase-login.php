@@ -73,7 +73,9 @@ if (!empty($_GET['redirect_to'])) {
                                     }
                                     ?>
                                     <h2><span style="font-size: .6em;">Currently signed in as</span> <?= $user->user_login ?></h1>
-                                        <a href="#" class="BTN logout">Logout</a>
+                                    <a href="/member-dashboard" class="BTN darkblue">Dashboard</a>
+                                    <a href="/account" class="BTN blue">Account</a>
+                                    <a href="#" class="BTN logout">Logout</a>
                                 </div>
                             <?php
                             }

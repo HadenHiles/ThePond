@@ -1369,3 +1369,20 @@ body.modal-open .transparent-modal {
 		top: 60px;
 	}
   }
+
+  input[disabled] {
+	  background-color: #eaeaea;
+  }
+
+  a.BTN.blue {
+	  background: #3AA6DE;
+  }
+  a.BTN.blue:hover {
+	  background: #cc3333;
+  }
+  a.BTN.darkblue {
+	background: #101047;
+}
+a.BTN.darkblue:hover {
+	background: #3AA6DE;
+}
