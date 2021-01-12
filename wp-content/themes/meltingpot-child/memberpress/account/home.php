@@ -16,6 +16,14 @@
   <?php MeprView::render('/shared/errors', get_defined_vars()); ?>
 
   <form class="mepr-account-form mepr-form" id="mepr_account_form" action="" method="post" enctype="multipart/form-data" novalidate>
+    <div class="mp_wrapper" id="error-msg" style="display: none;">
+      <div class="mepr_error" id="mepr_jump">
+        <ul>
+          <li><strong>ERROR</strong>: <span id="firebase-err-msg">Error updating email address. Please contact thepondsupport@howtohockey.com.</span></li>
+        </ul>
+      </div>
+    </div>
+
     <input type="hidden" name="mepr-process-account" value="Y" />
     <?php wp_nonce_field( 'update_account', 'mepr_account_nonce' ); ?>
 

@@ -20,7 +20,7 @@
     <div class="mp_wrapper" id="error-msg" style="display: none;">
       <div class="mepr_error" id="mepr_jump">
         <ul>
-          <li><strong>ERROR</strong>: Error updating password. Please try logging out and trying again.</li>
+          <li><strong>ERROR</strong>: <span id="firebase-err-msg">Error updating password.</span></li>
         </ul>
       </div>
     </div>
@@ -29,7 +29,7 @@
       <?php
       $currentUser = wp_get_current_user();
       ?>
-      <p style="color: #cc3333;">Setting a password will ensure you'll always be able to access The Pond with your email address (<?=$currentUser->user_email?>) and password.</p>
+      <p style="color: #cc3333;">It's recommended that you set a password so you'll always be able to access The Pond with your email address (<?=$currentUser->user_email?>) and password.</p>
       <label for="mepr-new-password"><?php _ex('New Password', 'ui', 'memberpress'); ?></label>
       <input type="password" name="mepr-new-password" id="mepr-new-password" class="mepr-form-input mepr-new-password" required />
     </div>

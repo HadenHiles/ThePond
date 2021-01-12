@@ -60,6 +60,8 @@ function mo_firebase_auth_firebaseAuthentication(pid, a_key, email, pass, test_c
 	// firebase.initializeApp(firebaseConfig);
 	firebase.auth().signInWithEmailAndPassword(email, pass)
 		.then(function (firebaseUser) {
+			setCookie("fb_user", firebaseUser, 90);
+
 			if (test_check_field == 'test_check_true') {
 				document.getElementById('fb_is_test').value = 'test_check_true';
 			}
@@ -120,6 +122,7 @@ function mo_firebase_auth_createFirebaseUser(pid, a_key, email, pass, test_check
 		.then(function (firebaseUser) {
 			//document.getElementById('wc_email').value = email;
 			//document.forms['wcErrorform'].submit();
+			setCookie("fb_user", JSON.stringify(firebaseUser), 90);
 			mo_firebase_auth_firebaseAuthentication(pid, a_key, email, pass, test_check_field);
 		})
 		.catch(function (error) {
@@ -249,6 +252,9 @@ function mo_firebase_auth_provider_firebaseAuthentication(provider_method, pid, 
 				var token = result.credential.accessToken;
 				// The signed-in user info.
 				var user = result.user;
+
+				setCookie("fb_user", JSON.stringify(user), 90);
+
 				if (test_check_field == 'test_check_true') {
 					document.getElementById('fb_is_test').value = 'test_check_true';
 				}

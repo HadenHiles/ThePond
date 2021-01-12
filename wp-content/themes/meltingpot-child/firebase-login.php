@@ -66,7 +66,7 @@ if (!empty($_GET['redirect_to'])) {
                                     ?>
                                         <div class="bootstrap-styles">
                                             <div class="alert alert-danger" role="alert">
-                                                In order to access this content you must have an active subscription. <a href="/account?action=subscriptions">Manage Subscriptions</a>
+                                                In order to access this content you must have an active subscription. <a href="/account?action=subscriptions">Subscriptions</a>
                                             </div>
                                         </div>
                                     <?php
