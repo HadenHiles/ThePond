@@ -1,6 +1,6 @@
 <?php
 /**
-* Template Name: Routines
+* Template Name: Challenges
 *
 * @package WordPress
 * @subpackage Meltingpot-child
@@ -18,8 +18,8 @@ get_header("members");
 		</div>
 		
 		<div class="large-4 columns">
-			<!-- <p class="searchText">Search Routines</p> -->
-			<div class="searchfilter" style="margin-top: 5px;"><input type="text" id="filterSearch" name="filtr-search" class="filtr-search" value="" placeholder="Search routines" data-search>
+			<!-- <p class="searchText">Search Challenges</p> -->
+			<div class="searchfilter" style="margin-top: 5px;"><input type="text" id="filterSearch" name="filtr-search" class="filtr-search" value="" placeholder="Search challenges" data-search>
 			<a id="clearFilter" class="backBTN" href="javascript:;">Clear</a></div>
 		</div>
 	</div>
@@ -92,11 +92,6 @@ get_header("members");
 					$img = wp_get_attachment_image_url( $post_thumbnail_id , 'full');
 					if (empty($img))
 						$img = '/wp-content/themes/meltingpot-child/images/placeholder.png';
-				
-					$class = '';	
-					if (get_field('available') == false) {
-						$class='nolink';
-					}	
 
 					$termsString = '';
 					foreach ($terms as $term) {
@@ -104,20 +99,23 @@ get_header("members");
 					}
 
 					?>
-					<a 	href="<?php if(get_field('available')) { ?><? the_permalink(); } else { ?>#latestChallengeModal<?php } ?>"
-						class="card shadow challenge filter <?php echo $class; ?>"
+					<a 	href="<?php the_permalink(); ?>"
+						class="card shadow challenge filter"
 						data-category="<?=$termsString?>"
 						data-sort="value"
 						data-search="<?php the_title(); ?>\n<?php the_field('description_short'); ?>"
 					>
 						<?php
 						$isMembersOnlyChallenge = false;
-						if(	!(!get_field('available') && current_user_can('memberpress_authorized')) &&
-							!current_user_can('memberpress_authorized')) {
-								$isMembersOnlyChallenge = true;
+						if(get_field('available') && !current_user_can('memberpress_authorized')) {
+							$isMembersOnlyChallenge = true;
 						}
 
-						if ($isMembersOnlyChallenge) {
+						if (!$isMembersOnlyChallenge) {
+							?>
+							<div class="card-img-top" style="background-image: url('<? echo $img; ?>'); overflow: hidden; position: relative;">
+							<?php
+						} else {
 							?>
 							<div class="card-img-top" style="background-image: url('<? echo $img; ?>'); overflow: hidden; position: relative; filter: blur(5px) brightness(80%); -webkit-filter: blur(5px) brightness(80%);"></div>
 							<div class="card-img-top" style="overflow: hidden; position: absolute;">
@@ -129,7 +127,7 @@ get_header("members");
 								<?php 
 							}
 							
-							if(!get_field('available') && current_user_can('memberpress_authorized')) {
+							if(!get_field('available') && (!$isLatestChallenge || current_user_can('memberpress_authorized'))) {
 								?>
 								<div class="CourseSoon" style="bottom: 0; right: 0; left: 0;">Coming Soon</div>
 								<?php

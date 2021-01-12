@@ -47,6 +47,10 @@ get_header('members'); ?>
 	</div>
 </section>
 
+<section class="challenges-dashboard Dashboard" id="routines" style="padding-bottom: 50px;">
+	<?= do_shortcode('[list_library_items title="Routines" btn="All Routines" btn-url="/routines" term="routines"]') ?>
+</section>
+
 <!-- Skills Vault -->
 <section class="skillsVault Dashboard" id="skills-vault">
 	<div class="row">
@@ -361,7 +365,7 @@ get_header('members'); ?>
 </section>
 
 <section class="challenges-dashboard Dashboard" id="challenges">
-	<?= do_shortcode('[list_challenges title="Latest Challenges" btn="All Challenges" btn-url="/challenges"]') ?>
+	<?= do_shortcode('[list_library_items title="Latest Challenges" btn="All Challenges" btn-url="/challenges"]') ?>
 </section>
 
 <!-- End Main Section -->

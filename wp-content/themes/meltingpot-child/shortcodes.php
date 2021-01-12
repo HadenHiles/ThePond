@@ -7,7 +7,7 @@ function display_user_avatar($atts = [], $content = null, $tag = '') {
   // override default attributes with user attributes
   $atts = shortcode_atts([
     'size' => '50',
-    'url' => '/account'
+    'url' => '/saved-content'
   ], $tmp_atts, $tag);
 
   $user_id = get_current_user_id();
@@ -205,8 +205,8 @@ function learndash_courses_by_categories($atts = [], $content = null, $tag = '')
 }
 
 //challenges
-add_shortcode('list_challenges', 'display_challenge_resources');
-function display_challenge_resources($atts = [], $content = null, $tag = '') {
+add_shortcode('list_library_items', 'display_library_items');
+function display_library_items($atts = [], $content = null, $tag = '') {
   $tmp_atts = array_change_key_case((array)$atts, CASE_LOWER);
 
   // override default attributes with user attributes
@@ -214,6 +214,7 @@ function display_challenge_resources($atts = [], $content = null, $tag = '') {
     'title' => 'Challenges',
     'content' => '',
     'btn' => 'All Challenges',
+    'term' => 'challenges',
     'btn-url' => null,
     'limit' => 3
   ], $tmp_atts, $tag);
@@ -222,6 +223,7 @@ function display_challenge_resources($atts = [], $content = null, $tag = '') {
   $limit = intval($atts['limit']);
   $content = $atts['content'];
   $btn = $atts['btn'];
+  $termName = $atts['term'];
   $btnUrl = $atts['btn-url'];
 
   ?>
@@ -247,7 +249,7 @@ function display_challenge_resources($atts = [], $content = null, $tag = '') {
                 array(
                     'taxonomy' => 'library_category',
                     'field' => 'slug',
-                    'terms' => 'challenges', //pass your term name here
+                    'terms' => $termName,
                     'include_children' => true
                 )
             )

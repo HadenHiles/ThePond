@@ -215,8 +215,8 @@
 		var hasHash = url.indexOf('#') > -1;
 		if (!hasHash) {
 			e.preventDefault();
-			var challengeCheck = url.match(/([^\/]*)\/*$/)[1];
-			if (challengeCheck == "challenges") {
+			var challengeRoutinesCheck = url.match(/([^\/]*)\/*$/)[1];
+			if (challengeRoutinesCheck == "challenges") {
 				e.preventDefault();
 				if ($('#challenges').length == 1) {
 					if ($('html').hasClass('MenuActive')) {
@@ -226,6 +226,20 @@
 						}, 5);
 					} else {
 						scrollToHash('#challenges', 0)
+					}
+				} else {
+					window.location.replace(url);
+				}
+			} else if (challengeRoutinesCheck == "routines") {
+				e.preventDefault();
+				if ($('#routines').length == 1) {
+					if ($('html').hasClass('MenuActive')) {
+						$('.NavBTN.open').trigger('click');
+						setTimeout(function () {
+							scrollToHash('#routines', 60)
+						}, 5);
+					} else {
+						scrollToHash('#routines', 0)
 					}
 				} else {
 					window.location.replace(url);
