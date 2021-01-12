@@ -34,6 +34,7 @@ if (!empty($_GET['redirect_to'])) {
                                 <h1>
                                     <?the_title();?>
                                 </h1>
+                                <p id="login-error" style="color: #cc3333; display: none;">Error logging in.</p>
                                 <div class="google-btn" id="mo_firebase_Google_provider_login">
                                     <div class="google-icon-wrapper">
                                         <img class="google-icon" src="https://cdn.thepond.howtohockey.com/2020/09/Google__G__Logo.svg">

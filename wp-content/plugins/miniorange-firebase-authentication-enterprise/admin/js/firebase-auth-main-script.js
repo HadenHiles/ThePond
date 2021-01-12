@@ -269,9 +269,16 @@ function mo_firebase_auth_provider_firebaseAuthentication(provider_method, pid, 
 				}
 				document.getElementById('fb_jwt').value = 'empty_string';
 				document.getElementById('fb_error_msg').value = error.message;
-				document.forms['jwtform'].submit();
-				var errorCode = error.code;
-				var errorMessage = error.message;
+
+				var $errContainer = jQuery('#login-error');
+				if ($errContainer.length == 1) {
+					console.log(error.code + ": " + error.message);
+					$errContainer.html(error.message);
+					$errContainer.show();
+				} else {
+					$errContainer.hide();
+					document.forms['jwtform'].submit();
+				}
 			});
 	}
 }
