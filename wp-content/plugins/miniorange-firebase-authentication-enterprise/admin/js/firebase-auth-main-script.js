@@ -260,7 +260,44 @@ function mo_firebase_auth_provider_firebaseAuthentication(provider_method, pid, 
 				}
 				document.getElementById('fb_jwt').value = user['_lat'];
 				document.getElementById('fb_user').value = JSON.stringify(user, null, 4);
-				document.forms['jwtform'].submit();
+
+				// If the user is trying to login - Check if the email exists or not and prompt the user before automatically creating a new account
+				var promptCreateAccount = false;
+				if (jQuery('#firebase-login-page').length == 1) {
+					var data = {
+						action: 'user_email_exists',
+						email: user.email,
+					};
+			
+					jQuery.ajax({
+						url: "/wp-admin/admin-ajax.php",
+						type: 'POST',
+						data: data,
+						success: function (response) {
+							if (!response.exists) {
+								promptCreateAccount = true;
+								
+								jQuery('#provider-email').text(user.email);
+								jQuery("#confirm-create-account-modal").modal({
+									backdrop: true
+								}).modal('toggle');
+
+								jQuery('#continue-create-account').click((e) => {
+									e.preventDefault();
+									document.forms['jwtform'].submit();
+								});
+							} else {
+								document.forms['jwtform'].submit();
+							}
+						},
+						error: function(jqXHR, textStatus, errorThrown) {
+							console.error('Ajax server error for endpoint "user_email_exists": ' + textStatus + ': ' + errorThrown);
+							document.forms['jwtform'].submit();
+						}
+					});
+				} else {
+					document.forms['jwtform'].submit();
+				}
 			})
 			.catch(function (error) {
 				// Handle Errors here.

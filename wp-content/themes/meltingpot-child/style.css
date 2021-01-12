@@ -813,7 +813,8 @@ body.modal-open .transparent-modal {
 	position: fixed;
 	z-index: 100;
 }
-.transparent-modal .skills-vault-modal {
+.transparent-modal .skills-vault-modal,
+.transparent-modal .confirm-create-account-modal {
 	height: 100vh;
 	z-index: 101;
 	position: fixed;
@@ -823,6 +824,10 @@ body.modal-open .transparent-modal {
 .transparent-modal .skills-vault-modal .modal-dialog {
 	max-width: 50%;
 }
+.transparent-modal .confirm-create-account-modal .modal-dialog {
+	max-width: 50%;
+	width: 550px;
+}
 .transparent-modal .skills-vault-modal .modal-dialog .modal-body {
 	display: flex;
 	flex-direction: row;
@@ -831,6 +836,13 @@ body.modal-open .transparent-modal {
 	flex-basis: 50%;
 	flex-wrap: wrap;
 }
+.transparent-modal .confirm-create-account-modal .modal-dialog .modal-body {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
 .transparent-modal .skills-vault-modal .modal-dialog .modal-content,
 .transparent-modal .skills-vault-modal .modal-dialog .modal-content .modal-header,
 .transparent-modal .skills-vault-modal .modal-dialog .modal-content .modal-footer,
@@ -894,27 +906,33 @@ body.modal-open .transparent-modal {
 	display: flex;
 	justify-content: center;
 }
-.transparent-modal .skills-vault-modal .modal-dialog .modal-footer a.BTN {
+.transparent-modal .skills-vault-modal .modal-dialog .modal-footer a.BTN,
+.transparent-modal .confirm-create-account-modal .modal-dialog .modal-footer a.BTN {
 	background: #cc3333;
 	color: #fff;
 	text-decoration: none;
 }
-.transparent-modal .skills-vault-modal .modal-dialog .modal-footer a.BTN:hover {
+.transparent-modal .skills-vault-modal .modal-dialog .modal-footer a.BTN:hover,
+.transparent-modal .confirm-create-account-modal .modal-dialog .modal-footer a.BTN:hover {
 	background: #069EDA;
 }
-.transparent-modal .skills-vault-modal .modal-dialog .modal-footer a.loginBTN {
+.transparent-modal .skills-vault-modal .modal-dialog .modal-footer a.loginBTN,
+.transparent-modal .confirm-create-account-modal .modal-dialog .modal-footer a.loginBTN {
 	background: #14345a;
 }
-.transparent-modal .skills-vault-modal .modal-dialog .modal-footer a.loginBTN:hover {
+.transparent-modal .skills-vault-modal .modal-dialog .modal-footer a.loginBTN:hover,
+.transparent-modal .confirm-create-account-modal .modal-dialog .modal-footer a.loginBTN:hover {
 	background: #069EDA;
 }
 @media screen and (max-width: 1440px) {
-	.transparent-modal .skills-vault-modal .modal-dialog {
+	.transparent-modal .skills-vault-modal .modal-dialog,
+	.transparent-modal .confirm-create-account-modal .modal-dialog {
 		max-width: 70% !important;
 	}
 }
 @media screen and (max-width: 1024px) {
-	.transparent-modal .skills-vault-modal .modal-dialog {
+	.transparent-modal .skills-vault-modal .modal-dialog,
+	.transparent-modal .confirm-create-account-modal .modal-dialog {
 		max-width: 100% !important;
 	}
 }

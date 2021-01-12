@@ -19,7 +19,8 @@ if (!empty($_GET['redirect_to'])) {
 <?php get_template_part('template-parts/bannerheader'); ?>
 </header>
 <!-- Main Section -->
-<section class="MainContent">
+<section class="MainContent" id="firebase-login-page">
+    <!--Need this ID to differentiate between firebase sign up and firebase login-->
     <div class="row">
         <?php
         if (have_posts()) : while (have_posts()) : the_post();
@@ -35,6 +36,31 @@ if (!empty($_GET['redirect_to'])) {
                                     <?the_title();?>
                                 </h1>
                                 <p id="login-error" style="color: #cc3333; display: none;">Error logging in.</p>
+                                <div class="bootstrap-styles transparent-modal">
+                                    <div class="modal fade confirm-create-account-modal" id="confirm-create-account-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-create-account-modal" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h2 class="modal-title" id="skillVaultModalLabel">Account does not exist</h2>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="medium-2 columns"></div>
+                                                    <div class="medium-8 columns">
+                                                        <p>No account exists for the email <span id="provider-email"></span></p>
+                                                    </div>
+                                                    <div class="medium-2 columns"></div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a class="BTN" href="#" id="cancel-create-account" data-dismiss="modal" aria-label="Close">Try another login method</a>
+                                                    <a class="BTN action loginBTN" href="#" id="continue-create-account">Create Account</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="google-btn" id="mo_firebase_Google_provider_login">
                                     <div class="google-icon-wrapper">
                                         <img class="google-icon" src="https://cdn.thepond.howtohockey.com/2020/09/Google__G__Logo.svg">
@@ -74,9 +100,9 @@ if (!empty($_GET['redirect_to'])) {
                                     }
                                     ?>
                                     <h2><span style="font-size: .6em;">Currently signed in as</span> <?= $user->user_login ?></h1>
-                                    <a href="/member-dashboard" class="BTN darkblue">Dashboard</a>
-                                    <a href="/account" class="BTN blue">Account</a>
-                                    <a href="#" class="BTN logout">Logout</a>
+                                        <a href="/member-dashboard" class="BTN darkblue">Dashboard</a>
+                                        <a href="/account" class="BTN blue">Account</a>
+                                        <a href="#" class="BTN logout">Logout</a>
                                 </div>
                             <?php
                             }

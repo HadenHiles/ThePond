@@ -116,18 +116,18 @@ function mepr_add_tabs_content($action) {
   $fbAvatar = get_user_meta(get_current_user_id(), 'avatar_url');
   if ($action == 'avatar') {
     if ($useFbAvatar && !empty($fbAvatar[0])) {
-      ?>
+  ?>
       <img alt='avatar' src='<?= $fbAvatar[0] ?>' height='100' width='100' />
       <a href="/account?action=custom_avatar" class="BTN">Change</a>
       <?php
     } else {
       echo do_shortcode('[avatar_upload]');
       if (!empty($fbAvatar[0])) {
-        ?>
+      ?>
         <br />
         <br />
         <a href="/account?action=custom_avatar" class="BTN">Use Social Avatar</a>
-        <?php
+<?php
       }
     }
   } else if ($action == 'custom_avatar') {
@@ -213,6 +213,24 @@ function firebase_user_avatar($avatar, $id_or_email, $size, $default, $alt) {
 }
 add_filter('get_wp_user_avatar', 'firebase_user_avatar', 1, 5);
 add_filter('get_avatar', 'firebase_user_avatar', 1, 5);
+
+/**
+ * Check if email exists or not
+ */
+function user_email_exists() {
+  $email = $_POST['email'];
+  wp_send_json(
+    array(
+      'exists' => email_exists($email)
+    ),
+    200
+  );
+}
+add_action('wp_ajax_user_email_exists', 'user_email_exists');
+add_action('wp_ajax_nopriv_user_email_exists', 'user_email_exists');
+
+// Add ajax endpoint for retrieving challenge scores
+add_action('wp_ajax_get_challenge_scores', 'get_challenge_scores');
 
 /* Shortcodes */
 require_once('shortcodes.php');
