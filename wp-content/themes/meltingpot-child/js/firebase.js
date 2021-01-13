@@ -48,9 +48,8 @@
                         var confirm_pass = $("#mepr_user_password_confirm1").val();
                         if (pass == confirm_pass) {
                             auth.createUserWithEmailAndPassword(email, pass)
-                                .then(function (firebaseUser) {
+                                .then(function (credential) {
                                     fbUserCreated = true;
-                                    setCookie("fb_user", JSON.stringify(firebaseUser), 90);
                                     setCookie("request_path", "/login", 1);
                                     $(".mepr-signup-form .mepr-submit").trigger('click');
                                 })

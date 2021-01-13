@@ -60,7 +60,7 @@ function mo_firebase_auth_firebaseAuthentication(pid, a_key, email, pass, test_c
 	// firebase.initializeApp(firebaseConfig);
 	firebase.auth().signInWithEmailAndPassword(email, pass)
 		.then(function (firebaseUser) {
-			setCookie("fb_user", firebaseUser, 90);
+			setCookie("fb_user", JSON.stringify(firebaseUser), 90);
 
 			if (test_check_field == 'test_check_true') {
 				document.getElementById('fb_is_test').value = 'test_check_true';
