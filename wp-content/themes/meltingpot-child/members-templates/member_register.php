@@ -1,11 +1,6 @@
 <?
 /***  Template Name: Member Register */ 
 get_header("members");
-
-$cookie_name = "selected_membership";
-$cookie_value = get_permalink();
-setcookie($cookie_name, $cookie_value, time() + (3600 * 30), "/"); // 3600 = 1 hour in seconds
-
 ?>
 </header>
 <section class="login-contain">
@@ -22,7 +17,8 @@ setcookie($cookie_name, $cookie_value, time() + (3600 * 30), "/"); // 3600 = 1 h
                     <div style="clear: both;"></div>
                     <?php
                     if (!is_user_logged_in()) {
-                    ?>
+                        setcookie("selected_membership", get_permalink(), time() + (3600 * 30), "/"); // 3600 = 1 hour in seconds
+                        ?>
                         <h4 style="margin-top: 10px; float: left; width: 100%; font-size: 24px;">Choose how you would like to login to The Pond</h4>
                         <div style="clear: both;"></div>
                         <div style="display: inline-block; width: 100%;">

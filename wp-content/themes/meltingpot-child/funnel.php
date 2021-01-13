@@ -11,10 +11,14 @@ $hasActiveSubscription = false;
 
 $recentLogin = $_COOKIE['recent_login'];
 
+$requestPath = $_COOKIE['request_path'];
+
 $meprUser = new MeprUser(get_current_user_id());
 
 $subscriptions = $meprUser->active_product_subscriptions('ids', false, false);
 $activeSubscriptions = $meprUser->active_product_subscriptions('ids');
+
+
 
 if (empty($chosenMembership)) {
     // Check if the unsigned in user has recently logged in or not
@@ -22,11 +26,14 @@ if (empty($chosenMembership)) {
     if (!is_user_logged_in() && !empty($recentLogin)) {
         setcookie('redirect_to', $redirectUrl, -1, '/');
         header('location: /login');
-    } else if (!empty($_COOKIE['request_path'])) {
+        exit();
+    } else if (!empty($requestPath)) {
         setcookie('request_path', null, -1, '/');
-        header('location: ' . $_COOKIE['request_path']);
+        header('location: ' . $requestPath);
+        exit();
     } else if (!is_user_logged_in()) {
         header('location: /#choose-your-subscription');
+        exit();
     }
 }
 
@@ -37,14 +44,18 @@ if (empty($subscriptions)) {
         setcookie('selected_membership', null, -1, '/');
         setcookie('request_path', null, -1, '/');
         header('location: /login');
+        exit();
     } else if (!empty($chosenMembership)) {
         setcookie('selected_membership', null, -1, '/');
         header('location: ' . $chosenMembership);
+        exit();
     } else if (!empty($_COOKIE['request_path'])) {
         setcookie('request_path', null, -1, '/');
         header('location: ' . $_COOKIE['request_path']);
+        exit();
     } else {
         header('location: /#choose-your-subscription');
+        exit();
     }
 } else if (!empty($activeSubscriptions)) {
     // Reset the relevant cookies
@@ -53,11 +64,14 @@ if (empty($subscriptions)) {
 
     if(empty($redirectUrl)) {
         header('location: /member-dashboard');
+        exit();
     } else {
         header("location: $redirectUrl");
+        exit();
     }
 } else if (is_user_logged_in()) {
     header('location: /account?action=subscriptions');
+    exit();
 }
 
 ?>

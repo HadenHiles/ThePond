@@ -6,13 +6,13 @@ jQuery(document).ready(function() {
 	var mo_firebase_auth_woocommerce_intigration   = $fb_data["mo_firebase_auth_woocommerce_intigration"];
 	var mo_enable_firebase_auto_register = $fb_data["mo_enable_firebase_auto_register"];
 
-	if (jQuery("#user_email1").length == 1) {
-		jQuery(".mepr-submit").click(function() {
-			//event.preventDefault();
-			//event.stopPropagation();
-			mo_firebase_auth_create_fb_user(a_key, pid);
-		});
-	}
+	// if (jQuery("#user_email1").length == 1) {
+	// 	jQuery(".mepr-submit").click(function() {
+	// 		//event.preventDefault();
+	// 		//event.stopPropagation();
+	// 		mo_firebase_auth_create_fb_user(a_key, pid);
+	// 	});
+	// }
 
 });
 

@@ -35,6 +35,36 @@
             //     }
             // }, 100);
 
+            /* Email/password sign up */
+            var $signupForm = $('#register-form-wrapper .mepr-signup-form');
+            if ($signupForm.length == 1) {
+                var fbUserCreated = false;
+                $(".mepr-signup-form .mepr-submit").click((e) => {
+                    if (!fbUserCreated) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        var email = $("#user_email1").val();
+                        var pass = $("#mepr_user_password1").val();
+                        var confirm_pass = $("#mepr_user_password_confirm1").val();
+                        if (pass == confirm_pass) {
+                            auth.createUserWithEmailAndPassword(email, pass)
+                                .then(function (firebaseUser) {
+                                    fbUserCreated = true;
+                                    setCookie("fb_user", JSON.stringify(firebaseUser), 90);
+                                    setCookie("request_path", "/login", 1);
+                                    $(".mepr-signup-form .mepr-submit").trigger('click');
+                                })
+                                .catch(function (error) {
+                                    console.error(error);
+                                    fbUserCreated = true;
+                                    setCookie("request_path", "/login", 1);
+                                    $(".mepr-signup-form .mepr-submit").trigger('click');
+                                });
+                        }
+                    }
+                });
+            }
+
             /* Password reset */
             if ($('#mepr_forgot_password_form').length == 1) {
                 var sentFirebaseResetEmail = false;
@@ -99,7 +129,7 @@
                 var emailUpdated = false;
                 var errorMsg = "Error updating email address. Please contact thepondsupport@howtohockey.com.";
 
-                
+
                 $('#mepr_account_form').submit((e) => {
                     if (!emailUpdated && $('#mepr_account_form #user_email').length == 1) {
                         e.preventDefault();
@@ -150,7 +180,7 @@
 
                                 // Update the fb_user cookie so that the user can change their email address without having to logout/login again
                                 var fbUser = JSON.parse(getCookie('fb_user'));
-                                fbUser.providerData.push({"providerId": "password"});
+                                fbUser.providerData.push({ "providerId": "password" });
                                 setCookie("fb_user", JSON.stringify(fbUser), 90);
                             }).catch((error) => {
                                 $('#success-msg').hide();
