@@ -825,8 +825,10 @@ body.modal-open .transparent-modal {
 	max-width: 50%;
 }
 .transparent-modal .confirm-create-account-modal .modal-dialog {
+	top: 35%;
 	max-width: 50%;
 	width: 550px;
+	margin: 0 auto;
 }
 .transparent-modal .skills-vault-modal .modal-dialog .modal-body {
 	display: flex;
@@ -931,9 +933,12 @@ body.modal-open .transparent-modal {
 	}
 }
 @media screen and (max-width: 1024px) {
-	.transparent-modal .skills-vault-modal .modal-dialog,
-	.transparent-modal .confirm-create-account-modal .modal-dialog {
+	.transparent-modal .skills-vault-modal .modal-dialog {
 		max-width: 100% !important;
+	}
+
+	.transparent-modal .confirm-create-account-modal .modal-dialog {
+		max-width: 90% !important;
 	}
 }
 /* End Skills Vault */

@@ -104,7 +104,7 @@ function mepr_add_tabs($user) {
 ?>
   <span class="mepr-nav-item avatar">
     <!-- KEEPS THE USER ON THE ACCOUNT PAGE -->
-    <a href="/account/?action=avatar">Avatar</a>
+    <a href="/account?action=avatar">Avatar</a>
   </span>
   <?php
 }
@@ -139,7 +139,7 @@ add_action('mepr_account_nav_content', 'mepr_add_tabs_content');
 
 function modify_profile_url($url, $user_id, $scheme) {
   // Makes the link to http://example.com/custom-profile
-  $url = site_url('/account/?action=avatar');
+  $url = site_url('/account?action=avatar');
   return $url;
 }
 add_filter('edit_profile_url', 'modify_profile_url', 10, 3);
@@ -228,9 +228,6 @@ function user_email_exists() {
 }
 add_action('wp_ajax_user_email_exists', 'user_email_exists');
 add_action('wp_ajax_nopriv_user_email_exists', 'user_email_exists');
-
-// Add ajax endpoint for retrieving challenge scores
-add_action('wp_ajax_get_challenge_scores', 'get_challenge_scores');
 
 /* Shortcodes */
 require_once('shortcodes.php');

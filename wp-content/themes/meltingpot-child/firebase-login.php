@@ -47,11 +47,9 @@ if (!empty($_GET['redirect_to'])) {
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <div class="medium-2 columns"></div>
-                                                    <div class="medium-8 columns">
+                                                    <div class="medium-12 columns">
                                                         <p>No account exists for the email <span id="provider-email"></span></p>
                                                     </div>
-                                                    <div class="medium-2 columns"></div>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <a class="BTN" href="#" id="cancel-create-account" data-dismiss="modal" aria-label="Close">Try another login method</a>
