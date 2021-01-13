@@ -534,7 +534,7 @@ function facebook_secret_phrase($atts = [], $content = null, $tag = '') {
                         };
 
                         $.ajax({
-                            url: ajaxurl, // this will point to admin-ajax.php
+                            url: "/wp-admin/admin-ajax.php",
                             type: 'POST',
                             data: data,
                             success: function(response) {
@@ -675,7 +675,7 @@ function facebook_secret_phrase($atts = [], $content = null, $tag = '') {
                                         var id = response.id;
 
                                         $.ajax({
-                                            url: ajaxurl,
+                                            url: "/wp-admin/admin-ajax.php",
                                             type: "POST",
                                             data: {
                                                 'action': 'update_user_facebook_id',
