@@ -65,7 +65,7 @@
         }
 
         $.ajax({
-            url: ajaxurl, // this will point to admin-ajax.php
+            url: "/wp-admin/admin-ajax.php",
             type: 'POST',
             data: data,
             success: function (response) {
@@ -113,7 +113,7 @@
             };
     
             $.ajax({
-                url: ajaxurl, // this will point to admin-ajax.php
+                url: "/wp-admin/admin-ajax.php",
                 type: 'POST',
                 data: data,
                 success: function (response) {
