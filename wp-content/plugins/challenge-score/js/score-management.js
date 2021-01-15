@@ -68,13 +68,12 @@
 
                         function getScores(spinner = false) {
                             var challengeId = parseInt($('input#challenge-id').val());
-                            var userId = parseInt($('input#user-id').val());
                             var $scores = $('#scores');
-        
+
                             if (spinner) {
                                 showSpinner();
                             }
-        
+
                             db.collection("challenge_scores").doc(user.uid).collection("challenge_scores").where("challenge_id", "==", challengeId).orderBy('created')
                                 .get()
                                 .then((querySnapshot) => {
@@ -86,26 +85,26 @@
                                         var date = formatDateMonthDayYear(date) + " " + formatAMPM(date);
                                         scoresHtml += '<div class="score"><div class="number">' + data.score + '</div>  <span class="datetime">' + date + '</span> <a href="#" class="delete-challenge-score" data-challenge-id=' + doc.id + '><i class="fa fa-trash"></i></a></div>\n';
                                     });
-        
+
                                     $scores.html(scoresHtml);
                                     if ($('#scores').children('.score').length == 0) {
                                         $scores.html('<p class="empty-result">You haven\'t entered any scores yet!');
                                     }
-        
+
                                     $('#scores').css('min-height', '0px');
                                 });
                         }
-        
+
                         function addScore(cb) {
                             var $addButton = $('#add-score');
                             var challengeId = $('input#challenge-id').val();
                             var userId = $('input#user-id').val();
                             var score = parseFloat($('input#challenge-score').val()).toFixed(4);
-        
+
                             if (challengeId != null && userId != null && score >= 0) {
                                 $addButton.html('<i class="fa fa-spinner fa-spin"></i>');
                                 showSpinner();
-        
+
                                 // Save to firestore
                                 db.collection('challenge_scores').doc(user.uid).collection('challenge_scores').add({
                                     'challenge_id': parseInt(challengeId),
@@ -116,47 +115,17 @@
                                     console.log("challenge_score saved with ID: ", doc.id);
                                     success();
                                     cb();
-                                })
-                                    .catch(function (error) {
-                                        console.error("Error adding challenge_score: ", error);
-                                        error(error.message);
-                                        cb(false);
-                                    });
-        
-                                var data = {
-                                    action: 'add_challenge_score',
-                                    challenge_id: challengeId,
-                                    user_id: userId,
-                                    score: score
-                                };
-        
-                                $.ajax({
-                                    url: "/wp-admin/admin-ajax.php",
-                                    type: 'POST',
-                                    data: data,
-                                    success: function (response) {
-                                        if (response.error == null) {
-                                            success();
-                                            cb();
-                                            // console.log('Ajax response:', response);
-                                        } else {
-                                            error(response.error.message);
-                                            console.error('Ajax error: ' + response.error.message + '. code: ' + response.error.code);
-                                            cb(false);
-                                        }
-                                    },
-                                    error: function (jqXHR, textStatus, errorThrown) {
-                                        error();
-                                        console.error('Ajax server error: ' + textStatus + ': ' + errorThrown);
-                                        cb(false);
-                                    }
+                                }).catch(function (error) {
+                                    console.error("Error adding challenge_score: ", error);
+                                    error(error.message);
+                                    cb(false);
                                 });
                             } else {
                                 error("Please enter a valid score");
                                 cb(false);
                             }
                         }
-        
+
                         function deleteScore(scoreId, cb) {
                             if (scoreId != null) {
                                 db.collection('challenge_scores').doc(user.uid).collection('challenge_scores').doc(scoreId).delete().then(() => {
