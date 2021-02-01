@@ -1,0 +1,219 @@
+@font-face {
+  font-family: 'Bw Stretch';
+  src: url("./fonts/BwStretch/BwStretch-Light.woff2") format("woff2"), url("./fonts/BwStretch/BwStretch-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bw Stretch Book';
+  src: url("./fonts/BwStretch/BwStretch-Book.woff2") format("woff2"), url("./fonts/BwStretch/BwStretch-Book.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bw Stretch';
+  src: url("./fonts/BwStretch/BwStretch-Regular.woff2") format("woff2"), url("./fonts/BwStretch/BwStretch-Regular.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bw Stretch';
+  src: url("./fonts/BwStretch/BwStretch-Heavy.woff2") format("woff2"), url("./fonts/BwStretch/BwStretch-Heavy.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bw Stretch';
+  src: url("./fonts/BwStretch/BwStretch-Thin.woff2") format("woff2"), url("./fonts/BwStretch/BwStretch-Thin.woff") format("woff");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bw Stretch';
+  src: url("./fonts/BwStretch/BwStretch-Bold.woff2") format("woff2"), url("./fonts/BwStretch/BwStretch-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bw Stretch';
+  src: url("./fonts/BwStretch/BwStretch-Medium.woff2") format("woff2"), url("./fonts/BwStretch/BwStretch-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bw Stretch';
+  src: url("./fonts/BwStretch/BwStretch-Black.woff2") format("woff2"), url("./fonts/BwStretch/BwStretch-Black.woff") format("woff");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+.profile-info .player-card {
+  width: 300px;
+  height: 400px;
+  background-color: #eaeaea;
+  position: relative;
+  -webkit-filter: drop-shadow(0 2.5px 5px rgba(0, 0, 0, 0.3));
+          filter: drop-shadow(0 2.5px 5px rgba(0, 0, 0, 0.3));
+}
+
+.profile-info .player-card .top-half {
+  height: 50%;
+}
+
+.profile-info .player-card .bottom-half {
+  height: 50%;
+  padding: 10px 15px;
+}
+
+.profile-info .player-card .top-half .overall-rating {
+  width: 50px;
+  padding-top: 15px;
+  position: absolute;
+  z-index: 2;
+  left: 25px;
+  border-top: 0;
+  word-wrap: break-word;
+  z-index: 2;
+  -webkit-filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+          filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+.profile-info .player-card .top-half .overall-rating::after, .profile-info .player-card .top-half .overall-rating::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  bottom: -25px;
+  border-style: solid;
+}
+
+.profile-info .player-card .top-half .overall-rating::before {
+  left: 0;
+  border-width: 25px 25px 0 0;
+}
+
+.profile-info .player-card .top-half .overall-rating::after {
+  right: 0;
+  border-width: 0 25px 25px 0;
+}
+
+.profile-info .player-card .top-half .overall-rating.rookie {
+  background: #b08d57;
+  background: -webkit-gradient(linear, left bottom, left top, from(#b08d57), color-stop(65%, #f5d6a7), to(#b08d57));
+  background: linear-gradient(0deg, #b08d57 0%, #f5d6a7 65%, #b08d57 100%);
+}
+
+.profile-info .player-card .top-half .overall-rating.rookie::before {
+  border-color: #b08d57 transparent transparent transparent;
+}
+
+.profile-info .player-card .top-half .overall-rating.rookie::after {
+  border-color: transparent #b08d57 transparent transparent;
+}
+
+.profile-info .player-card .top-half .overall-rating.prospect {
+  background: #C0C0C0;
+  background: -webkit-gradient(linear, left bottom, left top, from(silver), color-stop(65%, #eaeaea), to(silver));
+  background: linear-gradient(0deg, silver 0%, #eaeaea 65%, silver 100%);
+}
+
+.profile-info .player-card .top-half .overall-rating.prospect::before {
+  border-color: #C0C0C0 transparent transparent transparent;
+}
+
+.profile-info .player-card .top-half .overall-rating.prospect::after {
+  border-color: transparent #C0C0C0 transparent transparent;
+}
+
+.profile-info .player-card .top-half .overall-rating.pro {
+  background: #daa520;
+  background: -webkit-gradient(linear, left bottom, left top, from(goldenrod), color-stop(65%, #f7db95), to(goldenrod));
+  background: linear-gradient(0deg, goldenrod 0%, #f7db95 65%, goldenrod 100%);
+}
+
+.profile-info .player-card .top-half .overall-rating.pro::before {
+  border-color: #daa520 transparent transparent transparent;
+}
+
+.profile-info .player-card .top-half .overall-rating.pro::after {
+  border-color: transparent #daa520 transparent transparent;
+}
+
+.profile-info .player-card .top-half .overall-rating .inner-ribbon {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.profile-info .player-card .top-half .overall-rating .inner-ribbon p.level,
+.profile-info .player-card .top-half .overall-rating .inner-ribbon h2.rating {
+  font-family: 'Bw Stretch', 'Teko', sans-serif !important;
+}
+
+.profile-info .player-card .top-half .overall-rating .inner-ribbon p.level {
+  font-size: 14px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 5px 0;
+  margin: 0;
+}
+
+.profile-info .player-card .top-half .headshot {
+  width: 100%;
+  height: 200px;
+  top: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.profile-info .player-card .top-half .headshot img {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  right: 0;
+  bottom: -20%;
+}
+
+.profile-info .player-card .bottom-half .stats h1.name {
+  font-family: 'Bw Stretch', 'Teko', sans-serif;
+  font-size: 32px;
+  line-height: 32px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.profile-info .player-card .bottom-half .stats h1.name span {
+  display: block;
+  font-style: italic;
+}
+
+.profile-info .player-card .bottom-half .stats h1.name span.first {
+  font-weight: 300;
+}
+
+.profile-info .player-card .bottom-half .stats h1.name span.last {
+  margin-left: 2px;
+  font-weight: 900;
+}
+/*# sourceMappingURL=style.css.map */

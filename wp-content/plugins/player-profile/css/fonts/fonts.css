@@ -1,0 +1,64 @@
+@font-face {
+  font-family: 'Bw Stretch';
+  src: url("./fonts/BwStretch/BwStretch-Light.woff2") format("woff2"), url("./fonts/BwStretch/BwStretch-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bw Stretch Book';
+  src: url("./fonts/BwStretch/BwStretch-Book.woff2") format("woff2"), url("./fonts/BwStretch/BwStretch-Book.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bw Stretch';
+  src: url("./fonts/BwStretch/BwStretch-Regular.woff2") format("woff2"), url("./fonts/BwStretch/BwStretch-Regular.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bw Stretch';
+  src: url("./fonts/BwStretch/BwStretch-Heavy.woff2") format("woff2"), url("./fonts/BwStretch/BwStretch-Heavy.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bw Stretch';
+  src: url("./fonts/BwStretch/BwStretch-Thin.woff2") format("woff2"), url("./fonts/BwStretch/BwStretch-Thin.woff") format("woff");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bw Stretch';
+  src: url("./fonts/BwStretch/BwStretch-Bold.woff2") format("woff2"), url("./fonts/BwStretch/BwStretch-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bw Stretch';
+  src: url("./fonts/BwStretch/BwStretch-Medium.woff2") format("woff2"), url("./fonts/BwStretch/BwStretch-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bw Stretch';
+  src: url("./fonts/BwStretch/BwStretch-Black.woff2") format("woff2"), url("./fonts/BwStretch/BwStretch-Black.woff") format("woff");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+/*# sourceMappingURL=fonts.css.map */
