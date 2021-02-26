@@ -7,6 +7,7 @@
 
 # ignore plugins
 wp-content/plugins/*
+wp-content/plugins/members
 
 # ignore non-custom themes
 wp-content/themes/*
