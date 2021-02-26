@@ -337,7 +337,17 @@ ul.wpipb_topic_list li p.author a:hover {color:#3AA6DE;}
 
 
 
-a.askBTN, a.joinBTN {margin:0 0 0 10px;font-family: 'Noto Sans', sans-serif;font-size: 0.8rem !important;font-weight: 700;line-height: 1em;letter-spacing: 0px;}
+a.askBTN, a.joinBTN {
+    margin:0 0 0 10px;
+    font-family: 'Teko', sans-serif;
+    font-size: 1.4rem !important;
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 1em;
+    letter-spacing: 0.5px;
+    padding: 15px 40px 12px 40px !important;
+    
+}
 a.joinBTN, .refreshsearch {background:#cc3333;}
 a.joinBTN:hover, .refreshsearch:hover {background:#3AA6DE;}
 
