@@ -241,4 +241,11 @@ function keyLessonList($listName) {
 <?php
 }
 
+// Facebook retargetting for non-members who have viewed locked lesson pages
+if (!current_user_can('memberpress_authorized')) {
+	?>
+	<script>fbq('trackCustom', 'ViewContent', {type: 'lesson', name: '<?php the_title(); ?>'});</script>
+	<?php
+}
+
 ?>

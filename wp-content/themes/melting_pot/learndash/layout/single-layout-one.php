@@ -261,4 +261,11 @@ function goalList($listName) {
 	// End loop.
 	endwhile;
 }
+
+// Facebook retargetting for non-members who have viewed locked course pages
+if (!current_user_can('memberpress_authorized')) {
+	?>
+	<script>fbq('trackCustom', 'ViewContent', {type: 'course', name: '<?php the_title(); ?>'});</script>
+	<?php
+}
 ?>
