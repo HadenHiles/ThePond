@@ -41,7 +41,7 @@ function learndash_courses_by_categories($atts = [], $content = null, $tag = '')
     'post_type' => array('sfwd-courses'),
     'orderby' => 'order',
     'order' => 'ASC',
-    'limit' => -1,
+    'posts_per_page' => -1,
 		'meta_query' => array(
       'relation' => 'AND',
 			array(
