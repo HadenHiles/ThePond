@@ -40,8 +40,8 @@ $parent_course_id = learndash_get_setting($post, 'course');
 											<h2>This content is for The Pond members only</h2>
 											<p>To view please join now or login</p>
 											<div class="actions">
-												<a href="/" class="BTN joinBTN">Join now</a>
-												<a href="/login" class="BTN askBTN">Login</a>
+												<a href="/" class="BTN small joinBTN">Join now</a>
+												<a href="/login" class="BTN small askBTN">Login</a>
 											</div>
 										</div>
 									</div>
