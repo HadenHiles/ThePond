@@ -351,6 +351,11 @@ a.askBTN, a.joinBTN {
 a.joinBTN, .refreshsearch {background:#cc3333;}
 a.joinBTN:hover, .refreshsearch:hover {background:#3AA6DE;}
 
+a.askBTN.small, a.joinBTN.small {
+	font-size: 1.2rem !important;
+	padding: 10px 25px 8px 25px !important;
+}
+
 
 /*Support Page */
 

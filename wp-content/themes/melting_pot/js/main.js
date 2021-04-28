@@ -331,14 +331,26 @@
 	 */
 	$(document).ready(() => {
 		if (isMobileAppBrowser()) {
-			var redirectUrl = getCookie('request_path');
-			if (redirectUrl != null) {
-				window.location.href = "/join/index.php?path=" + redirectUrl;
-			} else {
-				window.location.href = "/join/index.php?path=" + window.location.pathname;
+			if (window.location.pathname.includes("login") || window.location.pathname.includes("register")) {
+				window.location.href = `/open-in-web-browser?path=${window.location.href}`;
+			}
+		} else {
+			var redirectPath = $.urlParam('path');
+			if (redirectPath != null && window.location.pathname.includes("/open-in-web-browser/")) {
+				window.location.href = redirectPath;
+			} else if (window.location.pathname == "/open-in-web-browser/") {
+				window.location.href = "/";
 			}
 		}
 	});
+
+	$.urlParam = function(name){
+		var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+		if (results==null) {
+		   return null;
+		}
+		return decodeURI(results[1]) || 0;
+	}
 
 	/**
 	 * Notification Announcement
