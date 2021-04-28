@@ -243,6 +243,12 @@ li {
 font-size: inherit;list-style:none; }
 
 }
+article ul li {
+  list-style: disc !important;
+}
+article ol li {
+  list-style: decimal !important;
+}
 .row {
 max-width: 70%;
 margin-right: auto;
