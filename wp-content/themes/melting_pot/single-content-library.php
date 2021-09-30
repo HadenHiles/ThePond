@@ -37,10 +37,15 @@ if (has_post_thumbnail()) {
 				<a class="backBTN" href="/challenges/">
 				<i class="fas fa-angle-left"></i> All Challenges</a>
 				<?php
-			} if (in_array("Routines", $categories)) {
+			} else if (in_array("Routines", $categories)) {
 				?>
 				<a class="backBTN" href="/routines/">
 				<i class="fas fa-angle-left"></i> All Routines</a>
+				<?php
+			} else if (in_array("Move Makers", $categories)) {
+				?>
+				<a class="backBTN" href="/move-makers/">
+				<i class="fas fa-angle-left"></i> All Move Makers</a>
 				<?php
 			} else {
 			?>

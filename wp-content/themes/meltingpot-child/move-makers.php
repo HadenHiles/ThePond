@@ -1,6 +1,6 @@
 <?php
 /**
-* Template Name: Routines
+* Template Name: Move Makers
 *
 * @package WordPress
 * @subpackage Meltingpot-child
@@ -14,12 +14,12 @@ get_header("members");
 <section class="clbHeader">
 	<div class="row">
 		<div class="large-8 columns">
-        <h1>Routines</h1>
+        <h1>Move Makers</h1>
 		</div>
 		
 		<div class="large-4 columns">
 			<!-- <p class="searchText">Search Challenges</p> -->
-			<div class="searchfilter" style="margin-top: 5px;"><input type="text" id="filterSearch" name="filtr-search" class="filtr-search" value="" placeholder="Search routines" data-search>
+			<div class="searchfilter" style="margin-top: 5px;"><input type="text" id="filterSearch" name="filtr-search" class="filtr-search" value="" placeholder="Search move makers" data-search>
 			<a id="clearFilter" class="backBTN" href="javascript:;">Clear</a></div>
 		</div>
 	</div>
@@ -39,7 +39,7 @@ get_header("members");
 			array(
 				'taxonomy' => 'library_category',
 				'field' => 'slug',
-				'terms' => 'routines', //pass your term name here
+				'terms' => 'move-makers', //pass your term name here
 				'include_children' => true
 			)
 		)

@@ -47,6 +47,14 @@ get_header('members'); ?>
 	</div>
 </section>
 
+<section class="challenges-dashboard Dashboard" id="challenges">
+	<?= do_shortcode('[list_library_items title="Latest Challenges" btn="All Challenges" btn-url="/challenges"]') ?>
+</section>
+
+<section class="Dashboard" id="move-makers" style="padding-bottom: 50px;">
+	<?= do_shortcode('[list_library_items title="Move Makers" btn="All Move Makers" btn-url="/move-makers" term="move-makers"]') ?>
+</section>
+
 <section class="challenges-dashboard Dashboard" id="routines" style="padding-bottom: 50px;">
 	<?= do_shortcode('[list_library_items title="Routines" btn="All Routines" btn-url="/routines" term="routines"]') ?>
 </section>
@@ -362,10 +370,6 @@ get_header('members'); ?>
 			</div>
 		</div>
 	</div>
-</section>
-
-<section class="challenges-dashboard Dashboard" id="challenges">
-	<?= do_shortcode('[list_library_items title="Latest Challenges" btn="All Challenges" btn-url="/challenges"]') ?>
 </section>
 
 <!-- End Main Section -->
