@@ -10,6 +10,9 @@ function display_skill_competency_slider($atts = [], $content = null, $tag = '')
         'user_id' => 'user_id'
     ), $tmp_atts));
 ?>
+    <script type="text/javascript">
+        var ajaxurl = '<?php echo admin_url( 'admin-ajax.php', 'relative' ); ?>';
+    </script>
     <div class="card" id="skill-competency">
         <div class="card-body" style="padding: 20px;">
             <h3 style="float: left;">Your Rating</h3>
