@@ -1424,3 +1424,10 @@ body.modal-open .transparent-modal {
 a.BTN.darkblue:hover {
 	background: #3AA6DE;
 }
+
+.testimonials-widget-testimonial .image {
+	margin-right: 1em !important;
+}
+.testimonials-widget-testimonial .ratings {
+	float: right !important;
+}
