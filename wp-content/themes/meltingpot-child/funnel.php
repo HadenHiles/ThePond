@@ -32,7 +32,18 @@ if (empty($chosenMembership)) {
         header('location: ' . $requestPath);
         exit();
     } else if (!is_user_logged_in()) {
-        header('location: /#choose-your-subscription');
+        if (str_contains($redirectUrl, "pond-lessons")) {
+            $postId = url_to_postid($redirectUrl);
+            // var_dump(has_tag("30-shots", $postId));
+            if (has_term("30-shots", "ld_lesson_tag", $postId)) {
+                header('location: /30-shots-30-days/#choose-your-subscription');
+            } else {
+                header('location: /#choose-your-subscription');
+            }
+        } else {
+            header('location: /#choose-your-subscription');
+        }
+
         exit();
     }
 }
@@ -54,15 +65,24 @@ if (empty($subscriptions)) {
         header('location: ' . $_COOKIE['request_path']);
         exit();
     } else {
-        header('location: /#choose-your-subscription');
+        if (str_contains($redirectUrl, "pond-lessons")) {
+            $postId = url_to_postid($redirectUrl);
+            if (has_term("30-shots", "ld_lesson_tag", $postId)) {
+                header('location: /30-shots-30-days/#choose-your-subscription');
+            } else {
+                header('location: /#choose-your-subscription');
+            }
+        } else {
+            header('location: /#choose-your-subscription');
+        }
         exit();
     }
 } else if (!empty($activeSubscriptions)) {
     // Reset the relevant cookies
     setcookie('selected_membership', null, -1, '/');
-    setcookie("recent_login", true, strtotime( '+30 days' ), "/"); // expire in 30 days
+    setcookie("recent_login", true, strtotime('+30 days'), "/"); // expire in 30 days
 
-    if(empty($redirectUrl)) {
+    if (empty($redirectUrl)) {
         header('location: /member-dashboard');
         exit();
     } else {
@@ -73,5 +93,3 @@ if (empty($subscriptions)) {
     header('location: /account?action=subscriptions');
     exit();
 }
-
-?>
