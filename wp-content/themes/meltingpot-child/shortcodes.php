@@ -1,7 +1,7 @@
 <?php
 //avatar
 add_shortcode('user_avatar', 'display_user_avatar');
-if(!function_exists('display_user_avatar')) {
+if (!function_exists('display_user_avatar')) {
   function display_user_avatar($atts = [], $content = null, $tag = '') {
     $tmp_atts = array_change_key_case((array)$atts, CASE_LOWER);
 
@@ -11,19 +11,21 @@ if(!function_exists('display_user_avatar')) {
       'url' => '/saved-content'
     ], $tmp_atts, $tag);
 
-    $user_id = get_current_user_id();
-    ?>
-    <a href="<?=$atts['url']?>" class="avatar" style="width: <?=$atts['size'];?>px; height: <?=$atts['size'];?>px;">
-      <?=get_wp_user_avatar($user_id, $atts['size'])?>
+    $current_user = wp_get_current_user();
+    $user_id = $current_user->user_id;
+    $user_email = $current_user->user_email;
+?>
+    <a href="<?= $atts['url'] ?>" class="avatar" style="width: <?= $atts['size']; ?>px; height: <?= $atts['size']; ?>px;">
+      <?= get_avatar($user_email, $atts['size']); ?>
     </a>
-    <?php
+  <?php
   }
 }
 
 //courses for dashboard
 add_shortcode('ld_courses_by_categories', 'learndash_courses_by_categories');
-if(!function_exists('learndash_courses_by_categories')) {
-  function learndash_courses_by_categories($atts = [], $content = null, $tag = ''){
+if (!function_exists('learndash_courses_by_categories')) {
+  function learndash_courses_by_categories($atts = [], $content = null, $tag = '') {
     $tmp_atts = array_change_key_case((array)$atts, CASE_LOWER);
 
     // override default attributes with user attributes
@@ -53,9 +55,9 @@ if(!function_exists('learndash_courses_by_categories')) {
           'compare' => '=',
         ),
         array(
-          'key' =>'hide_from_feed',
+          'key' => 'hide_from_feed',
           'value' => true,
-          'compare' =>'!=',
+          'compare' => '!=',
         )
       ),
       'tax_query' => array(
@@ -68,15 +70,15 @@ if(!function_exists('learndash_courses_by_categories')) {
         )
       ),
     );
-    $course_feed = new WP_Query( $args );
+    $course_feed = new WP_Query($args);
 
     if ($course_feed->have_posts()) {
       while ($course_feed->have_posts()) {
         $course_feed->the_post();
         $course = get_post(get_the_ID());
         $imgID  = get_post_thumbnail_id($post->ID);
-        $img    = wp_get_attachment_image_src($imgID,'full', false, '');
-        $imgAlt = get_post_meta($imgID,'_wp_attachment_image_alt', true);
+        $img    = wp_get_attachment_image_src($imgID, 'full', false, '');
+        $imgAlt = get_post_meta($imgID, '_wp_attachment_image_alt', true);
         if (empty($img[0])) {
           $img[0] = DEFAULT_IMG;
         }
@@ -87,20 +89,20 @@ if(!function_exists('learndash_courses_by_categories')) {
         $course->user_id =  get_current_user_id();
         $course->post_url = get_permalink($course);
 
-        $course->course_status = learndash_course_status( $course->course_id, $course->user_id );
-        $course->course_steps_count = learndash_get_course_steps_count( $course->course_id );
-        $course->completed = learndash_course_get_completed_steps( $course->user_id, $course->course_id );
+        $course->course_status = learndash_course_status($course->course_id, $course->user_id);
+        $course->course_steps_count = learndash_get_course_steps_count($course->course_id);
+        $course->completed = learndash_course_get_completed_steps($course->user_id, $course->course_id);
         $course->coming_soon = get_field('coming_soon', $course->course_id);
         $course->short_title = get_field('short_title', $course->course_id);
 
-        $ld_course_steps_object = LDLMS_Factory_Post::course_steps( $course->course_id );
+        $ld_course_steps_object = LDLMS_Factory_Post::course_steps($course->course_id);
         $total = $ld_course_steps_object->get_steps_count();
 
         if ($total > 0) {
-          $percentage = intval( $course->completed * 100 / $total );
-          $percentage = ( $percentage > 100 ) ? 100 : $percentage;
+          $percentage = intval($course->completed * 100 / $total);
+          $percentage = ($percentage > 100) ? 100 : $percentage;
         } else {
-            $percentage = 0;
+          $percentage = 0;
         }
         $course->percentage = $percentage;
 
@@ -118,7 +120,7 @@ if(!function_exists('learndash_courses_by_categories')) {
       }
     }
 
-    ?>
+  ?>
     <div class="course-container-wrapper">
       <div class="fadeout-left"></div>
       <div class="fadeout-right"></div>
@@ -130,34 +132,34 @@ if(!function_exists('learndash_courses_by_categories')) {
           $courseCategoryTerm = get_term_by('slug', $key, 'ld_course_category');
           $courseCategoryTermId = $courseCategoryTerm->term_id;
           $categoryIcon = get_field('category_icon', 'ld_course_category_' . $courseCategoryTermId);
-          ?>
+        ?>
           <div class="category-icon-wrapper">
-            <h6 class="title"><?=$key?></h6>
-            <img src="<?=$categoryIcon?>" class="category-icon" />
+            <h6 class="title"><?= $key ?></h6>
+            <img src="<?= $categoryIcon ?>" class="category-icon" />
           </div>
           <div class="course-wrapper">
             <?php
             foreach ($courses_by_category[$key] as $c) {
-              ?>
-              <a class="course-item <?=$c->coming_soon ? "coming-soon" : ""?>" url="<?=$c->coming_soon ? "#" : $c->post_url?>" style="background-image: url('<?=$c->img[0]?>')">
+            ?>
+              <a class="course-item <?= $c->coming_soon ? "coming-soon" : "" ?>" url="<?= $c->coming_soon ? "#" : $c->post_url ?>" style="background-image: url('<?= $c->img[0] ?>')">
                 <div class="overlay"></div>
                 <?php
                 ?>
-                <div class="title <?=(!empty($c->short_title)) ? "short-title" : ""?>">
+                <div class="title <?= (!empty($c->short_title)) ? "short-title" : "" ?>">
                   <?php
                   if ($c->coming_soon == true) {
-                    ?>
+                  ?>
                     <div class="coming-soon">Coming Soon</div>
                     <?php
                   } else {
                     if ($c->percentage >= 100) {
-                      ?>
+                    ?>
                       <span class="complete fa-stack fa-1x">
                         <i class="fa fa-check fa-stack-1x"></i>
                         <i class="fa fa-circle fa-stack-1x icon-background"></i>
                       </span>
-                      <div class="progress-bar" style="width: <?=$c->percentage?>%">Complete</div>
-                      <?php
+                      <div class="progress-bar" style="width: <?= $c->percentage ?>%">Complete</div>
+                    <?php
                     } else if (empty($c->percentage) || $c->percentage == 0) {
                       /*
                       ?>
@@ -168,49 +170,49 @@ if(!function_exists('learndash_courses_by_categories')) {
                       <?php
                       */
                     } else {
-                      ?>
-                      <?php 
+                    ?>
+                      <?php
                       /* <h6 class="percentage"><?=$c->percentage?>%</h6> ?>
                       <span class="incomplete fa-stack fa-1x">
                         <i class="fa fa-check fa-stack-1x"></i>
                         <i class="fa fa-circle fa-stack-1x icon-background"></i>
                       </span> */
                       ?>
-                      <div class="progress-bar" style="width: <?=$c->percentage?>%"><?=$c->percentage?>%</div>
-                      <?php
+                      <div class="progress-bar" style="width: <?= $c->percentage ?>%"><?= $c->percentage ?>%</div>
+                  <?php
                     }
                   }
                   ?>
-                  <div class="progress-bar-small" style="width: <?=$c->percentage?>%">&nbsp;</div>
+                  <div class="progress-bar-small" style="width: <?= $c->percentage ?>%">&nbsp;</div>
                   <?php
                   if (!empty($c->short_title) && isset($c->short_title)) {
-                    ?>
-                    <h5><?=$c->short_title?></h5>
-                    <?php
+                  ?>
+                    <h5><?= $c->short_title ?></h5>
+                  <?php
                   } else {
-                    ?>
-                    <h5><?=$c->post_title?></h5>
-                    <?php
+                  ?>
+                    <h5><?= $c->post_title ?></h5>
+                  <?php
                   }
                   ?>
                 </div>
               </a>
-              <?php
+            <?php
             }
             ?>
           </div>
           <div class="clear"></div>
-          <?php
+        <?php
         }
         ?>
       </div>
     </div>
-    <?php
+  <?php
   }
 }
 //challenges
 add_shortcode('list_library_items', 'display_library_items');
-if(!function_exists('display_library_items')) {
+if (!function_exists('display_library_items')) {
   function display_library_items($atts = [], $content = null, $tag = '') {
     $tmp_atts = array_change_key_case((array)$atts, CASE_LOWER);
 
@@ -231,63 +233,63 @@ if(!function_exists('display_library_items')) {
     $termName = $atts['term'];
     $btnUrl = $atts['btn-url'];
 
-    ?>
+  ?>
     <div class="challenges-wrapper">
       <div class="row">
-          <div class="large-12 columns">
-              <h1><?=$title?></h1>
-              <div class="clearfix"></div>
-              <?=$content?>
-          </div>
+        <div class="large-12 columns">
+          <h1><?= $title ?></h1>
+          <div class="clearfix"></div>
+          <?= $content ?>
+        </div>
       </div>
       <div class="clearfix"></div>
       <div class="bootstrap-styles challenges">
-          <?php
-          $challengesQuery = new WP_Query( array(
-              'posts_per_page' => $limit,
-              'post_status'    => 'publish',
-              'post_type' => 'content-library',
-              'order' => 'desc',
-              'orderby' => 'post_date',
-              'suppress_filters' => true,
-              'tax_query' => array(
-                  array(
-                      'taxonomy' => 'library_category',
-                      'field' => 'slug',
-                      'terms' => $termName,
-                      'include_children' => true
-                  )
-              )
-          ));
-          $challenges = $challengesQuery->get_posts();
-          
-          while($challengesQuery->have_posts()) {
-              $challengesQuery->the_post();
-              $thumbnail = get_the_post_thumbnail_url(get_the_id(), 'full');
-              if(empty($thumbnail)) {
-                  $thumbnail = '/wp-content/themes/meltingpot-child/images/placeholder.png';
-              }
-              ?>
-              <a href="<?=the_permalink()?>" class="card shadow challenge">
-                  <div class="card-img-top" style="background-image: url('<?=$thumbnail?>');"></div>
-                  <div class="card-body">
-                      <h4><?=get_the_title()?></h4>
-                      <p class="card-text"><?=get_field('description_short')?></p>
-                  </div>
-              </a>
-              <?php
+        <?php
+        $challengesQuery = new WP_Query(array(
+          'posts_per_page' => $limit,
+          'post_status'    => 'publish',
+          'post_type' => 'content-library',
+          'order' => 'desc',
+          'orderby' => 'post_date',
+          'suppress_filters' => true,
+          'tax_query' => array(
+            array(
+              'taxonomy' => 'library_category',
+              'field' => 'slug',
+              'terms' => $termName,
+              'include_children' => true
+            )
+          )
+        ));
+        $challenges = $challengesQuery->get_posts();
+
+        while ($challengesQuery->have_posts()) {
+          $challengesQuery->the_post();
+          $thumbnail = get_the_post_thumbnail_url(get_the_id(), 'full');
+          if (empty($thumbnail)) {
+            $thumbnail = '/wp-content/themes/meltingpot-child/images/placeholder.png';
           }
-          ?>
+        ?>
+          <a href="<?= the_permalink() ?>" class="card shadow challenge">
+            <div class="card-img-top" style="background-image: url('<?= $thumbnail ?>');"></div>
+            <div class="card-body">
+              <h4><?= get_the_title() ?></h4>
+              <p class="card-text"><?= get_field('description_short') ?></p>
+            </div>
+          </a>
+        <?php
+        }
+        ?>
       </div>
       <?php
       if (!empty($btnUrl)) {
-        ?>
-        <a href="<?=$btnUrl?>" class="BTN all-challenges"><?=$btn?></a>
-        <?php
+      ?>
+        <a href="<?= $btnUrl ?>" class="BTN all-challenges"><?= $btn ?></a>
+      <?php
       }
       ?>
     </div>
-    <?php
+<?php
   }
 }
 ?>
