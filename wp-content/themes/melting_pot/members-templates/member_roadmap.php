@@ -14,12 +14,12 @@ $steps = get_option('road_map_complete_step');
 	<div class="row">
 		<div class="large-9 large-centered">
 			<? if(get_field('roadmap_image')) { ?>
-			<div class="roadmap-image"><img src="<? echo the_field('roadmap_image');?>"></div>
+			<div class="roadmap-image"><img src="<? echo echo get_field('roadmap_image');?>"></div>
 			<? } ?>
 			<div class="dash-container">
 				<div class="contain-content">
-				<h2><? echo the_field('banner_header'); ?></h2>
-				<p><? echo the_field('banner_sub_header'); ?></p>
+				<h2><? echo echo get_field('banner_header'); ?></h2>
+				<p><? echo echo get_field('banner_sub_header'); ?></p>
 				<style>
 					#myProgress {
 					  width: 100%;
@@ -64,7 +64,7 @@ $steps = get_option('road_map_complete_step');
 						 <?php while ( have_rows('roadmap') ) : the_row(); $counter++ // counter add to ?>
 						 <div class="cd-timeline__block js-cd-block">
 							<div class="cd-timeline__img cd-timeline__img--picture js-cd-img count-me">
-								<span><? $icon = the_sub_field('icon'); ?>			
+								<span><? $icon = echo get_sub_field('icon'); ?>			
 								
 								</span>
 							</div> <!-- cd-timeline__img -->
@@ -87,18 +87,18 @@ $steps = get_option('road_map_complete_step');
 									 </div>
 									 <div class="faq_answer_container">
 										 <div class="faq_answer">
-											<h2><? the_sub_field('roadmap_step_title'); ?></h2>
-											<? the_sub_field('roadmap_step_textinformation'); ?>
+											<h2><? echo get_sub_field('roadmap_step_title'); ?></h2>
+											<? echo get_sub_field('roadmap_step_textinformation'); ?>
 											 
 											 <? if(get_sub_field('video')) : ?>	
 											 <div class="road-wrap-vid">
-											 	<iframe width="560" height="315" src="<? echo the_sub_field('video'); ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+											 	<iframe width="560" height="315" src="<? echo echo get_sub_field('video'); ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 											   </iframe>
 											 </div>
 											 <? endif ?>
 											 
 											 <? if(get_sub_field('roadmap_step_after_video')) : ?>
-												 <div class="after-video"><? echo the_sub_field('roadmap_step_after_video'); ?></div>
+												 <div class="after-video"><? echo echo get_sub_field('roadmap_step_after_video'); ?></div>
 											 <? endif; ?>
 											 
 											 <? if(have_rows('additional_resources')): ?>
@@ -106,7 +106,7 @@ $steps = get_option('road_map_complete_step');
 											  <h4>Additional Resources:</h4>
 											 	<ul class="road-res">
 											 	<? while ( have_rows('additional_resources')): the_row(); ?>
-											 		<li class="road-res-each"><a href="<? echo the_sub_field('resource_link'); ?>"><i class="far fa-link"></i> <? echo the_sub_field('resource_item'); ?></a></li>	
+											 		<li class="road-res-each"><a href="<? echo echo get_sub_field('resource_link'); ?>"><i class="far fa-link"></i> <? echo echo get_sub_field('resource_item'); ?></a></li>	
 												 <? endwhile;?>
 											 	</ul>
 											 

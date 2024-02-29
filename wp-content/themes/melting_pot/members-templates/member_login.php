@@ -19,7 +19,7 @@ endif;
 <div class="large-6 columns centered">
 	
 <?php if (get_field('login_logo')): ?>
-<img class="loginLogo" src="<?php the_field('login_logo'); ?>" alt="<?php bloginfo( 'name' ); ?> Logo" />
+<img class="loginLogo" src="<?php echo get_field('login_logo'); ?>" alt="<?php bloginfo( 'name' ); ?> Logo" />
 <?php else: ?>
  <?php if($smof_data['member_dashboard_logo']) { ?>
         <a href="/dashboard/"><img class="memberloginlogo" src="<?php echo $smof_data['member_dashboard_logo']; ?>" alt="Logo" /></a>

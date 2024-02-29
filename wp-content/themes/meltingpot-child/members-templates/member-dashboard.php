@@ -30,7 +30,7 @@ get_header('members'); ?>
 		</div>
 
 		<?php if (get_field('content_after_links')) : ?>
-			<div class="afterMainLinks"><?php the_field('content_after_links'); ?></div>
+			<div class="afterMainLinks"><?php echo get_field('content_after_links'); ?></div>
 		<?php else : ?>
 		<?php endif; ?>
 	</div>
@@ -257,15 +257,15 @@ get_header('members'); ?>
 														}
 
 														if (sizeof($examplesList) > 0) {
-															?>
+													?>
 															<a class="BTN action-button custom-icon" data-title="<?= get_the_title($skillExamples[0]->ID) ?>" data-url="<?= $url ?>" <?php /* <?=get_post_permalink($skillExamples[0]->ID)?> */ ?> data-button="More Examples" <?php
-																																																																			$vidCode = htmlspecialchars(get_field('video_code', $skillExamples[0]->ID, false));
-																																																																			$sideOnly = "all";
-																																																																			if (!empty($exampleVideoCode)) {
-																																																																				$sideOnly = "side";
-																																																																			?> data-video="<?= $vidCode ?>" <?php
-																																																																			}
-																							?> data-<?= $sideOnly ?>="<?= htmlspecialchars($examplesListHtml) ?>">
+																																																																				$vidCode = htmlspecialchars(get_field('video_code', $skillExamples[0]->ID, false));
+																																																																				$sideOnly = "all";
+																																																																				if (!empty($exampleVideoCode)) {
+																																																																					$sideOnly = "side";
+																																																																				?> data-video="<?= $vidCode ?>" <?php
+																																																																										}
+																																																																											?> data-<?= $sideOnly ?>="<?= htmlspecialchars($examplesListHtml) ?>">
 																<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 223 232.1" style="enable-background:new 0 0 223 232.1;" xml:space="preserve">
 																	<path d="M183.7,203.1c1.6-3.2,1.6-3.2,3.6-3.7c-1.4-0.8-2.8-1.8-4.3-2.5c-1.5-0.7-3.1-1-4.6-1.7c-11.6-5.8-22.2-13-32.4-21
 																	c-0.9-0.7-1.9-1.4-2.8-2.3c-2-1.9-4.4-3-6.9-4c-2.4-1-4.4-2.6-6.3-4.4c-3.5-3.3-7.1-6.5-10.7-9.9c-0.3,0.7-0.6,1.3-0.9,1.8
@@ -309,7 +309,7 @@ get_header('members'); ?>
 																</svg>
 																Examples
 															</a>
-															<?php
+												<?php
 														}
 													}
 												}
@@ -321,13 +321,15 @@ get_header('members'); ?>
 												for ($x = 0; $x < $puckLevel; $x++) {
 												?>
 													<svg class="puck" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512">
-														<path d="M0 160c0-53 114.6-96 256-96s256 43 256 96s-114.6 96-256 96S0 213 0 160zm0 82.2V352c0 53 114.6 96 256 96s256-43 256-96V242.2c-113.4 82.3-398.5 82.4-512 0z" /></svg>
+														<path d="M0 160c0-53 114.6-96 256-96s256 43 256 96s-114.6 96-256 96S0 213 0 160zm0 82.2V352c0 53 114.6 96 256 96s256-43 256-96V242.2c-113.4 82.3-398.5 82.4-512 0z" />
+													</svg>
 												<?php
 												}
 												for ($x = 0; $x < $puckRemainder; $x++) {
 												?>
 													<svg class="puck faded" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512">
-														<path d="M0 160c0-53 114.6-96 256-96s256 43 256 96s-114.6 96-256 96S0 213 0 160zm0 82.2V352c0 53 114.6 96 256 96s256-43 256-96V242.2c-113.4 82.3-398.5 82.4-512 0z" /></svg>
+														<path d="M0 160c0-53 114.6-96 256-96s256 43 256 96s-114.6 96-256 96S0 213 0 160zm0 82.2V352c0 53 114.6 96 256 96s256-43 256-96V242.2c-113.4 82.3-398.5 82.4-512 0z" />
+													</svg>
 												<?php
 												}
 												?>
