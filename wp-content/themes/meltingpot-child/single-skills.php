@@ -56,15 +56,13 @@ if (has_post_thumbnail()) {
                 for ($x = 0; $x < $puckRemainder; $x++) {
                 ?>
                     <svg class="puck faded" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512">
-                        <path d="M0 160c0-53 114.6-96 256-96s256 43 256 96s-114.6 96-256 96S0 213 0 160zm0 82.2V352c0 53 114.6 96 256 96s256-43 256-96V242.2c-113.4 82.3-398.5 82.4-512 0z" />
-                    </svg>
+                        <path d="M0 160c0-53 114.6-96 256-96s256 43 256 96s-114.6 96-256 96S0 213 0 160zm0 82.2V352c0 53 114.6 96 256 96s256-43 256-96V242.2c-113.4 82.3-398.5 82.4-512 0z" /></svg>
                 <?php
                 }
                 for ($x = 0; $x < $puckLevel; $x++) {
                 ?>
                     <svg class="puck" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512">
-                        <path d="M0 160c0-53 114.6-96 256-96s256 43 256 96s-114.6 96-256 96S0 213 0 160zm0 82.2V352c0 53 114.6 96 256 96s256-43 256-96V242.2c-113.4 82.3-398.5 82.4-512 0z" />
-                    </svg>
+                        <path d="M0 160c0-53 114.6-96 256-96s256 43 256 96s-114.6 96-256 96S0 213 0 160zm0 82.2V352c0 53 114.6 96 256 96s256-43 256-96V242.2c-113.4 82.3-398.5 82.4-512 0z" /></svg>
                 <?php
                 }
                 ?>
@@ -112,7 +110,7 @@ if (has_post_thumbnail()) {
                                             $thumbnail_url = get_the_post_thumbnail_url();
                                             $thumbnail_url = !empty($thumbnail_url) ? $thumbnail_url : "https://cdn.thepond.howtohockey.com/2021/01/vimeo-postroll-thumbnail.jpg";
                                             ?>
-                                            <img src="<?= $thumbnail_url ?>" />
+                                            <img src="<?=$thumbnail_url?>" />
                                             <div class="unauthorized-message-wrapper">
                                                 <h2>This content is for members only</h2>
                                                 <p>To view please join now or login</p>
@@ -451,7 +449,7 @@ if (has_post_thumbnail()) {
     <section class="fullwidth">
         <div class="row">
             <div class="large-12 columns">
-                <?php echo get_field('full_width_section'); ?>
+                <?php the_field('full_width_section'); ?>
             </div>
         </div>
     </section>

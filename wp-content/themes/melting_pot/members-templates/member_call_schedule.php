@@ -5,12 +5,12 @@ get_header("members");
 </header>
 
 
-<section class="Banner" style="background-image: <?php if ( get_field('banner_image')): ?>url('<?php echo get_field('banner_image'); ?>');<?php else:?><?php endif; ?>" >
+<section class="Banner" style="background-image: <?php if ( get_field('banner_image')): ?>url('<?php the_field('banner_image'); ?>');<?php else:?><?php endif; ?>" >
 <div class="row"> 
-	<div class="<?php echo get_field('center_banner_content'); ?>">
-	<h1><?php echo get_field('banner_headline'); ?></h1>
-    <h2><?php echo get_field('bannner_sub_header'); ?></h2>	
-    <a href="<?php echo get_field('meeting_room_link'); ?>" target="_blank" class="BTN"><?php echo get_field('button_text'); ?></a> 
+	<div class="<?php the_field('center_banner_content'); ?>">
+	<h1><?php the_field('banner_headline'); ?></h1>
+    <h2><?php the_field('bannner_sub_header'); ?></h2>	
+    <a href="<?php the_field('meeting_room_link'); ?>" target="_blank" class="BTN"><?php the_field('button_text'); ?></a> 
 	</div>
 </div>
 </section>
@@ -26,9 +26,9 @@ get_header("members");
 	
 <thead>
 	<tr>
-		<td class="tdDate">Date <? echo echo get_field('date_icon'); ?></td>
-		<td class="tdDesc">Call Description & Duration <? echo echo get_field('call_icon'); ?></td>
-		<td class="tdTime">Time <? echo echo get_field('time_icon'); ?></td>
+		<td class="tdDate">Date <? echo the_field('date_icon'); ?></td>
+		<td class="tdDesc">Call Description & Duration <? echo the_field('call_icon'); ?></td>
+		<td class="tdTime">Time <? echo the_field('time_icon'); ?></td>
 		<td class="tdCallLink">&nbsp;</td>
 	</tr>
 </thead>

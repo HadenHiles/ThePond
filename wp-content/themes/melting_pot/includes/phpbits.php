@@ -1,5 +1,8 @@
+
+
+
 Custome Fields
-<?php echo get_field('right_top_content'); ?>
+<?php the_field('right_top_content'); ?>
 
 
 Use this add your widget to your templates

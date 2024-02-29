@@ -8,7 +8,7 @@ get_header( 'blank' ); ?>
 <!-- Main Section -->
 
 
-<section style="background-image:url(<?php echo get_field('background_image'); ?>);position:relative;" id="HeaderTopOne" class="salesBanner">
+<section style="background-image:url(<?php the_field('background_image'); ?>);position:relative;" id="HeaderTopOne" class="salesBanner">
 	
 	<div class="salesBannerOverlay">
 
@@ -43,13 +43,13 @@ get_header( 'blank' ); ?>
 
 <div class="large-12 columns centered">
 <?php if( get_field('main_title') ): ?>
-<h1 class="HeaderTopTitle"><?php echo get_field('main_title'); ?></h1>
+<h1 class="HeaderTopTitle"><?php the_field('main_title'); ?></h1>
 <?php endif; ?>
 <?php if( get_field('sub_title') ): ?>
-<h2 class="HeaderTopSubTitle"><?php echo get_field('sub_title'); ?></h2>
+<h2 class="HeaderTopSubTitle"><?php the_field('sub_title'); ?></h2>
 <?php endif; ?> 
 <?php if( get_field('cta_button_text') ): ?>
-<a class="HeaderTopButton BTN" style="background-color:<?php echo get_field('cta_button_colour'); ?>;" href="#Pricingboxes"><?php echo get_field('cta_button_text'); ?></a>
+<a class="HeaderTopButton BTN" style="background-color:<?php the_field('cta_button_colour'); ?>;" href="#Pricingboxes"><?php the_field('cta_button_text'); ?></a>
 <?php endif; ?>
 </div>
 	
@@ -63,7 +63,7 @@ get_header( 'blank' ); ?>
 <div class="large-10 large-push-1 columns ">
 <?php if( get_field('section_2_title') ): ?>
 <h2 class="SectTwoSubTitle centered">
-<?php echo get_field('section_2_title'); ?></h2>
+<?php the_field('section_2_title'); ?></h2>
 <?php endif; ?>
 
 <?php if( have_rows('icon_list') ): ?>
@@ -88,7 +88,7 @@ $listcontent = get_sub_field('list_conent');
 <section id="SectionTwo" class="CTABannerBG">
 <div class="row">
 <div class="large-10 large-push-1 columns ">
-<h2><?php echo get_field('cta_banner_text'); ?></h2>
+<h2><?php the_field('cta_banner_text'); ?></h2>
 </div></div>
 </section>	
 
@@ -101,7 +101,7 @@ $listcontent = get_sub_field('list_conent');
 
 <?php if( get_field('introducing_title') ): ?>
 <h2>
-<?php echo get_field('introducing_title'); ?></h2>
+<?php the_field('introducing_title'); ?></h2>
 <?php endif; ?>
 
 </div>
@@ -109,14 +109,14 @@ $listcontent = get_sub_field('list_conent');
 <div class="columns large-6">
 <?php if( get_field('introducing_content') ): ?>
 
-<?php echo get_field('introducing_content'); ?>
+<?php the_field('introducing_content'); ?>
 <?php endif; ?>
 </div>
 
 <div class="columns large-6">
 <?php if( get_field('introducting_image') ): ?>
 
-<img src="<?php echo get_field('introducting_image'); ?>" alt="" />
+<img src="<?php the_field('introducting_image'); ?>" alt="" />
 <?php endif; ?>
 </div>
 
@@ -135,7 +135,7 @@ $listcontent = get_sub_field('list_conent');
 
 <?php if( get_field('included_heading') ): ?>
 <h2>
-<?php echo get_field('included_heading'); ?></h2>
+<?php the_field('included_heading'); ?></h2>
 <?php endif; ?>
 
 </div>
@@ -166,7 +166,7 @@ $inccontent = get_sub_field('incitem_content');
 </section>
 
 
-<section class="salesMeet" style="background-image:url(<?php echo get_field('meet_background_image'); ?>);position:relative;">
+<section class="salesMeet" style="background-image:url(<?php the_field('meet_background_image'); ?>);position:relative;">
 
 <div class="row">
 
@@ -176,11 +176,11 @@ $inccontent = get_sub_field('incitem_content');
 
 <?php if( get_field('meet_title') ): ?>
 <h2>
-<?php echo get_field('meet_title'); ?></h2>
+<?php the_field('meet_title'); ?></h2>
 <?php endif; ?>
 
 <?php if( get_field('meet_intro') ): ?>
-<?php echo get_field('meet_intro'); ?>
+<?php the_field('meet_intro'); ?>
 <?php endif; ?>
 		
 </div>
@@ -189,7 +189,7 @@ $inccontent = get_sub_field('incitem_content');
 
 <div class="large-6 columns">
 <?php if( get_field('meet_image') ): ?>
-<img src="<?php echo get_field('meet_image'); ?>" alt="meet the owners" />
+<img src="<?php the_field('meet_image'); ?>" alt="meet the owners" />
 <?php endif; ?>
 
 </div>
@@ -206,7 +206,7 @@ $inccontent = get_sub_field('incitem_content');
 
 <?php if( get_field('testimonial_title') ): ?>
 <h2>
-<?php echo get_field('testimonial_title'); ?></h2>
+<?php the_field('testimonial_title'); ?></h2>
 <?php endif; ?>
 
 </div>
@@ -239,7 +239,7 @@ $inccontent = get_sub_field('incitem_content');
 <div class="salesSectHeader centered">
 	
 	<?php if( get_field('guarantee_title') ): ?>
-<h2><?php echo get_field('guarantee_title'); ?></h2>
+<h2><?php the_field('guarantee_title'); ?></h2>
 <?php endif; ?>
 	
 </div>
@@ -249,7 +249,7 @@ $inccontent = get_sub_field('incitem_content');
 	<div class="GuaranteeBadge">
 	
 <?php if( get_field('guarantee_image') ): ?>
-<img src="<?php echo get_field('guarantee_image'); ?>"/>
+<img src="<?php the_field('guarantee_image'); ?>"/>
 <?php endif; ?>
 		
 		</div>
@@ -259,7 +259,7 @@ $inccontent = get_sub_field('incitem_content');
 <div class="large-8 medium-8 columns">
 	
 <?php if( get_field('guarnatee_content') ): ?>
-<?php echo get_field('guarnatee_content'); ?>
+<?php the_field('guarnatee_content'); ?>
 <?php endif; ?>
 
 </div>
@@ -275,12 +275,12 @@ $inccontent = get_sub_field('incitem_content');
 <div class="salesSectHeader centered">
 	
 <?php if( get_field('faq_main_title') ): ?>
-<h2><?php echo get_field('faq_main_title'); ?></h2>
+<h2><?php the_field('faq_main_title'); ?></h2>
 <?php endif; ?>
 	
 
 <?php if( get_field('faq_sub_title') ): ?>
-<p><?php echo get_field('faq_sub_title'); ?></p>
+<p><?php the_field('faq_sub_title'); ?></p>
 <?php endif; ?>
 
 
@@ -294,7 +294,7 @@ $inccontent = get_sub_field('incitem_content');
 	
 	
 <?php if( get_field('faq_extra') ): ?>
-<div class="faqExtra"><p><?php echo get_field('faq_extra'); ?></p></div>
+<div class="faqExtra"><p><?php the_field('faq_extra'); ?></p></div>
 <?php endif; ?>
 
 </div>

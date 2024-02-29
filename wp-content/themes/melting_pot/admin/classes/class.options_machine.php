@@ -1438,11 +1438,11 @@ class Options_Machine {
 
 							$field_order_number = str_replace( $value['id'] . '_', '', $field_order );
 
-							$find_echo get_field = $smof_data[$value['id'] . '_' . $field_order_number];
+							$find_the_field = $smof_data[$value['id'] . '_' . $field_order_number];
 
-							$sorted_fields[] = $default_array[$find_echo get_field];
+							$sorted_fields[] = $default_array[$find_the_field];
 
-							$named_sorted_fields[$sorted_fields[$key]['id']] = $default_array[$find_echo get_field];
+							$named_sorted_fields[$sorted_fields[$key]['id']] = $default_array[$find_the_field];
 
 						}
 

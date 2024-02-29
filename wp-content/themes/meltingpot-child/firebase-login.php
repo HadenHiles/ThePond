@@ -36,7 +36,7 @@ if (!empty($_GET['redirect_to'])) {
                             if (!is_user_logged_in()) {
                             ?>
                                 <h1>
-                                    <? the_title(); ?>
+                                    <?the_title();?>
                                 </h1>
                                 <p id="login-error" style="color: #cc3333; display: none;">Error logging in.</p>
                                 <div class="bootstrap-styles transparent-modal">
@@ -125,7 +125,7 @@ if (!empty($_GET['redirect_to'])) {
     <section class="fullwidth">
         <div class="row">
             <div class="large-12 columns">
-                <?php echo get_field('full_width_section'); ?>
+                <?php the_field('full_width_section'); ?>
             </div>
         </div>
     </section>

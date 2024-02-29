@@ -34,11 +34,11 @@ $podcast_image_two = $smof_data['podcast_sub_image_two'];
 			<div class="row">
 				<div class="large-8 columns">
 				
-				<? if(get_field('episode_number')): ?><h6><? echo echo get_field('episode_number')?></h6><? endif; ?>
+				<? if(get_field('episode_number')): ?><h6><? echo the_field('episode_number')?></h6><? endif; ?>
 				<h1><?php the_title(); ?></h1>
 <!--				<p><?php echo get_the_category_list(); ?> <span class="entry-date"><?php echo get_the_date(); ?></span></p>-->
 				<? if(get_field('podcast_author')): ?>
-				<p>With <? echo echo get_field('podcast_author');?> &nbsp; | &nbsp; <a href="/podcast">View all Episodes</a></p>
+				<p>With <? echo the_field('podcast_author');?> &nbsp; | &nbsp; <a href="/podcast">View all Episodes</a></p>
 				<? endif; ?>
 			</div>
 				
@@ -75,7 +75,7 @@ $podcast_image_two = $smof_data['podcast_sub_image_two'];
         <main role="main">
         <article>
 		<? if(get_field('feature_image')): ?>
-		<div style="background-image:url('<? echo echo get_field('feature_image'); ?>')" class="Pogcast-thumb"></div>
+		<div style="background-image:url('<? echo the_field('feature_image'); ?>')" class="Pogcast-thumb"></div>
 		 <? endif; ?>
 		<h2><? echo the_title(); ?></h2>	
                 <?php the_content();?>
