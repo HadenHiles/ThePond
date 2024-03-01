@@ -37,7 +37,7 @@ $parent_course_id = learndash_get_setting($post, 'course');
 										?>
 										<img src="<?= $thumbnail_url ?>" />
 										<div class="unauthorized-message-wrapper">
-											<h2>This content is for The Pond members only</h2>
+											<h2>This content is for members only</h2>
 											<p>To view please join now or login</p>
 											<div class="actions">
 												<a href="/" class="BTN small joinBTN">Join now</a>
