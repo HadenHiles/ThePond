@@ -26,6 +26,7 @@ wp-content/themes/melting_pot/bootstrap-4.5.0
 # don't ignore our theme
 !wp-content/themes/melting_pot
 !wp-content/themes/meltingpot-child
+!landing-page-files
 
 # don't ignore
 !.gitignore

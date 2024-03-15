@@ -14,6 +14,9 @@ if (!empty($_GET['redirect_to'])) {
     $cookie_name = "redirect_to";
     $cookie_value = $_GET['redirect_to'];
     setcookie($cookie_name, $cookie_value, time() + (3600 * 30), "/"); // 3600 = 1 hour in seconds
+    if (is_user_logged_in()) {
+        header('location: ' . $cookie_value);
+    }
 }
 ?>
 <?php get_template_part('template-parts/bannerheader'); ?>

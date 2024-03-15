@@ -112,7 +112,7 @@ if (has_post_thumbnail()) {
                                             ?>
                                             <img src="<?=$thumbnail_url?>" />
                                             <div class="unauthorized-message-wrapper">
-                                                <h2>This content is for The Pond members only</h2>
+                                                <h2>This content is for members only</h2>
                                                 <p>To view please join now or login</p>
                                                 <div class="actions">
                                                     <a href="/" class="BTN joinBTN">Join now</a>

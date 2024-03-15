@@ -1,8 +1,8 @@
 <?php
 get_header('members');
 if (has_post_thumbnail()) {
-	$imgID = get_post_thumbnail_id($post->ID);
-	$img = wp_get_attachment_image_src($imgID, 'full', false, '');
+	$imgID  = get_post_thumbnail_id($post->ID);
+	$img    = wp_get_attachment_image_src($imgID, 'full', false, '');
 	$imgAlt = get_post_meta($imgID, '_wp_attachment_image_alt', true);
 }
 $course_id = learndash_get_course_id();
@@ -14,11 +14,9 @@ $course_id = learndash_get_course_id();
 	<div class="row">
 		<?php
 
-		if (have_posts()):
-			while (have_posts()):
-				the_post();
+		if (have_posts()) : while (have_posts()) : the_post();
 
-				?>
+		?>
 				<div class="medium-10 medium-centered columns">
 					<main role="main">
 						<article>
@@ -30,11 +28,10 @@ $course_id = learndash_get_course_id();
 
 									<div class="clearfix"></div>
 
-									<?php if (get_field('course_image')): ?>
+									<?php if (get_field('course_image')) : ?>
 										<div class="sfwdvideo">
-											<?php if (get_field('course_image')): ?>
-												<div class="videoWrapper"><img src="<?php echo get_field('course_image'); ?>"
-														alt="<?php the_title(); ?>" /></div>
+											<?php if (get_field('course_image')) : ?>
+												<div class="videoWrapper"><img src="<?php the_field('course_image'); ?>" alt="<?php the_title(); ?>" /></div>
 											<?php endif; ?>
 										</div>
 									<?php endif; ?>
@@ -51,12 +48,10 @@ $course_id = learndash_get_course_id();
 									<!-- End Image Embed -->
 
 
-									<?php if (get_field('video_code')): ?>
+									<?php if (get_field('video_code')) : ?>
 										<div class="sfwdvideo">
-											<?php if (get_field('video_code')): ?>
-												<div class="videoWrapper">
-													<?php echo get_field('video_code'); ?>
-												</div>
+											<?php if (get_field('video_code')) : ?>
+												<div class="videoWrapper"><?php echo get_field('video_code'); ?></div>
 											<?php endif; ?>
 										</div>
 									<?php endif; ?>
@@ -69,17 +64,17 @@ $course_id = learndash_get_course_id();
 
 
 
-								<?php if (get_field('lession_audio')): ?>
+								<?php if (get_field('lession_audio')) : ?>
 									<div class="sfwdaudio">
-										<?php if (get_field('lession_audio')): ?>
+										<?php if (get_field('lession_audio')) : ?>
 											<h4>Listen to audio lesson</h4>
-											<?php echo get_field('lession_audio'); ?>
+											<?php the_field('lession_audio'); ?>
 										<?php endif; ?>
 									</div>
 								<?php endif; ?>
 								<!-- End Audio Embed -->
-								<?php if (get_field('below_media')): ?>
-									<?php echo get_field('below_media'); ?>
+								<?php if (get_field('below_media')) : ?>
+									<?php the_field('below_media'); ?>
 								<?php endif; ?>
 
 
@@ -99,8 +94,8 @@ $course_id = learndash_get_course_id();
 					<div class="courseIntroBox">
 						<h3>Course Introduction</h3>
 
-						<?php if (get_field('above_media')): ?>
-							<?php echo get_field('above_media'); ?>
+						<?php if (get_field('above_media')) : ?>
+							<?php the_field('above_media'); ?>
 						<?php endif; ?>
 					</div>
 
@@ -124,31 +119,24 @@ $course_id = learndash_get_course_id();
 						$lesson_class_bookmark = ((check_lesson_track(get_the_id(), get_current_user_id(), '1', '1')) ? ' post_tool_active' : ' post_tool_inactive');
 
 						?>
-						<?php if (trim($lesson_class_complete) == 'post_tool_inactive') { ?>
-							<li><a class="lesson_tool tool_complete<?php echo $lesson_class_complete; ?>"
-									data-lesson-id="<?php echo get_the_id(); ?>" data-track-type="3"><i
-										class="fa fa-check-circle"></i><span> Mark Course as Complete</span></a></li>
+						<?php if (trim($lesson_class_complete)  == 'post_tool_inactive') { ?>
+							<li><a class="lesson_tool tool_complete<?php echo $lesson_class_complete; ?>" data-lesson-id="<?php echo get_the_id(); ?>" data-track-type="3"><i class="fa fa-check-circle"></i><span> Mark Course as Complete</span></a></li>
 						<?php } else { ?>
-							<li><a class="lesson_tool tool_complete<?php echo $lesson_class_complete; ?>"
-									data-lesson-id="<?php echo get_the_id(); ?>" data-track-type="3"><i
-										class="fa fa-check-circle"></i><span> Remove from Completed</span></a></li>
+							<li><a class="lesson_tool tool_complete<?php echo $lesson_class_complete; ?>" data-lesson-id="<?php echo get_the_id(); ?>" data-track-type="3"><i class="fa fa-check-circle"></i><span> Remove from Completed</span></a></li>
 						<?php } ?>
 
-						<?php if (trim($lesson_class_watchlist) == 'post_tool_inactive') { ?>
-							<li><a class="lesson_tool tool_watchlist<?php echo $lesson_class_watchlist; ?>"
-									data-lesson-id="<?php echo get_the_id(); ?>" data-track-type="5"><i
-										class="fa fa-star"></i><span> Add to Watchlist</span></a></li>
+						<?php if (trim($lesson_class_watchlist)  == 'post_tool_inactive') { ?>
+							<li><a class="lesson_tool tool_watchlist<?php echo $lesson_class_watchlist; ?>" data-lesson-id="<?php echo get_the_id(); ?>" data-track-type="5"><i class="fa fa-star"></i><span> Add to Watchlist</span></a></li>
 
 						<?php } else { ?>
-							<li><a class="lesson_tool tool_watchlist<?php echo $lesson_class_watchlist; ?>"
-									data-lesson-id="<?php echo get_the_id(); ?>" data-track-type="5"><i
-										class="fa fa-star"></i><span> Remove from Watchlist</span></a></li>
+							<li><a class="lesson_tool tool_watchlist<?php echo $lesson_class_watchlist; ?>" data-lesson-id="<?php echo get_the_id(); ?>" data-track-type="5"><i class="fa fa-star"></i><span> Remove from Watchlist</span></a></li>
 
 						<?php } ?>
 					</ul>
 
 
-				<?php endwhile; endif; ?>
+			<?php endwhile;
+		endif; ?>
 
 
 			<?php
@@ -157,16 +145,16 @@ $course_id = learndash_get_course_id();
 			?>
 
 			<div class="next-prev-v3">
-				<?php if ($prev): ?>
+				<?php if ($prev) : ?>
 					<a class="BTN prev" href="<?php echo get_permalink($prev->ID) ?>">&laquo;Previous Course</a>
 				<?php endif; ?>
 
-				<?php if ($next): ?>
+				<?php if ($next) : ?>
 					<a class="BTN next" href="<?php echo get_permalink($next->ID) ?>">Next Course &raquo;</a>
 				<?php endif; ?>
 			</div>
 
-		</div>
+				</div>
 
 
 	</div>
