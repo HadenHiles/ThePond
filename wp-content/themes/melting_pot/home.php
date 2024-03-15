@@ -85,9 +85,26 @@
                padding-right: 1.5rem;
           }
 
+          .container.nav-container {
+               z-index: 65 !important;
+          }
+
+          .w-nav-button {
+               z-index: 65 !important;
+          }
+
+          .w-nav[data-animation="over-right"] .w-nav-overlay,
+          .w-nav[data-animation="over-right"] [data-nav-menu-open] {
+               z-index: 64 !important;
+          }
+
           @media screen and (max-width: 767px) {
                .puck {
                     display: none;
+               }
+
+               .bottle {
+                    top: 15% !important;
                }
 
                .scribble-text.slider-name {
@@ -12442,9 +12459,11 @@ also rich-text.less has its own sprite-sheet */
                <div class="container nav-container"><a href="/" aria-current="page" class="brand w-nav-brand w--current"
                          aria-label="home"></a>
                     <div class="nav-right-wrap">
-                         <nav role="navigation" class="nav-menu w-nav-menu"><a href="/support"
-                                   class="nav-link w-nav-link">Support</a><a href="/login"
-                                   class="button small w-button">Login</a></nav>
+                         <nav role="navigation" class="nav-menu w-nav-menu">
+                              <a href="#free-lessons" class="nav-link w-nav-link">Free Lessons</a>
+                              <a href="/support" class="nav-link w-nav-link">Help</a>
+                              <a href="/login" class="button small w-button">Login</a>
+                         </nav>
                          <div class="menu-button w-nav-button" style="-webkit-user-select: text;" aria-label="menu"
                               role="button" tabindex="0" aria-controls="w-nav-overlay-0" aria-haspopup="menu"
                               aria-expanded="false">
@@ -12613,7 +12632,8 @@ also rich-text.less has its own sprite-sheet */
                               their game to the next level.
                               <br><br>That's why I'm
                               giving you free
-                              access to a handful of the key lessons from our various courses on The Pond which hold the
+                              access to a handful of the key lessons from our various courses on The Pond which hold (a
+                              few of) the
                               secrets I've learned over the
                               years!
                          </p><a href="/courses/free-lessons" target="_blank" class="button white w-button">Free
