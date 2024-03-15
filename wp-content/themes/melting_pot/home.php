@@ -1,12 +1,14 @@
 <?php
 /*
-     * Template Name: The Pond - Static Landing Page
-     */
+ * Template Name: The Pond - Static Landing Page
+ */
 ?>
 <!-- This page is generated outside of WP by: /wp-content/themes/melting_pot/home.php -->
 <!DOCTYPE html>
 <!-- saved from url=(0035)/ -->
-<html data-wf-domain="the-pond-eb9fd4.webflow.io" data-wf-page="65f1cda7de87d6943da9f9f2" data-wf-site="65f1cda7de87d6943da9f97c" data-wf-status="1" lang="en" class="w-mod-js wf-redhatdisplay-n4-active wf-redhatdisplay-n5-active wf-redhatdisplay-n7-active wf-redhatdisplay-n9-active wf-permanentmarker-n4-active w-mod-ix wf-redhatdisplay-i7-active wf-redhatdisplay-i5-active wf-redhatdisplay-i4-active wf-active">
+<html data-wf-domain="the-pond-eb9fd4.webflow.io" data-wf-page="65f1cda7de87d6943da9f9f2"
+     data-wf-site="65f1cda7de87d6943da9f97c" data-wf-status="1" lang="en"
+     class="w-mod-js wf-redhatdisplay-n4-active wf-redhatdisplay-n5-active wf-redhatdisplay-n7-active wf-redhatdisplay-n9-active wf-permanentmarker-n4-active w-mod-ix wf-redhatdisplay-i7-active wf-redhatdisplay-i5-active wf-redhatdisplay-i4-active wf-active">
 
 <head>
      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -16,9 +18,11 @@
           }
      </style>
      <title>The Pond - Fun & Easy to follow Hockey Training</title>
-     <meta content="Fun, easy to follow hockey training. With no time wasted, The Pond follows a clear progression designed to continually challenge and improve the skills that you will use most often in real games." name="description">
+     <meta content="Fun, easy to follow hockey training. With no time wasted, The Pond follows a clear progression designed to continually challenge and improve the skills that you will use most often in real games."
+          name="description">
      <meta content="The Pond - Fun, easy to follow hockey training" property="og:title">
-     <meta content="Fun, easy to follow hockey training. With no time wasted, The Pond follows a clear progression designed to continually challenge and improve the skills that you will use most often in real games." property="og:description">
+     <meta content="Fun, easy to follow hockey training. With no time wasted, The Pond follows a clear progression designed to continually challenge and improve the skills that you will use most often in real games."
+          property="og:description">
      <meta property="og:type" content="website">
      <meta content="width=device-width, initial-scale=1" name="viewport">
      <meta content="Webflow" name="generator">
@@ -37,16 +41,22 @@
           });
      </script>
      <script type="text/javascript">
-          ! function(o, c) {
+          ! function (o, c) {
                var n = c.documentElement,
                     t = " w-mod-";
                n.className += t + "js", ("ontouchstart" in o || o.DocumentTouch && c instanceof DocumentTouch) && (n.className += t + "touch")
           }(window, document);
      </script>
-     <link rel="icon" href="https://cdn.thepond.howtohockey.com/2020/01/cropped-THEPOND_RGB_WHITE_BLUE_ICON_RAW-32x32.png" sizes="32x32">
-     <link rel="icon" href="https://cdn.thepond.howtohockey.com/2020/01/cropped-THEPOND_RGB_WHITE_BLUE_ICON_RAW-192x192.png" sizes="192x192">
-     <link rel="apple-touch-icon" href="https://cdn.thepond.howtohockey.com/2020/01/cropped-THEPOND_RGB_WHITE_BLUE_ICON_RAW-180x180.png">
-     <meta name="msapplication-TileImage" content="https://cdn.thepond.howtohockey.com/2020/01/cropped-THEPOND_RGB_WHITE_BLUE_ICON_RAW-270x270.png">
+     <link rel="icon"
+          href="https://cdn.thepond.howtohockey.com/2020/01/cropped-THEPOND_RGB_WHITE_BLUE_ICON_RAW-32x32.png"
+          sizes="32x32">
+     <link rel="icon"
+          href="https://cdn.thepond.howtohockey.com/2020/01/cropped-THEPOND_RGB_WHITE_BLUE_ICON_RAW-192x192.png"
+          sizes="192x192">
+     <link rel="apple-touch-icon"
+          href="https://cdn.thepond.howtohockey.com/2020/01/cropped-THEPOND_RGB_WHITE_BLUE_ICON_RAW-180x180.png">
+     <meta name="msapplication-TileImage"
+          content="https://cdn.thepond.howtohockey.com/2020/01/cropped-THEPOND_RGB_WHITE_BLUE_ICON_RAW-270x270.png">
      <script type="text/javascript">
           window.__WEBFLOW_CURRENCY_SETTINGS = {
                "currencyCode": "USD",
@@ -62,6 +72,10 @@
           @import url(https://d3e54v103j8qbb.cloudfront.net/fonts/inter/inter.s3.3a4044b2f3.css);
      </style>
      <style>
+          .puck {
+               transform: scale(0.4);
+          }
+
           .helmet-crown {
                display: none;
           }
@@ -12406,40 +12420,78 @@ also rich-text.less has its own sprite-sheet */
      <style></style>
 </head>
 
-<body class="body wf-81ocvw" data-wf-unified-tokens="wf-81ocvw"><img src="/landing-page-files/65f3269768f2a97ffa716a63_water-bottle.png" loading="lazy" width="175" data-w-id="0b977642-4bc9-361c-e479-5599f5e5888b" alt="Film Slate" srcset="https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f3269768f2a97ffa716a63_water-bottle-p-500.png 500w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f3269768f2a97ffa716a63_water-bottle.png 512w" sizes="(max-width: 479px) 29vw, (max-width: 991px) 19vw, (max-width: 1279px) 23vw, 18vw" class="film-slate bottle" style="will-change: transform; transform: translate3d(0px, -28px, 0px) scale3d(0.8, 0.8, 1) rotateX(0deg) rotateY(0deg) rotateZ(-19deg) skew(0deg, 0deg); transform-style: preserve-3d;"><img src="/landing-page-files/65f32697ec957f327a3fe9f5_target.png" loading="lazy" width="100" data-w-id="615f5c7d-6473-673b-545c-2045b9d31070" alt="Film Strip" class="film-strip target" style="will-change: transform; transform: translate3d(0px, 228px, 0px) scale3d(1.1, 1.1, 1) rotateX(0deg) rotateY(0deg) rotateZ(-7deg) skew(0deg, 0deg); transform-style: preserve-3d;"><img src="/landing-page-files/65f3269782d8d988ca3867db_helmet-crown.png" loading="lazy" width="70" data-w-id="7d14055f-409e-d3c9-5124-f00e15e3bf48" alt="Film Camera" srcset="https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f3269782d8d988ca3867db_helmet-crown-p-500.png 500w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f3269782d8d988ca3867db_helmet-crown.png 703w" sizes="(max-width: 479px) 48.98980712890625px, (max-width: 767px) 38vw, (max-width: 1279px) 183.711669921875px, 14vw" class="film-camera helmet-crown" style="will-change: transform; transform: translate3d(0vw, 0vh, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+<body class="body wf-81ocvw" data-wf-unified-tokens="wf-81ocvw"><img
+          src="/landing-page-files/65f3269768f2a97ffa716a63_water-bottle.png" loading="lazy" width="175"
+          data-w-id="0b977642-4bc9-361c-e479-5599f5e5888b" alt="Film Slate"
+          srcset="https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f3269768f2a97ffa716a63_water-bottle-p-500.png 500w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f3269768f2a97ffa716a63_water-bottle.png 512w"
+          sizes="(max-width: 479px) 29vw, (max-width: 991px) 19vw, (max-width: 1279px) 23vw, 18vw"
+          class="film-slate bottle"
+          style="will-change: transform; transform: translate3d(0px, -28px, 0px) scale3d(0.8, 0.8, 1) rotateX(0deg) rotateY(0deg) rotateZ(-19deg) skew(0deg, 0deg); transform-style: preserve-3d;"><img
+          src="/landing-page-files/65f32697ec957f327a3fe9f5_target.png" loading="lazy" width="100"
+          data-w-id="615f5c7d-6473-673b-545c-2045b9d31070" alt="Film Strip" class="film-strip target"
+          style="will-change: transform; transform: translate3d(0px, 228px, 0px) scale3d(1.1, 1.1, 1) rotateX(0deg) rotateY(0deg) rotateZ(-7deg) skew(0deg, 0deg); transform-style: preserve-3d;"><img
+          src="/landing-page-files/65f3269782d8d988ca3867db_helmet-crown.png" loading="lazy" width="70"
+          data-w-id="7d14055f-409e-d3c9-5124-f00e15e3bf48" alt="Film Camera"
+          srcset="https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f3269782d8d988ca3867db_helmet-crown-p-500.png 500w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f3269782d8d988ca3867db_helmet-crown.png 703w"
+          sizes="(max-width: 479px) 48.98980712890625px, (max-width: 767px) 38vw, (max-width: 1279px) 183.711669921875px, 14vw"
+          class="film-camera helmet-crown"
+          style="will-change: transform; transform: translate3d(0vw, 0vh, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
      <div class="page-wrap">
-          <div data-collapse="medium" data-animation="over-right" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar w-nav">
-               <div class="container nav-container"><a href="/" aria-current="page" class="brand w-nav-brand w--current" aria-label="home"></a>
+          <div data-collapse="medium" data-animation="over-right" data-duration="400" data-easing="ease"
+               data-easing2="ease" role="banner" class="navbar w-nav">
+               <div class="container nav-container"><a href="/" aria-current="page" class="brand w-nav-brand w--current"
+                         aria-label="home"></a>
                     <div class="nav-right-wrap">
-                         <nav role="navigation" class="nav-menu w-nav-menu"><a href="/support" class="nav-link w-nav-link">Support</a><a href="#" class="button small w-button">Login</a></nav>
-                         <div class="menu-button w-nav-button" style="-webkit-user-select: text;" aria-label="menu" role="button" tabindex="0" aria-controls="w-nav-overlay-0" aria-haspopup="menu" aria-expanded="false">
+                         <nav role="navigation" class="nav-menu w-nav-menu"><a href="/support"
+                                   class="nav-link w-nav-link">Support</a><a href="/login"
+                                   class="button small w-button">Login</a></nav>
+                         <div class="menu-button w-nav-button" style="-webkit-user-select: text;" aria-label="menu"
+                              role="button" tabindex="0" aria-controls="w-nav-overlay-0" aria-haspopup="menu"
+                              aria-expanded="false">
                               <div class="w-icon-nav-menu"></div>
                          </div>
                     </div>
                </div>
                <div class="w-nav-overlay" data-wf-ignore="" id="w-nav-overlay-0"></div>
           </div>
-          <div class="section hero"><img src="/landing-page-files/65f1d71330ad4292e046fc73_THEPOND_RGB_SNOWBANK.png" loading="lazy" sizes="(max-width: 767px) 90vw, 500px" srcset="https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1d71330ad4292e046fc73_THEPOND_RGB_SNOWBANK-p-500.png 500w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1d71330ad4292e046fc73_THEPOND_RGB_SNOWBANK-p-800.png 800w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1d71330ad4292e046fc73_THEPOND_RGB_SNOWBANK-p-1080.png 1080w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1d71330ad4292e046fc73_THEPOND_RGB_SNOWBANK.png 2500w" alt="" class="image-3">
+          <div class="section hero"><img src="/landing-page-files/65f1d71330ad4292e046fc73_THEPOND_RGB_SNOWBANK.png"
+                    loading="lazy" sizes="(max-width: 767px) 90vw, 500px"
+                    srcset="https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1d71330ad4292e046fc73_THEPOND_RGB_SNOWBANK-p-500.png 500w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1d71330ad4292e046fc73_THEPOND_RGB_SNOWBANK-p-800.png 800w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1d71330ad4292e046fc73_THEPOND_RGB_SNOWBANK-p-1080.png 1080w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1d71330ad4292e046fc73_THEPOND_RGB_SNOWBANK.png 2500w"
+                    alt="" class="image-3">
                <div class="container">
-                    <div data-delay="4000" data-animation="fade" class="hero-slider w-slider" data-autoplay="false" data-easing="ease" data-hide-arrows="false" data-disable-swipe="false" data-autoplay-limit="0" data-nav-spacing="10" data-duration="1000" data-infinite="true" role="region" aria-label="carousel">
+                    <div data-delay="4000" data-animation="fade" class="hero-slider w-slider" data-autoplay="false"
+                         data-easing="ease" data-hide-arrows="false" data-disable-swipe="false" data-autoplay-limit="0"
+                         data-nav-spacing="10" data-duration="1000" data-infinite="true" role="region"
+                         aria-label="carousel">
                          <div class="w-slider-mask" id="w-slider-mask-0">
-                              <div data-w-id="ec2afc2d-f943-794b-6c3e-3dc130fbfeed" class="w-slide" aria-label="1 of 1" role="group" style="transform: translateX(0px); opacity: 1;">
+                              <div data-w-id="ec2afc2d-f943-794b-6c3e-3dc130fbfeed" class="w-slide" aria-label="1 of 1"
+                                   role="group" style="transform: translateX(0px); opacity: 1;">
                                    <div class="hero-slider-content">
                                         <div class="column hero-image-column">
-                                             <h2 style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); opacity: 1; transform-style: preserve-3d;" class="scribble-text slider-name">by Coach Jeremy</h2>
+                                             <h2 style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); opacity: 1; transform-style: preserve-3d;"
+                                                  class="scribble-text slider-name">by Coach Jeremy</h2>
                                              <div class="hero-slider-image-wrap">
-                                                  <div style="padding-top:56.27659574468085%" class="w-video w-embed"><iframe class="embedly-embed" src="/landing-page-files/media.html" width="940" height="529" scrolling="no" allowfullscreen="" title="Why The Pond?"></iframe></div>
+                                                  <div style="padding-top:56.27659574468085%" class="w-video w-embed">
+                                                       <iframe class="elementor-video-iframe" allowfullscreen=""
+                                                            allow="clipboard-write" title="vimeo Video Player"
+                                                            src="https://player.vimeo.com/video/492533459?color&amp;autopause=0&amp;loop=0&amp;muted=0&amp;title=1&amp;portrait=1&amp;byline=1#t="
+                                                            name="fitvid0" data-ready="true"></iframe>
+                                                  </div>
                                              </div>
                                         </div>
-                                        <div id="w-node-f2bd7fdc-a738-1450-b4f9-1b53880bc1f6-3da9f9f2" style="margin-top: -40px;" class="column max-600">
+                                        <div id="w-node-f2bd7fdc-a738-1450-b4f9-1b53880bc1f6-3da9f9f2"
+                                             style="margin-top: -40px;" class="column max-600">
                                              <div class="label _30-margin"><br></div>
                                              <h1>Fun, easy to follow hockey training</h1>
-                                             <p class="big-paragraph max-500">The Pond is a place where everyone is welcome.<br>A place to learn,
-                                                  improve, have fun, and share your love of hockey.</p><a href="#pricingSect" class="button w-button">I'm sold!</a>
+                                             <p class="big-paragraph max-500">The Pond is a place where everyone is
+                                                  welcome.<br>A place to learn,
+                                                  improve, have fun, and share your love of hockey.</p><a
+                                                  href="#pricingSect" class="button w-button">I'm sold!</a>
                                         </div>
                                    </div>
                               </div>
-                              <div aria-live="off" aria-atomic="true" class="w-slider-aria-label" data-wf-ignore=""></div>
+                              <div aria-live="off" aria-atomic="true" class="w-slider-aria-label" data-wf-ignore="">
+                              </div>
                          </div>
                     </div>
                </div>
@@ -12465,54 +12517,89 @@ also rich-text.less has its own sprite-sheet */
           <div class="section features">
                <div class="container features-grid">
                     <div id="w-node-_8d350ed8-e9a4-eb03-1dcf-82faec0a87df-3da9f9f2" class="column feature-headline">
-                         <h2 class="max-800">Your best, most fun hockey is only a click away</h2><a href="#pricingSect" class="button center w-button">Get Started</a>
+                         <h2 class="max-800">Your best, most fun hockey is only a click away</h2><a href="#pricingSect"
+                              class="button center w-button">Get Started</a>
                     </div>
                     <div id="w-node-_1ac6e14c-5d80-b4fb-1311-8131a2fe412d-a2fe412d" class="column feature-column">
                          <div class="feature-img-and-graident">
-                              <div class="feature-image-mask"><img src="/landing-page-files/65f1de8fd67271e580a1b8f1_Level3Skating.jpg" alt="" sizes="(max-width: 479px) 150px, 300px" srcset="https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1de8fd67271e580a1b8f1_Level3Skating-p-500.jpg 500w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1de8fd67271e580a1b8f1_Level3Skating-p-800.jpg 800w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1de8fd67271e580a1b8f1_Level3Skating-p-1080.jpg 1080w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1de8fd67271e580a1b8f1_Level3Skating-p-1600.jpg 1600w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1de8fd67271e580a1b8f1_Level3Skating.jpg 1920w" class="feature-image"></div>
+                              <div class="feature-image-mask"><img
+                                        src="/landing-page-files/65f1de8fd67271e580a1b8f1_Level3Skating.jpg" alt=""
+                                        sizes="(max-width: 479px) 150px, 300px"
+                                        srcset="https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1de8fd67271e580a1b8f1_Level3Skating-p-500.jpg 500w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1de8fd67271e580a1b8f1_Level3Skating-p-800.jpg 800w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1de8fd67271e580a1b8f1_Level3Skating-p-1080.jpg 1080w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1de8fd67271e580a1b8f1_Level3Skating-p-1600.jpg 1600w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1de8fd67271e580a1b8f1_Level3Skating.jpg 1920w"
+                                        class="feature-image"></div>
                               <div class="feature-gradient"></div>
                          </div>
                          <h4 class="feature-max">Learn the essentials of strong skating</h4>
-                         <p class="max-400 no-margin">We will help you find your balance and feel your edges. You will master speed
-                              &amp; acceleration and gain an understanding of the key movements that lead to great skating.</p>
+                         <p class="max-400 no-margin">We will help you find your balance and feel your edges. You will
+                              master speed
+                              &amp; acceleration and gain an understanding of the key movements that lead to great
+                              skating.</p>
                     </div>
                     <div id="w-node-_1ac6e14c-5d80-b4fb-1311-8131a2fe412d-a2fe412d" class="column feature-column">
                          <div class="feature-img-and-graident">
-                              <div class="feature-image-mask"><img src="/landing-page-files/65f1dee25996b3c6965b676b_shooting-level2.png" alt="" sizes="(max-width: 479px) 150px, 300px" srcset="https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1dee25996b3c6965b676b_shooting-level2-p-500.png 500w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1dee25996b3c6965b676b_shooting-level2-p-800.png 800w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1dee25996b3c6965b676b_shooting-level2-p-1080.png 1080w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1dee25996b3c6965b676b_shooting-level2-p-1600.png 1600w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1dee25996b3c6965b676b_shooting-level2.png 1920w" class="feature-image"></div>
+                              <div class="feature-image-mask"><img
+                                        src="/landing-page-files/65f1dee25996b3c6965b676b_shooting-level2.png" alt=""
+                                        sizes="(max-width: 479px) 150px, 300px"
+                                        srcset="https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1dee25996b3c6965b676b_shooting-level2-p-500.png 500w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1dee25996b3c6965b676b_shooting-level2-p-800.png 800w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1dee25996b3c6965b676b_shooting-level2-p-1080.png 1080w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1dee25996b3c6965b676b_shooting-level2-p-1600.png 1600w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1dee25996b3c6965b676b_shooting-level2.png 1920w"
+                                        class="feature-image"></div>
                               <div class="feature-gradient"></div>
                          </div>
                          <h4 class="feature-max">Understand how to shoot hard and accurately</h4>
-                         <p class="max-400 no-margin">Just practicing for the sake of practicing won't improve your shot power or
-                              accuracy. We teach you the technique necessary for a strong and powerful shot. From the basics, to the toe
+                         <p class="max-400 no-margin">Just practicing for the sake of practicing won't improve your shot
+                              power or
+                              accuracy. We teach you the technique necessary for a strong and powerful shot. From the
+                              basics, to the toe
                               drag release!</p>
                     </div>
                     <div id="w-node-_1ac6e14c-5d80-b4fb-1311-8131a2fe412d-a2fe412d" class="column feature-column">
                          <div class="feature-img-and-graident">
-                              <div class="feature-image-mask"><img src="/landing-page-files/65f1dffbec13d2027b0c1686_03-quick-moves.jpg" alt="" sizes="(max-width: 479px) 150px, 300px" srcset="https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1dffbec13d2027b0c1686_03-quick-moves-p-500.jpg 500w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1dffbec13d2027b0c1686_03-quick-moves-p-800.jpg 800w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1dffbec13d2027b0c1686_03-quick-moves-p-1080.jpg 1080w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1dffbec13d2027b0c1686_03-quick-moves-p-1600.jpg 1600w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1dffbec13d2027b0c1686_03-quick-moves.jpg 1920w" class="feature-image"></div>
+                              <div class="feature-image-mask"><img
+                                        src="/landing-page-files/65f1dffbec13d2027b0c1686_03-quick-moves.jpg" alt=""
+                                        sizes="(max-width: 479px) 150px, 300px"
+                                        srcset="https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1dffbec13d2027b0c1686_03-quick-moves-p-500.jpg 500w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1dffbec13d2027b0c1686_03-quick-moves-p-800.jpg 800w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1dffbec13d2027b0c1686_03-quick-moves-p-1080.jpg 1080w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1dffbec13d2027b0c1686_03-quick-moves-p-1600.jpg 1600w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1dffbec13d2027b0c1686_03-quick-moves.jpg 1920w"
+                                        class="feature-image"></div>
                               <div class="feature-gradient"></div>
                          </div>
                          <h4 class="feature-max">Master the art of stickhandling</h4>
-                         <p class="max-400 no-margin">We'll help you get a feel for the movement of the blade, understand crucial hand
-                              positions, give you the ability to control the puck around your entire body, and learn the art of deception.
+                         <p class="max-400 no-margin">We'll help you get a feel for the movement of the blade,
+                              understand crucial hand
+                              positions, give you the ability to control the puck around your entire body, and learn the
+                              art of deception.
                          </p>
                     </div>
                     <div id="w-node-_1ac6e14c-5d80-b4fb-1311-8131a2fe412d-a2fe412d" class="column feature-column">
                          <div class="feature-img-and-graident">
-                              <div class="feature-image-mask"><img src="/landing-page-files/65f1e0bfcf31de2e175f7109_05-side-side-fwd-bwd.jpg" alt="" sizes="(max-width: 479px) 150px, 300px" srcset="https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1e0bfcf31de2e175f7109_05-side-side-fwd-bwd-p-500.jpg 500w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1e0bfcf31de2e175f7109_05-side-side-fwd-bwd-p-800.jpg 800w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1e0bfcf31de2e175f7109_05-side-side-fwd-bwd-p-1080.jpg 1080w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1e0bfcf31de2e175f7109_05-side-side-fwd-bwd-p-1600.jpg 1600w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1e0bfcf31de2e175f7109_05-side-side-fwd-bwd.jpg 1920w" class="feature-image"></div>
+                              <div class="feature-image-mask"><img
+                                        src="/landing-page-files/65f1e0bfcf31de2e175f7109_05-side-side-fwd-bwd.jpg"
+                                        alt="" sizes="(max-width: 479px) 150px, 300px"
+                                        srcset="https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1e0bfcf31de2e175f7109_05-side-side-fwd-bwd-p-500.jpg 500w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1e0bfcf31de2e175f7109_05-side-side-fwd-bwd-p-800.jpg 800w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1e0bfcf31de2e175f7109_05-side-side-fwd-bwd-p-1080.jpg 1080w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1e0bfcf31de2e175f7109_05-side-side-fwd-bwd-p-1600.jpg 1600w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1e0bfcf31de2e175f7109_05-side-side-fwd-bwd.jpg 1920w"
+                                        class="feature-image"></div>
                               <div class="feature-gradient"></div>
                          </div>
                          <h4 class="feature-max">All designed to be fun, time efficient, and easy to follow</h4>
-                         <p class="max-400 no-margin">The pros understand that 90% of hockey is doing fundamental skills, exceptionally
+                         <p class="max-400 no-margin">The pros understand that 90% of hockey is doing fundamental
+                              skills, exceptionally
                               well.<br>That's why our courses focus on the most important skills in the game.</p>
                     </div>
-               </div><img src="/landing-page-files/65f339da457cd234a51235d2_puck.png" width="175" data-w-id="062aa6af-9e5a-7005-a3be-017687b69e67" alt="Directors Chair" srcset="https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f339da457cd234a51235d2_puck-p-500.png 500w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f339da457cd234a51235d2_puck.png 550w" sizes="(max-width: 479px) 28vw, (max-width: 991px) 20vw, 175px" class="puck" style="will-change: transform; transform: translate3d(0px, 0px, 0px) scale3d(0.7, 0.7, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"><img src="/landing-page-files/65f339da457cd234a51235d2_puck.png" loading="lazy" width="175" sizes="(max-width: 479px) 28vw, (max-width: 991px) 20vw, 175px" alt="Directors Chair" srcset="https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f339da457cd234a51235d2_puck-p-500.png 500w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f339da457cd234a51235d2_puck.png 550w" class="puck">
+               </div><img src="/landing-page-files/65f339da457cd234a51235d2_puck.png" width="125"
+                    data-w-id="062aa6af-9e5a-7005-a3be-017687b69e67" alt="Directors Chair"
+                    srcset="https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f339da457cd234a51235d2_puck-p-500.png 500w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f339da457cd234a51235d2_puck.png 550w"
+                    sizes="(max-width: 479px) 28vw, (max-width: 991px) 20vw, 175px" class="puck"
+                    style="will-change: transform; transform: translate3d(0px, 0px, 0px) scale3d(0.7, 0.7, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"><img
+                    src="/landing-page-files/65f339da457cd234a51235d2_puck.png" loading="lazy" width="125"
+                    sizes="(max-width: 479px) 28vw, (max-width: 991px) 20vw, 125px" alt="Directors Chair"
+                    srcset="https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f339da457cd234a51235d2_puck-p-500.png 500w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f339da457cd234a51235d2_puck.png 550w"
+                    class="puck">
           </div>
           <div class="section free-classes">
                <div class="column workouts-headline">
                     <h2 class="jumbo max-800">Want to improve FASTER?</h2>
-                    <p class="big-paragraph max-600 center">With no time wasted, The Pond follows a clear progression designed to
-                         continually challenge and improve the skills that you will use most often in real games.<br>‍<br>We want to
-                         give you that amazing feeling when you snipe your first target, master a new move, or score your first goal.
+                    <p class="big-paragraph max-600 center">With no time wasted, The Pond follows a clear progression
+                         designed to
+                         continually challenge and improve the skills that you will use most often in real
+                         games.<br>‍<br>We want to
+                         give you that amazing feeling when you snipe your first target, master a new move, or score
+                         your first goal.
                     </p><a href="#pricingSect" class="button center w-button">See Pricing</a>
                </div>
                <div class="container free-plan-container"></div>
@@ -12521,17 +12608,33 @@ also rich-text.less has its own sprite-sheet */
                <div class="container free-plan-container">
                     <div class="column workouts-headline">
                          <h2 class="jumbo max-800">Not sure if The Pond is right for you?</h2>
-                         <p class="big-paragraph max-600">I’ve created so much free training material over the years, and it can be a
-                              lot to sift through as a beginner, or even for advanced players.<br><br>That's why I'm giving you free
-                              access to a few of the key lessons which hold some the secrets I've learned over the years!</p><a href="/courses/free-lessons" class="button white w-button">Free
+                         <p class="big-paragraph max-600">There's a lot of misinformation out there that can be
+                              confusing as a beginner, and frustrating for experienced players who want to take
+                              their game to the next level.
+                              <br><br>That's why I'm
+                              giving you free
+                              access to a handful of the key lessons from our various courses on The Pond which hold the
+                              secrets I've learned over the
+                              years!
+                         </p><a href="/courses/free-lessons" target="_blank" class="button white w-button">Free
                               lessons</a>
                     </div>
                </div>
           </div>
           <div class="section photo-section">
-               <div data-poster-url="https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1e753fc11353875cf92a5_SizzleReel-poster-00001.jpg" data-video-urls="https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1e753fc11353875cf92a5_SizzleReel-transcode.mp4,https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1e753fc11353875cf92a5_SizzleReel-transcode.webm" data-autoplay="true" data-loop="true" data-wf-ignore="true" class="background-video w-background-video w-background-video-atom"><video id="7b0a4773-8c75-384a-9f4d-fe77cfd6667f-video" autoplay="" loop="" style="background-image:url(&quot;https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1e753fc11353875cf92a5_SizzleReel-poster-00001.jpg&quot;)" muted="" playsinline="" data-wf-ignore="true" data-object-fit="cover">
-                         <source src="https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1e753fc11353875cf92a5_SizzleReel-transcode.mp4" data-wf-ignore="true">
-                         <source src="https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1e753fc11353875cf92a5_SizzleReel-transcode.webm" data-wf-ignore="true">
+               <div data-poster-url="https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1e753fc11353875cf92a5_SizzleReel-poster-00001.jpg"
+                    data-video-urls="https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1e753fc11353875cf92a5_SizzleReel-transcode.mp4,https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1e753fc11353875cf92a5_SizzleReel-transcode.webm"
+                    data-autoplay="true" data-loop="true" data-wf-ignore="true"
+                    class="background-video w-background-video w-background-video-atom"><video
+                         id="7b0a4773-8c75-384a-9f4d-fe77cfd6667f-video" autoplay="" loop=""
+                         style="background-image:url(&quot;https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1e753fc11353875cf92a5_SizzleReel-poster-00001.jpg&quot;)"
+                         muted="" playsinline="" data-wf-ignore="true" data-object-fit="cover">
+                         <source
+                              src="https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1e753fc11353875cf92a5_SizzleReel-transcode.mp4"
+                              data-wf-ignore="true">
+                         <source
+                              src="https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1e753fc11353875cf92a5_SizzleReel-transcode.webm"
+                              data-wf-ignore="true">
                     </video></div>
                <div class="container">
                     <h2 class="scribble-text">Work Hard. Have Fun.</h2>
@@ -12541,24 +12644,35 @@ also rich-text.less has its own sprite-sheet */
                <div class="container grid-2">
                     <div id="w-node-_48f1e152-304c-af08-bac2-2094cbc0c067-3da9f9f2" class="column description-heading">
                          <h2 class="max-600">Who can benefit from The Pond?</h2>
-                         <p class="big-paragraph max-500">Literally anyone who wants to play hockey. There are members ranging from 4
-                              to 60+ years old. I've designed these courses to bring you all the way from a complete beginner, to a
-                              proficient skater, puck handler, and sniper who loves the game every time you step on the ice!</p><a href="#" class="button w-button">Sign me up!</a>
+                         <p class="big-paragraph max-500">Literally anyone who wants to play hockey. There are members
+                              ranging from 4
+                              to 60+ years old. I've designed these courses to bring you all the way from a complete
+                              beginner, to a
+                              proficient skater, puck handler, and sniper who loves the game every time you step on the
+                              ice!</p><a href="#pricingSect" class="button w-button">Sign me up!</a>
                     </div>
-                    <div id="w-node-d7b1a011-026b-afea-5499-7750c3a8ba54-3da9f9f2" class="description-image-wrap"><img src="/landing-page-files/65f202733edd87f83698b919_DSC02249.png" alt="" class="description-image"></div>
+                    <div id="w-node-d7b1a011-026b-afea-5499-7750c3a8ba54-3da9f9f2" class="description-image-wrap"><img
+                              src="/landing-page-files/65f202733edd87f83698b919_DSC02249.png" alt=""
+                              class="description-image"></div>
                </div>
                <div class="description-bg"></div>
           </div>
           <section id="pricingSect" class="pricing-comparison">
-               <h1 class="heading">Pricing</h1>
+               <h1 class="heading" id="choose-your-subscription">Pricing</h1>
                <div class="text-block">Select your payment option below</div>
                <div class="container-2">
                     <div class="pricing-wrapper">
-                         <div id="w-node-_0c7f69c5-3e77-60d3-cf6d-4a3849205cd5-3da9f9f2" class="pricing-card"><img src="/landing-page-files/65f3269768f2a97ffa716a63_water-bottle.png" loading="lazy" sizes="80px" srcset="https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f3269768f2a97ffa716a63_water-bottle-p-500.png 500w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f3269768f2a97ffa716a63_water-bottle.png 512w" alt="" class="pricing-image">
+                         <div id="w-node-_0c7f69c5-3e77-60d3-cf6d-4a3849205cd5-3da9f9f2" class="pricing-card"><img
+                                   src="/landing-page-files/65f3269768f2a97ffa716a63_water-bottle.png" loading="lazy"
+                                   sizes="80px"
+                                   srcset="https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f3269768f2a97ffa716a63_water-bottle-p-500.png 500w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f3269768f2a97ffa716a63_water-bottle.png 512w"
+                                   alt="" class="pricing-image">
                               <h2 class="pricing-title">Monthly</h2>
                               <div class="pricing-price full-price">$19.99/mo</div>
                               <div class="pricing-price">$14.99/mo</div>
-                              <div class="paragraph-regular margin-bottom-20">Take a break anytime</div><a href="/register/monthly-membership/" class="button-primary outline-button w-button">Get started</a>
+                              <div class="paragraph-regular margin-bottom-20">Take a break anytime</div><a
+                                   href="/register/monthly-membership/"
+                                   class="button-primary outline-button w-button">Get started</a>
                               <div class="pricing-divider"></div>
                               <ul role="list" class="pricing-feature-list w-list-unstyled">
                                    <li>
@@ -12581,11 +12695,15 @@ also rich-text.less has its own sprite-sheet */
                                    </li>
                               </ul>
                          </div>
-                         <div id="w-node-_0c7f69c5-3e77-60d3-cf6d-4a3849205cf5-3da9f9f2" class="pricing-card featured-pricing"><img src="/landing-page-files/65f32697ec957f327a3fe9f5_target.png" loading="lazy" alt="" class="pricing-image">
+                         <div id="w-node-_0c7f69c5-3e77-60d3-cf6d-4a3849205cf5-3da9f9f2"
+                              class="pricing-card featured-pricing"><img
+                                   src="/landing-page-files/65f32697ec957f327a3fe9f5_target.png" loading="lazy" alt=""
+                                   class="pricing-image">
                               <h2 class="pricing-title">Annual</h2>
                               <div class="pricing-price full-price">$19.99/mo</div>
                               <div class="pricing-price">$12.99/mo</div>
-                              <div class="paragraph-regular margin-bottom-20">Most popular</div><a href="/register/yearly-membership/" class="button-primary w-button">Get
+                              <div class="paragraph-regular margin-bottom-20">Most popular</div><a
+                                   href="/register/yearly-membership/" class="button-primary w-button">Get
                                    started</a>
                               <div class="pricing-divider"></div>
                               <ul role="list" class="pricing-feature-list w-list-unstyled">
@@ -12599,7 +12717,8 @@ also rich-text.less has its own sprite-sheet */
                                         <div class="pricing-feature">"How to play Chippy" course ft. Coach Chippy</div>
                                    </li>
                                    <li>
-                                        <div class="pricing-feature">Access to all future specialty courses and training programs</div>
+                                        <div class="pricing-feature">Access to all future specialty courses and training
+                                             programs</div>
                                    </li>
                                    <li>
                                         <div class="pricing-feature">Pause or cancel anytime</div>
@@ -12607,18 +12726,25 @@ also rich-text.less has its own sprite-sheet */
                               </ul>
                               <div class="pricing-tag">Recommended</div>
                          </div>
-                         <div id="w-node-_0c7f69c5-3e77-60d3-cf6d-4a3849205d1d-3da9f9f2" class="pricing-card"><img src="/landing-page-files/65f3269782d8d988ca3867db_helmet-crown.png" loading="lazy" sizes="80px" srcset="https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f3269782d8d988ca3867db_helmet-crown-p-500.png 500w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f3269782d8d988ca3867db_helmet-crown.png 703w" alt="" class="pricing-image">
+                         <div id="w-node-_0c7f69c5-3e77-60d3-cf6d-4a3849205d1d-3da9f9f2" class="pricing-card"><img
+                                   src="/landing-page-files/65f3269782d8d988ca3867db_helmet-crown.png" loading="lazy"
+                                   sizes="80px"
+                                   srcset="https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f3269782d8d988ca3867db_helmet-crown-p-500.png 500w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f3269782d8d988ca3867db_helmet-crown.png 703w"
+                                   alt="" class="pricing-image">
                               <h2 class="pricing-title">Lifetime</h2>
                               <div class="pricing-price full-price white-hidden-text">__</div>
                               <div class="pricing-price">$499.99</div>
-                              <div class="paragraph-regular margin-bottom-20">One time payment</div><a href="/register/lifetime-membership/" class="button-primary outline-button w-button">Get started</a>
+                              <div class="paragraph-regular margin-bottom-20">One time payment</div><a
+                                   href="/register/lifetime-membership/"
+                                   class="button-primary outline-button w-button">Get started</a>
                               <div class="pricing-divider"></div>
                               <ul role="list" class="pricing-feature-list w-list-unstyled">
                                    <li>
                                         <div class="pricing-feature">Unlock EVERYTHING for life</div>
                                    </li>
                                    <li>
-                                        <div class="pricing-feature">Access to all future specialty courses and training programs</div>
+                                        <div class="pricing-feature">Access to all future specialty courses and training
+                                             programs</div>
                                    </li>
                                    <li>
                                         <div class="pricing-feature">Satisfaction guarantee</div>
@@ -12629,21 +12755,33 @@ also rich-text.less has its own sprite-sheet */
                </div>
                <div class="w-layout-blockcontainer container-5 w-container">
                     <div class="container payment-logos">
-                         <div class="payment-trustmark-wrap"><img src="/landing-page-files/65f1cda7de87d6943da9fac4_paypal.svg" alt="" class="trustmark-image"></div>
-                         <div class="payment-trustmark-wrap powered-by"><img src="/landing-page-files/65f1cda7de87d6943da9fab7_Stripe_Logo,_revised_2016.svg" alt="" class="trustmark-image"></div>
-                         <div class="payment-trustmark-wrap"><img src="/landing-page-files/65f1cda7de87d6943da9facb_Visa_2014_logo_detail.svg" alt="" class="trustmark-image smaller"></div>
-                         <div class="payment-trustmark-wrap"><img src="/landing-page-files/65f1cda7de87d6943da9fac7_mc_symbol.svg" alt="" class="trustmark-image"></div>
-                         <div class="payment-trustmark-wrap big-trustmark"><img src="/landing-page-files/65f1cda7de87d6943da9fac9_download.svg" width="47" alt="" class="trustmark-image big"></div>
+                         <div class="payment-trustmark-wrap"><img
+                                   src="/landing-page-files/65f1cda7de87d6943da9fac4_paypal.svg" alt=""
+                                   class="trustmark-image"></div>
+                         <div class="payment-trustmark-wrap powered-by"><img
+                                   src="/landing-page-files/65f1cda7de87d6943da9fab7_Stripe_Logo,_revised_2016.svg"
+                                   alt="" class="trustmark-image"></div>
+                         <div class="payment-trustmark-wrap"><img
+                                   src="/landing-page-files/65f1cda7de87d6943da9facb_Visa_2014_logo_detail.svg" alt=""
+                                   class="trustmark-image smaller"></div>
+                         <div class="payment-trustmark-wrap"><img
+                                   src="/landing-page-files/65f1cda7de87d6943da9fac7_mc_symbol.svg" alt=""
+                                   class="trustmark-image"></div>
+                         <div class="payment-trustmark-wrap big-trustmark"><img
+                                   src="/landing-page-files/65f1cda7de87d6943da9fac9_download.svg" width="47" alt=""
+                                   class="trustmark-image big"></div>
                     </div>
                </div>
                <div class="text-block-3">All prices are in US dollars</div>
           </section>
           <section class="section-2">
-               <div class="w-layout-hflex flex-block money-back-img"><img src="/landing-page-files/65f32a553a64eb8299142465_Group-22.png" loading="lazy" alt="">
+               <div class="w-layout-hflex flex-block money-back-img"><img
+                         src="/landing-page-files/65f32a553a64eb8299142465_Group-22.png" loading="lazy" alt="">
                     <div class="w-layout-vflex flex-block-2">
                          <h1 class="white no-margin">Get better at hockey</h1>
                          <h3 class="white no-margin">or get your money back</h3>
-                         <div class="text-block-2"><strong>We offer a 100% money back guarantee, </strong>‍<strong>and the ability to
+                         <div class="text-block-2"><strong>We offer a 100% money back guarantee, </strong>‍<strong>and
+                                   the ability to
                                    pause your subscription anytime.</strong></div>
                     </div>
                </div>
@@ -12653,19 +12791,23 @@ also rich-text.less has its own sprite-sheet */
                <div class="w-layout-blockcontainer w-container">
                     <div class="cloneable-area">
                          <div class="c-accordion-list">
-                              <div class="c-accordion-item" style="opacity: 1; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+                              <div class="c-accordion-item"
+                                   style="opacity: 1; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
                                    <div class="_w-accordion-item">
                                         <div class="c-accordion-item-q">
                                              <div class="_w-accordion-item-q">
                                                   <div class="c-accordion-item-q-text">
                                                        <div class="_w-accordion-item-q-text">
-                                                            <div class="accordion-item-q-text">What exactly am I getting from The Pond?</div>
+                                                            <div class="accordion-item-q-text">What exactly am I getting
+                                                                 from The Pond?</div>
                                                        </div>
                                                   </div>
                                                   <div class="c-accordion-item-q-icon">
-                                                       <div class="_w-accordion-item-q-icon" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+                                                       <div class="_w-accordion-item-q-icon"
+                                                            style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
                                                             <div class="accordion-item-q-icon-stripe-1"></div>
-                                                            <div class="accordion-item-q-icon-stripe-2" style="height: 1.5em; opacity: 1;"></div>
+                                                            <div class="accordion-item-q-icon-stripe-2"
+                                                                 style="height: 1.5em; opacity: 1;"></div>
                                                        </div>
                                                   </div>
                                              </div>
@@ -12675,29 +12817,39 @@ also rich-text.less has its own sprite-sheet */
                                                   <div class="accordion-content-divider"></div>
                                              </div>
                                              <div class="_w-accordion-item-a">
-                                                  <p class="accordion-item-a-text" style="transform: translate3d(0px, 50%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; opacity: 0;">
-                                                       With your membership to The Pond, not only will you get instant access to our most efficient
-                                                       hockey training courses, &nbsp;find out the crucial skills you need to focus on, get access to our
-                                                       private Facebook group, and participate in fun challenges to test your skills. You will get our
-                                                       100% dedication to help YOU get better at hockey. The Pond provides a clear path to improvement,
-                                                       and we’ll be right there to support you throughout the process.​</p>
+                                                  <p class="accordion-item-a-text"
+                                                       style="transform: translate3d(0px, 50%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; opacity: 0;">
+                                                       With your membership to The Pond, not only will you get instant
+                                                       access to our most efficient
+                                                       hockey training courses, &nbsp;find out the crucial skills you
+                                                       need to focus on, get access to our
+                                                       private Facebook group, and participate in fun challenges to test
+                                                       your skills. You will get our
+                                                       100% dedication to help YOU get better at hockey. The Pond
+                                                       provides a clear path to improvement,
+                                                       and we’ll be right there to support you throughout the process.​
+                                                  </p>
                                              </div>
                                         </div>
                                    </div>
                               </div>
-                              <div class="c-accordion-item" style="opacity: 1; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+                              <div class="c-accordion-item"
+                                   style="opacity: 1; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
                                    <div class="_w-accordion-item">
                                         <div class="c-accordion-item-q">
                                              <div class="_w-accordion-item-q">
                                                   <div class="c-accordion-item-q-text">
                                                        <div class="_w-accordion-item-q-text">
-                                                            <div class="accordion-item-q-text">What happens if I change my mind?</div>
+                                                            <div class="accordion-item-q-text">What happens if I change
+                                                                 my mind?</div>
                                                        </div>
                                                   </div>
                                                   <div class="c-accordion-item-q-icon">
-                                                       <div class="_w-accordion-item-q-icon" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+                                                       <div class="_w-accordion-item-q-icon"
+                                                            style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
                                                             <div class="accordion-item-q-icon-stripe-1"></div>
-                                                            <div class="accordion-item-q-icon-stripe-2" style="height: 1.5em; opacity: 1;"></div>
+                                                            <div class="accordion-item-q-icon-stripe-2"
+                                                                 style="height: 1.5em; opacity: 1;"></div>
                                                        </div>
                                                   </div>
                                              </div>
@@ -12707,26 +12859,33 @@ also rich-text.less has its own sprite-sheet */
                                                   <div class="accordion-content-divider"></div>
                                              </div>
                                              <div class="_w-accordion-item-a">
-                                                  <p class="accordion-item-a-text" style="transform: translate3d(0px, 50%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; opacity: 0;">
-                                                       You can cancel at anytime. Your account will remain open until the end of your billing month. Or
-                                                       if you’d prefer, you can always pause your subscription and resume it later.</p>
+                                                  <p class="accordion-item-a-text"
+                                                       style="transform: translate3d(0px, 50%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; opacity: 0;">
+                                                       You can cancel at anytime. Your account will remain open until
+                                                       the end of your billing month. Or
+                                                       if you’d prefer, you can always pause your subscription and
+                                                       resume it later.</p>
                                              </div>
                                         </div>
                                    </div>
                               </div>
-                              <div class="c-accordion-item" style="opacity: 1; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+                              <div class="c-accordion-item"
+                                   style="opacity: 1; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
                                    <div class="_w-accordion-item">
                                         <div class="c-accordion-item-q">
                                              <div class="_w-accordion-item-q">
                                                   <div class="c-accordion-item-q-text">
                                                        <div class="_w-accordion-item-q-text">
-                                                            <div class="accordion-item-q-text">What do the courses actually cover?</div>
+                                                            <div class="accordion-item-q-text">What do the courses
+                                                                 actually cover?</div>
                                                        </div>
                                                   </div>
                                                   <div class="c-accordion-item-q-icon">
-                                                       <div class="_w-accordion-item-q-icon" style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
+                                                       <div class="_w-accordion-item-q-icon"
+                                                            style="transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">
                                                             <div class="accordion-item-q-icon-stripe-1"></div>
-                                                            <div class="accordion-item-q-icon-stripe-2" style="height: 1.5em; opacity: 1;"></div>
+                                                            <div class="accordion-item-q-icon-stripe-2"
+                                                                 style="height: 1.5em; opacity: 1;"></div>
                                                        </div>
                                                   </div>
                                              </div>
@@ -12736,10 +12895,15 @@ also rich-text.less has its own sprite-sheet */
                                                   <div class="accordion-content-divider"></div>
                                              </div>
                                              <div class="_w-accordion-item-a">
-                                                  <p class="accordion-item-a-text" style="transform: translate3d(0px, 50%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; opacity: 0;">
-                                                       There are multiple levels of courses for each skill (skating, shooting, stickhandling, passing),
-                                                       starting from Level 1 up to Level 3 and we are continually creating more advanced courses. To get
-                                                       an idea of what the lessons in each course are like, be sure to check out the <a href="#free-lessons">free lessons</a> that I've unlocked for
+                                                  <p class="accordion-item-a-text"
+                                                       style="transform: translate3d(0px, 50%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; opacity: 0;">
+                                                       There are multiple levels of courses for each skill (skating,
+                                                       shooting, stickhandling, passing),
+                                                       starting from Level 1 up to Level 3 and we are continually
+                                                       creating more advanced courses. To get
+                                                       an idea of what the lessons in each course are like, be sure to
+                                                       check out the <a href="#free-lessons">free lessons</a> that I've
+                                                       unlocked for
                                                        you!</p>
                                              </div>
                                         </div>
@@ -12751,24 +12915,42 @@ also rich-text.less has its own sprite-sheet */
           </section>
           <div class="section footer-section">
                <div class="container footer-container">
-                    <div id="w-node-_1d6466da-e94d-115c-c97d-71e22c54b454-2c54b452" class="column"><a href="/" class="footer-brand w-nav-brand"><img src="/landing-page-files/65f1eaede7505fa3f3ffb08e_THEPOND_WHITE_SNOWBANK.png" loading="lazy" width="409"></a></div>
+                    <div id="w-node-_1d6466da-e94d-115c-c97d-71e22c54b454-2c54b452" class="column"><a href="/"
+                              class="footer-brand w-nav-brand"><img
+                                   src="/landing-page-files/65f1eaede7505fa3f3ffb08e_THEPOND_WHITE_SNOWBANK.png"
+                                   loading="lazy" width="409"></a></div>
                     <div id="w-node-_1d6466da-e94d-115c-c97d-71e22c54b461-2c54b452" class="column">
-                         <div class="label footer-label">Help</div><a href="/privacy-policy/" class="footer-link">Privacy</a><a href="/support" class="footer-link">Support</a><a href="/support" class="footer-link">Contact</a>
+                         <div class="label footer-label">Help</div><a href="/privacy-policy/"
+                              class="footer-link">Privacy</a><a href="/support" class="footer-link">Support</a><a
+                              href="/support" class="footer-link">Contact</a>
                     </div>
                     <div id="w-node-_1d6466da-e94d-115c-c97d-71e22c54b46f-2c54b452" class="column">
-                         <div class="label footer-label">Explore</div><a href="#pricingSect" class="footer-link">Get Started Now!</a><a href="#free-lessons" class="footer-link">Free Lessons</a>
+                         <div class="label footer-label">Explore</div><a href="#pricingSect" class="footer-link">Get
+                              Started Now!</a><a href="#free-lessons" class="footer-link">Free Lessons</a>
                     </div>
                </div>
                <div class="container payment-logos">
-                    <div class="payment-trustmark-wrap"><img src="/landing-page-files/65f1cda7de87d6943da9fac4_paypal.svg" alt="" class="trustmark-image"></div>
-                    <div class="payment-trustmark-wrap powered-by"><img src="/landing-page-files/65f1cda7de87d6943da9fab7_Stripe_Logo,_revised_2016.svg" alt="" class="trustmark-image"></div>
-                    <div class="payment-trustmark-wrap"><img src="/landing-page-files/65f1cda7de87d6943da9facb_Visa_2014_logo_detail.svg" alt="" class="trustmark-image smaller"></div>
-                    <div class="payment-trustmark-wrap"><img src="/landing-page-files/65f1cda7de87d6943da9fac7_mc_symbol.svg" alt="" class="trustmark-image"></div>
-                    <div class="payment-trustmark-wrap big-trustmark"><img src="/landing-page-files/65f1cda7de87d6943da9fac9_download.svg" width="47" alt="" class="trustmark-image big"></div>
+                    <div class="payment-trustmark-wrap"><img
+                              src="/landing-page-files/65f1cda7de87d6943da9fac4_paypal.svg" alt=""
+                              class="trustmark-image"></div>
+                    <div class="payment-trustmark-wrap powered-by"><img
+                              src="/landing-page-files/65f1cda7de87d6943da9fab7_Stripe_Logo,_revised_2016.svg" alt=""
+                              class="trustmark-image"></div>
+                    <div class="payment-trustmark-wrap"><img
+                              src="/landing-page-files/65f1cda7de87d6943da9facb_Visa_2014_logo_detail.svg" alt=""
+                              class="trustmark-image smaller"></div>
+                    <div class="payment-trustmark-wrap"><img
+                              src="/landing-page-files/65f1cda7de87d6943da9fac7_mc_symbol.svg" alt=""
+                              class="trustmark-image"></div>
+                    <div class="payment-trustmark-wrap big-trustmark"><img
+                              src="/landing-page-files/65f1cda7de87d6943da9fac9_download.svg" width="47" alt=""
+                              class="trustmark-image big"></div>
                </div>
           </div>
      </div>
-     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=65f1cda7de87d6943da9f97c" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=65f1cda7de87d6943da9f97c"
+          type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+          crossorigin="anonymous"></script>
      <script src="/landing-page-files/webflow.e1003040c.js" type="text/javascript"></script>
      <style>
           body {
@@ -12785,177 +12967,252 @@ also rich-text.less has its own sprite-sheet */
                     }
                </style>
                <div class="wf-81ocvw" data-wf-size-context="large" style="display: contents;">
-                    <div style="color: rgb(64, 64, 64); font-family: Inter, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, sans-serif; font-size: 14px; line-height: 16px; text-align: left;">
-                         <div style="position: absolute; top: 0px; left: 0px; width: 100%; z-index: 2147483547;"></div><svg xmlns="http://www.w3.org/2000/svg" style="position: absolute; width: 0px; height: 0px; overflow: hidden;">
-                              <defs><svg id="page-icon" xmlns="http://www.w3.org/2000/svg" viewBox="-2 0 13 16" width="15" height="16">
+                    <div
+                         style="color: rgb(64, 64, 64); font-family: Inter, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, sans-serif; font-size: 14px; line-height: 16px; text-align: left;">
+                         <div style="position: absolute; top: 0px; left: 0px; width: 100%; z-index: 2147483547;"></div>
+                         <svg xmlns="http://www.w3.org/2000/svg"
+                              style="position: absolute; width: 0px; height: 0px; overflow: hidden;">
+                              <defs><svg id="page-icon" xmlns="http://www.w3.org/2000/svg" viewBox="-2 0 13 16"
+                                        width="15" height="16">
                                         <path mask="none" fill="currentColor" d="M8 1H1v13h11V5z"></path>
-                                   </svg><svg id="page-draft-icon" xmlns="http://www.w3.org/2000/svg" viewBox="-2 0 13 16" width="15" height="16">
+                                   </svg><svg id="page-draft-icon" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="-2 0 13 16" width="15" height="16">
                                         <mask id="page-draft-icon-draft-badge-mask">
                                              <rect fill="white" x="0" y="0" width="100%" height="100%"></rect>
-                                             <path transform="translate(-5, 6)" fill="#000" d="M12.5459415,5.18198052 L6.90879015,10.8191319 L0.544829121,12.9404523 L2.66614946,6.57649122 L8.30330086,0.939339828 C9.27961159,-0.0369709012 10.862524,-0.0369709012 11.8388348,0.939339828 L12.5459415,1.64644661 C13.5222523,2.62275734 13.5222523,4.20566979 12.5459415,5.18198052 Z">
+                                             <path transform="translate(-5, 6)" fill="#000"
+                                                  d="M12.5459415,5.18198052 L6.90879015,10.8191319 L0.544829121,12.9404523 L2.66614946,6.57649122 L8.30330086,0.939339828 C9.27961159,-0.0369709012 10.862524,-0.0369709012 11.8388348,0.939339828 L12.5459415,1.64644661 C13.5222523,2.62275734 13.5222523,4.20566979 12.5459415,5.18198052 Z">
                                              </path>
                                         </mask>
-                                        <path mask="url(#page-draft-icon-draft-badge-mask)" fill="currentColor" d="M8 1H1v13h11V5z"></path>
+                                        <path mask="url(#page-draft-icon-draft-badge-mask)" fill="currentColor"
+                                             d="M8 1H1v13h11V5z"></path>
                                         <g transform="translate(-5, 6)">
-                                             <path fill="#F67E28" fill-rule="evenodd" d="M7.94974747,4.12132034 L9.36396103,5.53553391 L5.82842712,9.07106781 L3.70710678,9.77817459 L4.41421356,7.65685425 L7.94974747,4.12132034 Z M10.4246212,2.35355339 L11.131728,3.06066017 C11.3269901,3.25592232 11.3269901,3.57250481 11.131728,3.76776695 L10.0710678,4.82842712 L8.65685425,3.41421356 L9.71751442,2.35355339 C9.91277657,2.15829124 10.2293591,2.15829124 10.4246212,2.35355339 Z">
+                                             <path fill="#F67E28" fill-rule="evenodd"
+                                                  d="M7.94974747,4.12132034 L9.36396103,5.53553391 L5.82842712,9.07106781 L3.70710678,9.77817459 L4.41421356,7.65685425 L7.94974747,4.12132034 Z M10.4246212,2.35355339 L11.131728,3.06066017 C11.3269901,3.25592232 11.3269901,3.57250481 11.131728,3.76776695 L10.0710678,4.82842712 L8.65685425,3.41421356 L9.71751442,2.35355339 C9.91277657,2.15829124 10.2293591,2.15829124 10.4246212,2.35355339 Z">
                                              </path>
                                         </g>
-                                   </svg><svg id="page-protected-icon" xmlns="http://www.w3.org/2000/svg" viewBox="-2 0 13 16" width="15" height="16">
+                                   </svg><svg id="page-protected-icon" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="-2 0 13 16" width="15" height="16">
                                         <mask id="page-protected-icon-lock-badge-mask">
                                              <rect fill="white" x="0" y="0" width="100%" height="100%"></rect>
-                                             <path transform="translate(-3, 4)" fill="black" d="M10 5v8H0V5a5 5 0 0 1 10 0z"></path>
+                                             <path transform="translate(-3, 4)" fill="black"
+                                                  d="M10 5v8H0V5a5 5 0 0 1 10 0z"></path>
                                         </mask>
-                                        <path mask="url(#page-protected-icon-lock-badge-mask)" fill="currentColor" d="M8 1H1v13h11V5z"></path>
+                                        <path mask="url(#page-protected-icon-lock-badge-mask)" fill="currentColor"
+                                             d="M8 1H1v13h11V5z"></path>
                                         <g transform="translate(-3, 4)">
                                              <path fill="#E6BE49" d="M2 7h6v4H2z"></path>
-                                             <path fill="#D6D6D6" d="M8 6V5a3 3 0 0 0-6 0v1h1.1V5a1.9 1.9 0 0 1 3.8 0v1H8z"></path>
+                                             <path fill="#D6D6D6"
+                                                  d="M8 6V5a3 3 0 0 0-6 0v1h1.1V5a1.9 1.9 0 0 1 3.8 0v1H8z"></path>
                                         </g>
-                                   </svg><svg id="page-ancestor-protected-icon" xmlns="http://www.w3.org/2000/svg" viewBox="-2 0 13 16" width="15" height="16">
+                                   </svg><svg id="page-ancestor-protected-icon" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="-2 0 13 16" width="15" height="16">
                                         <mask id="page-ancestor-protected-icon-lock-badge-mask">
                                              <rect fill="white" x="0" y="0" width="100%" height="100%"></rect>
-                                             <path transform="translate(-3, 4)" fill="black" d="M10 5v8H0V5a5 5 0 0 1 10 0z"></path>
+                                             <path transform="translate(-3, 4)" fill="black"
+                                                  d="M10 5v8H0V5a5 5 0 0 1 10 0z"></path>
                                         </mask>
-                                        <path mask="url(#page-ancestor-protected-icon-lock-badge-mask)" fill="currentColor" d="M8 1H1v13h11V5z">
+                                        <path mask="url(#page-ancestor-protected-icon-lock-badge-mask)"
+                                             fill="currentColor" d="M8 1H1v13h11V5z">
                                         </path>
                                         <g transform="translate(-3, 4)">
                                              <path fill="currentColor" d="M2 7h6v4H2z"></path>
-                                             <path fill="currentColor" d="M8 6V5a3 3 0 0 0-6 0v1h1.1V5a1.9 1.9 0 0 1 3.8 0v1H8z"></path>
+                                             <path fill="currentColor"
+                                                  d="M8 6V5a3 3 0 0 0-6 0v1h1.1V5a1.9 1.9 0 0 1 3.8 0v1H8z"></path>
                                         </g>
-                                   </svg><svg id="page-members-only-icon" xmlns="http://www.w3.org/2000/svg" viewBox="-2 0 13 16" width="15" height="16">
+                                   </svg><svg id="page-members-only-icon" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="-2 0 13 16" width="15" height="16">
                                         <mask id="page-members-only-icon-member-badge-mask">
                                              <rect fill="white" x="0" y="0" width="100%" height="100%"></rect>
-                                             <path transform="translate(-3, 4)" fill-rule="evenodd" clip-rule="evenodd" d="M0 10V13H11V10C11 8.68166 10.3622 7.51228 9.37837 6.78357C9.77337 6.11415 10 5.33354 10 4.5C10 2.01472 7.98528 0 5.5 0C3.01472 0 1 2.01472 1 4.5C1 5.33354 1.22663 6.11415 1.62163 6.78357C0.637782 7.51228 0 8.68166 0 10Z" fill="black"></path>
+                                             <path transform="translate(-3, 4)" fill-rule="evenodd" clip-rule="evenodd"
+                                                  d="M0 10V13H11V10C11 8.68166 10.3622 7.51228 9.37837 6.78357C9.77337 6.11415 10 5.33354 10 4.5C10 2.01472 7.98528 0 5.5 0C3.01472 0 1 2.01472 1 4.5C1 5.33354 1.22663 6.11415 1.62163 6.78357C0.637782 7.51228 0 8.68166 0 10Z"
+                                                  fill="black"></path>
                                         </mask>
-                                        <path mask="url(#page-members-only-icon-member-badge-mask)" fill="currentColor" d="M8 1H1v13h11V5z">
+                                        <path mask="url(#page-members-only-icon-member-badge-mask)" fill="currentColor"
+                                             d="M8 1H1v13h11V5z">
                                         </path>
                                         <g fill="#5ea6f7" transform="translate(-1, 6)">
-                                             <path d="m3.5 5c1.38071 0 2.5-1.11929 2.5-2.5s-1.11929-2.5-2.5-2.5-2.5 1.11929-2.5 2.5 1.11929 2.5 2.5 2.5z">
+                                             <path
+                                                  d="m3.5 5c1.38071 0 2.5-1.11929 2.5-2.5s-1.11929-2.5-2.5-2.5-2.5 1.11929-2.5 2.5 1.11929 2.5 2.5 2.5z">
                                              </path>
-                                             <path d="m2 6c-1.104569 0-2 .89543-2 2v1h7v-1c0-1.10457-.89543-2-2-2z"></path>
+                                             <path d="m2 6c-1.104569 0-2 .89543-2 2v1h7v-1c0-1.10457-.89543-2-2-2z">
+                                             </path>
                                         </g>
-                                   </svg><svg id="page-ancestor-members-only-icon" xmlns="http://www.w3.org/2000/svg" viewBox="-2 0 13 16" width="15" height="16">
+                                   </svg><svg id="page-ancestor-members-only-icon" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="-2 0 13 16" width="15" height="16">
                                         <mask id="page-ancestor-members-only-icon-member-badge-mask">
                                              <rect fill="white" x="0" y="0" width="100%" height="100%"></rect>
-                                             <path transform="translate(-3, 4)" fill-rule="evenodd" clip-rule="evenodd" d="M0 10V13H11V10C11 8.68166 10.3622 7.51228 9.37837 6.78357C9.77337 6.11415 10 5.33354 10 4.5C10 2.01472 7.98528 0 5.5 0C3.01472 0 1 2.01472 1 4.5C1 5.33354 1.22663 6.11415 1.62163 6.78357C0.637782 7.51228 0 8.68166 0 10Z" fill="black"></path>
+                                             <path transform="translate(-3, 4)" fill-rule="evenodd" clip-rule="evenodd"
+                                                  d="M0 10V13H11V10C11 8.68166 10.3622 7.51228 9.37837 6.78357C9.77337 6.11415 10 5.33354 10 4.5C10 2.01472 7.98528 0 5.5 0C3.01472 0 1 2.01472 1 4.5C1 5.33354 1.22663 6.11415 1.62163 6.78357C0.637782 7.51228 0 8.68166 0 10Z"
+                                                  fill="black"></path>
                                         </mask>
-                                        <path mask="url(#page-ancestor-members-only-icon-member-badge-mask)" fill="currentColor" d="M8 1H1v13h11V5z"></path>
+                                        <path mask="url(#page-ancestor-members-only-icon-member-badge-mask)"
+                                             fill="currentColor" d="M8 1H1v13h11V5z"></path>
                                         <g fill="currentColor" transform="translate(-1, 6)">
-                                             <path d="m3.5 5c1.38071 0 2.5-1.11929 2.5-2.5s-1.11929-2.5-2.5-2.5-2.5 1.11929-2.5 2.5 1.11929 2.5 2.5 2.5z">
+                                             <path
+                                                  d="m3.5 5c1.38071 0 2.5-1.11929 2.5-2.5s-1.11929-2.5-2.5-2.5-2.5 1.11929-2.5 2.5 1.11929 2.5 2.5 2.5z">
                                              </path>
-                                             <path d="m2 6c-1.104569 0-2 .89543-2 2v1h7v-1c0-1.10457-.89543-2-2-2z"></path>
+                                             <path d="m2 6c-1.104569 0-2 .89543-2 2v1h7v-1c0-1.10457-.89543-2-2-2z">
+                                             </path>
                                         </g>
-                                   </svg><svg id="folder-icon" xmlns="http://www.w3.org/2000/svg" viewBox="-2 0 15 16" width="17" height="16">
-                                        <path mask="none" fill="currentColor" d="M9.498 3c-.132.17-.29.37-.487.6-.48.56-1.114 1.24-1.845 1.752-.493.333-1.034.635-1.747.648H1v7h13V3H9.498zm-3.537.75a6.3 6.3 0 0 0 .948-.81c.184-.187.354-.377.513-.56L6.125 1H1v3h4.416c.016.01.255-.05.545-.25z">
+                                   </svg><svg id="folder-icon" xmlns="http://www.w3.org/2000/svg" viewBox="-2 0 15 16"
+                                        width="17" height="16">
+                                        <path mask="none" fill="currentColor"
+                                             d="M9.498 3c-.132.17-.29.37-.487.6-.48.56-1.114 1.24-1.845 1.752-.493.333-1.034.635-1.747.648H1v7h13V3H9.498zm-3.537.75a6.3 6.3 0 0 0 .948-.81c.184-.187.354-.377.513-.56L6.125 1H1v3h4.416c.016.01.255-.05.545-.25z">
                                         </path>
-                                   </svg><svg id="folder-protected-icon" xmlns="http://www.w3.org/2000/svg" viewBox="-2 0 15 16" width="17" height="16">
+                                   </svg><svg id="folder-protected-icon" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="-2 0 15 16" width="17" height="16">
                                         <mask id="folder-protected-icon-lock-badge-mask">
                                              <rect fill="white" x="0" y="0" width="100%" height="100%"></rect>
-                                             <path transform="translate(-3, 4)" fill="black" d="M10 5v8H0V5a5 5 0 0 1 10 0z"></path>
+                                             <path transform="translate(-3, 4)" fill="black"
+                                                  d="M10 5v8H0V5a5 5 0 0 1 10 0z"></path>
                                         </mask>
-                                        <path mask="url(#folder-protected-icon-lock-badge-mask)" fill="currentColor" d="M9.498 3c-.132.17-.29.37-.487.6-.48.56-1.114 1.24-1.845 1.752-.493.333-1.034.635-1.747.648H1v7h13V3H9.498zm-3.537.75a6.3 6.3 0 0 0 .948-.81c.184-.187.354-.377.513-.56L6.125 1H1v3h4.416c.016.01.255-.05.545-.25z">
+                                        <path mask="url(#folder-protected-icon-lock-badge-mask)" fill="currentColor"
+                                             d="M9.498 3c-.132.17-.29.37-.487.6-.48.56-1.114 1.24-1.845 1.752-.493.333-1.034.635-1.747.648H1v7h13V3H9.498zm-3.537.75a6.3 6.3 0 0 0 .948-.81c.184-.187.354-.377.513-.56L6.125 1H1v3h4.416c.016.01.255-.05.545-.25z">
                                         </path>
                                         <g transform="translate(-3, 4)">
                                              <path fill="#E6BE49" d="M2 7h6v4H2z"></path>
-                                             <path fill="#D6D6D6" d="M8 6V5a3 3 0 0 0-6 0v1h1.1V5a1.9 1.9 0 0 1 3.8 0v1H8z"></path>
+                                             <path fill="#D6D6D6"
+                                                  d="M8 6V5a3 3 0 0 0-6 0v1h1.1V5a1.9 1.9 0 0 1 3.8 0v1H8z"></path>
                                         </g>
-                                   </svg><svg id="folder-ancestor-protected-icon" xmlns="http://www.w3.org/2000/svg" viewBox="-2 0 15 16" width="17" height="16">
+                                   </svg><svg id="folder-ancestor-protected-icon" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="-2 0 15 16" width="17" height="16">
                                         <mask id="folder-ancestor-protected-icon-lock-badge-mask">
                                              <rect fill="white" x="0" y="0" width="100%" height="100%"></rect>
-                                             <path transform="translate(-3, 4)" fill="black" d="M10 5v8H0V5a5 5 0 0 1 10 0z"></path>
+                                             <path transform="translate(-3, 4)" fill="black"
+                                                  d="M10 5v8H0V5a5 5 0 0 1 10 0z"></path>
                                         </mask>
-                                        <path mask="url(#folder-ancestor-protected-icon-lock-badge-mask)" fill="currentColor" d="M9.498 3c-.132.17-.29.37-.487.6-.48.56-1.114 1.24-1.845 1.752-.493.333-1.034.635-1.747.648H1v7h13V3H9.498zm-3.537.75a6.3 6.3 0 0 0 .948-.81c.184-.187.354-.377.513-.56L6.125 1H1v3h4.416c.016.01.255-.05.545-.25z">
+                                        <path mask="url(#folder-ancestor-protected-icon-lock-badge-mask)"
+                                             fill="currentColor"
+                                             d="M9.498 3c-.132.17-.29.37-.487.6-.48.56-1.114 1.24-1.845 1.752-.493.333-1.034.635-1.747.648H1v7h13V3H9.498zm-3.537.75a6.3 6.3 0 0 0 .948-.81c.184-.187.354-.377.513-.56L6.125 1H1v3h4.416c.016.01.255-.05.545-.25z">
                                         </path>
                                         <g transform="translate(-3, 4)">
                                              <path fill="currentColor" d="M2 7h6v4H2z"></path>
-                                             <path fill="currentColor" d="M8 6V5a3 3 0 0 0-6 0v1h1.1V5a1.9 1.9 0 0 1 3.8 0v1H8z"></path>
+                                             <path fill="currentColor"
+                                                  d="M8 6V5a3 3 0 0 0-6 0v1h1.1V5a1.9 1.9 0 0 1 3.8 0v1H8z"></path>
                                         </g>
-                                   </svg><svg id="folder-members-only-icon" xmlns="http://www.w3.org/2000/svg" viewBox="-2 0 15 16" width="17" height="16">
+                                   </svg><svg id="folder-members-only-icon" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="-2 0 15 16" width="17" height="16">
                                         <mask id="folder-members-only-icon-member-badge-mask">
                                              <rect fill="white" x="0" y="0" width="100%" height="100%"></rect>
-                                             <path transform="translate(-3, 4)" fill-rule="evenodd" clip-rule="evenodd" d="M0 10V13H11V10C11 8.68166 10.3622 7.51228 9.37837 6.78357C9.77337 6.11415 10 5.33354 10 4.5C10 2.01472 7.98528 0 5.5 0C3.01472 0 1 2.01472 1 4.5C1 5.33354 1.22663 6.11415 1.62163 6.78357C0.637782 7.51228 0 8.68166 0 10Z" fill="black"></path>
+                                             <path transform="translate(-3, 4)" fill-rule="evenodd" clip-rule="evenodd"
+                                                  d="M0 10V13H11V10C11 8.68166 10.3622 7.51228 9.37837 6.78357C9.77337 6.11415 10 5.33354 10 4.5C10 2.01472 7.98528 0 5.5 0C3.01472 0 1 2.01472 1 4.5C1 5.33354 1.22663 6.11415 1.62163 6.78357C0.637782 7.51228 0 8.68166 0 10Z"
+                                                  fill="black"></path>
                                         </mask>
-                                        <path mask="url(#folder-members-only-icon-member-badge-mask)" fill="currentColor" d="M9.498 3c-.132.17-.29.37-.487.6-.48.56-1.114 1.24-1.845 1.752-.493.333-1.034.635-1.747.648H1v7h13V3H9.498zm-3.537.75a6.3 6.3 0 0 0 .948-.81c.184-.187.354-.377.513-.56L6.125 1H1v3h4.416c.016.01.255-.05.545-.25z">
+                                        <path mask="url(#folder-members-only-icon-member-badge-mask)"
+                                             fill="currentColor"
+                                             d="M9.498 3c-.132.17-.29.37-.487.6-.48.56-1.114 1.24-1.845 1.752-.493.333-1.034.635-1.747.648H1v7h13V3H9.498zm-3.537.75a6.3 6.3 0 0 0 .948-.81c.184-.187.354-.377.513-.56L6.125 1H1v3h4.416c.016.01.255-.05.545-.25z">
                                         </path>
                                         <g fill="#5ea6f7" transform="translate(-1, 6)">
-                                             <path d="m3.5 5c1.38071 0 2.5-1.11929 2.5-2.5s-1.11929-2.5-2.5-2.5-2.5 1.11929-2.5 2.5 1.11929 2.5 2.5 2.5z">
+                                             <path
+                                                  d="m3.5 5c1.38071 0 2.5-1.11929 2.5-2.5s-1.11929-2.5-2.5-2.5-2.5 1.11929-2.5 2.5 1.11929 2.5 2.5 2.5z">
                                              </path>
-                                             <path d="m2 6c-1.104569 0-2 .89543-2 2v1h7v-1c0-1.10457-.89543-2-2-2z"></path>
+                                             <path d="m2 6c-1.104569 0-2 .89543-2 2v1h7v-1c0-1.10457-.89543-2-2-2z">
+                                             </path>
                                         </g>
-                                   </svg><svg id="folder-ancestor-members-only-icon" xmlns="http://www.w3.org/2000/svg" viewBox="-2 0 15 16" width="17" height="16">
+                                   </svg><svg id="folder-ancestor-members-only-icon" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="-2 0 15 16" width="17" height="16">
                                         <mask id="folder-ancestor-members-only-icon-member-badge-mask">
                                              <rect fill="white" x="0" y="0" width="100%" height="100%"></rect>
-                                             <path transform="translate(-3, 4)" fill-rule="evenodd" clip-rule="evenodd" d="M0 10V13H11V10C11 8.68166 10.3622 7.51228 9.37837 6.78357C9.77337 6.11415 10 5.33354 10 4.5C10 2.01472 7.98528 0 5.5 0C3.01472 0 1 2.01472 1 4.5C1 5.33354 1.22663 6.11415 1.62163 6.78357C0.637782 7.51228 0 8.68166 0 10Z" fill="black"></path>
+                                             <path transform="translate(-3, 4)" fill-rule="evenodd" clip-rule="evenodd"
+                                                  d="M0 10V13H11V10C11 8.68166 10.3622 7.51228 9.37837 6.78357C9.77337 6.11415 10 5.33354 10 4.5C10 2.01472 7.98528 0 5.5 0C3.01472 0 1 2.01472 1 4.5C1 5.33354 1.22663 6.11415 1.62163 6.78357C0.637782 7.51228 0 8.68166 0 10Z"
+                                                  fill="black"></path>
                                         </mask>
-                                        <path mask="url(#folder-ancestor-members-only-icon-member-badge-mask)" fill="currentColor" d="M9.498 3c-.132.17-.29.37-.487.6-.48.56-1.114 1.24-1.845 1.752-.493.333-1.034.635-1.747.648H1v7h13V3H9.498zm-3.537.75a6.3 6.3 0 0 0 .948-.81c.184-.187.354-.377.513-.56L6.125 1H1v3h4.416c.016.01.255-.05.545-.25z">
+                                        <path mask="url(#folder-ancestor-members-only-icon-member-badge-mask)"
+                                             fill="currentColor"
+                                             d="M9.498 3c-.132.17-.29.37-.487.6-.48.56-1.114 1.24-1.845 1.752-.493.333-1.034.635-1.747.648H1v7h13V3H9.498zm-3.537.75a6.3 6.3 0 0 0 .948-.81c.184-.187.354-.377.513-.56L6.125 1H1v3h4.416c.016.01.255-.05.545-.25z">
                                         </path>
                                         <g fill="currentColor" transform="translate(-1, 6)">
-                                             <path d="m3.5 5c1.38071 0 2.5-1.11929 2.5-2.5s-1.11929-2.5-2.5-2.5-2.5 1.11929-2.5 2.5 1.11929 2.5 2.5 2.5z">
+                                             <path
+                                                  d="m3.5 5c1.38071 0 2.5-1.11929 2.5-2.5s-1.11929-2.5-2.5-2.5-2.5 1.11929-2.5 2.5 1.11929 2.5 2.5 2.5z">
                                              </path>
-                                             <path d="m2 6c-1.104569 0-2 .89543-2 2v1h7v-1c0-1.10457-.89543-2-2-2z"></path>
+                                             <path d="m2 6c-1.104569 0-2 .89543-2 2v1h7v-1c0-1.10457-.89543-2-2-2z">
+                                             </path>
                                         </g>
-                                   </svg><svg id="folder-open-icon" xmlns="http://www.w3.org/2000/svg" viewBox="-2 0 15 16" width="17" height="16">
+                                   </svg><svg id="folder-open-icon" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="-2 0 15 16" width="17" height="16">
                                         <g mask="none">
-                                             <path fill="currentColor" d="M5.26 3l1.28 1.368.594.632H12v6H3V3h2.26m.865-2H1v12h13V3H8L6.125 1z">
+                                             <path fill="currentColor"
+                                                  d="M5.26 3l1.28 1.368.594.632H12v6H3V3h2.26m.865-2H1v12h13V3H8L6.125 1z">
                                              </path>
                                              <path fill="currentColor" d="M1 7v6h13V9H8L6.125 7z"></path>
                                         </g>
-                                   </svg><svg id="folder-open-protected-icon" xmlns="http://www.w3.org/2000/svg" viewBox="-2 0 15 16" width="17" height="16">
+                                   </svg><svg id="folder-open-protected-icon" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="-2 0 15 16" width="17" height="16">
                                         <mask id="folder-open-protected-icon-lock-badge-mask">
                                              <rect fill="white" x="0" y="0" width="100%" height="100%"></rect>
-                                             <path transform="translate(-3, 4)" fill="black" d="M10 5v8H0V5a5 5 0 0 1 10 0z"></path>
+                                             <path transform="translate(-3, 4)" fill="black"
+                                                  d="M10 5v8H0V5a5 5 0 0 1 10 0z"></path>
                                         </mask>
                                         <g mask="url(#folder-open-protected-icon-lock-badge-mask)">
-                                             <path fill="currentColor" d="M5.26 3l1.28 1.368.594.632H12v6H3V3h2.26m.865-2H1v12h13V3H8L6.125 1z">
+                                             <path fill="currentColor"
+                                                  d="M5.26 3l1.28 1.368.594.632H12v6H3V3h2.26m.865-2H1v12h13V3H8L6.125 1z">
                                              </path>
                                              <path fill="currentColor" d="M1 7v6h13V9H8L6.125 7z"></path>
                                         </g>
                                         <g transform="translate(-3, 4)">
                                              <path fill="#E6BE49" d="M2 7h6v4H2z"></path>
-                                             <path fill="#D6D6D6" d="M8 6V5a3 3 0 0 0-6 0v1h1.1V5a1.9 1.9 0 0 1 3.8 0v1H8z"></path>
+                                             <path fill="#D6D6D6"
+                                                  d="M8 6V5a3 3 0 0 0-6 0v1h1.1V5a1.9 1.9 0 0 1 3.8 0v1H8z"></path>
                                         </g>
-                                   </svg><svg id="folder-open-ancestor-protected-icon" xmlns="http://www.w3.org/2000/svg" viewBox="-2 0 15 16" width="17" height="16">
+                                   </svg><svg id="folder-open-ancestor-protected-icon"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="-2 0 15 16" width="17" height="16">
                                         <mask id="folder-open-ancestor-protected-icon-lock-badge-mask">
                                              <rect fill="white" x="0" y="0" width="100%" height="100%"></rect>
-                                             <path transform="translate(-3, 4)" fill="black" d="M10 5v8H0V5a5 5 0 0 1 10 0z"></path>
+                                             <path transform="translate(-3, 4)" fill="black"
+                                                  d="M10 5v8H0V5a5 5 0 0 1 10 0z"></path>
                                         </mask>
                                         <g mask="url(#folder-open-ancestor-protected-icon-lock-badge-mask)">
-                                             <path fill="currentColor" d="M5.26 3l1.28 1.368.594.632H12v6H3V3h2.26m.865-2H1v12h13V3H8L6.125 1z">
+                                             <path fill="currentColor"
+                                                  d="M5.26 3l1.28 1.368.594.632H12v6H3V3h2.26m.865-2H1v12h13V3H8L6.125 1z">
                                              </path>
                                              <path fill="currentColor" d="M1 7v6h13V9H8L6.125 7z"></path>
                                         </g>
                                         <g transform="translate(-3, 4)">
                                              <path fill="currentColor" d="M2 7h6v4H2z"></path>
-                                             <path fill="currentColor" d="M8 6V5a3 3 0 0 0-6 0v1h1.1V5a1.9 1.9 0 0 1 3.8 0v1H8z"></path>
+                                             <path fill="currentColor"
+                                                  d="M8 6V5a3 3 0 0 0-6 0v1h1.1V5a1.9 1.9 0 0 1 3.8 0v1H8z"></path>
                                         </g>
-                                   </svg><svg id="folder-open-members-only-icon" xmlns="http://www.w3.org/2000/svg" viewBox="-2 0 15 16" width="17" height="16">
+                                   </svg><svg id="folder-open-members-only-icon" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="-2 0 15 16" width="17" height="16">
                                         <mask id="folder-open-members-only-icon-member-badge-mask">
                                              <rect fill="white" x="0" y="0" width="100%" height="100%"></rect>
-                                             <path transform="translate(-3, 4)" fill-rule="evenodd" clip-rule="evenodd" d="M0 10V13H11V10C11 8.68166 10.3622 7.51228 9.37837 6.78357C9.77337 6.11415 10 5.33354 10 4.5C10 2.01472 7.98528 0 5.5 0C3.01472 0 1 2.01472 1 4.5C1 5.33354 1.22663 6.11415 1.62163 6.78357C0.637782 7.51228 0 8.68166 0 10Z" fill="black"></path>
+                                             <path transform="translate(-3, 4)" fill-rule="evenodd" clip-rule="evenodd"
+                                                  d="M0 10V13H11V10C11 8.68166 10.3622 7.51228 9.37837 6.78357C9.77337 6.11415 10 5.33354 10 4.5C10 2.01472 7.98528 0 5.5 0C3.01472 0 1 2.01472 1 4.5C1 5.33354 1.22663 6.11415 1.62163 6.78357C0.637782 7.51228 0 8.68166 0 10Z"
+                                                  fill="black"></path>
                                         </mask>
                                         <g mask="url(#folder-open-members-only-icon-member-badge-mask)">
-                                             <path fill="currentColor" d="M5.26 3l1.28 1.368.594.632H12v6H3V3h2.26m.865-2H1v12h13V3H8L6.125 1z">
+                                             <path fill="currentColor"
+                                                  d="M5.26 3l1.28 1.368.594.632H12v6H3V3h2.26m.865-2H1v12h13V3H8L6.125 1z">
                                              </path>
                                              <path fill="currentColor" d="M1 7v6h13V9H8L6.125 7z"></path>
                                         </g>
                                         <g fill="#5ea6f7" transform="translate(-1, 6)">
-                                             <path d="m3.5 5c1.38071 0 2.5-1.11929 2.5-2.5s-1.11929-2.5-2.5-2.5-2.5 1.11929-2.5 2.5 1.11929 2.5 2.5 2.5z">
+                                             <path
+                                                  d="m3.5 5c1.38071 0 2.5-1.11929 2.5-2.5s-1.11929-2.5-2.5-2.5-2.5 1.11929-2.5 2.5 1.11929 2.5 2.5 2.5z">
                                              </path>
-                                             <path d="m2 6c-1.104569 0-2 .89543-2 2v1h7v-1c0-1.10457-.89543-2-2-2z"></path>
+                                             <path d="m2 6c-1.104569 0-2 .89543-2 2v1h7v-1c0-1.10457-.89543-2-2-2z">
+                                             </path>
                                         </g>
-                                   </svg><svg id="folder-open-ancestor-members-only-icon" xmlns="http://www.w3.org/2000/svg" viewBox="-2 0 15 16" width="17" height="16">
+                                   </svg><svg id="folder-open-ancestor-members-only-icon"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="-2 0 15 16" width="17" height="16">
                                         <mask id="folder-open-ancestor-members-only-icon-member-badge-mask">
                                              <rect fill="white" x="0" y="0" width="100%" height="100%"></rect>
-                                             <path transform="translate(-3, 4)" fill-rule="evenodd" clip-rule="evenodd" d="M0 10V13H11V10C11 8.68166 10.3622 7.51228 9.37837 6.78357C9.77337 6.11415 10 5.33354 10 4.5C10 2.01472 7.98528 0 5.5 0C3.01472 0 1 2.01472 1 4.5C1 5.33354 1.22663 6.11415 1.62163 6.78357C0.637782 7.51228 0 8.68166 0 10Z" fill="black"></path>
+                                             <path transform="translate(-3, 4)" fill-rule="evenodd" clip-rule="evenodd"
+                                                  d="M0 10V13H11V10C11 8.68166 10.3622 7.51228 9.37837 6.78357C9.77337 6.11415 10 5.33354 10 4.5C10 2.01472 7.98528 0 5.5 0C3.01472 0 1 2.01472 1 4.5C1 5.33354 1.22663 6.11415 1.62163 6.78357C0.637782 7.51228 0 8.68166 0 10Z"
+                                                  fill="black"></path>
                                         </mask>
                                         <g mask="url(#folder-open-ancestor-members-only-icon-member-badge-mask)">
-                                             <path fill="currentColor" d="M5.26 3l1.28 1.368.594.632H12v6H3V3h2.26m.865-2H1v12h13V3H8L6.125 1z">
+                                             <path fill="currentColor"
+                                                  d="M5.26 3l1.28 1.368.594.632H12v6H3V3h2.26m.865-2H1v12h13V3H8L6.125 1z">
                                              </path>
                                              <path fill="currentColor" d="M1 7v6h13V9H8L6.125 7z"></path>
                                         </g>
                                         <g fill="currentColor" transform="translate(-1, 6)">
-                                             <path d="m3.5 5c1.38071 0 2.5-1.11929 2.5-2.5s-1.11929-2.5-2.5-2.5-2.5 1.11929-2.5 2.5 1.11929 2.5 2.5 2.5z">
+                                             <path
+                                                  d="m3.5 5c1.38071 0 2.5-1.11929 2.5-2.5s-1.11929-2.5-2.5-2.5-2.5 1.11929-2.5 2.5 1.11929 2.5 2.5 2.5z">
                                              </path>
-                                             <path d="m2 6c-1.104569 0-2 .89543-2 2v1h7v-1c0-1.10457-.89543-2-2-2z"></path>
+                                             <path d="m2 6c-1.104569 0-2 .89543-2 2v1h7v-1c0-1.10457-.89543-2-2-2z">
+                                             </path>
                                         </g>
                                    </svg></defs>
                          </svg>
@@ -12965,7 +13222,8 @@ also rich-text.less has its own sprite-sheet */
                               }
                          </style>
                          <div class="wf-81ocvw" data-wf-size-context="large" style="display: contents;"></div>
-                         <div class="w-editor-bem-EditorApp w-editor-bem-EditorApp-login w-editor-bem-EditorApp-minimized">
+                         <div
+                              class="w-editor-bem-EditorApp w-editor-bem-EditorApp-login w-editor-bem-EditorApp-minimized">
                               <div class="w-reset w-editor-bem-EditorApp_Main" style="z-index: 2147483547;">
                                    <style>
                                         * {
@@ -12980,13 +13238,24 @@ also rich-text.less has its own sprite-sheet */
                                    </div>
                                    <div class="w-reset w-editor-bem-EditorBlocker">
                                         <div class="w-reset w-editor-bem-EditorBlocker_Positioner">
-                                             <div class="w-reset w-editor-bem-EditorBlocker_Button w-editor-scrollbar-offset"><i class="w-reset w-editor-bem-Icon  w-editor-icon-undefined w-editor-undefined" style="bottom: 1px;"></i><span class="w-reset w-editor-bem-Text ">Back to Live Site</span></div>
+                                             <div
+                                                  class="w-reset w-editor-bem-EditorBlocker_Button w-editor-scrollbar-offset">
+                                                  <i class="w-reset w-editor-bem-Icon  w-editor-icon-undefined w-editor-undefined"
+                                                       style="bottom: 1px;"></i><span
+                                                       class="w-reset w-editor-bem-Text ">Back to Live Site</span>
+                                             </div>
                                         </div>
                                    </div>
-                                   <div class="w-reset w-editor-bem-EditorApp_Panel" style="display: flex; flex-direction: column;">
+                                   <div class="w-reset w-editor-bem-EditorApp_Panel"
+                                        style="display: flex; flex-direction: column;">
                                         <div class="w-reset w-editor-bem-EditorStartButton">
-                                             <div class="w-reset w-editor-bem-EditorStartButton_Shape" style="transform: translateY(12px); transition: transform 400ms cubic-bezier(0.23, 1, 0.32, 1) 0s;">
-                                             </div><i class="w-reset w-editor-bem-Icon  w-editor-icon-dynamo w-editor-chevron-up w--arrow" style="transform: translateY(0px); transition: opacity 300ms cubic-bezier(0.23, 1, 0.32, 1) 0s, transform 300ms cubic-bezier(0.23, 1, 0.32, 1) 0s; opacity: 0.5;"></i><i class="w-reset w-editor-bem-Icon  w-editor-icon-dynamo w-editor-edit-text w--pencil" style="opacity: 0; transform: translateY(7px); transition: opacity 300ms cubic-bezier(0.23, 1, 0.32, 1) 0s, transform 300ms cubic-bezier(0.23, 1, 0.32, 1) 0s;"></i>
+                                             <div class="w-reset w-editor-bem-EditorStartButton_Shape"
+                                                  style="transform: translateY(12px); transition: transform 400ms cubic-bezier(0.23, 1, 0.32, 1) 0s;">
+                                             </div><i
+                                                  class="w-reset w-editor-bem-Icon  w-editor-icon-dynamo w-editor-chevron-up w--arrow"
+                                                  style="transform: translateY(0px); transition: opacity 300ms cubic-bezier(0.23, 1, 0.32, 1) 0s, transform 300ms cubic-bezier(0.23, 1, 0.32, 1) 0s; opacity: 0.5;"></i><i
+                                                  class="w-reset w-editor-bem-Icon  w-editor-icon-dynamo w-editor-edit-text w--pencil"
+                                                  style="opacity: 0; transform: translateY(7px); transition: opacity 300ms cubic-bezier(0.23, 1, 0.32, 1) 0s, transform 300ms cubic-bezier(0.23, 1, 0.32, 1) 0s;"></i>
                                         </div>
                                    </div>
                                    <div class="w-reset w-editor-bem-EditorApp_Tooltips"></div>
