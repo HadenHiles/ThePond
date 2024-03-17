@@ -12536,8 +12536,15 @@ also rich-text.less has its own sprite-sheet */
           <div class="section features">
                <div class="container features-grid">
                     <div id="w-node-_8d350ed8-e9a4-eb03-1dcf-82faec0a87df-3da9f9f2" class="column feature-headline">
-                         <h2 class="max-800">Your best, most fun hockey is only a click away</h2><a href="#pricingSect"
-                              class="button center w-button">Get Started</a>
+                         <div class="left-content">
+                              <h2 class="max-800">Your best,</br>most fun hockey</br>is only one click away</h2>
+                              <a href="#pricingSect" class="button w-button">Get
+                                   Started</a>
+                         </div>
+                         <div class="right-content">
+                              <img src="/landing-page-files/the-pond-dashboard.png" alt="dashboard desktop screenshot"
+                                   class="dashboard-screenshot-desktop" />
+                         </div>
                     </div>
                     <div id="w-node-_1ac6e14c-5d80-b4fb-1311-8131a2fe412d-a2fe412d" class="column feature-column">
                          <div class="feature-img-and-graident">
@@ -12672,8 +12679,7 @@ also rich-text.less has its own sprite-sheet */
                               ice!</p><a href="#pricingSect" class="button w-button">Sign me up!</a>
                     </div>
                     <div id="w-node-d7b1a011-026b-afea-5499-7750c3a8ba54-3da9f9f2" class="description-image-wrap"><img
-                              src="/landing-page-files/65f202733edd87f83698b919_DSC02249.png" alt=""
-                              class="description-image"></div>
+                              src="/landing-page-files/phone-screenshot.png" alt="" class="description-image"></div>
                </div>
                <div class="description-bg"></div>
           </div>
