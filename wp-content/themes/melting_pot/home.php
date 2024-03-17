@@ -12733,9 +12733,9 @@ also rich-text.less has its own sprite-sheet */
                                    <li>
                                         <div class="pricing-feature">"30 Shots in 30 Days" course</div>
                                    </li>
-                                   <li>
+                                   <!--<li>
                                         <div class="pricing-feature">"How to play Chippy" course ft. Coach Chippy</div>
-                                   </li>
+                                   </li>-->
                                    <li>
                                         <div class="pricing-feature">Access to all future specialty courses and training
                                              programs</div>
