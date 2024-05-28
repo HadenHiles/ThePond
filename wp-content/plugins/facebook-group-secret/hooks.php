@@ -495,10 +495,6 @@ function facebook_secret_phrase($atts = [], $content = null, $tag = '') {
     if (empty($activeSubscriptions)) {
         header('location: /account/');
     } else {
-        // Don't make user's login with facebook to view their secret code - not worth the hassle
-        // Check for existing facebook id in user meta
-        // $facebookId = get_user_meta($user_id, 'facebook_id', true);
-        // if (!empty($facebookId)) {
         do_action("facebook_group_generate_phrase");
         $phraseRow = fb_group_get_phrase();
 
@@ -626,87 +622,6 @@ function facebook_secret_phrase($atts = [], $content = null, $tag = '') {
             }
         </script>
         <?php
-        // } 
-        // else {
-        //     
-        ?>
-        // <div style="float: left; padding: 23px 0;" class="secret-phrase-wrapper">
-            // <p>To view your secret phrase and join the private <a href="https://www.facebook.com/groups/thepond.howtohockey" target="_blank">Facebook group</a>, please login with your Facebook account.</p>
-            // <a href="" id="facebook-login-btn" class="BTN" style="background: #3b5998;"><i class="fab fa-facebook" style="margin-right: 5px;"></i> Login with Facebook</a>
-            // </div>
-
-        // <script type="text/javascript">
-            //         (function ($) {
-            //             $(document).ready(function () {
-            //                 var a_key = "AIzaSyCoSWim4GptSro0gly6dN8dClVQMcxeCbA";
-            //                 var pid = "the-pond-app";
-            //                 var firebaseConfig = {
-            //                     apiKey: a_key,
-            //                     authDomain: pid + '.firebaseapp.com',
-            //                     databaseURL: 'https://' + pid + '.firebaseio.com',
-            //                     projectId: pid,
-            //                     storageBucket: ''
-            //                 };
-
-            //                 // Initialize Firebase
-            //                 if (!firebase.apps.length) {
-            //                     firebase.initializeApp(firebaseConfig);
-            //                     var auth = firebase.auth();
-            //                     var provider = new firebase.auth.FacebookAuthProvider();
-            //                     provider.setCustomParameters({
-            //                         'display': 'popup'
-            //                     });
-
-            //                     $('#facebook-login-btn').click((e) => {
-            //                         e.preventDefault();
-
-            //                         firebase.auth().signInWithPopup(provider).then(function(result) {
-            //                             // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-            //                             var token = result.credential.accessToken;
-            //                             getFacebookUserId(token);
-            //                         }).catch(function(error) {
-            //                             var token = error.credential.accessToken;
-            //                             getFacebookUserId(token);
-            //                         });
-            //                     });
-
-            //                     function getFacebookUserId(accessToken) {
-            //                         $.ajax({
-            //                             url: `https://graph.facebook.com/me?access_token=` + accessToken, // this will point to admin-ajax.php
-            //                             type: 'GET',
-            //                             success: function(response) {
-            //                                 var id = response.id;
-
-            //                                 $.ajax({
-            //                                     url: "/wp-admin/admin-ajax.php",
-            //                                     type: "POST",
-            //                                     data: {
-            //                                         'action': 'update_user_facebook_id',
-            //                                         'facebook_id': id
-            //                                     },
-            //                                     complete: function () {
-            //                                         window.location.reload();
-            //                                     },
-            //                                     error: function(xhr, status, error) {
-            //                                         console.log(error);
-            //                                     }
-            //                                 })
-            //                             },
-            //                             complete: function() {
-            //                             },
-            //                             error: function(xhr, status, error) {
-            //                                 console.log(error);
-            //                             }
-            //                         });
-            //                     }
-            //                 }
-            //             });
-            //         })(jQuery);
-            //     
-        </script>
-        // <?
-            // }
-        }
     }
 
     // Override the Learndash Profile Template so we can display the secret phrase code in the member dashboard
