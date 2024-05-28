@@ -467,7 +467,7 @@ add_action('wp_login', 'init_facebook_id');
 /* Memberpress account navigation tab */
 function mepr_add_facebook_tab($action) {
     $facebookTabOpen = (isset($_GET['action']) && $_GET['action'] == 'facebook') ? 'mepr-active-nav-tab' : '';
-    ?>
+?>
     <span class="mepr-nav-item facebook <?php echo $facebookTabOpen; ?>">
         <a href="/account/?action=facebook">Facebook</a>
     </span>
@@ -495,223 +495,227 @@ function facebook_secret_phrase($atts = [], $content = null, $tag = '') {
     if (empty($activeSubscriptions)) {
         header('location: /account/');
     } else {
+        // Don't make user's login with facebook to view their secret code - not worth the hassle
         // Check for existing facebook id in user meta
-        $facebookId = get_user_meta($user_id, 'facebook_id', true);
-        if (!empty($facebookId)) {
-            do_action("facebook_group_generate_phrase");
-            $phraseRow = fb_group_get_phrase();
+        // $facebookId = get_user_meta($user_id, 'facebook_id', true);
+        // if (!empty($facebookId)) {
+        do_action("facebook_group_generate_phrase");
+        $phraseRow = fb_group_get_phrase();
 
-            ?>
-            <div>
-                <form action="" method="post" id="secret-phrase-form">
-                    <div style="float: left; width: 300px; max-width: 100%; padding: 0 10px;">
-                        <small>Your Secret Phrase:</small>
-                        <br />
-                        <div class="copy-able-input" style="display: flex; position: relative; padding-right: 40px;">
-                            <input type="text" name="phrase" id="phrase" value="<?= $phraseRow->phrase ?>" readonly />
-                            <a href="" id="copyButton" style="position: absolute; right: 48px; top: 10px; color: #777;"><i class="fa fa-clipboard"></i></a>
-                            <a href="" id="generate-new-phrase" style="position: absolute; right: 5px; top: 10px;"><i class="fas fa-sync"></i></a>
-                        </div>
-                        <br />
-                        <label for="phrase">Provide this phrase when you request to join the private <a href="https://www.facebook.com/groups/thepond.howtohockey" target="_blank">Facebook group</a></label>
+    ?>
+        <div>
+            <form action="" method="post" id="secret-phrase-form">
+                <div style="float: left; width: 300px; max-width: 100%; padding: 0 10px;">
+                    <small>Your Secret Phrase:</small>
+                    <br />
+                    <div class="copy-able-input" style="display: flex; position: relative; padding-right: 40px;">
+                        <input type="text" name="phrase" id="phrase" value="<?= $phraseRow->phrase ?>" readonly />
+                        <a href="" id="copyButton" style="position: absolute; right: 48px; top: 10px; color: #777;"><i class="fa fa-clipboard"></i></a>
+                        <a href="" id="generate-new-phrase" style="position: absolute; right: 5px; top: 10px;"><i class="fas fa-sync"></i></a>
                     </div>
-                    <div style="float: left; padding: 23px 0;" class="secret-phrase-wrapper">
-                        <a href="https://www.facebook.com/groups/thepond.howtohockey" target="_blank" class="BTN" style="background: #3b5998;"><i class="fab fa-facebook" style="margin-right: 5px;"></i> Go To Facebook Group</a>
-                    </div>
-                </form>
-            </div>
-            <script type="text/javascript">
-                (($) => {
-                    $('#generate-new-phrase').click((e) => {
-                        e.preventDefault();
+                    <br />
+                    <label for="phrase">Provide this phrase when you request to join the private <a href="https://www.facebook.com/groups/thepond.howtohockey" target="_blank">Facebook group</a></label>
+                </div>
+                <div style="float: left; padding: 23px 0;" class="secret-phrase-wrapper">
+                    <a href="https://www.facebook.com/groups/thepond.howtohockey" target="_blank" class="BTN" style="background: #3b5998;"><i class="fab fa-facebook" style="margin-right: 5px;"></i> Go To Facebook Group</a>
+                </div>
+            </form>
+        </div>
+        <script type="text/javascript">
+            (($) => {
+                $('#generate-new-phrase').click((e) => {
+                    e.preventDefault();
 
-                        $('#generate-new-phrase').attr('disabled', true);
-                        $('#generate-new-phrase svg').addClass('fa-spin');
+                    $('#generate-new-phrase').attr('disabled', true);
+                    $('#generate-new-phrase svg').addClass('fa-spin');
 
-                        var data = {
-                            action: 'generate_facebook_group_phrase',
-                            user_id: <?= get_current_user_id() ?>
-                        };
+                    var data = {
+                        action: 'generate_facebook_group_phrase',
+                        user_id: <?= get_current_user_id() ?>
+                    };
 
-                        $.ajax({
-                            url: "/wp-admin/admin-ajax.php",
-                            type: 'POST',
-                            data: data,
-                            success: function(response) {
-                                success = response.data.success;
+                    $.ajax({
+                        url: "/wp-admin/admin-ajax.php",
+                        type: 'POST',
+                        data: data,
+                        success: function(response) {
+                            success = response.data.success;
 
-                                if (success) {
-                                    setTimeout(() => {
-                                        $('#phrase').val(response.data.phrase);
-                                    }, 1000);
-                                }
-                            },
-                            complete: function() {
+                            if (success) {
                                 setTimeout(() => {
-                                    $('#generate-new-phrase').attr('disabled', false);
-                                    $('#generate-new-phrase svg').removeClass('fa-spin');
+                                    $('#phrase').val(response.data.phrase);
                                 }, 1000);
-                            },
-                            error: function(xhr, status, error) {
-                                console.log(error);
                             }
-                        });
-                    });
-
-                    $('#copyButton').click((e) => {
-                        e.preventDefault();
-                        copyToClipboard('phrase');
-                    });
-                })(jQuery);
-
-                function copyToClipboard(id) {
-                    var elem = document.getElementById(id);
-
-                    jQuery('#copyButton').css("color", "green");
-                    jQuery('#copyButton').html("<span style='color: green; font-size: 12px;'>Copied</span>");
-
-                    setTimeout(() => {
-                        jQuery('#copyButton').css("color", "#777");
-                        jQuery('#copyButton').html('<i class="fa fa-clipboard"></i>');
-                    }, 3000);
-
-                    // create hidden text element, if it doesn't already exist
-                    var targetId = "_hiddenCopyText_";
-                    var isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
-                    var origSelectionStart, origSelectionEnd;
-                    if (isInput) {
-                        // can just use the original source element for the selection and copy
-                        target = elem;
-                        origSelectionStart = elem.selectionStart;
-                        origSelectionEnd = elem.selectionEnd;
-                    } else {
-                        // must use a temporary form element for the selection and copy
-                        target = document.getElementById(targetId);
-                        if (!target) {
-                            var target = document.createElement("textarea");
-                            target.style.position = "absolute";
-                            target.style.left = "-9999px";
-                            target.style.top = "0";
-                            target.id = targetId;
-                            document.body.appendChild(target);
+                        },
+                        complete: function() {
+                            setTimeout(() => {
+                                $('#generate-new-phrase').attr('disabled', false);
+                                $('#generate-new-phrase svg').removeClass('fa-spin');
+                            }, 1000);
+                        },
+                        error: function(xhr, status, error) {
+                            console.log(error);
                         }
-                        target.textContent = elem.textContent;
-                    }
-                    // select the content
-                    var currentFocus = document.activeElement;
-                    target.focus();
-                    target.setSelectionRange(0, target.value.length);
+                    });
+                });
 
-                    // copy the selection
-                    var succeed;
-                    try {
-                        succeed = document.execCommand("copy");
-                    } catch (e) {
-                        succeed = false;
-                    }
-                    // restore original focus
-                    if (currentFocus && typeof currentFocus.focus === "function") {
-                        currentFocus.focus();
-                    }
+                $('#copyButton').click((e) => {
+                    e.preventDefault();
+                    copyToClipboard('phrase');
+                });
+            })(jQuery);
 
-                    if (isInput) {
-                        // restore prior selection
-                        elem.setSelectionRange(origSelectionStart, origSelectionEnd);
-                    } else {
-                        // clear temporary content
-                        target.textContent = "";
+            function copyToClipboard(id) {
+                var elem = document.getElementById(id);
+
+                jQuery('#copyButton').css("color", "green");
+                jQuery('#copyButton').html("<span style='color: green; font-size: 12px;'>Copied</span>");
+
+                setTimeout(() => {
+                    jQuery('#copyButton').css("color", "#777");
+                    jQuery('#copyButton').html('<i class="fa fa-clipboard"></i>');
+                }, 3000);
+
+                // create hidden text element, if it doesn't already exist
+                var targetId = "_hiddenCopyText_";
+                var isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
+                var origSelectionStart, origSelectionEnd;
+                if (isInput) {
+                    // can just use the original source element for the selection and copy
+                    target = elem;
+                    origSelectionStart = elem.selectionStart;
+                    origSelectionEnd = elem.selectionEnd;
+                } else {
+                    // must use a temporary form element for the selection and copy
+                    target = document.getElementById(targetId);
+                    if (!target) {
+                        var target = document.createElement("textarea");
+                        target.style.position = "absolute";
+                        target.style.left = "-9999px";
+                        target.style.top = "0";
+                        target.id = targetId;
+                        document.body.appendChild(target);
                     }
-                    return succeed;
+                    target.textContent = elem.textContent;
                 }
-            </script>
-            <?php
-        } else {
-            ?>
-            <div style="float: left; padding: 23px 0;" class="secret-phrase-wrapper">
-                <p>To view your secret phrase and join the private <a href="https://www.facebook.com/groups/thepond.howtohockey" target="_blank">Facebook group</a>, please login with your Facebook account.</p>
-                <a href="" id="facebook-login-btn" class="BTN" style="background: #3b5998;"><i class="fab fa-facebook" style="margin-right: 5px;"></i> Login with Facebook</a>
-            </div>
+                // select the content
+                var currentFocus = document.activeElement;
+                target.focus();
+                target.setSelectionRange(0, target.value.length);
 
-            <script type="text/javascript">
-                (function ($) {
-                    $(document).ready(function () {
-                        var a_key = "AIzaSyCoSWim4GptSro0gly6dN8dClVQMcxeCbA";
-                        var pid = "the-pond-app";
-                        var firebaseConfig = {
-                            apiKey: a_key,
-                            authDomain: pid + '.firebaseapp.com',
-                            databaseURL: 'https://' + pid + '.firebaseio.com',
-                            projectId: pid,
-                            storageBucket: ''
-                        };
+                // copy the selection
+                var succeed;
+                try {
+                    succeed = document.execCommand("copy");
+                } catch (e) {
+                    succeed = false;
+                }
+                // restore original focus
+                if (currentFocus && typeof currentFocus.focus === "function") {
+                    currentFocus.focus();
+                }
 
-                        // Initialize Firebase
-                        if (!firebase.apps.length) {
-                            firebase.initializeApp(firebaseConfig);
-                            var auth = firebase.auth();
-                            var provider = new firebase.auth.FacebookAuthProvider();
-                            provider.setCustomParameters({
-                                'display': 'popup'
-                            });
+                if (isInput) {
+                    // restore prior selection
+                    elem.setSelectionRange(origSelectionStart, origSelectionEnd);
+                } else {
+                    // clear temporary content
+                    target.textContent = "";
+                }
+                return succeed;
+            }
+        </script>
+        <?php
+        // } 
+        // else {
+        //     
+        ?>
+        // <div style="float: left; padding: 23px 0;" class="secret-phrase-wrapper">
+            // <p>To view your secret phrase and join the private <a href="https://www.facebook.com/groups/thepond.howtohockey" target="_blank">Facebook group</a>, please login with your Facebook account.</p>
+            // <a href="" id="facebook-login-btn" class="BTN" style="background: #3b5998;"><i class="fab fa-facebook" style="margin-right: 5px;"></i> Login with Facebook</a>
+            // </div>
 
-                            $('#facebook-login-btn').click((e) => {
-                                e.preventDefault();
+        // <script type="text/javascript">
+            //         (function ($) {
+            //             $(document).ready(function () {
+            //                 var a_key = "AIzaSyCoSWim4GptSro0gly6dN8dClVQMcxeCbA";
+            //                 var pid = "the-pond-app";
+            //                 var firebaseConfig = {
+            //                     apiKey: a_key,
+            //                     authDomain: pid + '.firebaseapp.com',
+            //                     databaseURL: 'https://' + pid + '.firebaseio.com',
+            //                     projectId: pid,
+            //                     storageBucket: ''
+            //                 };
 
-                                firebase.auth().signInWithPopup(provider).then(function(result) {
-                                    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-                                    var token = result.credential.accessToken;
-                                    getFacebookUserId(token);
-                                }).catch(function(error) {
-                                    var token = error.credential.accessToken;
-                                    getFacebookUserId(token);
-                                });
-                            });
+            //                 // Initialize Firebase
+            //                 if (!firebase.apps.length) {
+            //                     firebase.initializeApp(firebaseConfig);
+            //                     var auth = firebase.auth();
+            //                     var provider = new firebase.auth.FacebookAuthProvider();
+            //                     provider.setCustomParameters({
+            //                         'display': 'popup'
+            //                     });
 
-                            function getFacebookUserId(accessToken) {
-                                $.ajax({
-                                    url: `https://graph.facebook.com/me?access_token=` + accessToken, // this will point to admin-ajax.php
-                                    type: 'GET',
-                                    success: function(response) {
-                                        var id = response.id;
+            //                     $('#facebook-login-btn').click((e) => {
+            //                         e.preventDefault();
 
-                                        $.ajax({
-                                            url: "/wp-admin/admin-ajax.php",
-                                            type: "POST",
-                                            data: {
-                                                'action': 'update_user_facebook_id',
-                                                'facebook_id': id
-                                            },
-                                            complete: function () {
-                                                window.location.reload();
-                                            },
-                                            error: function(xhr, status, error) {
-                                                console.log(error);
-                                            }
-                                        })
-                                    },
-                                    complete: function() {
-                                    },
-                                    error: function(xhr, status, error) {
-                                        console.log(error);
-                                    }
-                                });
-                            }
-                        }
-                    });
-                })(jQuery);
-            </script>
-            <?
+            //                         firebase.auth().signInWithPopup(provider).then(function(result) {
+            //                             // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+            //                             var token = result.credential.accessToken;
+            //                             getFacebookUserId(token);
+            //                         }).catch(function(error) {
+            //                             var token = error.credential.accessToken;
+            //                             getFacebookUserId(token);
+            //                         });
+            //                     });
+
+            //                     function getFacebookUserId(accessToken) {
+            //                         $.ajax({
+            //                             url: `https://graph.facebook.com/me?access_token=` + accessToken, // this will point to admin-ajax.php
+            //                             type: 'GET',
+            //                             success: function(response) {
+            //                                 var id = response.id;
+
+            //                                 $.ajax({
+            //                                     url: "/wp-admin/admin-ajax.php",
+            //                                     type: "POST",
+            //                                     data: {
+            //                                         'action': 'update_user_facebook_id',
+            //                                         'facebook_id': id
+            //                                     },
+            //                                     complete: function () {
+            //                                         window.location.reload();
+            //                                     },
+            //                                     error: function(xhr, status, error) {
+            //                                         console.log(error);
+            //                                     }
+            //                                 })
+            //                             },
+            //                             complete: function() {
+            //                             },
+            //                             error: function(xhr, status, error) {
+            //                                 console.log(error);
+            //                             }
+            //                         });
+            //                     }
+            //                 }
+            //             });
+            //         })(jQuery);
+            //     
+        </script>
+        // <?
+            // }
         }
     }
-}
 
-// Override the Learndash Profile Template so we can display the secret phrase code in the member dashboard
-function replacement_learndash_templates( $filepath, $name, $args, $echo, $return_file_path){
-    if ($name == 'profile') {
-      $filepath = plugin_dir_path(__FILE__ ) . 'learndash/profile.php';
+    // Override the Learndash Profile Template so we can display the secret phrase code in the member dashboard
+    function replacement_learndash_templates($filepath, $name, $args, $echo, $return_file_path) {
+        if ($name == 'profile') {
+            $filepath = plugin_dir_path(__FILE__) . 'learndash/profile.php';
+        }
+
+        return $filepath;
     }
-    
-    return $filepath;
-   }
-   add_filter('learndash_template','replacement_learndash_templates', 90, 5);
-?>
+    add_filter('learndash_template', 'replacement_learndash_templates', 90, 5);
+            ?>
