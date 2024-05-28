@@ -621,16 +621,17 @@ function facebook_secret_phrase($atts = [], $content = null, $tag = '') {
                 return succeed;
             }
         </script>
-        <?php
+<?php
+    }
+}
+
+// Override the Learndash Profile Template so we can display the secret phrase code in the member dashboard
+function replacement_learndash_templates($filepath, $name, $args, $echo, $return_file_path) {
+    if ($name == 'profile') {
+        $filepath = plugin_dir_path(__FILE__) . 'learndash/profile.php';
     }
 
-    // Override the Learndash Profile Template so we can display the secret phrase code in the member dashboard
-    function replacement_learndash_templates($filepath, $name, $args, $echo, $return_file_path) {
-        if ($name == 'profile') {
-            $filepath = plugin_dir_path(__FILE__) . 'learndash/profile.php';
-        }
-
-        return $filepath;
-    }
-    add_filter('learndash_template', 'replacement_learndash_templates', 90, 5);
-            ?>
+    return $filepath;
+}
+add_filter('learndash_template', 'replacement_learndash_templates', 90, 5);
+?>
