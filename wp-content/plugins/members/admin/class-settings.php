@@ -30,6 +30,42 @@ final class Settings_Page {
 	public $name = 'members-settings';
 
 	/**
+	 * Admin page names.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @var    array
+	 */
+	public $admin_pages = array();
+
+	/**
+	 * About page name.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @var    string
+	 */
+	public $about_page = '';
+
+	/**
+	 * Addons page name.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @var    string
+	 */
+	public $addons_page = '';
+
+	/**
+	 * Payments page name.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @var    string
+	 */
+	public $payments_page = '';
+
+	/**
 	 * Settings page name.
 	 *
 	 * @since  1.0.0
@@ -117,7 +153,11 @@ final class Settings_Page {
 		if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( $_POST['nonce'], 'mbrs_toggle_addon' ) ) {
 			die();
 		}
-
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array(
+				'msg' => esc_html__( 'You are not allowed to make these changes.', 'members' )
+			) );
+		}
 		$addon = ! empty( $_POST['addon'] ) ? sanitize_text_field( $_POST['addon'] ) : false;
 
 		if ( false === $addon ) {
@@ -180,7 +220,7 @@ final class Settings_Page {
 	public function unregister_view( $name ) {
 
 		if ( $this->view_exists( $name ) )
-			unset( $this->view[ $name ] );
+			unset( $this->views[ $name ] );
 	}
 
 	/**
