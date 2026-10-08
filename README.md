@@ -30,6 +30,10 @@ existing theme, authentication/account/avatar flows and MemberPress access polic
 - Dedicated [community wrapper](wp-content/themes/meltingpot-child/buddypress.php)
   using the existing member header/footer and narrowly scoped
   [styles](wp-content/themes/meltingpot-child/community.css).
+  The stylesheet also makes the desktop member navigation container
+  content-height on ordinary pages, preventing its inherited percentage height
+  from stretching the header. The desktop member logo is capped at the theme's
+  existing 60px mobile-logo height. Mobile-menu sizing is unchanged.
 - Add Community/Profile/Groups links through **Appearance > Menus**, using the
   existing `member-menu` location. There is no generated navigation, custom
   dashboard feed or dashboard template modification.
@@ -47,6 +51,9 @@ existing theme, authentication/account/avatar flows and MemberPress access polic
 - ReadyLaunch, BuddyBoss registration, account deletion, community user-avatar
   uploads and site-wide private-network mode are suppressed while the custom
   plugin is active. This does not change the existing MemberPress signup flow.
+  BuddyBoss's `bp_enable_private_network` flag must return **true** for public
+  site access: its redirect implementation restricts the site when false.
+  The community's separate MemberPress gate still protects community routes.
 - BuddyBoss AJAX callbacks are identified from their installed source paths,
   including Platform, Platform Pro and BuddyBoss LearnDash. Ineligible users
   cannot receive community heartbeat payloads; normal WordPress/editor
@@ -54,6 +61,8 @@ existing theme, authentication/account/avatar flows and MemberPress access polic
 - BuddyBoss LearnDash's native **My Courses Tab** can be enabled independently
   of either group-sync direction. Course/certificate profile features use the
   add-on's own permissions and templates. Existing course pages are untouched.
+  Community lives on the mapped Activity/Members/Groups pages; activation does
+  not embed feeds or discussions on LearnDash lesson pages.
 - **Both group-sync directions stay disabled in native settings.** Social groups
   are managed by staff and do not grant course enrollment. There is no automatic
   course-cohort membership, course-page discussion CTA, custom report policy,

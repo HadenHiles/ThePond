@@ -2,7 +2,7 @@
 /**
  * Plugin Name: The Pond Community Integration
  * Description: Adds BuddyBoss to the existing Pond theme while preserving Firebase, MemberPress and LearnDash flows.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Requires at least: 6.6
  * Requires PHP: 7.4
  * Text Domain: thepond-community
@@ -23,7 +23,8 @@ add_filter('bp_get_signup_allowed', '__return_false', PHP_INT_MAX);
 add_filter('bp_disable_account_deletion', '__return_true', PHP_INT_MAX);
 add_filter('bp_disable_avatar_uploads', '__return_true', PHP_INT_MAX);
 add_filter('bp_attachments_current_user_can', 'thepond_community_avatar_permission', 100, 3);
-add_filter('bp_enable_private_network', '__return_false', PHP_INT_MAX);
+// BuddyBoss restricts the whole site when this flag is false, despite its name.
+add_filter('bp_enable_private_network', '__return_true', PHP_INT_MAX);
 add_filter('pre_option_bb_rl_enabled', '__return_zero');
 add_filter('bp_core_fetch_avatar_url_check', 'thepond_community_avatar_url', 1001, 2);
 add_action('bp_setup_nav', 'thepond_community_account_nav', 100);
@@ -261,10 +262,7 @@ function thepond_community_account_nav() {
 }
 
 function thepond_community_enqueue_styles() {
-    if (!thepond_community_is_page()) {
-        return;
-    }
-    wp_enqueue_style('thepond-community', get_stylesheet_directory_uri() . '/community.css', array('style'), '1.0.0');
+    wp_enqueue_style('thepond-community', get_stylesheet_directory_uri() . '/community.css', array('style'), '1.0.1');
 }
 
 function thepond_community_templates($templates) {
