@@ -2,6 +2,20 @@
 /* Template Name: Firebase Login */
 
 global $smof_data;
+
+// Resolve the requested destination before the member header sends output.
+if (!empty($_GET['redirect_to'])) {
+    if (!is_string($_GET['redirect_to'])) {
+        wp_die('Invalid login destination.', '', array('response' => 400));
+    }
+    $cookie_value = wp_validate_redirect(wp_unslash($_GET['redirect_to']), home_url('/member-dashboard/'));
+    setcookie('redirect_to', $cookie_value, time() + (3600 * 30), '/');
+    if (is_user_logged_in()) {
+        wp_safe_redirect($cookie_value);
+        exit;
+    }
+}
+
 get_header("members");
 if (has_post_thumbnail()) {
     $imgID  = get_post_thumbnail_id($post->ID);
@@ -9,15 +23,6 @@ if (has_post_thumbnail()) {
     $imgAlt = get_post_meta($imgID, '_wp_attachment_image_alt', true);
 }
 
-//Set the redirect url if there is one
-if (!empty($_GET['redirect_to'])) {
-    $cookie_name = "redirect_to";
-    $cookie_value = $_GET['redirect_to'];
-    setcookie($cookie_name, $cookie_value, time() + (3600 * 30), "/"); // 3600 = 1 hour in seconds
-    if (is_user_logged_in()) {
-        header('location: ' . $cookie_value);
-    }
-}
 ?>
 <?php get_template_part('template-parts/bannerheader'); ?>
 </header>
