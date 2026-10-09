@@ -388,6 +388,22 @@ The uploaded Facebook stylesheet matches its local SHA-256, and 12 deployed-styl
 login/signup desktop/phone light/dark icon checks pass without injected CSS.
 The browser is restored to the real member dashboard in light mode.
 
+### Matching header logo sizes (uploaded and verified)
+
+Light and dark desktop/mobile wordmarks share 5px vertical padding. Previously
+the light image inherited 10px padding while the dark override removed it,
+producing different visible sizes despite matching native logo-width settings.
+The shared padding places both at the midpoint of their previous visible heights,
+without changing SVG assets, header height or native desktop/mobile logo widths.
+Upload `wp-content/themes/buddyboss-theme-child-1.0.0/assets/css/custom.css` and
+purge page/CDN caches for this refinement.
+After the confirmed upload, the live stylesheet matches its local SHA-256.
+Both appearances pass desktop (1440px) and phone (390px/320px) checks without
+preview CSS: the image content box is consistently 66px high instead of the
+previous light/dark 56px/76px, with the 76px header unchanged. The SVG artwork has
+matching internal bounds, so the visible wordmarks scale equally. All five
+appearance regression tests pass. The browser is restored to desktop light mode.
+
 ### Verification and rollback
 
 Before considering the live migration complete, verify desktop/mobile menus,

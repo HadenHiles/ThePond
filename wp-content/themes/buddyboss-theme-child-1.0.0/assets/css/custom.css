@@ -515,7 +515,8 @@ html[data-pond-theme="dark"] .pond-auth-page #content :is(.cc-error, .mepr-form-
 html[data-pond-theme="dark"] .pond-auth-page #content .mepr_error { background: #46262b !important; color: #ffbaba; }
 html[data-pond-theme="dark"] #masthead .site-title:has(.bb-logo-dark) .bb-logo:not(.bb-logo-dark),
 html[data-pond-theme="dark"] #masthead .site-title:has(.bb-mobile-logo-dark) .bb-mobile-logo:not(.bb-mobile-logo-dark) { display: none; }
-html[data-pond-theme="dark"] #masthead .site-title :is(.bb-logo-dark, .bb-mobile-logo-dark) { display: inline; background: none; padding: 0; }
+#masthead .site-title :is(.bb-logo, .bb-mobile-logo) { padding: 5px 0; }
+html[data-pond-theme="dark"] #masthead .site-title :is(.bb-logo-dark, .bb-mobile-logo-dark) { display: inline; background: none; }
 html[data-pond-theme="dark"] #masthead .site-title a:has(.bb-logo-dark, .bb-mobile-logo-dark) { background: transparent; }
 html[data-pond-theme="light"] #masthead .site-title :is(.bb-logo-dark, .bb-mobile-logo-dark) { display: none; }
 @media (max-width: 799px) {
