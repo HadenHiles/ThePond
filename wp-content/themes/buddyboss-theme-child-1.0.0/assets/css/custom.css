@@ -1,0 +1,530 @@
+/*--------------------------------------------------------------
+This is your custom stylesheet.
+
+Add your own styles here to make theme updates easier.
+To override any styles from other stylesheets, simply copy them into here and edit away.
+
+Make sure to respect the media queries! Otherwise you may
+accidentally add desktop styles to the mobile layout.
+https://www.w3schools.com/css/css_rwd_mediaqueries.asp
+--------------------------------------------------------------*/
+
+.page-template-member-dashboard #content { padding-left: 0; padding-right: 0; }
+.page-template-member-dashboard #content > .container { width: 100%; max-width: none; padding-left: 0; padding-right: 0; }
+.page-template-member-dashboard #content > .container > .site-content-grid { margin-left: 0; margin-right: 0; }
+.pond-portal { width: 100%; min-width: 0; }
+.pond-portal .row { width: 100%; max-width: none; }
+.pond-portal .row::after { content: ""; display: table; clear: both; }
+.pond-portal .columns { min-width: 0; }
+.pond-portal .small-12, .pond-portal .large-12 { width: 100%; }
+@media (min-width: 768px) {
+    .pond-portal .columns { float: left; padding: 0 12px; }
+    .pond-portal .large-4, .pond-portal .medium-4 { width: 33.333333%; }
+    .pond-portal .large-6, .pond-portal .medium-6 { width: 50%; }
+    .pond-portal .large-8, .pond-portal .medium-8 { width: 66.666667%; }
+}
+.pond-portal .memberbenefits { margin-top: 0 !important; }
+.pond-portal .course-container { overflow-x: auto; }
+.pond-portal .modal { z-index: 100001; }
+.pond-portal .course-container-wrapper { max-width: 100%; }
+.pond-portal #skills-vault { scroll-margin-top: 100px; }
+.pond-footer { padding: 24px; border-top: 1px solid #e7e9ec; background: #fff; }
+.pond-footer nav { max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; gap: 20px; }
+.pond-footer ul { display: flex; flex-wrap: wrap; gap: 20px; list-style: none; padding: 0; margin: 0; }
+.pond-course-material { margin-bottom: 24px; }
+.pond-course-material iframe { max-width: 100%; }
+.pond-course-material .videoWrapper { position: relative; width: 100%; }
+.pond-course-material .videowrapper .videoWrapper { aspect-ratio: 16 / 9; }
+.pond-course-material .videowrapper iframe { width: 100%; height: 100%; }
+.pond-course-material .Documents ul, .pond-course-material .post_tools { list-style: none; padding: 0; }
+.pond-course-material .post_tools { display: flex; flex-wrap: wrap; gap: 16px; }
+.pond-course-material .lesson_tool { cursor: pointer; }
+.pond-course-material .post_tool_active { font-weight: 700; }
+.pond-related-skills { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
+.pond-related-skills a { border: 1px solid #e7e9ec; border-radius: 8px; padding: 12px 16px; background: #fff; }
+.pond-jump-links { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+#pond-search:not([hidden]) { position: fixed; z-index: 100002; inset: 0; background: rgba(0, 0, 0, .75); display: grid; place-items: center; padding: 20px; }
+#pond-search form { max-width: 600px; width: 100%; padding: 24px; border-radius: 12px; background: #fff; }
+#pond-search label, #pond-search input { display: block; width: 100%; margin-bottom: 16px; }
+
+@media (max-width: 767px) {
+    .pond-portal .columns { width: 100% !important; float: none !important; }
+    .pond-portal .clbHeader .row { display: block; }
+    .pond-footer nav, .pond-footer ul { gap: 12px; }
+}
+
+.page-template-member-dashboard .pond-portal {
+    --pond-dashboard-gutter: 32px;
+    padding-left: 0;
+    padding-right: 0;
+}
+.page-template-member-dashboard .pond-portal > section {
+    display: flow-root;
+    float: none;
+    width: 100%;
+    scroll-margin-top: 100px;
+}
+.page-template-member-dashboard .pond-portal > .Dashboard {
+    padding: 32px var(--pond-dashboard-gutter);
+    background: var(--bb-body-background-color, #f6f7f9);
+    border-top: 1px solid var(--bb-content-border-color, #e7e9ec);
+}
+.page-template-member-dashboard .pond-portal > .Dashboard > .row,
+.page-template-member-dashboard .pond-portal > .Dashboard .challenges-wrapper > .row {
+    margin: 0;
+    padding: 0;
+}
+.page-template-member-dashboard .Dashboard > .row > .sectionHeader > .columns,
+.page-template-member-dashboard .Dashboard .challenges-wrapper > .row > .columns {
+    padding: 0;
+    float: none;
+}
+.page-template-member-dashboard .pond-portal .dashboardbenefits {
+    padding: 24px 0;
+    background: var(--bb-content-background-color, #fff);
+}
+.page-template-member-dashboard .pond-dashboard-heading {
+    padding: 0 var(--pond-dashboard-gutter);
+    margin-bottom: 16px;
+}
+.page-template-member-dashboard .pond-dashboard-heading h1,
+.page-template-member-dashboard .challenges-wrapper > .row h1,
+.page-template-member-dashboard #courses #ld-profile .ld-item-list .ld-section-heading h3,
+.page-template-member-dashboard #skills-vault > .row > .sectionHeader > .columns > h3 {
+    font-family: inherit;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1.3;
+    text-align: left;
+    margin: 0 0 20px;
+    color: var(--bb-headings-color, #122b46);
+}
+.page-template-member-dashboard .pond-dashboard-heading h1 { margin-bottom: 8px; }
+.page-template-member-dashboard .pond-dashboard-heading p { margin: 0; }
+.page-template-member-dashboard #skillsVaultModal { z-index: 100001; }
+.page-template-member-dashboard #skillsVaultModal .modal-dialog {
+    width: calc(100% - 32px);
+    max-width: 800px !important;
+    margin: 24px auto;
+}
+.page-template-member-dashboard #skills-vault .bootstrap-styles .nav-pills {
+    margin-top: 0;
+    gap: 8px;
+}
+.page-template-member-dashboard #skills-vault .bootstrap-styles .nav-pills .nav-item .nav-link {
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 12px;
+    border-radius: 8px;
+}
+.page-template-member-dashboard .pond-portal .course-container {
+    padding-left: var(--pond-dashboard-gutter);
+    padding-right: var(--pond-dashboard-gutter);
+}
+.page-template-member-dashboard .pond-portal .challenges {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+}
+.page-template-member-dashboard .pond-portal .challenges a.card.challenge {
+    min-width: 0;
+    margin: 0;
+    border: 1px solid var(--bb-content-border-color, #e7e9ec);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: none !important;
+}
+.page-template-member-dashboard .challenges .card.challenge .card-img-top {
+    height: auto;
+    aspect-ratio: 16 / 9;
+}
+.page-template-member-dashboard .challenges .card.challenge .card-body h4 {
+    font-family: inherit;
+    font-size: 20px;
+    line-height: 1.35;
+    margin-bottom: 12px;
+}
+.page-template-member-dashboard .challenges .card-text { margin-bottom: 0; }
+.page-template-member-dashboard .pond-portal .challenges-wrapper a.all-challenges {
+    margin: 24px 0 0;
+    width: auto;
+    display: inline-flex;
+    justify-content: center;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 15px;
+}
+@media (max-width: 1023px) {
+    .page-template-member-dashboard .pond-portal { --pond-dashboard-gutter: 24px; }
+    .page-template-member-dashboard .pond-portal .challenges {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+@media (max-width: 600px) {
+    .page-template-member-dashboard .pond-portal { --pond-dashboard-gutter: 16px; }
+    .page-template-member-dashboard .pond-portal > .Dashboard { padding-top: 24px; padding-bottom: 24px; }
+    .page-template-member-dashboard .pond-dashboard-heading h1,
+    .page-template-member-dashboard .challenges-wrapper > .row h1,
+    .page-template-member-dashboard #courses #ld-profile .ld-item-list .ld-section-heading h3,
+    .page-template-member-dashboard #skills-vault > .row > .sectionHeader > .columns > h3 { font-size: 22px; }
+    .page-template-member-dashboard .pond-portal .challenges { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+    .page-template-member-dashboard #skills-vault .nav-pills .nav-item { flex-basis: calc(50% - 4px); }
+}
+
+/* ReadyLaunch stores branding separately; the portal shares its saved accents. */
+html[data-pond-theme],
+html[data-pond-theme] body {
+    --bb-primary-color: var(--pond-accent);
+    --bb-primary-color-rgb: var(--pond-accent-rgb);
+    --bb-primary-button-background-regular: var(--pond-accent);
+    --bb-primary-button-background-hover: var(--pond-accent);
+    --bb-primary-button-border-regular: var(--pond-accent);
+    --bb-primary-button-border-hover: var(--pond-accent);
+    --bb-primary-button-text-regular: var(--pond-action-text);
+    --bb-primary-button-text-hover: var(--pond-action-text);
+    --bb-header-links-hover: var(--pond-accent);
+    --bb-sidenav-text-hover: var(--pond-accent);
+    --bb-sidenav-text-active: var(--pond-action-text);
+    --bb-sidenav-menu-background-color-active: var(--pond-accent);
+    --bb-sidenav-count-background-color-active: var(--pond-action-text);
+    --bb-sidenav-count-text-color-active: var(--pond-accent);
+    --bb-login-register-button-background-color-regular: var(--pond-accent);
+    --bb-login-register-button-background-color-hover: var(--pond-accent);
+    --bb-login-register-button-border-color-regular: var(--pond-accent);
+    --bb-login-register-button-border-color-hover: var(--pond-accent);
+    --bb-login-register-button-text-color-regular: var(--pond-action-text);
+    --bb-login-register-button-text-color-hover: var(--pond-action-text);
+}
+html[data-pond-theme="light"] { color-scheme: light; }
+html[data-pond-theme="dark"],
+html[data-pond-theme="dark"] body {
+    color-scheme: dark;
+    --bb-body-background-color: #101923;
+    --bb-body-background-color-rgb: 16, 25, 35;
+    --bb-content-background-color: #182532;
+    --bb-content-alternate-background-color: #213242;
+    --bb-content-border-color: #3a4d60;
+    --bb-content-border-color-rgb: 58, 77, 96;
+    --bb-cover-image-background-color: #213242;
+    --bb-headings-color: #f2f6fa;
+    --bb-headings-color-rgb: 242, 246, 250;
+    --bb-body-text-color: #dbe5ee;
+    --bb-body-text-color-rgb: 219, 229, 238;
+    --bb-alternate-text-color: #afbfce;
+    --bb-alternate-text-color-rgb: 175, 191, 206;
+    --bb-header-background: #182532;
+    --bb-header-alternate-background: #213242;
+    --bb-header-links: #dbe5ee;
+    --bb-sidenav-background: #182532;
+    --bb-sidenav-text-regular: #dbe5ee;
+    --bb-sidenav-menu-background-color-regular: #182532;
+    --bb-sidenav-menu-background-color-hover: #213242;
+    --bb-sidenav-count-text-color-regular: #dbe5ee;
+    --bb-sidenav-count-text-color-hover: #dbe5ee;
+    --bb-sidenav-count-background-color-regular: #213242;
+    --bb-sidenav-count-background-color-hover: #213242;
+    --bb-secondary-button-background-regular: #213242;
+    --bb-secondary-button-background-hover: #3a4d60;
+    --bb-secondary-button-border-regular: #3a4d60;
+    --bb-secondary-button-border-hover: #afbfce;
+    --bb-secondary-button-text-regular: #dbe5ee;
+    --bb-secondary-button-text-hover: #f2f6fa;
+    --bb-footer-background: #182532;
+    --bb-footer-widget-background: #182532;
+    --bb-footer-text-color: #dbe5ee;
+    --bb-footer-menu-link-color-regular: #dbe5ee;
+    --bb-footer-menu-link-color-hover: var(--pond-accent);
+    --bb-footer-menu-link-color-active: var(--pond-accent);
+    --bb-label-background-color: #213242;
+    --bb-label-text-color: #dbe5ee;
+}
+html[data-pond-theme] #masthead .site-header-container {
+    width: 100%;
+    max-width: none;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+html[data-pond-theme] #header-aside { margin-left: auto; }
+html[data-pond-theme] #bb-toggle-theme { display: none; }
+html[data-pond-theme] .pond-theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    margin: 0 8px 0 0;
+    border: 1px solid var(--bb-content-border-color);
+    border-radius: 50%;
+    background: var(--bb-content-background-color);
+    color: var(--bb-header-links);
+    line-height: 1;
+}
+.pond-theme-toggle i { font-size: 22px; }
+.pond-theme-toggle:focus-visible { outline: 2px solid var(--bb-primary-color); outline-offset: 3px; }
+@media (min-width: 800px) {
+    html[data-pond-theme] #masthead { padding-left: 0; padding-right: 0; }
+    .logged-in.bb-buddypanel #masthead #site-navigation { display: none; }
+}
+html[data-pond-theme] .pond-footer,
+html[data-pond-theme] #pond-search form {
+    background: var(--bb-content-background-color);
+    color: var(--bb-body-text-color);
+    border-color: var(--bb-content-border-color);
+}
+html[data-pond-theme] .pond-portal .challenges a.card.challenge,
+html[data-pond-theme] .pond-related-skills a {
+    background: var(--bb-content-background-color);
+    color: var(--bb-body-text-color);
+    border-color: var(--bb-content-border-color);
+}
+html[data-pond-theme] .pond-portal a.BTN,
+html[data-pond-theme] .pond-portal input[type="submit"],
+html[data-pond-theme] .pond-portal button[type="submit"],
+html[data-pond-theme] .pond-portal .skillsVault .bootstrap-styles .nav-pills .nav-item .nav-link.active {
+    background: var(--bb-primary-color);
+    color: var(--bb-primary-button-text-regular);
+}
+html[data-pond-theme] .pond-portal .skillsVault .bootstrap-styles .nav-pills .nav-item .nav-link:not(.active),
+html[data-pond-theme] .pond-portal .skillsVault .bootstrap-styles .table tbody td a:not(.BTN),
+html[data-pond-theme] .pond-portal .skillsVault .bootstrap-styles .skills-vault-table .search-button {
+    color: var(--bb-primary-color);
+}
+html[data-pond-theme="dark"] body,
+html[data-pond-theme="dark"] .pond-portal,
+html[data-pond-theme="dark"] .pond-course-material {
+    background-color: var(--bb-body-background-color);
+    color: var(--bb-body-text-color);
+}
+html[data-pond-theme="dark"] .pond-portal :is(h1, h2, h3, h4, h5, h6),
+html[data-pond-theme="dark"] .pond-course-material :is(h1, h2, h3, h4, h5, h6) {
+    color: var(--bb-headings-color);
+}
+html[data-pond-theme="dark"] .pond-portal :is(.challenges-dashboard, .savedContent.Dashboard, .card, .memberbenefits, .skill-content, .topic, .answer),
+html[data-pond-theme="dark"] .pond-portal a.card.challenge,
+html[data-pond-theme="dark"] .bb-mp-account-settings,
+html[data-pond-theme="dark"] .pond-course-material :is(.topic, .answer, .Documents),
+html[data-pond-theme="dark"] .pond-portal .bootstrap-styles .table {
+    background-color: var(--bb-content-background-color);
+    color: var(--bb-body-text-color);
+}
+html[data-pond-theme="dark"] .pond-portal .category-icon-wrapper img.category-icon {
+    background: #fff;
+    border-radius: 8px;
+}
+html[data-pond-theme="dark"] .bb-dark-theme.bb-sfwd-aside .site-header,
+html[data-pond-theme="dark"] .bb-dark-theme.bb-sfwd-aside .buddypanel,
+html[data-pond-theme="dark"] .bb-dark-theme.bb-sfwd-aside .lms-topic-sidebar-wrapper {
+    background-color: var(--bb-content-background-color);
+    color: var(--bb-body-text-color);
+}
+html[data-pond-theme="dark"] .pond-portal :is(input:not([type="submit"]):not([type="button"]), select, textarea),
+html[data-pond-theme="dark"] #pond-search input,
+html[data-pond-theme="dark"] .pond-portal .bootstrap-styles .table :is(th, td) {
+    background-color: var(--bb-content-background-color);
+    color: var(--bb-body-text-color);
+    border-color: var(--bb-content-border-color);
+}
+html[data-pond-theme="dark"] .pond-portal :is(.form-group label, .mepr-form label, .mepr-account-table, .mepr-account-table a),
+html[data-pond-theme="dark"] .pond-portal .challenges .card-text {
+    color: var(--bb-body-text-color);
+}
+html[data-pond-theme="dark"] .site-title a:has(img) {
+    background: #fff;
+    border-radius: 4px;
+}
+@media (max-width: 799px) {
+    html[data-pond-theme] .pond-theme-toggle { width: 32px; height: 32px; margin-right: 6px; }
+}
+
+.pond-auth-page #content .pond-auth-shell {
+    display: flex;
+    justify-content: center;
+    padding: 40px 16px;
+    min-height: calc(100vh - 260px);
+}
+.pond-auth-page #content .pond-auth-card {
+    width: 100%;
+    max-width: 480px;
+    align-self: flex-start;
+    padding: 32px;
+    border: 1px solid var(--bb-content-border-color);
+    border-radius: 16px;
+    background: var(--bb-content-background-color);
+    color: var(--bb-body-text-color);
+}
+.pond-auth-page #content h1 { font: inherit; font-size: 28px; font-weight: 600; line-height: 1.3; margin: 0 0 12px; }
+.pond-auth-page #content .pond-auth-intro { margin: 0 0 24px; color: var(--bb-alternate-text-color); }
+.pond-auth-page #content .pond-auth-providers { display: grid; gap: 12px; }
+.pond-auth-page #content .pond-auth-provider {
+    width: 100%;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    float: none;
+    margin: 0;
+    padding: 12px 16px;
+    border: 1px solid var(--bb-content-border-color);
+    border-radius: 8px;
+    box-shadow: none;
+    font-family: inherit;
+}
+.pond-auth-page #content .google-btn { background: #fff; color: #202124; }
+.pond-auth-page #content .facebook-btn { background: #3b5998; color: #fff; border-color: #3b5998; }
+.pond-auth-page #content .pond-auth-provider .btn-text {
+    font: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin: 0;
+    padding: 0;
+    float: none;
+    color: inherit;
+    text-shadow: none;
+}
+.pond-auth-page #content .pond-auth-provider :is(.google-icon-wrapper, .facebook-icon-wrapper) {
+    position: static;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    display: inline-flex;
+    align-items: center;
+}
+.pond-auth-page #content .pond-auth-provider :is(img, svg) { width: 20px; height: 20px; position: static; margin: 0; }
+#firebase-login-page .pond-auth-email { margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--bb-content-border-color); }
+#firebase-login-page .pond-auth-reset { margin-top: 0; padding-top: 0; border-top: 0; }
+#firebase-login-page .pond-auth-reset .mp_wrapper > h3 { display: none; }
+.pond-auth-page #content .mp_wrapper { max-width: none; margin: 0; padding: 0; font: inherit; color: inherit; }
+.pond-auth-page #content :is(.mepr-form, #mepr_forgot_password_form) { padding: 0; background: transparent; color: inherit; }
+.pond-auth-page #content :is(.mepr-form, #mepr_forgot_password_form) .mp-form-row { margin-bottom: 20px; padding: 0; }
+.pond-auth-page #content :is(.mepr-form, #mepr_forgot_password_form) .mp-form-label { display: block; margin-bottom: 8px; }
+.pond-auth-page #content :is(.mepr-form, #mepr_forgot_password_form) label { margin: 0; font: inherit; font-weight: 500; color: var(--bb-body-text-color); }
+.pond-auth-page #content .mepr_password .mp-form-label > label { display: block !important; }
+.pond-auth-page #content :is(.mepr_username, .mepr_password)::before { display: none; }
+.pond-auth-page #content :is(.mepr-form, #mepr_forgot_password_form) input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="image"]) {
+    width: 100%;
+    min-height: 48px;
+    margin: 0;
+    padding: 12px 14px !important;
+    font: inherit;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 8px;
+}
+.pond-auth-page #content :is(.mepr-form, #mepr_forgot_password_form) input:is([type="text"], [type="password"], [type="email"], [type="tel"], [type="number"], [type="url"]) {
+    border-color: var(--bb-content-border-color);
+    background: var(--bb-content-background-color);
+    color: var(--bb-body-text-color);
+}
+.pond-auth-page #content :is(.mepr-form, #mepr_forgot_password_form) input[type="submit"] {
+    background: var(--bb-primary-button-background-regular);
+    color: var(--bb-primary-button-text-regular);
+    border-color: var(--bb-primary-button-border-regular);
+    font-weight: 600;
+    text-transform: none;
+    cursor: pointer;
+}
+.pond-auth-page #content .mepr-form input:is([type="checkbox"], [type="radio"]) { width: 18px; height: 18px; margin: 0 8px 0 0; accent-color: var(--bb-primary-color); }
+#firebase-login-page .mepr-form div.mp-hide-pw { position: relative; }
+#firebase-login-page :is(.mepr-form, #mepr_forgot_password_form) #user_pass { padding-right: 48px !important; }
+#firebase-login-page .mepr-form button.mp-hide-pw {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+    margin: 0;
+    padding: 8px;
+    width: 36px;
+    height: 36px;
+    border: 0;
+    background: transparent;
+    color: var(--bb-body-text-color);
+}
+#firebase-login-page .mepr-form button.mp-hide-pw .dashicons::before { color: inherit; opacity: 1; }
+#firebase-login-page .mp-spacer { display: none; }
+#firebase-login-page .submit { margin-top: 20px; }
+#firebase-login-page .mepr-login-actions { position: static; width: 100%; float: none; margin-top: 16px; text-align: center; }
+#firebase-login-page .mepr-login-actions a { background: none; color: var(--bb-primary-color); padding: 0; font: inherit; }
+.pond-auth-page #content .pond-auth-signup { margin: 24px 0 0; padding-top: 20px; border-top: 1px solid var(--bb-content-border-color); text-align: center; font-size: 14px; }
+.pond-auth-page #content :is(button, a, input, select, textarea):focus-visible { outline: 2px solid var(--bb-primary-color); outline-offset: 3px; }
+@media (max-width: 600px) {
+    .pond-auth-page #content .pond-auth-shell { padding: 24px 0; }
+    .pond-auth-page #content .pond-auth-card { padding: 24px 20px; }
+}
+
+.pond-auth-page .buddypanel,
+.pond-auth-page #site-navigation,
+.pond-auth-page #masthead .bb-toggle-panel,
+.pond-auth-page #masthead .bb-left-panel-icon-wrap,
+.pond-auth-page #masthead .bb-mobile-panel-wrapper { display: none; }
+body.pond-auth-page #page { margin-left: 0; margin-right: 0; }
+body.pond-auth-page #masthead { left: 0; right: 0; width: 100%; }
+.pond-auth-page .pond-portal { font: inherit; }
+#firebase-login-page .pond-login-options { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+#firebase-login-page .pond-login-options > label { width: auto !important; display: inline-flex !important; align-items: center; }
+#firebase-login-page .pond-login-options .mepr-login-actions { width: auto; margin: 0 0 0 auto; font-size: 14px; }
+#firebase-login-page .mepr-login-actions { text-align: right; }
+
+.pond-auth-page #content .pond-signup-layout { width: 100%; max-width: 680px; }
+.pond-auth-page #content .pond-signup-layout:has(.pond-signup-benefits) { max-width: 1020px; display: grid; grid-template-columns: minmax(0, 680px) minmax(0, 300px); gap: 32px; }
+.pond-auth-page #content .pond-signup-card { max-width: none; }
+.pond-auth-page #content .pond-signup-heading { display: flex; align-items: start; justify-content: space-between; gap: 16px; }
+.pond-auth-page #content .pond-signup-price { font-size: 24px; font-weight: 600; margin: 0; color: var(--bb-primary-color); }
+.pond-auth-page #content .pond-signup-card .pond-auth-providers { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.pond-auth-page #content .email-btn { grid-column: 1 / -1; background: var(--bb-primary-button-background-regular); color: var(--bb-primary-button-text-regular); border-color: var(--bb-primary-button-border-regular); }
+.pond-auth-page #content .pond-signup-form-wrapper { margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--bb-content-border-color); }
+.pond-auth-page #content .mepr-signup-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 20px; }
+.pond-auth-page #content .mepr-signup-form > * { grid-column: 1 / -1; }
+.pond-auth-page #content .mepr-signup-form > :is(.mepr_first_name, .mepr_last_name, .mepr_password, .mepr_password_confirm) { grid-column: auto; }
+.pond-auth-page #content .mepr-signup-form :is(select, textarea, .select2-selection--single) {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 14px;
+    background: var(--bb-content-background-color);
+    color: var(--bb-body-text-color);
+    border: 1px solid var(--bb-content-border-color);
+    border-radius: 8px;
+    font: inherit;
+}
+.pond-auth-page #content .mepr-signup-form textarea { min-height: 120px; }
+.pond-auth-page #content .mepr-signup-form :is(.select2-selection__rendered, .select2-results__option) { color: var(--bb-body-text-color); }
+.pond-auth-page #content :is(.mepr-form, #mepr_forgot_password_form) .mp-form-row.mepr_price { padding: 16px; border-radius: 8px; background: var(--bb-content-alternate-background-color); font: inherit; }
+.pond-auth-page #content .mepr_price_cell_label { margin-right: 6px; }
+.pond-auth-page #content .mepr-signup-form .mepr-payment-methods-wrapper { margin: 24px 0; padding: 20px; border: 1px solid var(--bb-content-border-color); border-radius: 8px; background: var(--bb-content-alternate-background-color); }
+.pond-auth-page #content .mepr-signup-form .mepr-payment-methods-wrapper h3 { font: inherit; font-size: 18px; font-weight: 600; margin: 0 0 16px; }
+.pond-auth-page #content .mepr-signup-form .mepr-payment-option-label { padding: 12px; border: 1px solid var(--bb-content-border-color); border-radius: 8px; background: var(--bb-content-background-color); color: var(--bb-body-text-color); }
+.pond-auth-page #content .mepr-signup-form .mepr-payment-methods-icons img { background: #fff; padding: 4px; border-radius: 4px; }
+.pond-auth-page #content .mepr-signup-form hr { border-color: var(--bb-content-border-color); }
+.pond-auth-page #content .mepr-signup-form :is(.mp-form-submit, .mepr_spacer) { margin: 20px 0 0; }
+.pond-auth-page #content .mepr-signup-form .mepr_spacer { display: none; }
+.pond-auth-page #content .mepr-signup-form .mepr-form-has-errors { margin-top: 12px; }
+.pond-auth-page #content .mepr-signup-form input.invalid { border-color: #cc3333; }
+.pond-auth-page #content .pond-signup-benefits { padding: 24px; border: 1px solid var(--bb-content-border-color); border-radius: 16px; background: var(--bb-content-background-color); color: var(--bb-body-text-color); align-self: start; }
+html[data-pond-theme="dark"] .pond-auth-page #content :is(.cc-error, .mepr-form-has-errors) { color: #ff9b9b; }
+html[data-pond-theme="dark"] .pond-auth-page #content .mepr_error { background: #46262b !important; color: #ffbaba; }
+html[data-pond-theme="dark"] #masthead .site-title:has(.bb-logo-dark) .bb-logo:not(.bb-logo-dark),
+html[data-pond-theme="dark"] #masthead .site-title:has(.bb-mobile-logo-dark) .bb-mobile-logo:not(.bb-mobile-logo-dark) { display: none; }
+html[data-pond-theme="dark"] #masthead .site-title :is(.bb-logo-dark, .bb-mobile-logo-dark) { display: inline; background: none; padding: 0; }
+html[data-pond-theme="dark"] #masthead .site-title a:has(.bb-logo-dark, .bb-mobile-logo-dark) { background: transparent; }
+html[data-pond-theme="light"] #masthead .site-title :is(.bb-logo-dark, .bb-mobile-logo-dark) { display: none; }
+@media (max-width: 799px) {
+    .pond-auth-page #content .pond-signup-layout:has(.pond-signup-benefits) { display: block; }
+    .pond-auth-page #content .pond-signup-benefits { margin-top: 24px; }
+    .pond-auth-page #masthead .mobile-logo-wrapper { text-align: left; margin-left: 16px; }
+}
+@media (max-width: 600px) {
+    .pond-auth-page #content .pond-signup-card .pond-auth-providers { grid-template-columns: 1fr; }
+    .pond-auth-page #content .mepr-signup-form { grid-template-columns: 1fr; }
+    .pond-auth-page #content .pond-signup-heading { flex-direction: column; gap: 0; margin-bottom: 16px; }
+    .pond-auth-page #content .mepr-signup-form .mepr-payment-methods-wrapper { padding: 12px; }
+}

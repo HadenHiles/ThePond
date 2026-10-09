@@ -1,0 +1,2761 @@
+.pond-portal .blogprevtext.course-limit .ld-item-list-item-preview{}
+.pond-portal .course-limit .ld-section-heading{
+    display: none !important;
+}
+.pond-portal .course-limit .ld-item-list-items.ld-lesson-progression>div{
+    display: none;
+}
+.pond-portal .course-limit .ld-item-list-items.ld-lesson-progression div:nth-child(-n+3){
+    border: 0px;
+    padding: 0px;
+    display: block;
+    margin: 5px 0px;
+}
+.pond-portal .course-limit .ld-item-list-items.ld-lesson-progression div:nth-child(-n+3) .ld-status-incomplete{
+    border: 4px solid #e2e7ed;
+}
+.pond-portal .course-limit .ld-item-list-items.ld-lesson-progression div:nth-child(-n+3) .ld-item-details{
+    display: none;
+}
+.pond-portal .courseIntroBox h3{
+    color: #384044;
+}
+.pond-portal .small-centered{
+    text-align: center;
+}
+.pond-portal .small-centered .BTN{
+    display: inline-block;
+    float: unset !important;
+}
+.pond-portal .small-left .BTN{
+    float: left !important;
+}
+.pond-portal .upcommingEvent{
+    display: inline-block;
+    background: #069EDA;
+    padding: 1rem 0;
+    color: #fff;
+    position: fixed;
+    bottom: 0;
+    z-index: 9999;
+    width: 100%;
+    left: 0;
+    right: 0;
+}
+.pond-portal .callTime ul{
+    width: 100%;
+}
+.pond-portal .callTime li{
+    display: inline-block;
+    margin-right: 0px;
+    text-align: center;
+}
+.pond-portal .callTime li span.number{
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 0;
+}
+.pond-portal .callDetails p{
+    margin: 0;
+}
+.pond-portal .icon-main{
+    float: left;
+    width: 15%;
+    text-align: center;
+}
+.pond-portal .callDetails h4{
+    float: left;
+    padding-top: 14px;
+    font-size: 20px;
+}
+.pond-portal .icon-main svg{
+    font-size: 3rem;
+    color: #384044;
+}
+.pond-portal .callTime li span#days::after,.pond-portal .callTime li span#hours::after,.pond-portal .callTime li span#mins::after{
+    content: ":";
+    margin: 0 5px;
+}
+.pond-portal .callTime li span.number_unit{
+    display: block;
+    font-size: .9rem;
+}
+.pond-portal aside.sidebar_orange.next_training span{
+    float: right;
+    padding-top: 12px;
+}
+.pond-portal .upcomingEvent ul.callTime{
+    float: right;
+}
+.pond-portal ul.callTime{
+    text-align: right;
+    margin: 0 auto;
+    padding-top: 10px;
+}
+.pond-portal .wrap-timer-footer .atcb-link.BTN:hover{
+    background: #fff;
+    color: #384044;
+}
+.pond-portal table.callSchedule{
+    width: 100%;
+    border: 0px solid transparent;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 0 15px #0000001f;
+    background: #fdfdfd;
+}
+.pond-portal td.tdTime p{
+    margin: 4px 0px;
+}
+.pond-portal table.callSchedule td{
+    border: solid 1px #38404429;
+    padding: 15px;
+}
+.pond-portal .tdDate svg,.pond-portal .tdDesc svg,.pond-portal .tdTime svg{
+    float: left;
+    margin-right: 10px;
+}
+.pond-portal ul.atcb-list .atcb-item{
+    position: relative;
+    padding-left: 1rem;
+}
+.pond-portal ul.atcb-list .atcb-item::before{
+    font-family: "Font Awesome 5 Pro";
+    font-weight: 400;
+    display: none;
+}
+.pond-portal ul.atcb-list .atcb-item svg{
+    position: absolute;
+    left: 5px;
+    top: 2px;
+}
+.pond-portal ul.atcb-list .atcb-item:nth-child(1)::before{
+    content: "\f784";
+}
+.pond-portal ul.atcb-list .atcb-item:nth-child(2)::before{
+    content: "\f1a0";
+    font-family: "Font Awesome 5 Brands";
+}
+.pond-portal ul.atcb-list .atcb-item:nth-child(3)::before{
+    content: "\f784";
+}
+.pond-portal ul.atcb-list .atcb-item:nth-child(4)::before{
+    content: "\f784";
+}
+.pond-portal ul.atcb-list .atcb-item:nth-child(5)::before{
+    content: "\f19e";
+    font-family: "Font Awesome 5 Brands";
+}
+.pond-portal table.callSchedule tbody tr:last-child td:last-child{
+    border-right: none;
+    border-bottom: none;
+}
+.pond-portal table.callSchedule tbody tr:last-child td:first-child{
+    border-left: none;
+    border-bottom: none;
+}
+.pond-portal table.callSchedule tbody tr:last-child td:nth-child(2),.pond-portal table.callSchedule tbody tr:last-child td:nth-child(3){
+    border-bottom: none;
+}
+.pond-portal table.callSchedule tbody tr td:last-child{
+    border-right: 0px;
+}
+.pond-portal table.callSchedule tbody tr td:first-child{
+    border-left: 0px;
+}
+.pond-portal td.tdDate{
+    width: 20%;
+}
+.pond-portal td.tdDesc{
+    width: 40%;
+}
+.pond-portal td.tdTime{
+    width: 25%;
+}
+.pond-portal table.callSchedule thead{
+    background-color: #384044;
+    color: #fff;
+    height: 50px;
+}
+.pond-portal .mp_wrapper h1{
+    display: none;
+}
+.pond-portal .current-menu-item{
+    color: #069EDA;
+}
+.pond-portal .MemberheaderWrap .MainNav{
+    width: 100%;
+    float: right;
+    margin: 0;
+}
+.pond-portal header .MemberheaderWrap .MainNav ul{
+    margin: 0;
+}
+.pond-portal header .MemberheaderWrap .MainNav ul li a{
+    color: #fff;
+}
+.pond-portal header .MemberheaderWrap .MainNav ul li a:hover{
+    color: #069EDA;
+}
+.pond-portal header .MemberheaderWrap .MainNav ul li ul li a:hover{
+    background: rgba(0, 0, 0, 0.10);
+    color: #fff;
+}
+.pond-portal header .MemberheaderWrap .MainNav .submenu-button{
+    color: rgba(255, 255, 255, 0.30);
+}
+.pond-portal .MemberheaderWrap .headerlogo{
+    float: left;
+    max-width: 20%;
+    margin-top: 0.7rem;
+}
+.pond-portal .memberlogo{
+    max-width: 85%;
+}
+.pond-portal .MemberheaderWrap a.BTN{
+    float: right;
+    margin: 10px 0 0 0;
+    background: #069EDA;
+}
+.pond-portal .memberDashWelc.hideHead{
+    display: none;
+}
+.pond-portal section.MembersContent{
+    background: #f9f9f9;
+    padding: 3rem 0;
+}
+.pond-portal a.BTN.dashBTN{
+    float: right;
+    margin: 0.5rem 0 0 0;
+    padding: 15px 20px;
+}
+.pond-portal .topmemberNav{
+    float: right;
+    width: auto;
+    padding-right: 0.9375rem;
+    margin-top: 40px;
+}
+.pond-portal .topmemberNav li{
+    display: inline-block;
+    text-align: right;
+}
+.pond-portal .topmemberNav li a{
+    padding: 7px 15px;
+    color: #069EDA;
+    font-size: 0.9rem;
+}
+.pond-portal .topmemberNav li a:hover{
+    color: #2FAF8D;
+}
+.pond-portal section.stretchsection{
+    padding: 0;
+}
+.pond-portal section.stretchsection main{
+    margin: 0rem 0;
+}
+.pond-portal .JumpTo{
+    width: 100%;
+    float: left;
+    border: 2px solid #e2e7ed;
+    border-radius: 6px;
+    padding: 2em;
+    background: #fff;
+}
+.pond-portal .JumpTo ul{
+    width: 100%;
+    float: left;
+    margin: 0;
+}
+.pond-portal .JumpTo ul li{
+    width: 49%;
+    float: left;
+    margin: 10px 0 0 0;
+    padding: 0;
+}
+.pond-portal .JumpTo ul li:nth-child(even){
+    float: right;
+}
+.pond-portal .JumpTo h4{
+    margin: 0 0 1rem 0;
+}
+.pond-portal .JumpTo ul li:before{
+    display: none;
+}
+.pond-portal .JumpTo p{
+    width: 100%;
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+.pond-portal .JumpTo a .jumptitle{
+    width: 70%;
+    float: left;
+    font-weight: 700;
+    color: #384044;
+}
+.pond-portal .JumpTo a .jumptime{
+    width: 30%;
+    float: left;
+    text-align: left;
+    color: #069EDA;
+}
+.pond-portal .JumpTo a:hover .jumptitle,.pond-portal .JumpTo a:hover .jumptime{
+    color: #2FAF8D;
+}
+.pond-portal .headerWrap a.BTN{
+    float: right;
+    margin: 0.4rem 0 0 1rem;
+}
+.pond-portal .headerlogo{
+    max-width: 15%;
+    width: 100%;
+    float: left;
+}
+.pond-portal .logo img{
+    width: 100%;
+}
+.pond-portal .courseMenu{
+    width: 100%;
+    display: inline-block;
+    position: relative;
+    height: 60px;
+    margin: 1rem 0;
+}
+.pond-portal header .CourseNavOuter{
+    height: 100%;
+    background: none;
+    text-align: center;
+    transition: 0.6s;
+    width: 100%;
+    max-width: 100%;
+}
+.pond-portal .CourseNavOuter.menuopen{
+    width: auto;
+    background: none;
+    position: relative;
+    overflow: visible;
+    height: auto;
+}
+.pond-portal .CourseNavBTN{
+    text-align: center;
+    display: none;
+    width: auto;
+    cursor: pointer;
+}
+.pond-portal .CourseNavBTN.open{}
+.pond-portal .bar1,.pond-portal .bar2,.pond-portal .bar3{
+    width: 29px;
+    height: 2px;
+    background-color: #fff;
+    margin: 6px auto;
+    transition: 0.4s;
+    display: block;
+}
+.pond-portal .open .bar1{
+    -webkit-transform: rotate(-45deg) translate(-7px, 7px);
+    transform: rotate(-45deg) translate(-7px, 7px);
+}
+.pond-portal .open .bar2{
+    opacity: 0;
+}
+.pond-portal .open .bar3{
+    -webkit-transform: rotate(45deg) translate(-5px, -5px);
+    transform: rotate(45deg) translate(-5px, -5px);
+}
+.pond-portal #MenuBTN{
+    fill: #fff;
+    display: inline-block;
+}
+.pond-portal header .CourseMainNav ul{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+}
+.pond-portal header .CourseMainNav ul li{
+    width: auto;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+}
+.pond-portal header .CourseMainNav ul li a{
+    display: inline-block;
+    color: #fff;
+    font-size: .9em;
+    text-transform: none;
+    padding: .5rem 1.5rem;
+    background: #384044;
+}
+.pond-portal header .CourseMainNav ul li a:hover{
+    background: #069EDA;
+}
+.pond-portal header .CourseMainNav ul li.current-menu-item a,.pond-portal header .CourseMainNav ul li.current-menu-item a:hover{
+    color: #069EDA;
+    text-decoration: none;
+}
+.pond-portal .course-submenu-button{
+    display: none;
+}
+.pond-portal header .CourseMainNav .submenu-button,.pond-portal header .CourseMainNav .submenu-button.submenu-opened{
+    position: absolute;
+    right: .5rem;
+    color: rgba(255, 255, 255, 0.20);
+    top: .2rem;
+    z-index: 500;
+    padding: 0.7em 1em;
+    height: auto;
+    font-size: .9rem;
+}
+.pond-portal header .CourseMainNav .submenu-button .fa-minus-circle{
+    display: none;
+}
+.pond-portal header .CourseMainNav .submenu-button .fa-plus-circle{
+    display: block;
+    font-size: .8rem;
+}
+.pond-portal header .CourseMainNav .submenu-button.submenu-opened .fa-minus-circle{
+    display: block;
+}
+.pond-portal header .CourseMainNav .submenu-button.submenu-opened .fa-plus-circle{
+    display: none;
+}
+.pond-portal header .CourseMainNav .sub-menu li a:hover{
+    color: #fff;
+}
+.pond-portal section.forumFeed{
+    background: #f4f4f4;
+    padding: 3rem 0;
+}
+.pond-portal .forumPosts h3{
+    text-align: center;
+    display: block;
+    margin: 0 0 1rem 0;
+}
+.pond-portal ul.wpipb_topic_list li{
+    width: 30.3%;
+    margin: 1% 1.5%;
+    float: left;
+    border: solid 1px #e9e9e9;
+    padding: 2rem;
+    min-height: 300px;
+    position: relative;
+    background: #fff;
+    font-size: .9rem;
+}
+.pond-portal ul.wpipb_topic_list li h4 a{
+    margin-bottom: 15px;
+    display: block;
+    min-height: 55px;
+}
+.pond-portal ul.wpipb_topic_list li p.author{
+    font-size: .9rem;
+    margin: 10px 0;
+    position: absolute;
+    bottom: 65px;
+}
+.pond-portal ul.wpipb_topic_list li p.author a{
+    font-weight: 700;
+    color: #2FAF8D;
+}
+.pond-portal ul.wpipb_topic_list li a.BTN{
+    position: absolute;
+    bottom: 1.5rem;
+    left: 2rem;
+    max-width: 200px;
+}
+.pond-portal .wpipb_visit_forum a,.pond-portal a.forumQuestion{
+    display: inline-block;
+    background: #2FAF8D;
+    color: #fff;
+    padding: 2rem;
+    margin: 1rem;
+    text-align: center;
+}
+.pond-portal .wpipb_visit_forum a{
+    width: 97%;
+}
+.pond-portal a.forumQuestion{
+    width: 100%;
+    margin: 1rem 0
+}
+@media screen and (min-width: 64em){.pond-portal header .CourseMainNav ul li.menu-item-has-children>ul{
+        position: absolute;
+        top: 100%;
+        left: 0;
+        margin: 0;
+        z-index: 30;
+        height: 0;
+        overflow: hidden;
+        right: -9999px;
+        background: none;
+        padding: 0;
+        width: 220px;
+        -webkit-transition: background .3s ease;
+        -ms-transition: background .3s ease;
+        transition: background .3s ease;
+    }
+.pond-portal header .CourseMainNav ul li.menu-item-has-children{
+        -webkit-transition: background .3s ease;
+        -ms-transition: background .3s ease;
+        transition: background .3s ease;
+        padding-right: 0;
+    }
+.pond-portal header .CourseMainNav ul li.menu-item-has-children a{
+        padding-right: 2.2rem;
+    }
+.pond-portal header .CourseMainNav .submenu-button{
+        padding: 0 0.25em;
+        height: 17px;
+        bottom: 0;
+        margin: auto;
+        z-index: 1;
+    }
+.pond-portal header .CourseMainNav ul li.menu-item-has-children:hover>ul{
+        display: block;
+        height: auto;
+        right: 0;
+        padding: 0;
+        left: initial;
+        background: #069EDA
+    }
+.pond-portal header .CourseMainNav ul li.menu-item-has-children>ul>li{
+        padding: 0;
+        opacity: 0;
+        -webkit-transition: all .25s ease;
+        -ms-transition: all .25s ease;
+        transition: all .25s ease;
+        width: 100%;
+    }
+.pond-portal header .CourseMainNav ul li.menu-item-has-children>ul>li:hover{
+        background: rgba(0, 0, 0, 0.3);
+    }
+.pond-portal header .CourseMainNav ul li.menu-item-has-children:hover>ul>li{
+        opacity: 1;
+    }
+.pond-portal header .CourseMainNav ul li.menu-item-has-children>ul>li>a{
+        color: #fff;
+        -webkit-transition: all .1s ease-in-out;
+        -moz-transition: all .1s ease-in-out;
+        -ms-transition: all .1s ease-in-out;
+        -o-transition: all .1s ease-in-out;
+        transition: all .1s ease-in-out;
+        width: 100%;
+        margin: 0;
+        text-align: left;
+        font-size: .8rem;
+    }
+.pond-portal #menu-item-205,.pond-portal #menu-item-204,.pond-portal #menu-item-206,.pond-portal #menu-item-203{
+        display: none;
+    }
+}
+@media screen and (max-width: 63.9375em){.pond-portal .courseMenu{
+        margin-top: -132px;
+        z-index: 9
+    }
+.pond-portal .CourseNavBTN{
+        display: inline-block;
+        margin: 0;
+        position: absolute;
+        right: 0;
+        z-index: 1;
+        background: #384044;
+        width: auto;
+        height: auto;
+        text-align: center;
+        padding: .6rem;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+.pond-portal .CourseMainNav{
+        display: none;
+        background: #384044;
+        width: 100%;
+        max-width: 100%;
+        height: 100%;
+    }
+.pond-portal header .CourseMainNav ul.sub-menu{
+        display: none;
+    }
+.pond-portal header .CourseNavOuter{
+        height: auto;
+    }
+.pond-portal .CourseNavOuter.menuopen{
+        position: absolute;
+    }
+.pond-portal header .CourseMainNav ul{
+        margin: 0;
+    }
+.pond-portal header .CourseMainNav ul li{
+        display: inline-block;
+        width: 100%;
+        text-align: left;
+    }
+.pond-portal header .CourseMainNav ul li a,.pond-portal header .CourseMainNav ul li.current-menu-item a{
+        width: 100%;
+        margin: 0;
+        padding: 0.8em 2em;
+        text-align: left;
+        color: #fff;
+    }
+.pond-portal header .CourseMainNav .submenu-button{
+        color: #fff;
+    }
+.pond-portal .CourseMainNav .sub-menu.open li a{
+        background: rgba(255, 255, 255, 0.10)
+    }
+}
+.pond-portal #search{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .9);
+    z-index: 999999;
+    -webkit-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+    -webkit-transform: translate(0, -100%) scale(0, 0);
+    -ms-transform: translate(0, -100%) scale(0, 0);
+    transform: translate(0, -100%) scale(0, 0);
+    opacity: 0;
+}
+.pond-portal #search.open{
+    -webkit-transform: translate(0, 0) scale(1, 1);
+    -ms-transform: translate(0, 0) scale(1, 1);
+    transform: translate(0, 0) scale(1, 1);
+    opacity: 1;
+}
+.pond-portal #search input[type="search"]{
+    position: absolute;
+    top: 30%;
+    width: 100%;
+    color: #fff;
+    background: transparent;
+    font-size: 60px;
+    font-weight: 300;
+    text-align: center;
+    border: 0;
+    margin: 0 auto;
+    padding: 0 30px;
+    outline: 0;
+
+}
+.pond-portal #search .btn{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 15px 30px;
+    text-align: center;
+    font-size: inherit;
+    cursor: pointer;
+    background: #069EDA;
+    color: #fff;
+    line-height: 1em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 260px;
+    margin-left: -130px;
+    border: 0;
+}
+.pond-portal #search .close{
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    color: #fff;
+    background-color: #069EDA;
+    border: 0;
+    opacity: 1;
+    padding: 10px 17px;
+    font-size: 27px;
+}
+.pond-portal .header .topmemberNav li.menu_search a{
+    color: #fff;
+    background-color: #069EDA;
+    border-radius: 5px;
+}
+.pond-portal .header .topmemberNav li.menu_search a:hover{
+    background: #2FAF8D;
+}
+.pond-portal .searchResults{
+    display: inline-block;
+    margin: 2rem 0;
+    min-width: 50%;
+}
+.pond-portal .searchResults input[type="search"]{
+    max-width: 70%;
+    margin-right: 2%
+}
+.pond-portal .searchResults input[type="submit"]{
+    background: #069EDA;
+}
+.pond-portal .searchResults input[type="submit"]:hover{
+    background: #384044;
+}
+.pond-portal .searchNothingFound{
+    text-align: center;
+}
+.pond-portal .searchContent{}
+.pond-portal p.searchText{
+    margin-bottom: .5rem;
+}
+.pond-portal span.searchResult{
+    color: #069EDA;
+}
+.pond-portal .searchContent .filtr-item{
+    min-height: 200px;
+}
+.pond-portal .searchItem span{
+    background: #ccc;
+    color: #fff;
+    text-align: center;
+    padding: 5px 10px;
+    display: inline-block;
+    margin: 0 0 10px 0;
+}
+.pond-portal .salesBannerOverlay{
+    background: rgba(0, 0, 0, 0.42);
+    width: 100%;
+    height: 100%;
+    padding: 3rem 0 7rem 0;
+    color: #fff;
+}
+.pond-portal #HeaderTopOne h1{
+    margin-bottom: 1rem;
+    color: #fff;
+}
+.pond-portal #HeaderTopOne h2{
+    margin-bottom: 1rem;
+    color: #fff;
+}
+.pond-portal .salesHeader{
+    margin-bottom: 6rem;
+    display: inline-block;
+    width: 100%;
+}
+.pond-portal .salesHeader .headerlogo{
+    max-width: 70%;
+}
+.pond-portal .headerBTNS{
+    width: 30%;
+    float: right;
+    text-align: center;
+}
+.pond-portal .headerBTNS a.BTN{
+    font-size: 1rem;
+}
+.pond-portal .headerBTNS a.textLink{
+    display: block;
+    font-size: 1rem;
+    text-align: center;
+    color: #fff;
+}
+.pond-portal #HeaderTopOne{
+    background: #ccc;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 0;
+}
+.pond-portal .HeaderTopButton{
+    padding: 15px 25px;
+    color: #fff;
+    text-align: center;
+    font-size: 24px;
+    margin-top: 15px;
+    background: #069EDA;
+    display: inline-block;
+}
+.pond-portal .HeaderTopButton:hover,.pond-portal .headerBTNS a.BTN:hover{
+    background: #fff;
+    color: #069EDA;
+}
+.pond-portal .SectTwoSubTitle{
+    margin-bottom: 20px;
+}
+.pond-portal ul.salesPain{
+    width: 80%;
+    margin: 0 10%;
+}
+.pond-portal ul.salesPain li{
+    margin: 1rem 0;
+    font-size: 1.3rem;
+}
+.pond-portal section.CTABannerBG{
+    background: #069EDA;
+    text-align: center;
+    color: #fff;
+}
+.pond-portal section.salesIncluded{
+    background: #f4f4f4;
+}
+.pond-portal .salesIncluded ul li{
+    width: 30%;
+    display: inline-block;
+    margin: 1rem 1.5%;
+}
+.pond-portal .inscudeItem{
+    background: #fff;
+    text-align: center;
+    padding: 2rem;
+}
+.pond-portal .inscudeItem img{
+    max-width: 60%;
+    margin-bottom: 20px;
+}
+.pond-portal .meetOwners{
+    background: #069EDA;
+    padding: 2rem;
+    color: #fff;
+}
+.pond-portal section#Pricingboxes{
+    background: #384044;
+}
+.pond-portal #Pricingboxes .salesSectHeader{
+    color: #fff;
+}
+.pond-portal .PriceBoxWrap{
+    display: inline-block;
+    width: 100%;
+    padding: 2rem;
+}
+.pond-portal .memberPriceBox{
+    display: inline-block;
+    background: #fff;
+    text-align: center;
+    width: 100%;
+    min-height: 480px;
+}
+.pond-portal .memberPriceBox h4{
+    background: #069EDA;
+    color: #fff;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+.pond-portal .memberPriceBox h2{
+    font-size: 4rem;
+    line-height: normal;
+}
+.pond-portal .memberPriceBox h2 span{
+    font-size: 1rem;
+}
+.pond-portal .memberPriceBox a.BTN{
+    margin-bottom: 3rem;
+    font-size: 22px;
+    padding: 15px 30px;
+}
+.pond-portal .memberPriceBox ul{
+    width: 90%;
+    margin: 1rem 5%;
+    border-top: dashed 2px #e9e9e9;
+    padding: 1rem 0;
+    display: inline-block;
+}
+.pond-portal section.salesIntroducing{
+    background: #e9e9e9;
+}
+.pond-portal section.salesMeet{
+    background: #384044;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.pond-portal .pricingExtra{
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    display: inline-block;
+}
+.pond-portal .faqExtra{
+    width: 100%;
+    text-align: center;
+    padding: 2rem 0;
+    display: inline-block;
+}
+.pond-portal .salesFAQwrap h3{
+    display: none;
+}
+.pond-portal section.salesTestimonials{
+    background: #e9e9e9;
+}
+.pond-portal section.saleGuarantee{
+    background: #069EDA;
+    color: #fff;
+}
+.pond-portal .GuaranteeBadge{
+    padding: 0 4rem;
+}
+.pond-portal .salesSectHeader{
+    display: block;
+    margin: 2rem 0;
+}
+.pond-portal .salesFAQwrap{
+    width: 70%;
+    margin: 0 auto;
+}
+.pond-portal .memberReason,.pond-portal .memberSupport,.pond-portal .memberPromo{
+    background: #f5f5f5;
+    display: inline-block;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+.pond-portal .memberSupport{
+    text-align: center;
+}
+.pond-portal .memberReason p,.pond-portal .memberSupport p,.pond-portal .memberPromo p{
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+.pond-portal .memberReason h3,.pond-portal .memberSupport h3,.pond-portal .memberPromo h3{
+    font-size: 1.3em;
+    line-height: 1.8rem;
+    margin-bottom: 1rem;
+}
+.pond-portal .memberReason h3 strong,.pond-portal .memberSupport h3 strong,.pond-portal .memberPromo h3 strong{
+    color: #069EDA;
+    display: block;
+}
+.pond-portal .memberReason ul,.pond-portal .memberSupport ul,.pond-portal .memberPromo ul{
+    margin: 1rem 0;
+    display: inline-block;
+}
+.pond-portal .memberReason ul li,.pond-portal .memberSupport ul li,.pond-portal .memberPromo ul li{
+    position: relative;
+    padding: .4rem 0 .4rem 1.5rem;
+    text-align: left;
+    font-size: 1rem;
+}
+.pond-portal .memberReason ul li::before,.pond-portal .memberSupport ul li::before,.pond-portal .memberPromo ul li::before{
+    background-color: #2FAF8D;
+    position: absolute;
+    top: .8rem;
+    left: 0;
+}
+.pond-portal .memberReason a.BTN,.pond-portal .memberSupport a.BTN{
+    margin: 0 0 10px 0;
+}
+.pond-portal .memberReason a.BTN:hover,.pond-portal .memberSupport a.BTN:hover{
+    background: #384044;
+}
+.pond-portal .memberPromo{
+    background: #384044;
+    color: #fff;
+    width: 100%;
+}
+.pond-portal .memberPromo a.BTN{
+    background: #069EDA;
+    margin-bottom: 0;
+}
+.pond-portal .memberPromo a.BTN:hover{
+    background: #fff;
+    color: #069EDA;
+}
+.pond-portal .trustIcons{
+    width: 100%;
+    display: inline-block;
+    background: url("/wp-content/themes/melting_pot/images/trust-black.png") no-repeat center;
+    height: 100px;
+    background-size: 75%;
+    margin: 2rem 0;
+}
+.pond-portal .mepr-form{
+    background: #fff;
+    padding: 15px;
+}
+.pond-portal section.backgroundlogin{
+    min-height: 75vh;
+    padding: 6rem 0;
+    text-align: center;
+    background-color: #069EDA;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.pond-portal body.page-template-member_login{
+    background: #ccc;
+}
+.pond-portal .backgroundlogin h1{
+    color: #fff;
+    margin-bottom: 1rem;
+}
+.pond-portal .backgroundlogin .centered{
+    float: none;
+    display: inline-block;
+}
+.pond-portal .memberLoginWrapper{
+    padding: 3rem;
+    display: inline-block;
+    width: 100%;
+    background: #fff;
+    margin-bottom: 4rem;
+}
+.pond-portal img.memberloginlogo{
+    max-width: 60%;
+    margin: 2rem 0 4rem 0;
+}
+.pond-portal .welcomeWrapper{
+    text-align: center;
+}
+.pond-portal .welcomeHeader{
+    padding: 0 0 1rem 0;
+    margin-bottom: 1.5rem;
+}
+.pond-portal .getStartedBox{
+    width: 100%;
+    padding: 3rem;
+    margin: 2rem 0;
+    background: #069EDA;
+    text-align: center;
+}
+.pond-portal .getStartedBox h4{
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+    color: #fff;
+}
+.pond-portal .getStartedBox a.BTN{
+    margin: .7rem 0;
+}
+.pond-portal .getStartedBox a.BTN:hover{
+    background: #fff;
+    color: #384044;
+}
+.pond-portal section.memberbenefits{
+    padding: 0;
+}
+.pond-portal ul.benefit-wrap{
+    display: inline-block;
+    padding: 1rem;
+    width: 100%;
+}
+.pond-portal .wrap-benefit{
+    text-align: center;
+    padding: 5px 0;
+    position: relative;
+}
+.pond-portal .wrap-benefit p{
+    font-size: .9rem;
+    line-height: 1.2rem;
+}
+.pond-portal .wrap-benefit svg{
+    font-size: 80px;
+    margin-bottom: 1.5rem;
+}
+.pond-portal .wrap-benefit img{
+    height: 100px;
+    margin-bottom: 1.5rem;
+}
+.pond-portal .wrap-benefit a.BTN{
+    margin: .7rem 0;
+    position: absolute;
+    bottom: 0;
+    left: 15%;
+    width: 70%;
+}
+.pond-portal .wrap-benefit a h4{
+    color: #069EDA;
+}
+.pond-portal .wrap-benefit a h4:hover{
+    color: #384044;
+}
+.pond-portal .afterMainLinks{
+    margin: 2rem 0;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+.pond-portal ul.contentfeed{
+    width: 100%;
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+.pond-portal ul.contentfeed li{
+    width: 100%;
+    float: left;
+    list-style: none;
+    padding: 20px 0;
+    border-bottom: 1px solid #e9e9e9;
+}
+.pond-portal ul.contentfeed li .contenttext{
+    width: 100%;
+    float: left;
+    padding-left: 20px;
+}
+.pond-portal ul.contentfeed li .BTN{
+    margin: 10px 0 0 0;
+}
+.pond-portal ul.contentfeed li p{
+    padding: 0;
+    margin: 0;
+    line-height: 1.6rem;
+}
+.pond-portal ul.contentfeed li #FeatureImage{
+    width: 100%;
+    float: left;
+    min-height: 100px;
+}
+.pond-portal span.postLabel{
+    background: #069EDA;
+    padding: 3px 10px;
+    color: #fff;
+    font-size: .6rem;
+    border-radius: 10px;
+    margin: 10px;
+    display: inline-block;
+}
+.pond-portal .blogprevtext{
+    min-height: 260px;
+}
+.pond-portal .sectionHeader{
+    margin-bottom: 2rem;
+    display: inline-block;
+    width: 100%;
+}
+.pond-portal .sectionHeader h3{
+    margin: .7rem 0 0 0;
+}
+.pond-portal .sectionHeader a.BTN{
+    float: right;
+    margin: 1rem 0 0 0;
+    background: #069EDA;
+}
+.pond-portal .sectionHeader a.BTN:hover{
+    background: #384044;
+}
+.pond-portal section.courses{
+    padding: 3rem 0 0 0;
+}
+.pond-portal section.post-custom{
+    padding: 4rem 0;
+}
+.pond-portal .memberLatestContent h2{
+    margin-bottom: 2rem;
+}
+.pond-portal .progressWrapper{
+    position: relative;
+    width: 100%;
+    min-height: 80px;
+    margin-top: 7px;
+}
+.pond-portal #CourseHeader .progressWrapper .courseProgress{
+    bottom: 0;
+    right: 0;
+    height: 80px;
+    width: 80px;
+    font-size: 1.5rem;
+}
+.pond-portal #CourseHeader .progressWrapper .courseProgress p{
+    padding: 17px 0 0 0;
+}
+.pond-portal .breadcrumbs{
+    font-size: .7rem;
+    margin: .5rem 0;
+}
+.pond-portal .breadcrumbs span.sep{
+    padding: 0 .5rem
+}
+.pond-portal .breadcrumbs a{
+    color: #069EDA;
+}
+.pond-portal .CourseFeed .blogprevtext p{
+    font-size: .9rem;
+    line-height: 1.4rem;
+    margin-bottom: 10px;
+    padding-bottom: 50px;
+}
+.pond-portal .CourseFeed .blogpreview{
+    min-height: 430px;
+    position: relative;
+}
+.pond-portal .CourseFeed .blogpreview a.BTN,.pond-portal .CourseFeed .blogpreview span.BTN{
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: #2FAF8D;
+}
+.pond-portal .CourseFeed .large-3 .coursePrevImage{
+    min-height: 170px;
+}
+.pond-portal .CourseFeed .large-3 .blogpreview{
+    min-height: 400px;
+}
+.pond-portal .CourseFeed .blogpreview a.BTN{
+    background: #2FAF8D;
+}
+.pond-portal .CourseFeed .blogpreview a.BTN:hover{
+    background: #384044;
+}
+.pond-portal .CourseFeed .blogprevtext.nolink span.BTN{
+    background: #999;
+    cursor: default;
+}
+.pond-portal .CourseFeed .blogprevtext.nolink h5,.pond-portal .CourseFeed .blogprevtext.nolink p{
+    color: #999;
+}
+.pond-portal .learndash-wrapper .ld-item-list.ld-lesson-list .ld-topic-list .ld-table-list-header{
+    padding: 20px;
+}
+.pond-portal .learndash-wrapper .ld-item-list.ld-lesson-list .ld-topic-list .ld-table-list-item{
+    margin: 0;
+}
+.pond-portal .learndash-wrapper .ld-expand-button{
+    background-color: #069EDA;
+}
+.pond-portal .learndash-wrapper .ld-status-complete{
+    background-color: #2FAF8D;
+}
+.pond-portal .learndash-wrapper .learndash_mark_complete_button{
+    background-color: #2FAF8D;
+    margin-left: 0 !important;
+    min-width: 200px;
+}
+.pond-portal .learndash-wrapper .ld-status-in-progress{
+    border: 4px solid #e2e7ed;
+    border-left-color: #2FAF8D;
+    border-top-color: #2FAF8D;
+}
+.pond-portal .wpProQuiz_content .wpProQuiz_response{
+    background: #F8FAF5;
+    border: 1px solid #fff;
+    padding: 0;
+    margin-bottom: 15px;
+    box-shadow: none;
+}
+.pond-portal .wpProQuiz_correct,.pond-portal .wpProQuiz_incorrect{
+    padding: 15px;
+}
+.pond-portal p.wpProQuiz_AnswerMessage{
+    margin: 0;
+}
+.pond-portal .wpProQuiz_correct,.pond-portal .wpProQuiz_content .wpProQuiz_answerCorrect{
+    background: #2FAF8D;
+    color: #fff;
+}
+.pond-portal .wpProQuiz_incorrect,.pond-portal .wpProQuiz_content .wpProQuiz_answerIncorrect{
+    background: #CB4D50;
+    color: #fff;
+}
+.pond-portal .learndash-wrapper .wpProQuiz_content .wpProQuiz_questionListItem::before{
+    display: none;
+}
+.pond-portal .learndash-wrapper .ld-quiz-actions{
+    border: none;
+}
+.pond-portal .wpProQuiz_resultsList li::before{
+    display: none !important;
+}
+.pond-portal .learndash-wrapper .wpProQuiz_content .wpProQuiz_questionListItem label{
+    cursor: pointer;
+}
+.pond-portal .wpProQuiz_questionListItem label:focus-within{
+    border-color: #069EDA;
+}
+.pond-portal .learndash-wrapper .ld-topic-status{
+    display: none;
+}
+.pond-portal section.courseHeaderv2{
+    margin-bottom: 2rem;
+    padding: 0;
+}
+.pond-portal section.courseHeaderv2 h1{
+    font-size: 30px;
+    margin: 0;
+}
+.pond-portal .courseIntroBox h3{
+    color: #fff;
+    margin-bottom: 1rem;
+}
+.pond-portal .three-set .courseIntroBox h3{
+    color: #384044;
+    margin-bottom: 1rem;
+}
+.pond-portal section.MembersContent.v2 .learndash-wrapper h2{
+    color: #fff;
+}
+.pond-portal .learndash-wrapper .ld-table-list .ld-table-list-items{
+    background-color: #fff;
+}
+.pond-portal .learndash-wrapper .ld-content-actions{
+    border-top: none;
+}
+.pond-portal .CourseIntroBoxV2 .breadcrumbs{
+    display: none;
+}
+.pond-portal .CourseIntroBoxV2{
+    background: #069EDA;
+    display: inline-block;
+    width: 100%;
+    padding: 2rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+.pond-portal .CourseIntroBoxV2 .myContent.v2{
+    display: none;
+}
+.pond-portal .CourseIntroBoxV2 section.courseHeaderv2{
+    border-bottom: none;
+    padding: 0;
+    margin-bottom: 0;
+}
+.pond-portal .videoWrapper{
+    padding: 5px;
+    background: #fff;
+}
+.pond-portal .CourseIntroBoxV2 h1{
+    color: #fff;
+}
+.pond-portal .CourseIntroBoxV2 .courseProgress{
+    background: #384044;
+}
+.pond-portal .CourseIntroBoxV2 .CourseOptions{
+    padding: 0;
+    background: none;
+}
+.pond-portal .CourseIntroBoxV2 .CourseOptions ul{
+    text-align: center;
+    margin: 0;
+}
+.pond-portal .CourseIntroBoxV2 .CourseOptions li{
+    display: inline-block;
+    text-align: center
+}
+.pond-portal .CourseIntroBoxV2 .CourseOptions a{
+    color: #fff;
+    padding: 0 20px;
+}
+.pond-portal .CourseIntroBoxV3 .courseHeaderv2{
+    margin-bottom: 0;
+}
+.pond-portal .v3-template{
+    text-align: center;
+}
+.pond-portal .v3-template li{
+    display: inline-block;
+    padding: 0rem 1rem;
+}
+.pond-portal .next-prev-v3 .next{
+    float: right;
+}
+.pond-portal .v3-template{
+    text-align: center;
+    float: left;
+    width: 100%;
+    margin-top: 1rem;
+}
+.pond-portal .three-set .courseIntroBox{
+    margin-top: 2.5rem;
+}
+.pond-portal .searchfilter{
+    width: 100%;
+    float: left;
+    position: relative;
+}
+.pond-portal #clearFilter{
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-indent: -9999px;
+    margin: 0;
+    width: 45px;
+    background: transparent;
+    height: 45px;
+    overflow: hidden;
+    white-space: nowrap;
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -ms-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+}
+.pond-portal #clearFilter:before{
+    content: "";
+    display: block;
+    width: 19px;
+    height: 19px;
+    position: absolute;
+    top: 13px;
+    left: 13px;
+    -webkit-mask-image: url("/wp-content/themes/melting_pot/images/sync-solid.svg");
+    mask-image: url("/wp-content/themes/melting_pot/images/sync-solid.svg");
+    background-color: #333;
+}
+.pond-portal #clearFilter:hover{
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+.pond-portal #clearFilter:hover:before{
+    background-color: #2faf8d
+}
+.pond-portal ul.clFilters{
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1rem;
+    padding: 3rem 0 1rem 0;
+}
+.pond-portal ul.clFilters li{
+    display: inline-block;
+    width: auto;
+    margin: 5px;
+    background: #384044;
+    padding: .5rem 1rem;
+    cursor: pointer;
+    color: #fff;
+    font-size: .9rem;
+}
+.pond-portal ul.clFilters li:hover{
+    background: #069EDA;
+}
+.pond-portal ul.clFilters li.filtr-active{
+    background: #069EDA;
+}
+.pond-portal ul.clFilters li:focus{
+    background: #f00;
+}
+.pond-portal .filtr-item{
+    width: 25%;
+    padding: 0 1%;
+    margin: 1% 0;
+    min-height: 300px;
+    text-align: center;
+    position: relative;
+}
+.pond-portal .filtr-item h4{
+    display: block;
+}
+.pond-portal .filtr-item h4 a{
+    color: #384044;
+}
+.pond-portal .filtr-item h4 a:hover{
+    color: #069EDA;
+}
+.pond-portal .filtr-item .coursePrevImage{
+    min-height: 160px;
+    margin-bottom: 10px;
+}
+.pond-portal .filterDesc{
+    display: block;
+    margin: 10px 0;
+    font-size: .9rem;
+    line-height: 1.3rem;
+}
+.pond-portal .filtr-item a.BTN{
+    position: absolute;
+    bottom: 20px;
+    left: 20%;
+    width: 60%;
+}
+.pond-portal .filtr-container.archive .filtr-item{
+    float: left;
+}
+.pond-portal .filtr-item.nolink .filterDesc,.pond-portal .filtr-item.nolink h4{
+    color: #999;
+}
+.pond-portal section.clbHeader{
+    background: #f5f5f5;
+    padding: 2rem 0;
+}
+.pond-portal section.memberContent{
+    padding: 2rem 0;
+}
+.pond-portal a.backBTN{
+    color: #fff;
+    background: #384044;
+    padding: .7rem 1rem;
+    display: block;
+    width: 60%;
+    margin: 22px auto;
+    text-align: center;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 14px;
+
+}
+.pond-portal a.backBTN:hover{
+    background: #069EDA;
+}
+.pond-portal .blogpage .filtr-item{
+    margin: 0;
+}
+.pond-portal .blogpage .filtr-item .blogprevimage{
+    min-height: 160px;
+}
+.pond-portal .blogpage .filtr-item p{
+    line-height: 1.3rem;
+}
+.pond-portal .blogpage .filtr-item .BTN{
+    position: static;
+    margin: 0;
+}
+.pond-portal .blogpage .filtr-item h5{
+    line-height: 34px;
+    min-height: 46px;
+}
+.pond-portal .Documents{
+    margin: 0;
+}
+.pond-portal .Documents ul{
+    margin: 0;
+}
+.pond-portal .Documents ul li:last-child{
+    margin: 0;
+}
+.pond-portal .Resources{
+    margin: 0;
+}
+.pond-portal .courseResources{
+    width: 100%;
+    float: left;
+    margin: 20px 0 0 0;
+}
+.pond-portal .clResourcesBox{
+    margin: 15px 0 0 0;
+    padding: 2em;
+    background: #069EDA;
+    border-radius: 5px;
+    color: #fff;
+    display: inline-block;
+    width: 100%;
+}
+.pond-portal .clResourcesBox.courseResources .Documents,.pond-portal .clResourcesBox.courseResources .Resources{
+    width: 100%;
+    float: left;
+}
+.pond-portal section.MembersContent.v2{
+    background: #2f363a;
+    color: #fff;
+}
+.pond-portal .clResourcesBox ul li{
+    padding: 0;
+    margin: .5rem 0;
+}
+.pond-portal .clResourcesBox ul li a{
+    color: #fff;
+    font-size: 1rem;
+}
+.pond-portal a.clCatLink{
+    font-size: .8rem;
+    background: #069EDA;
+    padding: .4rem 1rem;
+    color: #fff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+    margin: .5rem .5rem 0 0;
+    display: inline-block;
+}
+.pond-portal a.clCatLink:hover{
+    background: #069EDA;
+    color: #fff;
+}
+.pond-portal .relatedFeed{
+    padding: 2rem;
+    border: solid 2px #e9e9e9;
+    width: 100%;
+    margin: 30px 0;
+    background: #fff;
+}
+.pond-portal .cl-history ul li:first-child{
+    display: none;
+}
+.pond-portal .relatedFeed li a{
+    display: block;
+    padding: .5rem 0;
+    color: #069EDA;
+    border-bottom: solid 1px #e9e9e9;
+    font-size: 1rem;
+}
+.pond-portal .relatedFeed li:last-child a{
+    border-bottom: none;
+}
+.pond-portal .relatedFeed li a:hover{
+    background: #069EDA;
+    padding: .5rem 1rem;
+    color: #fff;
+}
+.pond-portal .clResourcesBox li a{
+    color: #069EDA;
+    display: block;
+    padding: 0.3rem 0;
+}
+.pond-portal .clResourcesBox h4{
+    margin-bottom: .5rem;
+}
+.pond-portal .CourseContent,.pond-portal .CourseContentv2{
+    width: 95%;
+}
+.pond-portal .CourseContent ol{
+    margin: 1rem 0 1rem 1.5rem;
+}
+.pond-portal .CourseContent ol li{
+    margin: 1rem 0;
+}
+.pond-portal .clResourcesBox.courseResources{
+    background: #384044;
+    color: #fff;
+    margin: 0;
+    border-radius: 5px;
+}
+.pond-portal .clResourcesBox.courseResources a{
+    color: #fff;
+}
+.pond-portal #sfwd-mark-complete{
+    display: none;
+}
+.pond-portal .each-course img{
+    max-width: 90%;
+    margin: 0 auto;
+}
+.pond-portal h2.ld-entry-title.entry-title{
+    margin: 0 auto;
+    padding: 0;
+    font-size: 24px;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+}
+.pond-portal .Login-inner{
+    background: #069eda;
+    color: white;
+    padding: 4rem;
+}
+.pond-portal .Login-inner h3{
+    color: white;
+}
+.pond-portal .Login-inner input{
+    margin-bottom: 1rem;
+}
+.pond-portal .login-submit:hover{
+    background: #fff;
+    color: #069eda;
+}
+.pond-portal .ld-entry-content{
+    min-height: 275px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: -55px;
+    display: table;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    background-blend-mode: multiply;
+
+}
+.pond-portal .ld-entry-content h2>a{
+    color: #fff;
+}
+.pond-portal section.courseContent{
+    padding: 3rem 0;
+}
+.pond-portal .coursePrevImage{
+    width: 100%;
+    overflow: hidden;
+    float: left;
+    background-size: cover;
+    background-position: center;
+    min-height: 225px;
+    position: relative;
+    background-color: #ccc;
+    border-radius: 10px 10px 0 0;
+    -webkit-border-radius: 10px 10px 0 0;
+    -moz-border-radius: 10px 10px 0 0;
+}
+.pond-portal .coursePrevImage a{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.1);
+    transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+}
+.pond-portal .coursePrevImage a:hover{
+    background: rgba(0, 0, 0, 0);
+    transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+}
+.pond-portal .courseProgress{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: #069EDA;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    text-align: center;
+    color: #fff;
+    line-height: 55px;
+}
+.pond-portal .courseProgress p{
+    padding: 14px 0 0 0;
+}
+.pond-portal .CourseSoon{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: #069EDA;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    font-size: 12px;
+}
+.pond-portal .filtr-item .CourseSoon{
+    left: -100px;
+}
+.pond-portal .MemberheaderWrap{
+    width: 100%;
+    padding: 1rem 0 1rem 0;
+    background: #384044;
+}
+.pond-portal section.memberDashWelc{
+    background: #f5f5f5;
+    padding: 2rem 0;
+}
+.pond-portal .membSupportForm{
+    background: #f5f5f5;
+    display: inline-block;
+    width: 100%;
+    padding: 3rem;
+    margin: 1rem 0 3rem 0;
+}
+.pond-portal .faqs{
+    margin: 2rem 0;
+}
+.pond-portal .membSupportForm .gform_body ul li label{
+    display: none;
+}
+.pond-portal .mp_wrapper{
+    margin: 0 0 2rem 0;
+}
+.pond-portal .mp_wrapper textarea,.pond-portal .mp_wrapper select,.pond-portal .mp_wrapper input[type=text],.pond-portal .mp_wrapper input[type=url],.pond-portal .mp_wrapper input[type=email],.pond-portal .mp_wrapper input[type=tel],.pond-portal .mp_wrapper input[type=number],.pond-portal .mp_wrapper input[type=password]{
+    margin: 10px 0;
+}
+.pond-portal .mepr-account-change-password a{
+    background: #069EDA;
+    color: #fff;
+    padding: 10px 24px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 700;
+    margin: 10px 0;
+    display: inline-block;
+}
+.pond-portal div#mepr-account-nav{
+    border-bottom: solid 2px #f4f4f4;
+}
+.pond-portal .mepr-nav-item a{
+    background: #f4f4f4;
+    padding: 10px 20px;
+    display: inline-block;
+    color: #069EDA
+}
+.pond-portal .mepr-nav-item a:hover{
+    background: #384044;
+    color: #fff;
+}
+.pond-portal .mepr-active-nav-tab a{
+    background: #384044;
+    font-weight: 300;
+    color: #fff;
+}
+.pond-portal .mepr_price{
+    display: none;
+}
+.pond-portal .myContent{
+    border-top: solid 2px #e9e9e9;
+    padding: 1rem 0;
+    margin-top: 2rem;
+    display: inline-block;
+    width: 100%;
+}
+.pond-portal .myContent.v2{
+    border-top: none;
+    padding: 0;
+    margin-top: 0rem;
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+}
+.pond-portal .learndash-wrapper .ld-table-list .ld-table-list-header{
+    background-color: #069EDA;
+}
+.pond-portal .learndash-wrapper .ld-item-list{
+    margin: 0 0 1rem 0;
+}
+.pond-portal .learndash-wrapper .ld-breadcrumbs{
+    display: none;
+}
+.pond-portal .myContent .lessonTools ul{
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    display: inline-block;
+}
+.pond-portal .myContent .lessonTools li{
+    display: inline-block;
+    padding: 0 1rem;
+    text-align: center;
+}
+.pond-portal .myContent.v2 .lessonTools ul,.pond-portal .myContent.v2 .lessonTools li{
+    text-align: left;
+    padding-left: 0;
+}
+.pond-portal .myContent .lessonTools li::before,.pond-portal .clResourcesBox ul li::before{
+    display: none;
+}
+.pond-portal .myContent .lessonTools li a{
+    color: #069EDA;
+}
+.pond-portal .myContent .lessonTools li a.post_tool_active{
+    color: #2FAF8D;
+}
+.pond-portal section#CourseHeader,.pond-portal .radial-progress .inset{
+    background: #384044;
+}
+.pond-portal section#CourseHeader{
+    padding: 2rem 0;
+    color: #fff;
+}
+.pond-portal #CourseHeader h1{
+    font-size: 2.4rem;
+    line-height: 2.8rem;
+    margin: 0;
+    color: #fff;
+}
+.pond-portal #CourseHeader p{
+    margin-bottom: 0;
+}
+.pond-portal .sfwdvideo,.pond-portal .sfwdaudio{
+    margin: 1rem 0 2rem 0;
+}
+.pond-portal .sfwdvideo h4{
+    margin-bottom: 1rem;
+}
+.pond-portal input[type="button"].wpProQuiz_button,.pond-portal input[name="restartQuiz"].wpProQuiz_button{
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    font-weight: 700;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+.pond-portal .wpProQuiz_content .wpProQuiz_questionList{
+    margin-bottom: 1rem;
+    background: #fff;
+    border: 2px solid #e9e9e9;
+    padding: 1rem;
+    list-style: none;
+    overflow: visible;
+}
+.pond-portal input[type="button"].wpProQuiz_button{
+    background: #069EDA;
+}
+.pond-portal input[name="restartQuiz"].wpProQuiz_button{
+    background: #384044;
+}
+.pond-portal input[type="button"].wpProQuiz_button:hover{
+    background: #384044;
+}
+.pond-portal input[name="restartQuiz"].wpProQuiz_button:hover{
+    background: #ccc;
+}
+.pond-portal .mepr-login-actions a{
+    background: #069EDA;
+    color: #fff;
+    padding: 10px 2rem;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 700;
+    float: left;
+}
+.pond-portal #learndash_course_content_title{
+    margin-bottom: 0px;
+    padding: 1.5rem;
+    text-align: center;
+    font-size: 1.7rem;
+}
+.pond-portal section.savedContent.Dashboard{
+    background: #f4f4f4;
+    padding: 2em 0;
+}
+.pond-portal .SavedContent .filtered_content.active{
+    display: block;
+}
+.pond-portal .SavedContent .filtered_content{
+    display: none;
+}
+.pond-portal .SavedContent.watchlist ul li.course-listing{
+    width: 31.5%;
+    float: left;
+    margin: 1.5rem 2.7% 1.5rem 0;
+    text-align: center;
+}
+.pond-portal nav#savedContentTabList{
+    margin-bottom: 2rem;
+    display: inline-block;
+    width: 100%;
+}
+.pond-portal nav#savedContentTabList li a{
+    width: 100%;
+    display: block;
+    padding: .7rem 1.4rem;
+    color: #fff;
+    background: #384044;
+    font-size: 1rem;
+}
+.pond-portal nav#savedContentTabList li a:hover,.pond-portal nav#savedContentTabList li a.active{
+    background: #069EDA;
+    padding-left: 2rem;
+}
+.pond-portal .filtered_content,.pond-portal .SavedContent.watchlist{
+    padding: 0 0 2rem 0;
+    margin-bottom: 2rem;
+}
+.pond-portal .Dashboard .filtered_content,.pond-portal .Dashboard .SavedContent.watchlist{
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+.pond-portal .filtered_content h3,.pond-portal .SavedContent.watchlist h3{
+    margin-bottom: 1.5rem;
+}
+.pond-portal .SavedContent.watchlist{
+    border-top: none;
+}
+.pond-portal .SavedContent{
+    display: inline-block;
+    border-top: solid 3px #f1f1f1;
+    width: 100%;
+}
+.pond-portal .filtered_content h3{
+    display: inline-block;
+    padding-right: 1.5rem;
+    background: #fff;
+    margin-top: -30px;
+}
+.pond-portal .filtered_content li{
+    width: 48%;
+    display: block;
+    float: left;
+    min-height: 365px;
+    margin-bottom: 1.5rem;
+}
+.pond-portal .filtered_content li:nth-child(even){
+    float: right;
+}
+.pond-portal .SavedContent li h4,.pond-portal .filtered_content li h4{
+    margin: 0.8rem 0;
+    display: inline-block;
+    width: 100%;
+}
+.pond-portal .SavedContent li h4 a,.pond-portal .filtered_content li h4 a{
+    color: #384044;
+}
+.pond-portal .SavedContent li h4 a:hover,.pond-portal .filtered_content li h4 a:hover{
+    color: #069EDA;
+}
+.pond-portal .SavedContent.watchlist ul li.course-listing:nth-child(3n){
+    margin-right: 0;
+}
+.pond-portal .SavedContent.watchlist ul li.course-listing .course-content,.pond-portal .filtered_content ul li.course-listing .course-content{
+    position: relative;
+    width: 100%;
+    float: left;
+}
+.pond-portal .CourseOptions{
+    background: #384044;
+    color: #fff;
+    padding: 1.5rem;
+    border-radius: 5px;
+}
+.pond-portal .CourseOptions h4{
+    margin-bottom: 1rem;
+}
+.pond-portal .CourseOptions a{
+    margin: 0.4rem 0;
+    display: block;
+}
+.pond-portal .CourseOptions a:hover,.pond-portal a.post_tool_active{
+    color: #2FAF8D
+}
+.pond-portal footer.footer.members{
+    background: #eee !important;
+    color: #14345a;
+}
+.pond-portal footer.footer.members p,.pond-portal footer.footer.members a{
+    color: #14345a;
+    font-weight: bold;
+}
+.pond-portal footer.footer.members a:hover{
+    color: #CC3333;
+}
+.pond-portal .members-footer-menu{}
+.pond-portal .members-footer-menu ul{
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+}
+.pond-portal .members-footer-menu ul li{
+    display: inline-block;
+}
+.pond-portal .members-footer-menu ul li a{
+    display: inline-block;
+    padding: .5rem 1rem;
+}
+@media only screen and (max-width: 1500px){.pond-portal .row{
+        max-width: 85%
+    }
+.pond-portal header .MemberheaderWrap .NavOuter{
+        max-width: 80%;
+    }
+}
+@media only screen and (max-width: 1400px){.pond-portal .JumpTo ul li{
+        width: 100%;
+    }
+.pond-portal .row{
+        max-width: 90%
+    }
+.pond-portal header .MemberheaderWrap .NavOuter{
+        max-width: 80%;
+    }
+}
+@media only screen and (max-width: 1300px){.pond-portal .row{
+        max-width: 95%
+    }
+.pond-portal header .MemberheaderWrap .NavOuter{
+        max-width: 80%;
+    }
+}
+@media only screen and (max-width: 1024px){.pond-portal header .MemberheaderWrap .NavOuter{
+        max-width: 100%;
+    }
+.pond-portal .filtr-item{
+        width: 50%;
+    }
+.pond-portal .CourseContent{
+        width: 100%;
+    }
+.pond-portal a.backBTN{
+        width: 60%
+    }
+.pond-portal .CourseFeed .blogpreview{
+        min-height: 335px;
+    }
+.pond-portal .searchfilter{
+        width: 70%;
+        margin: 0 15%;
+    }
+.pond-portal .myContent .lessonTools li a{
+        font-size: 16px;
+    }
+.pond-portal .topmemberNav{
+        margin-right: 25px;
+    }
+.pond-portal .memberlogo{
+        max-width: none;
+        height: 60px;
+    }
+}
+@media only screen and (max-width: 768px){.pond-portal .JumpTo ul li span.jumptitle,.pond-portal .JumpTo ul li span.jumptime{
+        width: auto;
+        margin: 0;
+    }
+.pond-portal .JumpTo ul li span.jumptime{
+        float: right;
+    }
+.pond-portal .JumpTo ul li span.jumptitle{
+        padding-right: 10px;
+    }
+.pond-portal .JumpTo ul li{
+        list-style: none;
+    }
+.pond-portal .upcommingEvent{
+        display: none;
+    }
+.pond-portal .memberlogo{
+        max-width: none;
+        height: 60px;
+    }
+.pond-portal .MemberheaderWrap .headerlogo{
+        margin-top: 0;
+    }
+.pond-portal ul.topmemberNav{
+        margin: 10px 58px 0 0;
+    }
+.pond-portal .SavedContent li h4 a,.pond-portal .filtered_content li h4 a{
+        font-size: 1.1rem;
+    }
+.pond-portal .coursePrevImage{
+        min-height: 150px;
+    }
+.pond-portal .SavedContent.watchlist ul li.course-listing .course-content,.pond-portal .filtered_content ul li.course-listing .course-content{
+        min-height: 0;
+    }
+.pond-portal .headerBTNS{
+        width: 100%;
+        margin-top: .5rem;
+    }
+.pond-portal .salesIncluded ul li{
+        width: 29%;
+    }
+.pond-portal .GuaranteeBadge{
+        padding: 0;
+    }
+.pond-portal .salesFAQwrap{
+        width: 80%;
+    }
+}
+@media only screen and (max-width: 500px){.pond-portal table.callSchedule td{
+        display: block;
+        width: 100%;
+    }
+.pond-portal table.callSchedule thead td.tdCallLink{
+        display: none !important;
+    }
+.pond-portal .row{
+        padding: 0 1.5rem;
+        max-width: 100%;
+    }
+.pond-portal section.memberDashWelc{
+        text-align: center;
+    }
+.pond-portal .trustIcons{
+        background-size: 100%;
+    }
+.pond-portal .salesFAQwrap{
+        width: 100%;
+    }
+.pond-portal .GuaranteeBadge{
+        padding: 1rem 2rem;
+    }
+.pond-portal .PriceBoxWrap{
+        padding: 0;
+    }
+.pond-portal .memberPriceBox{
+        margin-bottom: 2rem;
+    }
+.pond-portal .sectionHeader{
+        text-align: center;
+    }
+.pond-portal .sectionHeader a.BTN{
+        float: none;
+    }
+.pond-portal .SavedContent.watchlist ul li.course-listing,.pond-portal .filtered_content li{
+        width: 100%;
+        margin: 20px 0;
+        text-align: center;
+    }
+.pond-portal .coursePrevImage,.pond-portal ul.contentfeed li #FeatureImage{
+        min-height: 200px;
+    }
+.pond-portal .SavedContent li h4 a,.pond-portal .filtered_content li h4 a{
+        font-size: 1.3rem;
+    }
+.pond-portal .MemberheaderWrap{
+        padding: 1rem 0;
+    }
+.pond-portal .MemberheaderWrap .NavBTN{
+        z-index: 13;
+    }
+.pond-portal .searchResults input[type="search"]{
+        max-width: 100%;
+    }
+.pond-portal #search input[type="search"]{
+        top: 25%;
+        font-size: 130%;
+    }
+.pond-portal #search .btn{
+        top: 33%;
+    }
+.pond-portal .topmemberNav .LoggedIn{
+        height: 0;
+    }
+.pond-portal .mepr-nav-item a{
+        width: 100%;
+    }
+.pond-portal .CourseContent{
+        width: 100%;
+    }
+.pond-portal .membSupportForm{
+        padding: 1.5rem;
+    }
+.pond-portal ul.contentfeed li .contenttext{
+        text-align: center;
+        padding: 20px 0;
+    }
+.pond-portal ul.clFilters li{
+        width: 45%;
+    }
+.pond-portal .filtr-item{
+        width: 100%;
+    }
+.pond-portal section#CourseHeader{
+        text-align: center;
+    }
+.pond-portal .radial-progress{
+        margin-top: 30px
+    }
+.pond-portal .learndash-wrapper .ld-item-list .ld-item-list-item{
+        background: #fff;
+    }
+.pond-portal #learndash_next_prev_link a.prev-link,.pond-portal #learndash_next_prev_link a.next-link{
+        padding: .5rem 1.3rem;
+    }
+.pond-portal #sfwd-mark-complete{
+        text-align: center;
+    }
+.pond-portal .backgroundlogin .mp_wrapper form{
+        text-align: center;
+    }
+.pond-portal a.BTN.dashBTN{
+        float: none;
+    }
+.pond-portal .wrap-benefit{
+        margin: 0 0 3rem 0;
+    }
+.pond-portal .salesIncluded ul li{
+        width: 100%;
+        margin: 1rem 0;
+    }
+.pond-portal .headerBTNS{
+        width: 100%;
+        margin: 2rem 0;
+    }
+.pond-portal .salesHeader .headerlogo{
+        max-width: 100%;
+        text-align: center;
+    }
+.pond-portal .CourseFeed .blogpreview a.BTN{
+        position: static;
+        margin: 10px 0;
+    }
+.pond-portal .CourseFeed .blogprevtext p{
+        padding-bottom: 10px;
+    }
+.pond-portal .memberLatestContent h2{
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+.pond-portal .myContent .lessonTools li{
+        width: 33.3%;
+        float: left;
+        text-align: center;
+        padding: 0 .5rem;
+    }
+.pond-portal .myContent .lessonTools li i{
+        display: block;
+        font-size: 30px;
+        margin-bottom: 5px;
+    }
+.pond-portal .myContent .lessonTools li a{
+        width: 100%;
+        padding: .7rem 0;
+        display: block;
+    }
+.pond-portal #CourseHeader .progressWrapper .courseProgress{
+        bottom: -69px;
+        right: 50%;
+        margin-right: -40px;
+    }
+.pond-portal .progressWrapper{
+        min-height: 20px;
+    }
+.pond-portal .breadcrumbs{
+        margin: 1.5rem 0;
+    }
+.pond-portal .breadcrumbs span{
+        display: inline-block;
+        padding: 0.2rem 0;
+    }
+.pond-portal section.MembersContent{
+        padding: 5rem 0 3rem 0;
+    }
+}
+.pond-portal .podcastHeader h1{
+    font-weight: 700;
+    line-height: 4.1rem;
+    font-size: 3.7rem;
+    margin-bottom: 10px;
+}
+.pond-portal .podcastHeader h6{
+    font-weight: 700;
+    color: #394245;
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+}
+.pond-portal .podcast-item .coursePrevImage{
+    min-height: 270px;
+}
+.pond-portal .podcast-item.filtr-item{
+    width: 33.3%;
+    padding: 1rem 1rem;
+}
+.pond-portal .podcast-item h4{
+    text-align: left;
+    padding: 10px 0;
+    float: left;
+    width: 100%;
+    font-size: 24px;
+}
+.pond-portal .podcast-item .filterDesc{
+    height: 350px;
+    color: #384044;
+    text-align: left;
+    font-size: 15px;
+}
+.pond-portal .podcast-item .filterDesc a{
+    color: #384044;
+}
+.pond-portal li.podcast-related-item .coursePrevImage{
+    min-height: 240px;
+    margin-bottom: 1rem;
+}
+.pond-portal .podcast-related-item h4 a,.pond-portal .podcast-related-item a{
+    color: #394245;
+}
+.pond-portal .wrap-related-pod{
+    float: left;
+    width: 100%;
+}
+.pond-portal .wrap-related-pod h2{
+    margin-bottom: 1rem;
+}
+.pond-portal .blogHeader.podcastHeader{
+    background-color: #009ee0;
+    color: white;
+    margin-bottom: 0px;
+}
+.pond-portal .cd-timeline__content{
+    background: unset;
+}
+.pond-portal .wrap-sub{
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+.pond-portal .wrap-sub a{
+    display: inline-block;
+    margin: 10px;
+    text-align: center;
+}
+.pond-portal .wrap-sub p{
+    margin: 0;
+}
+.pond-portal .Pogcast-thumb{
+    min-height: 335px;
+    background-size: cover;
+    margin-bottom: 1.9rem;
+}
+.pond-portal img,.pond-portal iframe{
+    max-width: 100%;
+}
+.pond-portal iframe{
+    width: 1px;
+    min-width: 100%;
+}
+.pond-portal button{
+    cursor: pointer;
+}
+.pond-portal .clear{
+    clear: both;
+}
+.pond-portal .user-points-wrapper h2.gamipress-rank-title{
+    font-size: 1.5em;
+}
+.pond-portal .bp-yz-home-nav a{
+    padding: 7px 0 7px 7px !important;
+}
+.pond-portal .section-icons{
+    border-left: 5px solid #83cdcf;
+}
+.pond-portal .course-container-wrapper{
+    width: 100%;
+    position: relative;
+}
+.pond-portal .course-container-wrapper .fadeout-left{
+
+}
+.pond-portal .course-container-wrapper .fadeout-right{
+
+}
+.pond-portal .course-container-wrapper #scroll-left-btn{
+    position: absolute;
+    z-index: 12;
+    top: 45%;
+    left: 15px;
+}
+.pond-portal .course-container-wrapper #scroll-right-btn{
+    position: absolute;
+    z-index: 12;
+    top: 45%;
+    right: 15px;
+}
+.pond-portal .course-container-wrapper #scroll-left-btn,.pond-portal .course-container-wrapper #scroll-right-btn{
+    font-size: 65px;
+    font-weight: lighter;
+
+    color: #3AA6DE;
+    opacity: 0.75;
+    transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+}
+.pond-portal .course-container-wrapper #scroll-left-btn:hover,.pond-portal .course-container-wrapper #scroll-right-btn:hover{
+    color: #3AA6DE;
+    opacity: 1;
+    transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+}
+.pond-portal .course-container{
+    white-space: nowrap;
+    overflow-x: auto;
+    -ms-overflow-style: none;
+    position: relative;
+    cursor: grab;
+    padding: 0 10% 0 5%;
+}
+.pond-portal .course-container:active{
+    cursor: grabbing;
+}
+.pond-portal .course-container::-webkit-scrollbar{
+    display: none;
+}
+.pond-portal .course-container .category-icon-wrapper{
+    width: 150px;
+    float: left;
+    margin: 40px auto;
+    padding: 0 25px;
+    position: relative;
+}
+.pond-portal .course-container .category-icon-wrapper .title{
+    width: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -20px;
+    text-align: center;
+    text-transform: capitalize;
+}
+.pond-portal .course-container .category-icon-wrapper img.category-icon{
+    width: 100%;
+}
+.pond-portal .course-container .course-wrapper{
+    float: left;
+    width: -webkit-calc(100% - 150px);
+    width: -moz-calc(100% - 150px);
+    width: calc(100% - 150px);
+}
+.pond-portal .course-item{
+    display: inline-block;
+    width: 290px;
+    height: 180px;
+    margin: 10px 5px;
+    padding: 10px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    background-size: cover;
+    background-position: bottom;
+    font-family: 'Teko', sans-serif;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -o-border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+}
+.pond-portal .course-item:hover:not(.coming-soon),.pond-portal .course-item.hovered:not(.coming-soon){
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+}
+.pond-portal .course-item.coming-soon{
+    cursor: default;
+}
+.pond-portal .course-item .title{
+    position: absolute;
+    z-index: 2;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    padding: 10px;
+    border-radius: 0 0 10px 10px;
+    -moz-border-radius: 0 0 10px 10px;
+    -webkit-border-radius: 0 0 10px 10px;
+    -o-border-radius: 0 0 10px 10px;
+}
+.pond-portal .course-item .title h5{
+    color: #fff;
+    font-size: 1.2em;
+    text-align: left;
+    width: 92%;
+    padding: 3px 0;
+    line-height: 1em;
+    float: left;
+    white-space: break-spaces;
+    transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+}
+.pond-portal .course-item:hover:not(.coming-soon) .title h5,.pond-portal .course-item.hovered:not(.coming-soon) .title h5{
+    opacity: 0;
+    transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+}
+.pond-portal .course-item .overlay{
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -o-border-radius: 10px;
+    transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+}
+.pond-portal .course-item:hover:not(.coming-soon) .overlay,.pond-portal .course-item.hovered:not(.coming-soon) .overlay{
+    background: rgba(0, 0, 0, 0);
+    transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition-delay: 0.1s;
+}
+.pond-portal .course-item .progress-bar{
+    opacity: 0;
+    position: absolute;
+    z-index: 2;
+    bottom: 0;
+    left: 0;
+    padding: 8px 1px;
+    text-indent: .2em;
+    font-size: 20px;
+    line-height: 1.8em;
+    letter-spacing: .05em;
+    background: #069EDA;
+    color: #fff;
+    text-align: center;
+    transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+}
+.pond-portal .course-item:hover .progress-bar,.pond-portal .course-item.hovered .progress-bar{
+    opacity: 1;
+    transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition-delay: 0.1s;
+}
+.pond-portal .course-item .progress-bar-small{
+    opacity: 1;
+    position: absolute;
+    z-index: 2;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    background: #069EDA;
+    transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+}
+.pond-portal .course-item:hover .progress-bar-small,.pond-portal .course-item.hovered .progress-bar-small{
+    transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition-delay: 0.1s;
+}
+.pond-portal .course-item .coming-soon{
+    display: block;
+    position: absolute;
+    z-index: 2;
+    bottom: -15px;
+    right: -45px;
+    -webkit-transform: rotate(-40deg);
+    -moz-transform: rotate(-40deg);
+    -o-transform: rotate(-40deg);
+    -ms-transform: rotate(-40deg);
+    transform: rotate(-40deg);
+    background: #cc3333;
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    padding: 5px 0 40px 0;
+    width: 140px;
+    transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+}
+.pond-portal .course-item:hover .coming-soon,.pond-portal .course-item.hovered .coming-soon{
+    bottom: -140px;
+    right: -140px;
+    transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+}
+.pond-portal .course-item .complete,.pond-portal .course-item .incomplete{
+    position: absolute;
+    z-index: 2;
+    bottom: 4px;
+    right: -2px;
+    transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+}
+.pond-portal .course-item .complete .fa-check,.pond-portal .course-item .incomplete .fa-check{
+    z-index: 3;
+    color: #fff;
+}
+.pond-portal .course-item .complete .icon-background,.pond-portal .course-item .incomplete .icon-background{
+    z-index: 2;
+    font-size: 1.4em;
+}
+.pond-portal .course-item .complete .icon-background{
+    color: #28a745;
+}
+.pond-portal .course-item .incomplete .icon-background{
+    color: #cccccc;
+}
+.pond-portal .course-item:hover .complete,.pond-portal .course-item:hover .incomplete,.pond-portal .course-item.hovered .complete,.pond-portal .course-item.hovered .incomplete{
+
+    transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition-delay: 0.1s;
+}
+.pond-portal .course-item h6.percentage{
+    position: absolute;
+    z-index: 2;
+    bottom: 8px;
+    right: 35px;
+    color: #fff;
+    opacity: 1;
+    transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+}
+.pond-portal .course-item:hover h6.percentage,.pond-portal .course-item.hovered h6.percentage{
+    opacity: 0;
+    transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition-delay: 0.1s;
+}
+@media screen and (max-width: 1024px){.pond-portal .MemberheaderWrap{
+        padding: 0;
+    }
+.pond-portal .MemberheaderWrap .headerlogo{
+        margin-top: 0;
+    }
+.pond-portal .topmemberNav{
+        margin-top: 0px;
+    }
+.pond-portal #search input[type="search"]{
+        font-size: 40px;
+        line-height: 60px;
+    }
+.pond-portal .hide-for-medium{
+        display: none;
+    }
+.pond-portal .yz-page{
+        overflow: hidden;
+
+    }
+.pond-portal .course-container{
+        min-height: 0px !important;
+        padding-right: 25px;
+    }
+.pond-portal .course-container .course-wrapper{
+        width: -webkit-calc(100% - 110px);
+        width: -moz-calc(100% - 110px);
+        width: calc(100% - 110px);
+    }
+.pond-portal .course-container-wrapper #scroll-left-btn,.pond-portal .course-container-wrapper #scroll-right-btn{
+        font-size: 40px;
+    }
+.pond-portal .course-container .category-icon-wrapper{
+        width: 110px;
+        float: left;
+        margin: 30px auto 10px auto;
+    }
+.pond-portal .course-item{
+        display: inline-block;
+        width: 150px;
+        height: 105px;
+        margin: 5px;
+    }
+.pond-portal .course-item .coming-soon{
+        bottom: -15px;
+        right: -40px;
+        font-size: 11px;
+        padding: 2px 0 30px 0;
+        width: 100px;
+    }
+.pond-portal .course-item .title{
+        padding: 2px 8px;
+    }
+.pond-portal .course-item .title h5{
+        font-size: 0.8em;
+    }
+.pond-portal .course-item .progress-bar{
+        font-size: 0.8em;
+        text-indent: .1em;
+        line-height: 1em;
+        letter-spacing: .05em;
+    }
+.pond-portal .course-item .complete,.pond-portal .course-item .incomplete{
+        bottom: -5px;
+        right: -10px;
+        transform: scale(0.6);
+    }
+}
+.pond-portal #user-rank{
+    display: inline-block;
+}
+.pond-portal .yzb-user-status{
+    opacity: 0;
+}
+.pond-portal .yzb-head-content .yz-user-status{
+    margin: 0 0 2px 5px !important;
+}

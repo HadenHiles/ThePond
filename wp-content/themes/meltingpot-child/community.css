@@ -11,6 +11,31 @@
     min-width: 0;
 }
 
+.thepond-community-shell #buddypress #item-header,
+.thepond-community-shell #buddypress #item-body {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 24px;
+}
+
+.thepond-community-shell #buddypress .bp-navs {
+    background: #fff;
+}
+
+.thepond-community-shell #buddypress .bp-navs li a {
+    color: #14345a;
+    background: #fff;
+}
+
+.thepond-community-shell #buddypress .bp-navs li a:hover,
+.thepond-community-shell #buddypress .bp-navs li a:focus,
+.thepond-community-shell #buddypress .bp-navs li.selected a,
+.thepond-community-shell #buddypress .bp-navs li.current a {
+    color: #fff;
+    background: #14345a;
+}
+
 .thepond-community-shell #buddypress a:focus-visible,
 .thepond-community-shell #buddypress button:focus-visible,
 .thepond-community-shell #buddypress input:focus-visible,

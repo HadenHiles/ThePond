@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name: The Pond Community Integration
- * Description: Adds BuddyBoss to the existing Pond theme while preserving Firebase, MemberPress and LearnDash flows.
- * Version: 1.0.1
+ * Description: Integrates BuddyBoss with The Pond's Firebase, MemberPress and LearnDash flows.
+ * Version: 1.2.2
  * Requires at least: 6.6
  * Requires PHP: 7.4
  * Text Domain: thepond-community
@@ -20,16 +20,79 @@ add_filter('rest_request_before_callbacks', 'thepond_community_guard_rest', 10, 
 add_filter('login_url', 'thepond_community_login_url', PHP_INT_MAX, 3);
 add_filter('lostpassword_url', 'thepond_community_password_url', PHP_INT_MAX);
 add_filter('bp_get_signup_allowed', '__return_false', PHP_INT_MAX);
+add_filter('bp_pages', 'thepond_community_portal_registration_routes', PHP_INT_MAX);
 add_filter('bp_disable_account_deletion', '__return_true', PHP_INT_MAX);
 add_filter('bp_disable_avatar_uploads', '__return_true', PHP_INT_MAX);
 add_filter('bp_attachments_current_user_can', 'thepond_community_avatar_permission', 100, 3);
 // BuddyBoss restricts the whole site when this flag is false, despite its name.
 add_filter('bp_enable_private_network', '__return_true', PHP_INT_MAX);
-add_filter('pre_option_bb_rl_enabled', '__return_zero');
+add_filter('pre_option_bb_rl_enabled_pages', 'thepond_community_readylaunch_pages', PHP_INT_MAX);
+add_filter('bb_is_readylaunch_enabled_for_page', 'thepond_community_readylaunch_page', PHP_INT_MAX);
+add_action('bp_init', 'thepond_community_preserve_course_templates', 8);
 add_filter('bp_core_fetch_avatar_url_check', 'thepond_community_avatar_url', 1001, 2);
 add_action('bp_setup_nav', 'thepond_community_account_nav', 100);
 add_action('wp_enqueue_scripts', 'thepond_community_enqueue_styles', 100);
 add_filter('bp_get_buddypress_template', 'thepond_community_templates', 100);
+add_filter('template_include', 'thepond_community_template_include', PHP_INT_MAX);
+add_filter('wpseo_title', 'thepond_community_seo_title', 100);
+add_filter('wpseo_opengraph_title', 'thepond_community_seo_title', 100);
+add_filter('wpseo_canonical', 'thepond_community_seo_url', 100);
+add_filter('wpseo_opengraph_url', 'thepond_community_seo_url', 100);
+add_action('after_setup_theme', 'thepond_community_load_portal', 20);
+add_filter('pre_option_bb_rl_enabled', 'thepond_community_theme_readylaunch', PHP_INT_MAX);
+
+function thepond_community_is_buddyboss_theme() {
+    return get_template() === 'buddyboss-theme';
+}
+
+function thepond_community_load_portal() {
+    if (thepond_community_is_buddyboss_theme()) {
+        require_once __DIR__ . '/portal/portal.php';
+    }
+}
+
+function thepond_community_theme_readylaunch($value) {
+    return thepond_community_is_buddyboss_theme() ? '0' : $value;
+}
+
+function thepond_community_readylaunch_pages() {
+    return array('registration' => false, 'courses' => false, 'blog' => false);
+}
+
+function thepond_community_readylaunch_page($enabled) {
+    return !thepond_community_is_buddyboss_theme() && $enabled && (is_admin() || wp_doing_ajax() || thepond_community_is_page());
+}
+
+function thepond_community_uses_readylaunch() {
+    return thepond_community_is_page() && function_exists('bb_is_readylaunch_enabled') && bb_is_readylaunch_enabled();
+}
+
+function thepond_community_preserve_course_templates() {
+    if (thepond_community_is_page() && !thepond_community_is_buddyboss_theme()) {
+        return;
+    }
+    // The add-on removes all learndash_template filters even with Courses disabled.
+    remove_action('bb_integration_readylaunch_loaded', 'bb_learndash_load_readylaunch_helper');
+    if (function_exists('bb_is_readylaunch_enabled') && bb_is_readylaunch_enabled() && function_exists('bb_load_readylaunch')) {
+        remove_action('wp_enqueue_scripts', array(bb_load_readylaunch(), 'bb_readylaunch_lms_enqueue_styles'), 10);
+    }
+}
+
+function thepond_community_seo_title($title) {
+    if (!thepond_community_is_page() || !function_exists('bp_get_title_parts')) {
+        return $title;
+    }
+    $parts = bp_get_title_parts();
+    if (!$parts) {
+        return $title;
+    }
+    $parts[] = get_bloginfo('name', 'display');
+    return implode(' - ', array_filter($parts));
+}
+
+function thepond_community_seo_url($url) {
+    return thepond_community_is_page() && function_exists('bp_get_canonical_url') ? bp_get_canonical_url() : $url;
+}
 
 function thepond_community_is_open() {
     return thepond_community_sanitize_open(get_option('thepond_community_open', false));
@@ -42,8 +105,8 @@ function thepond_community_dependency_error() {
     if (!class_exists('MeprUser')) {
         return new WP_Error('thepond_community_unavailable', __('MemberPress must be active before community access can be checked.', 'thepond-community'), array('status' => 503));
     }
-    if (get_stylesheet() !== 'meltingpot-child') {
-        return new WP_Error('thepond_community_unavailable', __('Melting Pot Child must remain the active theme.', 'thepond-community'), array('status' => 503));
+    if (get_stylesheet() !== 'meltingpot-child' && !thepond_community_is_buddyboss_theme()) {
+        return new WP_Error('thepond_community_unavailable', __('Use Melting Pot Child or the prepared BuddyBoss child theme.', 'thepond-community'), array('status' => 503));
     }
     return null;
 }
@@ -74,21 +137,41 @@ function thepond_community_is_page() {
     return function_exists('bp_is_blog_page') && !bp_is_blog_page();
 }
 
+function thepond_community_portal_registration_routes($pages) {
+    if (is_admin()) {
+        return $pages;
+    }
+    // BuddyBoss matches /register/* before WordPress resolves MemberPress products.
+    $pages = clone $pages;
+    unset($pages->register, $pages->activate);
+    return $pages;
+}
+
 function thepond_community_preserve_login() {
     // BuddyBoss otherwise changes WordPress's final login destination globally.
     remove_filter('login_redirect', 'bp_login_redirect', PHP_INT_MAX);
     remove_filter('register_url', 'bp_get_signup_page');
+    if (thepond_community_is_buddyboss_theme()) {
+        remove_filter('login_redirect', 'buddyboss_redirect_previous_page', 10);
+    }
 }
 
 function thepond_community_login_url($url, $redirect, $force_reauth) {
-    if (!thepond_community_is_page()) {
+    // is_login() calls wp_login_url(), so it cannot be used inside login_url.
+    if ($force_reauth || is_admin() || (isset($GLOBALS['pagenow']) && $GLOBALS['pagenow'] === 'wp-login.php')) {
         return $url;
     }
-    return home_url('/login/');
+    if (!thepond_community_is_page() && !thepond_community_is_buddyboss_theme()) {
+        return $url;
+    }
+    return $redirect ? add_query_arg('redirect_to', $redirect, home_url('/login/')) : home_url('/login/');
 }
 
 function thepond_community_password_url($url) {
-    if (thepond_community_is_page() && class_exists('MeprOptions')) {
+    if (is_admin() || (isset($GLOBALS['pagenow']) && $GLOBALS['pagenow'] === 'wp-login.php')) {
+        return $url;
+    }
+    if ((thepond_community_is_page() || thepond_community_is_buddyboss_theme()) && class_exists('MeprOptions')) {
         return MeprOptions::fetch()->forgot_password_url();
     }
     return $url;
@@ -262,11 +345,37 @@ function thepond_community_account_nav() {
 }
 
 function thepond_community_enqueue_styles() {
-    wp_enqueue_style('thepond-community', get_stylesheet_directory_uri() . '/community.css', array('style'), '1.0.1');
+    if (get_stylesheet() === 'meltingpot-child' && !thepond_community_uses_readylaunch()) {
+        wp_enqueue_style('thepond-community', get_stylesheet_directory_uri() . '/community.css', array('style'), '1.1.0');
+    }
 }
 
 function thepond_community_templates($templates) {
+    if (thepond_community_is_buddyboss_theme()) {
+        return $templates;
+    }
     return array_merge(array('buddypress.php'), array_diff($templates, array('buddypress.php')));
+}
+
+function thepond_community_template_include($template) {
+    if (thepond_community_is_page() && thepond_community_is_buddyboss_theme() && !is_embed()) {
+        $wrapper = locate_template('buddypress.php');
+        if (!$wrapper || !is_readable($wrapper)) {
+            wp_die(esc_html__('The BuddyBoss community template is missing. Please check the BuddyBoss Theme installation.', 'thepond-community'), '', array('response' => 503));
+        }
+        return $wrapper;
+    }
+    if (!thepond_community_is_page() || get_stylesheet() !== 'meltingpot-child' ||
+        is_embed() || thepond_community_uses_readylaunch() ||
+        !function_exists('bp_is_theme_compat_active') || !bp_is_theme_compat_active()) {
+        return $template;
+    }
+    // Elementor Canvas can replace BuddyBoss's wrapper after theme compatibility runs.
+    $wrapper = get_stylesheet_directory() . '/buddypress.php';
+    if (!is_readable($wrapper)) {
+        wp_die(esc_html__('The Pond community template is missing. Please upload the child theme buddypress.php file.', 'thepond-community'), '', array('response' => 503));
+    }
+    return $wrapper;
 }
 
 function thepond_community_admin_menu() {
@@ -304,7 +413,7 @@ function thepond_community_settings_page() {
         <h1><?php esc_html_e('The Pond Community', 'thepond-community'); ?></h1>
         <?php settings_errors(); ?>
         <p><?php esc_html_e('Administrators can preview the community before launch. Other users need both an open community and an active MemberPress membership.', 'thepond-community'); ?></p>
-        <p><?php esc_html_e('This integration keeps ReadyLaunch, BuddyBoss signup, site-wide private-network mode, account deletion and community avatar uploads disabled. Login destinations, billing, passwords, email addresses and avatars remain managed by the existing Pond flows.', 'thepond-community'); ?></p>
+        <p><?php esc_html_e('ReadyLaunch can be enabled in its native settings for community pages. Its Login & Registration, Courses and Blog layouts remain disabled by this integration. BuddyBoss signup, site-wide private-network mode, account deletion and community avatar uploads remain disabled. Login, billing, credentials and avatars stay in the existing Pond flows.', 'thepond-community'); ?></p>
         <form method="post" action="options.php">
             <?php settings_fields('thepond_community'); ?>
             <input type="hidden" name="thepond_community_open" value="0">

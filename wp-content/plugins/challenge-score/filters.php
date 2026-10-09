@@ -1,6 +1,9 @@
 <?php
 // Override the single content library template
 function single_content_library_template($single_template) {
+    if (get_template() === 'buddyboss-theme') {
+        return $single_template;
+    }
     global $post;
 
     if ($post->post_type == 'content-library' && has_term('challenges', 'library_category', null) == 1) {

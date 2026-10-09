@@ -23,6 +23,7 @@ wp-content/themes/melting_pot/bootstrap-4.5.0
 *.log
 *.sql
 *.sqlite
+.DS_Store
 
 # don't ignore our theme
 !wp-content/themes/melting_pot
@@ -39,3 +40,23 @@ wp-content/themes/melting_pot/bootstrap-4.5.0
 !wp-content/plugins/player-profile
 !wp-content/plugins/miniorange-firebase-authentication-enterprise
 !wp-content/plugins/thepond-community
+
+# Track only the customized BuddyBoss child, not the vendor parent/download extras.
+!wp-content/themes/buddyboss-theme-child-1.0.0/
+wp-content/themes/buddyboss-theme-child-1.0.0/*
+!wp-content/themes/buddyboss-theme-child-1.0.0/functions.php
+!wp-content/themes/buddyboss-theme-child-1.0.0/style.css
+!wp-content/themes/buddyboss-theme-child-1.0.0/inc/
+!wp-content/themes/buddyboss-theme-child-1.0.0/assets/
+!wp-content/themes/buddyboss-theme-child-1.0.0/members-templates/
+!wp-content/themes/buddyboss-theme-child-1.0.0/memberpress/
+!wp-content/themes/buddyboss-theme-child-1.0.0/template-parts/
+!wp-content/themes/buddyboss-theme-child-1.0.0/firebase-login.php
+!wp-content/themes/buddyboss-theme-child-1.0.0/challenges.php
+!wp-content/themes/buddyboss-theme-child-1.0.0/routines.php
+!wp-content/themes/buddyboss-theme-child-1.0.0/move-makers.php
+!wp-content/themes/buddyboss-theme-child-1.0.0/single-skills.php
+!wp-content/themes/buddyboss-theme-child-1.0.0/archive-content-library.php
+!wp-content/themes/buddyboss-theme-child-1.0.0/single-content-library.php
+!wp-content/themes/buddyboss-theme-child-1.0.0/home.php
+!wp-content/themes/buddyboss-theme-child-1.0.0/page_Elementor.php
