@@ -1,6 +1,6 @@
 <?php
 get_header(); ?>
-<div class="pond-portal">
+<div class="pond-portal pond-library-detail">
 <?php
 if (has_post_thumbnail()) {
 	$imgID  = get_post_thumbnail_id($post->ID);
@@ -26,7 +26,7 @@ if (has_post_thumbnail()) {
 				foreach ($term_list as $term) {
 			?>
 
-					<a class="clCatLink"><?php echo $term->name; ?></a>
+					<span class="clCatLink"><?php echo esc_html($term->name); ?></span>
 			<?php }
 			}
 			?>
@@ -64,12 +64,9 @@ if (has_post_thumbnail()) {
 		<?php
 		if (have_posts()) : while (have_posts()) : the_post();
 		?>
-				<div class="large-8 medium-8 columns">
-					<main role="main">
-						<article>
+				<div class="large-8 medium-8 columns pond-library-main">
 							<div class="CourseContent">
-								<main role="main" class="main">
-									<article>
+									<article class="pond-library-article">
 										<?php
 										if (!current_user_can("memberpress_authorized")) {
 										?>
@@ -109,11 +106,11 @@ if (has_post_thumbnail()) {
 										$relatedSkills = get_field('skills', $post->ID);
 										if (!empty($relatedSkills)) {
 										?>
-											<h2 style="margin-bottom: 5px;">Related Skills</h2>
+											<section class="pond-related-skills" aria-labelledby="pond-related-skills-heading">
+											<h2 id="pond-related-skills-heading">Related Skills</h2>
 										<?php
-										}
 										?>
-										<div class="bootstrap-styles skills-list">
+										<ul class="pond-related-skill-list">
 											<?php
 											if (!empty($relatedSkills)) {
 												foreach ($relatedSkills as $relatedSkill) {
@@ -129,43 +126,48 @@ if (has_post_thumbnail()) {
 														}
 													}
 											?>
-													<div class="card skill">
-														<div class="card-body content">
-															<a href="<?= get_post_permalink($relatedSkill->ID) ?>" class="ghost"></a>
-															<a href="<?= get_post_permalink($relatedSkill->ID) ?>" class="title"><?= get_the_title($relatedSkill->ID) ?></a>
-															<span class="level"><?= $performanceLevelString ?></span>
-														</div>
-													</div>
+													<li>
+														<a href="<?php echo esc_url(get_post_permalink($relatedSkill->ID)); ?>">
+															<span class="pond-related-skill-title"><?php echo esc_html(get_the_title($relatedSkill->ID)); ?></span>
+															<?php if ($performanceLevelString) : ?>
+																<span class="pond-related-skill-level"><?php echo esc_html($performanceLevelString); ?></span>
+															<?php endif; ?>
+															<i class="bb-icon-l bb-icon-angle-right" aria-hidden="true"></i>
+														</a>
+													</li>
 											<?php
 												}
 											}
 											?>
-										</div>
+										</ul>
+											</section>
+										<?php } ?>
 
 										<?php
 										if (current_user_can("memberpress_authorized")) {
 											get_template_part('template-parts/courses/lesson-downloads');
 										?>
+											<?php if (!array_intersect(array('Challenges', 'Routines'), $categories)) : ?>
 											<div class="cl-history">
 												<?php get_template_part('template-parts/courses/coursehistory'); ?>
 											</div>
+											<?php endif; ?>
 										<?php
 											the_content();
 										}
 										?>
 									</article>
-								</main>
 							</div>
 				</div>
 
-				<div class="large-4 medium-4 columns">
+				<aside class="large-4 medium-4 columns pond-library-sidebar" aria-label="<?php esc_attr_e('Training details', 'buddyboss-theme-child'); ?>">
 
 					<?php
 					$term_list = wp_get_post_terms(get_the_ID(), 'performance-level', array("fields" => "all"));
 					if ($term_list) {
 						foreach ($term_list as $key => $term) {
 					?>
-							<a class="clCatLink"><?php echo $term->name; ?></a>
+							<span class="clCatLink"><?php echo esc_html($term->name); ?></span>
 					<?php
 						}
 					} ?>
@@ -183,7 +185,7 @@ if (has_post_thumbnail()) {
 								<div class="ld-section-heading">
 									<h2>Your Scores</h2>
 								</div>
-								<p style="font-size: 14px;">To keep track of your score, please <a href="/" style="color: #cc3333;">join now</a> or <a href="/login/" style="color: #cc3333;">login</a></p>
+								<p>To keep track of your score, please <a href="/">join now</a> or <a href="/login/">login</a></p>
 							</div>
 						<?php
 						} else {
@@ -192,16 +194,17 @@ if (has_post_thumbnail()) {
 								<div class="ld-section-heading">
 									<h2>Your Scores</h2>
 								</div>
-								<div class="scores" id="scores">
+								<div class="scores" id="scores" aria-live="polite">
 									<i class="fa fa-spinner fa-spin" style="align-self: center; margin: 2% auto; position: relative; z-index: 5;"></i>
 								</div>
 								<div class="add-score">
 									<input type="hidden" name="challenge_id" id="challenge-id" value="<?php echo get_the_ID() ?>" />
 									<input type="hidden" name="user_id" id="user-id" value="<?php echo get_current_user_id() ?>" />
-									<label for="challenge-score" id="success-message" class="success message">Score added</label>
-									<label for="challenge-score" id="error-message" class="error message">Failed to add score</label>
+									<label for="challenge-score" id="success-message" class="success message" role="status">Score added</label>
+									<label for="challenge-score" id="error-message" class="error message" role="alert">Failed to add score</label>
+									<label class="screen-reader-text" for="challenge-score">Your new score</label>
 									<input type="number" name="score" id="challenge-score" step="0.01" min="0" placeholder="Add your new best score" />
-									<a href="#" class="add-score-button" id="add-score"><i class="fa fa-plus-circle"></i></a>
+									<button type="button" class="add-score-button" id="add-score" aria-label="Add score"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
 								</div>
 							</div>
 					<?php
@@ -225,7 +228,7 @@ if (has_post_thumbnail()) {
 							$term_list = wp_get_post_terms(get_the_ID(), 'library_category', array("fields" => "ids"));
 							$arg = array(
 								'post_type' => 'content-library',
-								'post_per_page' => 5,
+								'posts_per_page' => 5,
 								'post__not_in' => array(get_the_ID()),
 								'tax_query' => array(
 									array(
@@ -249,7 +252,7 @@ if (has_post_thumbnail()) {
 							<?php
 						}
 						?>
-					</div>
+					</aside>
 				</div>
 
 		<?php endwhile;

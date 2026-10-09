@@ -4,7 +4,7 @@ function mepr_add_tabs($user) {
 ?>
   <span class="mepr-nav-item avatar">
     <!-- KEEPS THE USER ON THE ACCOUNT PAGE -->
-    <a href="/account?action=avatar">Avatar</a>
+    <a href="/account?action=avatar">Profile Photo</a>
   </span>
   <?php
 }
@@ -15,6 +15,7 @@ function mepr_add_tabs_content($action) {
   $useFbAvatar = !empty($useFbAvatar[0]);
   $fbAvatar = get_user_meta(get_current_user_id(), 'avatar_url');
   if ($action == 'avatar') {
+    echo '<p class="pond-profile-help">' . esc_html__('This photo is used across your training dashboard and community profile.', 'thepond-community') . '</p>';
     if ($useFbAvatar && !empty($fbAvatar[0])) {
   ?>
       <img alt='avatar' src='<?= $fbAvatar[0] ?>' height='100' width='100' />
@@ -97,34 +98,62 @@ function get_fb_user($user) {
 }
 
 // Use firebase photoUrl if
-function firebase_user_avatar($avatar, $id_or_email, $size, $default, $alt) {
-  $user = false;
-
-  if (is_numeric($id_or_email)) {
-    $id = (int) $id_or_email;
-    $user = get_user_by('id', $id);
-  } elseif (is_object($id_or_email)) {
-    if (!empty($id_or_email->user_id)) {
-      $id = (int) $id_or_email->user_id;
-      $user = get_user_by('id', $id);
-    }
-  } else {
-    $user = get_user_by('email', $id_or_email);
+function firebase_user_avatar($avatar, $id_or_email, $size, $default, $alt, $args = array()) {
+  if (!empty($args['force_default'])) {
+    return $avatar;
   }
-
-  if ($user && is_object($user)) {
-    $fbAvatar = get_user_meta($user->data->ID, 'avatar_url');
-    $useFbAvatar = get_user_meta($user->data->ID, 'use_firebase_avatar');
-    if (!empty($useFbAvatar[0]) && !empty($fbAvatar[0])) {
-      $avatar = $fbAvatar[0];
-      $avatar = "<img alt='{$alt}' src='{$avatar}' class='avatar avatar-{$size} photo' height='{$size}' width='{$size}' />";
-    }
-  }
-
-  return $avatar;
+  $user_id = thepond_portal_avatar_user_id($id_or_email);
+  $url = thepond_community_avatar_url('', array('object' => 'user', 'item_id' => $user_id, 'width' => $size));
+  return thepond_community_avatar_image($avatar, $url);
 }
-add_filter('get_wp_user_avatar', 'firebase_user_avatar', 1, 5);
-add_filter('get_avatar', 'firebase_user_avatar', 1, 5);
+add_filter('get_wp_user_avatar', 'firebase_user_avatar', 1001, 5);
+add_filter('get_avatar', 'firebase_user_avatar', 1001, 6);
+add_filter('get_avatar_url', 'thepond_portal_avatar_url', 1001, 3);
+
+function thepond_portal_avatar_user_id($id_or_email) {
+  if (is_numeric($id_or_email)) {
+    return absint($id_or_email);
+  }
+  if ($id_or_email instanceof WP_User) {
+    return $id_or_email->ID;
+  }
+  if ($id_or_email instanceof WP_Post) {
+    return absint($id_or_email->post_author);
+  }
+  if (is_object($id_or_email) && isset($id_or_email->user_id)) {
+    return absint($id_or_email->user_id);
+  }
+  if (is_string($id_or_email)) {
+    $user = get_user_by('email', $id_or_email);
+    return $user ? $user->ID : 0;
+  }
+  return 0;
+}
+
+function thepond_portal_avatar_url($url, $id_or_email, $args) {
+  if (!empty($args['force_default'])) {
+    return $url;
+  }
+  return thepond_community_avatar_url($url, array(
+    'object' => 'user',
+    'item_id' => thepond_portal_avatar_user_id($id_or_email),
+    'width' => $args['size'] ?? 96,
+  ));
+}
+
+add_action('mepr_account_home', 'thepond_portal_profile_guidance');
+function thepond_portal_profile_guidance($user) {
+  ?>
+  <aside class="pond-profile-help">
+    <h3><?php esc_html_e('Your account and community profile', 'thepond-community'); ?></h3>
+    <p><?php esc_html_e('Manage your sign-in details and membership here. Your public profile and activity live in the community.', 'thepond-community'); ?></p>
+    <a href="<?php echo esc_url(home_url('/account/?action=avatar')); ?>"><?php esc_html_e('Change Profile Photo', 'thepond-community'); ?></a>
+    <?php if (function_exists('bp_core_get_user_domain')) : ?>
+      <a href="<?php echo esc_url(bp_core_get_user_domain($user->ID)); ?>"><?php esc_html_e('Community Profile', 'thepond-community'); ?></a>
+    <?php endif; ?>
+  </aside>
+  <?php
+}
 
 /**
  * Check if email exists or not

@@ -2,8 +2,13 @@
 define('ABSPATH', dirname(__DIR__, 4) . '/');
 define('BP_PLATFORM_VERSION', '3.6.0');
 define('THEME_HOOK_PREFIX', 'buddyboss_theme_');
+define('OBJECT', 'OBJECT');
 require ABSPATH . 'wp-includes/plugin.php';
 require ABSPATH . 'wp-includes/class-wp-error.php';
+require ABSPATH . 'wp-includes/kses.php';
+foreach (array('attribute-token', 'text-replacement', 'span', 'tag-processor') as $html_class) {
+    require ABSPATH . 'wp-includes/html-api/class-wp-html-' . $html_class . '.php';
+}
 
 $checks = 0;
 $member = true;
@@ -47,6 +52,7 @@ function check($condition, $message) {
 function get_template() { global $theme_template; return $theme_template; }
 function get_stylesheet() { return 'buddyboss-theme-child-1.0.0'; }
 function get_stylesheet_directory() { return ABSPATH . 'wp-content/themes/' . get_stylesheet(); }
+function get_template_directory() { return ABSPATH . 'wp-content/themes/buddyboss-theme'; }
 function get_stylesheet_directory_uri() { return '/wp-content/themes/' . get_stylesheet(); }
 function get_option($key, $default = false) { return apply_filters('pre_option_' . $key, $default); }
 function bp_get_option($key, $default = false) { return get_option($key, $default); }
@@ -76,7 +82,28 @@ function get_current_user_id() { return 123; }
 function buddypress() { return new stdClass(); }
 function __($value, $domain = '') { return $value; }
 function __return_true() { return true; }
+function is_wp_error($value) { return $value instanceof WP_Error; }
 function home_url($path = '') { return 'https://example.test' . $path; }
+function wp_validate_redirect($url, $fallback = '') {
+    if (strpos($url, '//') === 0) { return $fallback; }
+    $host = parse_url($url, PHP_URL_HOST);
+    return !$host || $host === 'example.test' ? $url : $fallback;
+}
+class PortalRedirect extends RuntimeException {}
+function wp_safe_redirect($url) { throw new PortalRedirect($url); }
+function nocache_headers() {}
+function wp_unslash($value) { return stripslashes($value); }
+function wp_die($message, $title = '', $args = array()) { throw new RuntimeException($message, $args['response'] ?? 500); }
+function get_post_type($id = 0) { return $GLOBALS['post_type']; }
+function get_page_by_path($path, $output = OBJECT, $type = 'page') { return $GLOBALS['training_forum'] ?? null; }
+function bbp_get_forum_permalink($id) { return home_url('/forums/forum/training-discussions/'); }
+function bbp_is_forum_open($id) { return $GLOBALS['forum_open'] ?? true; }
+function bbp_user_can_view_forum($args) { return $GLOBALS['forum_visible'] ?? true; }
+function bbp_is_single_forum() { return $GLOBALS['single_forum'] ?? false; }
+function bbp_get_forum_id() { return $GLOBALS['current_forum_id'] ?? 60096; }
+function bbp_is_post_request() { return $GLOBALS['forum_post_request'] ?? false; }
+function bbp_is_topic_edit() { return $GLOBALS['forum_topic_edit'] ?? false; }
+function post_password_required() { return $GLOBALS['password_protected'] ?? false; }
 function add_query_arg($key, $value, $url) { return $url . '?' . $key . '=' . urlencode($value); }
 function content_url($path = '') { return '/wp-content' . $path; }
 function plugins_url($path = '') { return '/wp-content/plugins/' . $path; }
@@ -84,7 +111,7 @@ function admin_url($path = '') { return '/wp-admin/' . $path; }
 function wp_create_nonce($action) { return $action; }
 function wp_script_is($handle, $state) { global $scripts; return isset($scripts[$handle]); }
 function wp_register_script($handle, $src, $deps = array(), $version = null, $footer = false) {
-    global $scripts; $scripts[$handle] = array('src' => $src, 'deps' => $deps, 'footer' => $footer);
+    global $scripts; $scripts[$handle] = array('src' => $src, 'deps' => $deps, 'footer' => $footer, 'version' => $version);
 }
 function wp_enqueue_script($handle, $src = '', $deps = array(), $version = null, $footer = false) {
     global $scripts;
@@ -113,19 +140,43 @@ function sfwd_lms_has_access($course, $user) { global $access; return $access; }
 function absint($value) { return abs((int) $value); }
 function esc_html($value) { return htmlspecialchars((string) $value, ENT_QUOTES); }
 function esc_html_e($value, $domain = '') { echo esc_html($value); }
+function esc_html__($value, $domain = '') { return esc_html($value); }
 function esc_attr($value) { return esc_html($value); }
+function esc_attr_e($value, $domain = '') { echo esc_attr($value); }
 function esc_url($value) { return $value; }
+function esc_url_raw($value) { return $value; }
+function get_user_meta($id, $key, $single = false) {
+    $value = $GLOBALS['avatar_meta'][$id][$key] ?? '';
+    return $single ? $value : ($value === '' ? array() : array($value));
+}
+function has_wp_user_avatar($id) { return !empty($GLOBALS['uploaded_avatars'][$id]); }
+function get_wp_user_avatar_src($id, $size = 96) {
+    throw new RuntimeException('Avatar URL helper recursively renders through get_wp_user_avatar filters');
+}
+function bp_core_get_user_domain($id) { return home_url('/community-members/member-' . $id . '/'); }
 function get_the_ID() { global $post_id; return $post_id; }
 function get_queried_object_id() { return get_the_ID(); }
 function get_the_id_for_test() { return get_the_ID(); }
 function get_the_title($id = 0) { return 'Title ' . $id; }
 function get_term_by($field, $value, $taxonomy) { return (object) array('term_id' => 10); }
+function get_terms($taxonomy, $args = array()) { return array((object) array('term_id' => 10, 'slug' => 'passing', 'name' => 'Passing')); }
 function get_permalink($id = 0) { return '/item/' . (is_object($id) ? $id->ID : $id); }
+function get_post_permalink($id) { return get_permalink($id); }
+function get_the_content() { return '<p>Existing page content</p>'; }
+function get_the_post_thumbnail_url() { return ''; }
+function wp_get_post_terms($id, $taxonomy, $args) {
+    if (($args['fields'] ?? '') === 'ids') return array(10);
+    return array((object) array('name' => $taxonomy === 'library_category' ? $GLOBALS['detail_category'] : 'Skating'));
+}
 function get_post($id) { return (object) array('ID' => $id, 'post_title' => 'Course ' . $id); }
 function get_post_thumbnail_id($id) { return 0; }
-function wp_get_attachment_image_src($id, $size, $icon = false, $attr = '') { return array('/course.png'); }
+function wp_get_attachment_image_src($id, $size, $icon = false, $attr = '') {
+    $GLOBALS['attachment_image_request'] = array($id, $size);
+    return array($id === 456 ? 'https://example.test/uploaded.jpg' : '/course.png');
+}
+function get_current_blog_id() { return 1; }
 function get_post_meta($id, $key, $single = false) { return ''; }
-function get_the_terms($id, $taxonomy) { return array((object) array('slug' => 'skating')); }
+function get_the_terms($id, $taxonomy) { return array((object) array('slug' => 'skating', 'name' => 'Skating')); }
 function learndash_course_progress($args) {
     $GLOBALS['course_progress_calls'][] = $args;
     return $GLOBALS['course_progress_results'][$args['course_id']];
@@ -167,7 +218,8 @@ class MeprOptions {
     public static function fetch() { return new self(); }
     public function forgot_password_url() { return home_url('/forgot-password/'); }
 }
-class WP_Post {}
+class WP_Post { public $post_author; }
+class WP_User { public $ID; public function __construct($id) { $this->ID = $id; } }
 class WP_Query {
     private $posts;
     public function __construct($args) {
@@ -186,16 +238,20 @@ function the_title() { echo 'Login'; }
 function the_content() { echo '<p>Existing page content</p>'; }
 function the_field($name) { echo get_field($name); }
 function dynamic_sidebar($name) { echo '<p>Existing membership sidebar: ' . esc_html($name) . '</p>'; }
-function get_user_by($field, $id) { return (object) array('user_login' => '<member>'); }
+function get_user_by($field, $id) {
+    return (object) array('ID' => is_numeric($id) ? (int) $id : 123, 'user_login' => '<member>');
+}
 function wp_logout_url($redirect) { return '/wp-login.php?action=logout'; }
 function do_shortcode($shortcode) {
     $GLOBALS['rendered_shortcodes'][] = $shortcode;
     return '<span data-shortcode="' . esc_attr($shortcode) . '"></span>';
 }
+function shortcode_exists($shortcode) { return $GLOBALS['facebook_shortcode_enabled'] ?? true; }
 class PortalDatabase {
     public $prefix;
     public function prepare($query) { return $query; }
     public function get_var($query) { return 0; }
+    public function get_blog_prefix($id) { return 'wp_'; }
 }
 $wpdb = new PortalDatabase();
 $wpdb->prefix = 'wp_';
@@ -349,6 +405,8 @@ check(!isset($scripts['jquery']) || $scripts['jquery']['src'] === '', 'WordPress
 $legacy = true;
 do_action('wp_enqueue_scripts');
 check(isset($styles['pond-grid'], $styles['pond-legacy'], $scripts['pond-dashboard']), 'Dashboard assets missing');
+check($scripts['pond-dashboard']['version'] === filemtime(get_stylesheet_directory() . '/assets/js/pond-dashboard.js'),
+    'Dashboard script updates must invalidate stale browser caches');
 $menu_items = array(
     (object) array('url' => home_url('/member-dashboard/'), 'current' => true, 'classes' => array('current-menu-item', 'current_page_item', 'menu-item')),
     (object) array('url' => '/member-dashboard/#courses', 'current' => true, 'classes' => array('scroll', 'current-menu-item', 'current_page_item')),
@@ -368,6 +426,52 @@ check($rendered_menu[3]->classes === array('menu-item'), 'Community navigation c
 $legacy = false;
 $other_menu = array((object) array('url' => '/other/#section', 'current' => true, 'classes' => array('current-menu-item')));
 check(apply_filters('wp_nav_menu_objects', $other_menu)[0]->current, 'Other template navigation changed');
+$account_menu = pond_theme_account_menu('<li>Legacy icons</li>', (object) array('theme_location' => 'header-my-account'));
+foreach (array('My Training', 'Account &amp; Billing', 'Change Profile Photo', 'Community Profile', 'My Content', 'Help &amp; Support', 'Sign Out') as $label) {
+    check(strpos($account_menu, $label) !== false, 'Account menu label missing: ' . $label);
+}
+foreach (array('/member-dashboard/', '/account/', '/account/?action=avatar', '/community-members/member-123/', '/item/387', '/item/392', 'action=logout') as $url) {
+    check(strpos($account_menu, $url) !== false, 'Canonical account destination missing: ' . $url);
+}
+check(pond_theme_account_menu('Other menu', (object) array('theme_location' => 'primary-menu')) === 'Other menu', 'Primary navigation replaced');
+$logged_in = false;
+check(pond_theme_account_menu('Public menu', (object) array('theme_location' => 'header-my-account')) === 'Public menu', 'Public account menu replaced');
+$logged_in = true;
+$avatar_meta = array(123 => array('avatar_url' => 'https://example.test/social.jpg', 'use_firebase_avatar' => true, 'wp_user_avatar' => 456));
+$uploaded_avatars = array(123 => 'https://example.test/uploaded.jpg');
+$avatar_html = '<img src="https://example.test/default.jpg" srcset="https://example.test/default-2x.jpg 2x" class="avatar photo" alt="Member" width="100" height="100" loading="lazy">';
+$vendor_avatar_override = function ($avatar) use ($avatar_html) { return $avatar_html; };
+add_filter('get_avatar', $vendor_avatar_override, 10);
+foreach (array(123, 'member@example.test', new WP_User(123), (object) array('user_id' => 123)) as $identity) {
+    $result = apply_filters('get_avatar', $avatar_html, $identity, 100, '', 'Member', array());
+    check(strpos($result, 'src="https://example.test/social.jpg"') !== false, 'Social avatar lost for user identifier');
+    check(strpos($result, 'srcset') === false, 'Stale default retina avatar retained');
+    check(strpos($result, 'loading="lazy"') !== false && strpos($result, 'class="avatar photo"') !== false, 'Native avatar markup lost');
+    check(apply_filters('get_avatar_url', '/default.jpg', $identity, array('size' => 100)) === 'https://example.test/social.jpg', 'Avatar URL API differs');
+}
+$post_author = new WP_Post(); $post_author->post_author = 123;
+check(thepond_portal_avatar_user_id($post_author) === 123, 'Post author avatar resolution changed');
+foreach (array('bp_core_fetch_avatar_url_check', 'bp_core_fetch_avatar_url') as $avatar_filter) {
+    check(apply_filters($avatar_filter, '/default.jpg', array('object' => 'user', 'item_id' => 123)) === 'https://example.test/social.jpg', 'BuddyBoss URL preference lost');
+}
+check(strpos(apply_filters('bp_core_fetch_avatar', $avatar_html, array('object' => 'user', 'item_id' => 123)), 'social.jpg') !== false, 'BuddyBoss HTML preference lost');
+check(apply_filters('bp_core_fetch_avatar', $avatar_html, array('object' => 'group', 'item_id' => 123)) === $avatar_html, 'Group avatar changed');
+check(apply_filters('get_avatar', $avatar_html, 123, 100, '', 'Member', array('force_default' => true)) === $avatar_html, 'Forced default avatar changed');
+$avatar_meta[123]['use_firebase_avatar'] = false;
+check(strpos(apply_filters('get_avatar', $avatar_html, 123, 100, '', 'Member'), 'uploaded.jpg') !== false, 'Uploaded avatar preference lost');
+check($GLOBALS['attachment_image_request'] === array(456, array(100, 100)), 'Uploaded avatar must use its attachment ID and requested dimensions');
+check(strpos(apply_filters('get_wp_user_avatar', $avatar_html, 123, 'thumbnail', '', 'Member'), 'uploaded.jpg') !== false,
+    'Vendor HTML avatar filter must resolve uploads without recursively rendering an avatar');
+check($GLOBALS['attachment_image_request'] === array(456, 'thumbnail'), 'Named attachment image sizes must be preserved');
+$attachment_override = function ($image) { return array('https://example.test/filtered-upload.jpg'); };
+add_filter('wpua_get_attachment_image_src', $attachment_override);
+check(thepond_community_avatar_url('', array('object' => 'user', 'item_id' => 123)) === 'https://example.test/filtered-upload.jpg',
+    'Existing attachment source filters must be preserved');
+remove_filter('wpua_get_attachment_image_src', $attachment_override);
+$uploaded_avatars = array();
+check(apply_filters('get_avatar', $avatar_html, 123, 100, '', 'Member') === $avatar_html, 'Existing fallback avatar changed');
+$avatar_meta = array();
+remove_filter('get_avatar', $vendor_avatar_override, 10);
 $legacy = true;
 foreach (array('pond-bootstrap', 'pond-datatables', 'pond-popper') as $handle) {
     check(is_readable(ABSPATH . ltrim($scripts[$handle]['src'], '/')), 'Legacy static dependency missing: ' . $handle);
@@ -388,7 +492,16 @@ foreach (array(false, true) as $logged_in) {
         $rendered_shortcodes = array();
         $auth_hook_args = null;
         ob_start();
-        require get_stylesheet_directory() . '/firebase-login.php';
+        try {
+            require get_stylesheet_directory() . '/firebase-login.php';
+            check(!$logged_in || $reset, 'Signed-in login visit failed to redirect');
+        } catch (PortalRedirect $redirect) {
+            $auth_html = ob_get_clean();
+            check($logged_in && !$reset, 'Anonymous sign-in or reset unexpectedly redirected');
+            check($redirect->getMessage() === home_url('/member-dashboard/'), 'Signed-in login does not default to dashboard');
+            check($auth_html === '', 'Login redirect happened after output');
+            continue;
+        }
         $auth_html = ob_get_clean();
         check(strpos($auth_html, 'class="pond-auth-card"') !== false, 'Login card shell missing');
         check(strpos($auth_html, 'large-4 columns') === false, 'Legacy three-column login layout retained');
@@ -418,6 +531,72 @@ foreach (array(false, true) as $logged_in) {
 }
 $_GET = array();
 $logged_in = true;
+foreach (array(
+    '' => home_url('/member-dashboard/'),
+    '/lesson/' => '/lesson/',
+    home_url('/courses/example/') => home_url('/courses/example/'),
+    home_url('/login/?redirect_to=/login/') => home_url('/member-dashboard/'),
+    '/login/' => home_url('/member-dashboard/'),
+    'https://outside.test/' => home_url('/member-dashboard/'),
+    '//outside.test/' => home_url('/member-dashboard/'),
+) as $requested => $expected) {
+    check(pond_theme_login_destination($requested) === $expected, 'Login destination changed or loops: ' . $requested);
+}
+
+$training_forum = (object) array('ID' => 60096, 'post_status' => 'private');
+$member = true; $access = true; $post_type = 'sfwd-lessons'; $post_id = 3250;
+add_filter('pre_option_thepond_community_open', '__return_true');
+check(pond_theme_lesson_discussion_url(3250) === home_url('/forums/forum/training-discussions/') . '?pond_lesson=3250#new-post', 'Lesson forum context link missing');
+check(!apply_filters('comments_open', true, 3250), 'New lesson conversations remain split between comments and forums');
+ob_start();
+do_action('learndash-lesson-after', 3250, 3194, 123);
+$discussion_html = ob_get_clean();
+check(strpos($discussion_html, 'Start a lesson discussion') !== false, 'Discussion panel missing when a lesson has no old comments');
+check(strpos($discussion_html, 'pond_lesson=3250#new-post') !== false, 'Discussion panel loses lesson context');
+check(strpos(file_get_contents(get_stylesheet_directory() . '/comments.php'), "get_template_directory() . '/comments.php'") !== false, 'Native existing response template replaced');
+$_GET = array('pond_lesson' => '3250'); $single_forum = true;
+pond_theme_lesson_topic_context();
+check(apply_filters('bbp_get_form_topic_title', '') === 'Title 3250', 'Lesson topic title not prefilled');
+check(strpos(apply_filters('bbp_get_form_topic_content', ''), '/item/3250') !== false, 'Lesson context link missing from discussion');
+check(apply_filters('bbp_get_form_topic_content', 'Draft') === 'Draft', 'Existing discussion draft overwritten');
+foreach (array('forum_post_request', 'forum_topic_edit') as $flag) {
+    $GLOBALS[$flag] = true;
+    check(apply_filters('bbp_get_form_topic_title', '') === '', 'Posted/edited topic prefilled: ' . $flag);
+    $GLOBALS[$flag] = false;
+}
+foreach (array('member', 'access', 'forum_visible', 'forum_open') as $flag) {
+    $GLOBALS[$flag] = false;
+    check(pond_theme_lesson_discussion_url(3250) === '', 'Forum link ignores access gate: ' . $flag);
+    $GLOBALS[$flag] = true;
+}
+$_GET = array('pond_lesson' => '3250bad');
+try {
+    pond_theme_lesson_topic_context();
+    check(false, 'Malformed lesson discussion accepted');
+} catch (RuntimeException $error) {
+    check($error->getCode() === 400, 'Malformed discussion does not return explicit input error');
+}
+$_GET = array(); $single_forum = false; $training_forum = null;
+check(apply_filters('comments_open', true, 3250), 'Lesson comments disabled without a configured forum');
+$post_type = 'post';
+check(apply_filters('comments_open', true, 12), 'Blog comments changed');
+$post_type = 'sfwd-lessons';
+remove_filter('pre_option_thepond_community_open', '__return_true');
+foreach (array(true, false) as $member) {
+    foreach (array(true, false) as $facebook_shortcode_enabled) {
+        $rendered_shortcodes = array();
+        ob_start();
+        require get_stylesheet_directory() . '/members-templates/member-dashboard.php';
+        $dashboard_html = ob_get_clean();
+        check((strpos($dashboard_html, 'id="facebook-secret-phrase"') !== false) === $member, 'Facebook generator membership gate changed');
+        check(in_array('[facebook_secret_phrase_shortcode]', $rendered_shortcodes, true) === ($member && $facebook_shortcode_enabled), 'Existing Facebook generator shortcode was not reused safely');
+        check(in_array('[ld_profile course_points_user="false" show_quizzes="false"]', $rendered_shortcodes, true), 'LearnDash profile removed by Facebook generator');
+        if ($member && !$facebook_shortcode_enabled) {
+            check(strpos($dashboard_html, 'role="alert"') !== false, 'Missing generator plugin fails silently');
+        }
+    }
+}
+$member = true;
 $fields['_mepr_product_price'] = '14.99';
 $post = (object) array('ID' => 479);
 foreach (array(false, true) as $logged_in) {
@@ -451,6 +630,72 @@ foreach (array(false, true) as $logged_in) {
 }
 $logged_in = true;
 $fields['sidebar'] = false;
+foreach (array('challenges', 'routines') as $library_template) {
+    foreach (array(true, false) as $member) {
+        ob_start();
+        require get_stylesheet_directory() . '/' . $library_template . '.php';
+        $library_html = ob_get_clean();
+        check(strpos($library_html, 'pond-portal pond-library-page') !== false, 'Library styling scope missing');
+        check(strpos($library_html, 'No ' . $library_template . ' are available yet.') !== false, 'Empty library state missing');
+        check(strpos($library_html, 'for="filterSearch"') !== false, 'Library search label missing');
+        check(strpos($library_html, 'type="search"') !== false, 'Library search control changed');
+        check(strpos($library_html, 'type="button" id="clearFilter"') !== false, 'Library clear must be keyboard operable');
+        check(strpos($library_html, 'data-filter="all" aria-pressed="true"') !== false, 'Active filter state missing');
+        check(strpos($library_html, 'aria-pressed="false">Passing') !== false, 'Category filter state missing');
+        check(strpos($library_html, 'id="latestChallengeModal"') === false, 'Empty library must not render a missing challenge preview');
+    }
+}
+$member = true;
+foreach (array('Challenges', 'Routines') as $detail_category) {
+    foreach (array(true, false) as $member) {
+        $remaining_posts = 1;
+        $fields['skills'] = array((object) array('ID' => 99));
+        $row_positions = array();
+        $parts = array();
+        ob_start();
+        require get_stylesheet_directory() . '/single-content-library.php';
+        $detail_html = ob_get_clean();
+        check(strpos($detail_html, 'pond-portal pond-library-detail') !== false, 'Detail styling scope missing');
+        check(substr_count($detail_html, '<article') === substr_count($detail_html, '</article>'), 'Detail article markup is unbalanced');
+        check(strpos($detail_html, 'pond-library-sidebar') !== false && strpos($detail_html, '</aside>') !== false, 'Detail sidebar missing');
+        check(strpos($detail_html, $detail_category === 'Challenges' ? '/challenges/' : '/routines/') !== false, 'Detail back destination changed');
+        check(strpos($detail_html, '/item/99') !== false, 'Existing related skill link removed');
+        check((strpos($detail_html, 'id="challenge-scores"') !== false) === ($detail_category === 'Challenges'), 'Scores must only appear for challenges');
+        if ($detail_category === 'Challenges') {
+            check(strpos($detail_html, 'Your Scores') !== false, 'Your Scores heading removed');
+            check((strpos($detail_html, 'id="challenge-id"') !== false) === $member, 'Membership score controls changed');
+            if ($member) {
+                foreach (array('challenge-id', 'user-id', 'challenge-score', 'add-score', 'scores', 'success-message', 'error-message') as $control) {
+                    check(strpos($detail_html, 'id="' . $control . '"') !== false, 'Score binding missing: ' . $control);
+                }
+                check(strpos($detail_html, 'type="button" class="add-score-button"') !== false, 'Add score must be a keyboard-accessible button');
+            }
+        }
+        foreach (array('lesson-topic-fields', 'lesson-downloads') as $part) {
+            check(in_array('template-parts/courses/' . $part, $parts, true) === $member, 'Protected detail content changed: ' . $part);
+        }
+        if ($member) {
+            check(strpos($detail_html, '440111888') !== false && strpos($detail_html, '/drill.pdf') !== false, 'Existing video or download removed');
+            check(strpos($detail_html, 'tool_fav') === false && strpos($detail_html, 'tool_bookmark') === false, 'Challenge/routine save controls should be removed');
+            check(strpos($detail_html, 'pond-related-skill-title') !== false && strpos($detail_html, 'pond-related-skill-level') !== false,
+                'Related skill title/level missing');
+        } else {
+            check(strpos($detail_html, 'This content is for members only') !== false, 'Unauthorized detail preview removed');
+        }
+    }
+}
+$detail_category = 'Move Makers';
+$member = true;
+$remaining_posts = 1;
+$fields['skills'] = array();
+$row_positions = array();
+ob_start();
+require get_stylesheet_directory() . '/single-content-library.php';
+$other_detail_html = ob_get_clean();
+check(strpos($other_detail_html, 'tool_fav') !== false && strpos($other_detail_html, 'tool_bookmark') !== false,
+    'Save controls on other library content must remain available');
+check(strpos($other_detail_html, 'pond-related-skill-list') === false, 'Empty related skills should not render a list');
+$member = true;
 foreach (array(dirname(__DIR__) . '/portal', get_stylesheet_directory()) as $directory) {
     foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory, FilesystemIterator::SKIP_DOTS)) as $file) {
         if ($file->getExtension() === 'php') {

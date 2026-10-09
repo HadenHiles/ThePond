@@ -4,19 +4,24 @@
 
 
 // Resolve the requested destination before the member header sends output.
+nocache_headers();
+if (!defined('DONOTCACHEPAGE')) {
+    define('DONOTCACHEPAGE', true);
+}
+$is_password_reset = isset($_GET['action']) && $_GET['action'] === 'forgot_password';
+$login_destination = pond_theme_login_destination();
 if (!empty($_GET['redirect_to'])) {
     if (!is_string($_GET['redirect_to'])) {
         wp_die('Invalid login destination.', '', array('response' => 400));
     }
-    $cookie_value = wp_validate_redirect(wp_unslash($_GET['redirect_to']), home_url('/member-dashboard/'));
-    setcookie('redirect_to', $cookie_value, time() + (3600 * 30), '/');
-    if (is_user_logged_in()) {
-        wp_safe_redirect($cookie_value);
-        exit;
-    }
+    $login_destination = pond_theme_login_destination(wp_unslash($_GET['redirect_to']));
+    setcookie('redirect_to', $login_destination, time() + (3600 * 30), '/');
 }
 
-$is_password_reset = isset($_GET['action']) && $_GET['action'] === 'forgot_password';
+if (is_user_logged_in() && !$is_password_reset) {
+    wp_safe_redirect($login_destination);
+    exit;
+}
 
 get_header(); ?>
 <div class="pond-portal">

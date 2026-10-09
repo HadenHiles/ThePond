@@ -197,7 +197,8 @@ saved content, MemberPress account surfaces, auth forms, portal footer/search an
 lesson material. The original standalone marketing homepage remains unchanged.
 Consent overlays, embedded video content and external sites retain their own appearance.
 Header wordmarks use the configured native white logo in dark mode, without a white
-backplate. Category artwork retains its colors on white backplates rather than being inverted.
+backplate. Dashboard category artwork retains its original colors on transparent
+backgrounds rather than being inverted.
 ReadyLaunch settings remain the accent source; native Theme Colors are the light-mode
 fallback when JavaScript is unavailable.
 
@@ -403,6 +404,306 @@ preview CSS: the image content box is consistently 66px high instead of the
 previous light/dark 56px/76px, with the 76px header unchanged. The SVG artwork has
 matching internal bounds, so the visible wordmarks scale equally. All five
 appearance regression tests pass. The browser is restored to desktop light mode.
+
+### Dashboard, libraries and account navigation (initial refinement deployed)
+
+- The native LearnDash profile summary contains three responsive cards for
+  Courses, Completed and Certificates. Avatar/name/edit controls remain above
+  the stats without inherited relative offsets overlapping them. Counts still
+  come from LearnDash; no duplicate profile template is introduced.
+- Expanded Skills Vault GIFs render at z-index `100003`, above the existing
+  resource dialog (`100001`), with click/Escape dismissal unchanged. The dashboard
+  script now uses file-modification-time cache versioning so this fix is not
+  hidden by the previous fixed asset version.
+- Challenges and routines use scoped native-font headings, theme surfaces,
+  three/two/one-column card grids, readable search/Clear buttons and keyboard
+  category buttons with `aria-pressed`. Search, category filters, detail links,
+  preview modal and membership/coming-soon states are retained. Empty libraries
+  render a message without dereferencing a nonexistent latest item.
+- Course carousel progress, completion badges and arrows use the shared navy/cyan
+  primary/action-text variables. The four category images have no dark backplates.
+- Integration 1.2.3 applies the existing social-versus-uploaded avatar preference
+  after One User Avatar/BuddyBoss filters, for both HTML and URL APIs. A selected
+  social photo can no longer be replaced by the default hockey-player image.
+  Native image classes, dimensions, alt text and loading attributes are preserved;
+  stale `srcset` is removed. Group avatars and forced-default requests are unchanged.
+  The uploaded-photo resolver reads the blog-prefixed attachment metadata directly:
+  One User Avatar's URL helper renders HTML and re-enters the avatar filters,
+  causing recursion when called inside these late filters. The recovery is live;
+  further size/filter compatibility coverage is included in the follow-up below.
+- The active child account dropdown and its mobile equivalent use labeled
+  My Training, Account & Billing, Change Profile Photo, Community Profile,
+  My Content, Help & Support and nonce-protected Sign Out links. The old
+  icon-only assigned menu remains saved in WordPress but is not rendered as this
+  account menu. Other menu assignments are untouched.
+- Account & Billing remains the owner of credentials, membership and profile
+  photo. Community Profile remains the owner of public details and social
+  activity. The account screen explains this split and links to both destinations.
+  Native community avatar/credential redirects remain in place; no user settings
+  or photos are migrated or overwritten.
+
+Overwrite these seven files at matching production paths:
+
+1. `wp-content/plugins/thepond-community/thepond-community.php`
+2. `wp-content/plugins/thepond-community/portal/identity.php`
+3. `wp-content/themes/buddyboss-theme-child-1.0.0/inc/pond.php`
+4. `wp-content/themes/buddyboss-theme-child-1.0.0/assets/css/custom.css`
+5. `wp-content/themes/buddyboss-theme-child-1.0.0/assets/js/pond-dashboard.js`
+6. `wp-content/themes/buddyboss-theme-child-1.0.0/challenges.php`
+7. `wp-content/themes/buddyboss-theme-child-1.0.0/routines.php`
+
+Purge page/CDN caches; no WordPress settings changes or plugin reactivation are
+required. Do not upload tests or vendor directories.
+
+Local validation includes 503 portal/template checks on PHP 7.4 and 8.5, 32
+Firebase checks and five appearance tests. Avatar tests cover a competing
+default-image filter, ID/email/user/post/comment identifiers, social/uploaded
+preference, fallback/group behavior, forced-default images and retina attributes.
+Library tests cover empty member/nonmember renderings, search labels, category
+states and absence of an invalid preview modal. Browser previews check profile
+and library layouts at 1440px/390px/320px in both appearances, search/Clear/category
+behavior, transparent category images, navy/cyan carousel controls and the
+expanded GIF as the topmost element with Escape dismissal.
+
+The deployed dashboard and library screens passed the same layout/behavior checks
+without injected CSS/scripts. The uploaded member photo appears in the header,
+and desktop/mobile account destinations render consistently. The affected Facebook
+member's selected photo is also verified in the header, Account Profile Photo screen
+and native community profile, with no stale default-photo retina source. The header
+photo loads successfully. No account forms, payments or stored course progress were
+changed during these checks.
+
+### Library detail pages, dropdown spacing and score deletion (deployed and verified)
+
+- The shared content-library detail template uses themed content/sidebar surfaces,
+  readable headings, metadata badges and back links. It stacks on tablets/phones,
+  preserves video/audio/downloads, related skills, membership gating and saved-content
+  controls, and repairs unbalanced/nested article/main markup. Related items are
+  limited to five with WordPress's correct `posts_per_page` query argument.
+- Your Scores retains its existing element IDs, challenge/user IDs, Firebase
+  collection path, timestamp ordering and four-decimal score storage. Its add
+  control is an accessible button; score rows and messages follow the selected theme.
+- Score deletion previously called a function accidentally nested inside `addScore`,
+  leaving the clicked delete control spinning. The function now shares the handler's
+  scope. A failed deletion restores the control and leaves the score visible;
+  successful deletion removes it. Read/write errors are explicitly displayed, the
+  add-error handler is no longer shadowed by its error parameter, repeated Firebase
+  auth callbacks do not duplicate event handlers, and pending adds cannot be submitted
+  twice. An unauthenticated Firebase session gets sign-in guidance instead of an
+  indefinite loading spinner. Nonmember previews do not query scores.
+- The account dropdown uses in-flow icons with a 10px gap, overriding BuddyBoss's
+  more-specific absolute-positioned icon rule. The same labeled links remain.
+- Uploaded avatars preserve named/numeric attachment sizes and the vendor's
+  attachment-source filter without calling its recursive avatar-rendering helper.
+
+Overwrite only these five files at matching production paths:
+
+1. `wp-content/plugins/thepond-community/thepond-community.php`
+2. `wp-content/themes/buddyboss-theme-child-1.0.0/assets/css/custom.css`
+3. `wp-content/themes/buddyboss-theme-child-1.0.0/single-content-library.php`
+4. `wp-content/plugins/challenge-score/js/score-management.js`
+5. `wp-content/plugins/challenge-score/enqueue.php`
+
+Purge page/CDN caches afterward. Both changed scripts/styles use file modification
+times for cache invalidation. No plugin/theme reactivation or WordPress setting
+changes are required; do not upload tests or vendor folders.
+
+The PHP checks render real challenge/routine detail templates for members and
+nonmembers, including preserved videos, downloads, training tools and score bindings.
+`node wp-content/plugins/thepond-community/tests/scores-test.cjs` checks Firebase
+loading, add/Enter validation, duplicate submissions, deletion and read/write/delete
+failures without connecting to Firebase. Browser previews run the exact new script
+against in-memory scores, not live user records, and cover both appearances at
+1440/768/390/320px plus non-overlapping desktop dropdown icons.
+
+Production asset hashes match the local stylesheet and score script. Both detail
+screens pass the responsive light/dark checks without injected assets; desktop and
+mobile account icons have a 10px gap before their labels. Account guidance, the
+Profile Photo tab, community feed and sample course/lesson pages return HTTP 200.
+With user authorization, a temporary score of `0.1234` was added through the live
+widget and deleted using its uniquely identified new record ID. A reload confirmed
+the deletion persisted, the three original score IDs/values were unchanged, and
+no delete spinner remained. No temporary score is left in Firebase.
+
+### Related skills and detail video recovery (deployed and verified)
+
+- Related Skills uses accessible, single-link cards with a title, performance level
+  and theme-colored chevron instead of overlapping legacy Bootstrap/ghost links.
+  Cards display in two columns on larger screens and one on phones; empty sections
+  are omitted.
+- Per the approved simplification, challenge and routine detail pages no longer
+  show Favourite/Bookmark controls. Existing saved records, My Content tabs and
+  controls on courses/other library content are unchanged.
+- The preceding detail stylesheet reset removed the legacy video's aspect-ratio
+  padding while its iframe remained absolutely positioned, collapsing the video
+  to zero height. Video wrappers now reserve the correct aspect ratio explicitly;
+  image-only wrappers retain their natural height. The cookie-consent overlay
+  scales and scrolls within the video area, including on phones. YouTube consent
+  is still required when blocked; no consent preferences or media URLs are changed.
+
+Upload only these files to the same production paths and purge caches:
+
+1. `wp-content/themes/buddyboss-theme-child-1.0.0/single-content-library.php`
+2. `wp-content/themes/buddyboss-theme-child-1.0.0/assets/css/custom.css`
+
+Browser previews verify the McDavid In Tight Challenge video and consent area,
+plus actual related skill links on Quick Move Soft Touch Challenge, at
+1440/768/390/320px in light/dark mode. PHP rendering checks preserve score widget
+bindings, membership gates, videos/downloads and saved controls outside the
+challenge/routine scope. All 504 PHP checks pass on PHP 7.4/8.5 and all 34 score
+checks pass. The uploaded stylesheet hash matches the local file. Live McDavid
+video/consent geometry and related-skill cards pass the same responsive light/dark
+matrix without injected assets; routine save controls are removed and empty skill
+sections omitted. The existing YouTube consent prompt remains active; playback
+requires the member's consent and was not bypassed during verification.
+
+### Related Skills heading/bullet follow-up (deployed and verified)
+
+The detail-page section now overrides the shared flex layout and legacy section
+float/padding. Its heading sits above the card grid. List items explicitly override
+the legacy `list-style: disc !important` rule without changing native course lists.
+Only `wp-content/themes/buddyboss-theme-child-1.0.0/assets/css/custom.css` needed
+another FTP upload and cache purge. The deployed stylesheet hash matches the local
+file. Live checks without injected CSS pass at 1440/768/390/320px in light/dark
+mode: heading above cards, no bullets, cards within the grid and no horizontal overflow.
+
+### BuddyBoss uploads and existing CDN verification
+
+Browser-assisted tests used generated plain-color images and explicitly authorized
+temporary public/Only Me posts. No storage settings or vendor files were changed.
+
+- Media Cloud uses DigitalOcean Space `thepondcdn` and the existing custom CDN
+  hostname; W3 Total Cache's CDN feature is disabled.
+- A normal 800x600 BuddyBoss photo uploaded successfully to
+  `bb_medias/2026/10/`, including four generated thumbnails. The original CDN
+  URL returned HTTP 200 with `image/png` and `Cache-Control: max-age=3600`.
+  Normal-size offloading therefore works; this is not a blanket upload failure.
+- A 64x64 image with no generated sizes did not offload. The installed Media Cloud
+  metadata handler has an early return for images without generated sizes.
+- Public and Only Me post submissions returned success, but the activity response
+  had empty rendered markup and the stored activities had no `bp_media_ids`
+  association. The posts did not render in the feed. The underlying posting/media
+  association problem remains unresolved and must not be conflated with CDN delivery.
+- The normal-size Only Me test upload remained `public-read` in Spaces, and its
+  direct CDN URL returned HTTP 200 anonymously. Because the photo association also
+  failed, this does not establish the complete behavior of correctly associated
+  private posts. It does establish that the tested flow did not protect its upload.
+  Private BuddyBoss media support is not certified.
+- Test activities 2093-2097 were deleted through the activity API; their WordPress
+  attachments 60091-60095 subsequently returned 404. The normal-size objects
+  remained accessible at the Spaces origin after deletion, so remote-object cleanup
+  also needs investigation. These were generated fixtures, not member media.
+
+**Cleanup pending at the user's choice:** remove only these ten objects from
+`thepondcdn/bb_medias/2026/10/`: `pond-cdn-test.png`, `pond-cdn-test-1.png`, and
+each base name's `-150x150.png`, `-533x400.png`, `-356x267.png`, `-712x534.png`
+variants. Deleting the WordPress posts/attachments did not delete those objects.
+
+Keep Spaces/CDN rather than moving to Firebase for this issue. Resolve BuddyBoss's
+posting/media association failure and use an offloader with explicit BuddyBoss
+support for custom paths, protected delivery and deletion before relying on private
+community uploads. WP Offload Media documents such an integration:
+https://deliciousbrains.com/wp-offload-media/doc/buddyboss-integration/
+Evaluate licensing and migrate deliberately; do not enable two offloaders together
+or rewrite all BuddyBoss media to public CDN URLs. Videos, documents, avatars,
+covers, private/group restrictions and remote deletion still require a successful
+end-to-end verification.
+
+### Login, mobile dashboard, Facebook group and lesson discussions (deployed)
+
+- Authenticated visits to the Firebase login page now go to the member dashboard
+  unless a safe explicit destination was supplied. Login-page destinations fall
+  back to the dashboard to avoid a loop; external destinations are rejected.
+  Password-reset rendering and all existing Firebase/MemberPress form/provider
+  identifiers are preserved. The default is explicit because WordPress accepts
+  an empty redirect as a valid relative URL. The login template requests no-cache
+  headers and opts out of page caching.
+- LearnDash's important mobile stat padding/margins and BuddyBoss's profile
+  flex direction/negative course-list margin are overridden only on the dashboard.
+  Stat cards fit within the profile surface, and courses have a positive gap below
+  it. Expand/Search/certificate controls use compact, theme-aware styling rather
+  than the legacy red button styles.
+- The original `[facebook_secret_phrase_shortcode]` is restored immediately above
+  the profile/course section for authorized members. Its existing phrase,
+  Copy/Regenerate controls, AJAX actions and Facebook group destination are reused;
+  the underlying generator plugin is unchanged. A missing shortcode produces a
+  visible support message. The scoped wrapper removes legacy inline floats and
+  styles the form for both themes. Verification confirmed a phrase was present
+  without printing it or regenerating the live member's code.
+- The user chose one shared, signed-in-only Training Discussions forum for new
+  lesson conversations. Forum 60096 was created at
+  `/forums/forum/training-discussions/` with slug `training-discussions` and native
+  Private visibility. It was not linked to a group or course-enrollment sync.
+  Its anonymous REST endpoint returns 401; anonymous HTML does not show the
+  forum description or new-discussion form. The authenticated composer currently
+  has no attachment controls.
+- The lesson discussion panel uses `learndash-lesson-after`, not the comments
+  template: BuddyBoss skips that template when comments are closed and no old
+  responses exist. The panel links to the shared forum with validated lesson
+  context. Selecting the forum's **New discussion** opens its native composer,
+  prefilled with the lesson title/link. Access checks preserve membership,
+  community availability, course access and native forum permissions. Invalid
+  context links fail explicitly; existing drafts, POST submissions and topic
+  editing are not overwritten.
+- New lesson comments are closed when the configured forum exists; existing
+  Responses remain rendered by BuddyBoss's original comments template.
+  Blog/course/topic comments are unchanged. No existing responses were migrated
+  or deleted, and no test forum discussion was submitted.
+
+Production upload manifest (all beneath
+`wp-content/themes/buddyboss-theme-child-1.0.0/`):
+
+1. `assets/css/custom.css`
+2. `inc/pond.php`
+3. `firebase-login.php`
+4. `members-templates/member-dashboard.php`
+5. `comments.php` (new; delegates old Responses to the parent theme)
+
+The final routing/hook correction required re-uploading items 2, 3 and 5.
+No vendor/plugin upload or activation is required for this batch.
+All 542 portal checks pass on PHP 7.4 and 8.5; 32 Firebase checks pass.
+The deployed stylesheet hash matches the local file. Live dashboard checks
+at 1440/768/390/320px use the real theme toggle and confirm contained stats,
+unobstructed courses, navy/cyan controls, correct action text, a visible Facebook
+phrase form and no horizontal overflow. Fresh authenticated requests to `/login/`
+redirect to the dashboard, explicit lesson destinations are preserved and external
+destinations fall back to the dashboard. The anonymous reset form still renders.
+Lesson 3250 shows one discussion panel; its native forum composer contains the
+correct title/link.
+
+**Cache caveat:** the shared browser retained an older anonymous `/login/` screen;
+fresh no-store requests verified the redirects above. Anonymous server responses
+still advertise a one-hour cache lifetime despite the PHP no-cache request.
+Exclude `/login/` (including query variants) from HTML/page/browser caching at the
+server/W3 layer and purge the old entry; a hard refresh may be needed for a browser
+that already cached it. Server cache rules were not changed in this batch.
+
+### Agreed community upload policy (plan; enforcement not yet deployed)
+
+The user prefers a clearly public-only upload experience rather than preserving
+private media choices with the current incompatible offloader:
+
+1. Restrict community file uploads to explicitly public sharing contexts. Label
+   the upload interface to explain that files are publicly accessible by URL.
+   Do not claim that a logged-in-only page protects its offloaded files.
+2. Disable attachments in private messages, groups and private forums. The new
+   private Training Discussions forum should remain text/link-only.
+3. For attachment-bearing posts/albums, enforce Public on the server as well as
+   in the UI; remove incompatible privacy choices rather than silently overriding
+   Only Me or Connections. Text-only post privacy can remain separate.
+4. Do not make existing private media public automatically. Inventory existing
+   assets/ACLs and get approval for any migration.
+5. First resolve the failed BuddyBoss post/media associations, thumbnailless upload
+   handling and orphaned remote objects. Then verify public upload/render/delete,
+   and rejected private-context uploads via both UI and direct AJAX/REST requests.
+6. Public object URLs alone do not provide community-post SEO. Any change to the
+   current member-gated feed would be a separate content/access decision; the
+   training forum and course materials retain their current restrictions.
+
+This is the approved direction, not a claim that private-message/group uploads
+have already been disabled. No global upload, ACL or community-visibility settings
+were changed. A supported offloader may still be needed for reliable BuddyBoss
+delivery and deletion even with a public-only policy.
 
 ### Verification and rollback
 

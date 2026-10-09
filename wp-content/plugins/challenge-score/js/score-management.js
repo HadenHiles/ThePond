@@ -1,7 +1,7 @@
 (function ($) {
     $(document).ready(function () {
         // Only load this code if on the single content library challenge page
-        if ($('#challenge-scores').length > 0) {
+        if ($('#challenge-scores').length > 0 && $('#challenge-id').length > 0) {
             // Firebase initialization
             var a_key = "AIzaSyCoSWim4GptSro0gly6dN8dClVQMcxeCbA";
             var pid = "the-pond-app";
@@ -21,6 +21,10 @@
             var db = firebase.firestore();
             // var user = JSON.parse(getCookie('fb_user')).user;
             auth.onAuthStateChanged(user => {
+                $('#add-score, #challenge-score').prop('disabled', !user);
+                $('#add-score').off('click.pondScores');
+                $('#challenge-score').off('keypress.pondScores');
+                $('.scores').off('click.pondScores', '.delete-challenge-score');
                 if (user) {
                     // User is signed in.
                     // Get scores
@@ -28,23 +32,27 @@
 
                     // Add score
                     var $addButton = $('#add-score');
-                    $addButton.click(function (e) {
+                    $addButton.on('click.pondScores', function (e) {
                         e.preventDefault();
+                        if ($addButton.prop('disabled')) return;
                         addScore(function (success = true) {
                             if (success) {
                                 getScores(true);
                             }
                             $addButton.html('<i class="fa fa-plus-circle"></i>');
+                            $addButton.prop('disabled', false);
                         });
                     });
                     // Add score on enter keypress
-                    $('input#challenge-score').keypress(function (e) {
+                    $('input#challenge-score').on('keypress.pondScores', function (e) {
                         if (e.which == 13) {
+                            if ($addButton.prop('disabled')) return false;
                             addScore(function (success = true) {
                                 if (success) {
                                     getScores(true);
                                 }
                                 $addButton.html('<i class="fa fa-plus-circle"></i>');
+                                $addButton.prop('disabled', false);
                             });
 
                             return false;
@@ -52,16 +60,18 @@
                     });
 
                     // Delete score
-                    $('.scores').on('click', '.delete-challenge-score', function (e) {
+                    $('.scores').on('click.pondScores', '.delete-challenge-score', function (e) {
                         e.preventDefault();
                         var $this = $(this);
+                        if ($this.parent('.score').hasClass('deleting')) return;
                         var scoreId = $(this).data('challenge-id');
                         $this.parent('.score').addClass('deleting');
                         $this.html('<i class="fa fa-spinner fa-spin"></i>');
-                        deleteScore(scoreId, function () {
-                            $this.parent('.score').remove();
+                        deleteScore(scoreId, function (success) {
+                            if (success) $this.parent('.score').remove();
+                            else $this.parent('.score').removeClass('deleting');
                             if ($('#scores').children('.score').length == 0) {
-                                $('#scores').html('<p class="empty-result">You haven\'t entered any scores yet!');
+                                $('#scores').html('<p class="empty-result">You haven\'t entered any scores yet!</p>');
                             }
                             $this.html('<i class="fa fa-trash"></i>');
                         });
@@ -84,15 +94,20 @@
                                     // format the date for visual appeal
                                     var date = new Date(data.created.toDate());
                                     var date = formatDateMonthDayYear(date) + " " + formatAMPM(date);
-                                    scoresHtml += '<div class="score"><div class="number">' + data.score + '</div>  <span class="datetime">' + date + '</span> <a href="#" class="delete-challenge-score" data-challenge-id=' + doc.id + '><i class="fa fa-trash"></i></a></div>\n';
+                                    scoresHtml += '<div class="score"><div class="number">' + data.score + '</div>  <span class="datetime">' + date + '</span> <a href="#" class="delete-challenge-score" aria-label="Delete score" data-challenge-id="' + doc.id + '"><i class="fa fa-trash" aria-hidden="true"></i></a></div>\n';
                                 });
 
                                 $scores.html(scoresHtml);
                                 if ($('#scores').children('.score').length == 0) {
-                                    $scores.html('<p class="empty-result">You haven\'t entered any scores yet!');
+                                    $scores.html('<p class="empty-result">You haven\'t entered any scores yet!</p>');
                                 }
 
                                 $('#scores').css('min-height', '0px');
+                            }).catch(function (cause) {
+                                console.error("Error loading challenge_scores: ", cause);
+                                $scores.html('<p class="empty-result">Unable to load your scores. Please reload to try again.</p>');
+                                $scores.css('min-height', '0px');
+                                error(cause.message);
                             });
                     }
 
@@ -102,7 +117,8 @@
                         var userId = $('input#user-id').val();
                         var score = parseFloat($('input#challenge-score').val()).toFixed(4);
 
-                        if (challengeId != null && userId != null && score >= 0) {
+                        if (challengeId != null && userId != null && Number.isFinite(Number(score)) && score >= 0) {
+                            $addButton.prop('disabled', true);
                             $addButton.html('<i class="fa fa-spinner fa-spin"></i>');
                             showSpinner();
 
@@ -116,36 +132,42 @@
                                 console.log("challenge_score saved with ID: ", doc.id);
                                 success();
                                 cb();
-                            }).catch(function (error) {
-                                console.error("Error adding challenge_score: ", error);
-                                error(error.message);
+                            }).catch(function (cause) {
+                                console.error("Error adding challenge_score: ", cause);
+                                error(cause.message);
+                                getScores();
                                 cb(false);
                             });
                         } else {
                             error("Please enter a valid score");
                             cb(false);
+                        }
                     }
 
                     function deleteScore(scoreId, cb) {
                         if (scoreId != null) {
                             db.collection('challenge_scores').doc(user.uid).collection('challenge_scores').doc(scoreId).delete().then(() => {
                                 console.log(`challenge_score ${scoreId} successfully deleted!`);
-                                cb();
-                            }).catch((error) => {
-                                console.error(`Error removing challenge_score: ${scoreId}`, error);
-                                cb();
+                                cb(true);
+                            }).catch((cause) => {
+                                console.error(`Error removing challenge_score: ${scoreId}`, cause);
+                                error(cause.message);
+                                cb(false);
                             });
                         } else {
-                            cb();
+                            error("Unable to identify this score");
+                            cb(false);
                         }
                     }
-                }
+                } else {
+                    $('#scores').html('<p class="empty-result">Sign in with your member login to load and save your scores.</p>');
                 }
             });
 
             function success() {
-                $challengeScore = $('#challenge-score');
-                $successMessage = $('#success-message');
+                var $challengeScore = $('#challenge-score');
+                var $successMessage = $('#success-message');
+                $('#error-message').hide();
                 $challengeScore.parent('.add-score').addClass('success');
                 $successMessage.show();
                 $challengeScore.val('');
@@ -157,8 +179,8 @@
             }
 
             function error(message = null) {
-                $challengeScore = $('#challenge-score');
-                $errorMessage = $('#error-message');
+                var $challengeScore = $('#challenge-score');
+                var $errorMessage = $('#error-message');
                 var defaultMessage = $errorMessage.text();
                 $challengeScore.parent('.add-score').addClass('error');
                 if (message != null) {

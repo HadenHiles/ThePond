@@ -191,7 +191,7 @@
 				backgroundSize: 'initial',
 				width: '100%', height: '100%',
 				position: 'fixed',
-				zIndex: '10000',
+				zIndex: '100003',
 				top: '0', left: '0',
 				cursor: 'zoom-out'
 			}).click(function () {

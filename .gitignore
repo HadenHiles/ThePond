@@ -52,6 +52,7 @@ wp-content/themes/buddyboss-theme-child-1.0.0/*
 !wp-content/themes/buddyboss-theme-child-1.0.0/memberpress/
 !wp-content/themes/buddyboss-theme-child-1.0.0/template-parts/
 !wp-content/themes/buddyboss-theme-child-1.0.0/firebase-login.php
+!wp-content/themes/buddyboss-theme-child-1.0.0/comments.php
 !wp-content/themes/buddyboss-theme-child-1.0.0/challenges.php
 !wp-content/themes/buddyboss-theme-child-1.0.0/routines.php
 !wp-content/themes/buddyboss-theme-child-1.0.0/move-makers.php

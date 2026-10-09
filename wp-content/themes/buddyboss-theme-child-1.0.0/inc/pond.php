@@ -9,12 +9,111 @@ add_filter('nav_menu_link_attributes', 'pond_theme_menu_links', 20, 3);
 add_filter('wp_nav_menu_objects', 'pond_theme_dashboard_menu_items', 20);
 add_filter('register_url', 'pond_theme_registration_url', 1000);
 add_filter('body_class', 'pond_theme_auth_classes');
+add_filter('wp_nav_menu_items', 'pond_theme_account_menu', 30, 2);
+add_filter('comments_open', 'pond_theme_lesson_comments_open', 20, 2);
+add_filter('bbp_get_form_topic_title', 'pond_theme_lesson_topic_title');
+add_filter('bbp_get_form_topic_content', 'pond_theme_lesson_topic_content');
+add_action('template_redirect', 'pond_theme_lesson_topic_context', 20);
+add_action('learndash-lesson-after', 'pond_theme_lesson_discussion_panel');
 
 function pond_theme_auth_classes($classes) {
     if (is_page_template(array('firebase-login.php', 'members-templates/member_register.php'))) {
         $classes[] = 'pond-auth-page';
     }
     return $classes;
+}
+
+function pond_theme_login_destination($requested = '') {
+    $dashboard = home_url('/member-dashboard/');
+    $destination = $requested === '' ? $dashboard : wp_validate_redirect($requested, $dashboard);
+    $path = rtrim((string) parse_url($destination, PHP_URL_PATH), '/');
+    $login_path = rtrim((string) parse_url(home_url('/login/'), PHP_URL_PATH), '/');
+    return $path === $login_path ? $dashboard : $destination;
+}
+
+function pond_theme_training_forum() {
+    if (!function_exists('bbp_get_forum_permalink')) {
+        return null;
+    }
+    $forum = get_page_by_path('training-discussions', OBJECT, 'forum');
+    return $forum && in_array($forum->post_status, array('publish', 'private'), true) ? $forum : null;
+}
+
+function pond_theme_lesson_discussion_url($lesson_id) {
+    if (get_post_type($lesson_id) !== 'sfwd-lessons' ||
+        !current_user_can('memberpress_authorized') ||
+        !function_exists('sfwd_lms_has_access') ||
+        !sfwd_lms_has_access(learndash_get_course_id($lesson_id), get_current_user_id()) ||
+        thepond_community_access_error()) {
+        return '';
+    }
+    $forum = pond_theme_training_forum();
+    if (!$forum || !bbp_is_forum_open($forum->ID) || !bbp_user_can_view_forum(array('forum_id' => $forum->ID))) {
+        return '';
+    }
+    return add_query_arg('pond_lesson', $lesson_id, bbp_get_forum_permalink($forum->ID)) . '#new-post';
+}
+
+function pond_theme_lesson_comments_open($open, $post_id) {
+    return get_post_type($post_id) === 'sfwd-lessons' && pond_theme_training_forum() ? false : $open;
+}
+
+function pond_theme_lesson_discussion_panel($lesson_id) {
+    if (post_password_required()) {
+        return;
+    }
+    $discussion_url = pond_theme_lesson_discussion_url($lesson_id);
+    if (!$discussion_url) {
+        return;
+    }
+    ?>
+    <section class="pond-lesson-discussion" aria-labelledby="pond-lesson-discussion-heading">
+        <h2 id="pond-lesson-discussion-heading"><?php esc_html_e('Discuss this lesson', 'buddyboss-theme-child'); ?></h2>
+        <p><?php esc_html_e('Ask a question or share your progress in our shared Training Discussions forum. The lesson title and link will be included in your new discussion.', 'buddyboss-theme-child'); ?></p>
+        <a class="button" href="<?php echo esc_url($discussion_url); ?>"><?php esc_html_e('Start a lesson discussion', 'buddyboss-theme-child'); ?></a>
+        <p><?php esc_html_e('Existing lesson responses remain below. New conversations take place in the forum.', 'buddyboss-theme-child'); ?></p>
+    </section>
+    <?php
+}
+
+function pond_theme_lesson_topic_context() {
+    if (!isset($_GET['pond_lesson']) || !function_exists('bbp_is_single_forum') || !bbp_is_single_forum()) {
+        return;
+    }
+    $forum = pond_theme_training_forum();
+    if (!$forum || bbp_get_forum_id() !== (int) $forum->ID) {
+        return;
+    }
+    if (!is_string($_GET['pond_lesson']) || !ctype_digit($_GET['pond_lesson']) || !absint($_GET['pond_lesson'])) {
+        wp_die(esc_html__('Invalid lesson discussion link.', 'buddyboss-theme-child'), '', array('response' => 400));
+    }
+    if (!pond_theme_lesson_discussion_url(absint($_GET['pond_lesson']))) {
+        wp_die(esc_html__('You do not have access to this lesson discussion.', 'buddyboss-theme-child'), '', array('response' => 403));
+    }
+}
+
+function pond_theme_discussion_lesson_id() {
+    if (empty($_GET['pond_lesson']) || !is_string($_GET['pond_lesson']) ||
+        !ctype_digit($_GET['pond_lesson']) || !function_exists('bbp_is_single_forum') ||
+        !bbp_is_single_forum() || bbp_is_post_request() || bbp_is_topic_edit()) {
+        return 0;
+    }
+    $forum = pond_theme_training_forum();
+    $lesson_id = absint($_GET['pond_lesson']);
+    return $forum && bbp_get_forum_id() === (int) $forum->ID && pond_theme_lesson_discussion_url($lesson_id) ? $lesson_id : 0;
+}
+
+function pond_theme_lesson_topic_title($title) {
+    $lesson_id = pond_theme_discussion_lesson_id();
+    return $title === '' && $lesson_id ? esc_html(get_the_title($lesson_id)) : $title;
+}
+
+function pond_theme_lesson_topic_content($content) {
+    $lesson_id = pond_theme_discussion_lesson_id();
+    return $content === '' && $lesson_id
+        ? '<p>' . esc_html__('Lesson:', 'buddyboss-theme-child') . ' <a href="' . esc_url(get_permalink($lesson_id)) . '">' .
+            esc_html(get_the_title($lesson_id)) . '</a></p><p></p>'
+        : $content;
 }
 
 function pond_theme_setup() {
@@ -85,7 +184,8 @@ function pond_theme_assets() {
     wp_enqueue_script('pond-popper', $old . '/bootstrap-4.5.0/dist/js/popper.min.js', array('jquery'), $version, true);
     wp_enqueue_script('pond-bootstrap', $old . '/bootstrap-4.5.0/dist/js/bootstrap.min.js', array('jquery', 'pond-popper'), $version, true);
     wp_enqueue_script('pond-dashboard', $uri . '/assets/js/pond-dashboard.js',
-        array('jquery', 'pond-datatables', 'pond-bootstrap'), $version, true);
+        array('jquery', 'pond-datatables', 'pond-bootstrap'),
+        filemtime(get_stylesheet_directory() . '/assets/js/pond-dashboard.js'), true);
 }
 
 function pond_theme_mobile_account($items, $args) {
@@ -97,9 +197,33 @@ function pond_theme_mobile_account($items, $args) {
         return $items;
     }
     return $items . wp_nav_menu(array(
-        'menu' => $locations['header-my-account'], 'container' => false, 'items_wrap' => '%3$s',
+        'menu' => $locations['header-my-account'], 'theme_location' => 'header-my-account',
+        'container' => false, 'items_wrap' => '%3$s',
         'echo' => false, 'fallback_cb' => false,
     ));
+}
+
+function pond_theme_account_menu($items, $args) {
+    if ($args->theme_location !== 'header-my-account' || !is_user_logged_in()) {
+        return $items;
+    }
+    $links = array(
+        array(home_url('/member-dashboard/'), __('My Training', 'buddyboss-theme-child'), 'bb-icon-graduation-cap'),
+        array(home_url('/account/'), __('Account & Billing', 'buddyboss-theme-child'), 'bb-icon-user'),
+        array(home_url('/account/?action=avatar'), __('Change Profile Photo', 'buddyboss-theme-child'), 'bb-icon-camera'),
+    );
+    if (function_exists('bp_core_get_user_domain')) {
+        $links[] = array(bp_core_get_user_domain(get_current_user_id()), __('Community Profile', 'buddyboss-theme-child'), 'bb-icon-id-card');
+    }
+    $links[] = array(get_permalink(387), __('My Content', 'buddyboss-theme-child'), 'bb-icon-bookmark');
+    $links[] = array(get_permalink(392), __('Help & Support', 'buddyboss-theme-child'), 'bb-icon-question');
+    $links[] = array(wp_logout_url(home_url('/')), __('Sign Out', 'buddyboss-theme-child'), 'bb-icon-sign-out');
+    $items = '';
+    foreach ($links as $link) {
+        $items .= '<li class="menu-item pond-account-menu-item"><a href="' . esc_url($link[0]) . '"><i class="bb-icon-l ' .
+            esc_attr($link[2]) . '" aria-hidden="true"></i><span>' . esc_html($link[1]) . '</span></a></li>';
+    }
+    return $items;
 }
 
 function pond_theme_menu_links($atts, $item, $args) {

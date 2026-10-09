@@ -8,7 +8,7 @@
 */
 
 get_header(); ?>
-<div class="pond-portal">
+<div class="pond-portal pond-library-page">
 <?php
 ?>
 
@@ -17,12 +17,13 @@ get_header(); ?>
 	<div class="row">
 		<div class="large-8 columns">
         <h1>Routines</h1>
+		<p><?php esc_html_e('Build consistent habits with focused training routines.', 'buddyboss-theme-child'); ?></p>
 		</div>
 
 		<div class="large-4 columns">
 			<!-- <p class="searchText">Search Challenges</p> -->
-			<div class="searchfilter" style="margin-top: 5px;"><input type="text" id="filterSearch" name="filtr-search" class="filtr-search" value="" placeholder="Search routines" data-search>
-			<a id="clearFilter" class="backBTN" href="javascript:;">Clear</a></div>
+			<div class="searchfilter"><label class="screen-reader-text" for="filterSearch"><?php esc_html_e('Search routines', 'buddyboss-theme-child'); ?></label><input type="search" id="filterSearch" name="filtr-search" class="filtr-search" value="" placeholder="<?php esc_html_e('Search routines', 'buddyboss-theme-child'); ?>" data-search>
+			<button type="button" id="clearFilter" class="backBTN"><?php esc_html_e('Clear', 'buddyboss-theme-child'); ?></button></div>
 		</div>
 	</div>
 </section>
@@ -48,18 +49,6 @@ get_header(); ?>
 	));
 
 	$latestChallenge = ($challengesQuery->posts[0] ?? null);
-	$title = get_the_title(($latestChallenge ? $latestChallenge->ID : 0));
-	$shortDescription = get_field('description_short', $latestChallenge->ID);
-	$videoCode = get_field('video_code', $latestChallenge->ID);
-	if (empty($videoCode)) {
-		$post_thumbnail_id = get_post_thumbnail_id($latestChallenge);
-		$img = wp_get_attachment_image_url( $post_thumbnail_id , 'full');
-		if (empty($img))
-			$img = '/wp-content/themes/meltingpot-child/images/placeholder.png';
-
-		$videoCode = '<img src="' . $img . '" alt="' . $title . '" />';
-
-	}
 	?>
 	<div class="challenges-wrapper">
 		<?php
@@ -72,10 +61,10 @@ get_header(); ?>
 		if ( ! empty( $categories ) && ! is_wp_error( $categories ) ) {
 		?>
 			<ul class="clFilters" id="filteringModeSingle">
-				<li class="filtertoggle filtr-active" data-filter="all"> All </li>
+				<li><button type="button" class="filtertoggle filtr-active" data-filter="all" aria-pressed="true">All</button></li>
 			<?php foreach( $categories as $cat) {
 				?>
-				<li class="filtertoggle" data-filter="<?php echo $cat->term_id;?>"> <?php echo $cat->name;?> </li>
+				<li><button type="button" class="filtertoggle" data-filter="<?php echo esc_attr($cat->term_id);?>" aria-pressed="false"><?php echo esc_html($cat->name);?></button></li>
 				<?php
 			} ?>
 
@@ -83,6 +72,9 @@ get_header(); ?>
 
 			<?php } ?>
 
+			<?php if (!$challengesQuery->have_posts()) : ?>
+				<p class="pond-library-empty"><?php esc_html_e('No routines are available yet.', 'buddyboss-theme-child'); ?></p>
+			<?php endif; ?>
 			<div class="bootstrap-styles challenges">
 				<?php
 				while ($challengesQuery->have_posts()) : $challengesQuery->the_post();
@@ -155,8 +147,8 @@ get_header(); ?>
 (function($){
 	$(document).ready(function(){
 		$('#filteringModeSingle .filtertoggle').click(function() {
-            $('#filteringModeSingle .filtertoggle').removeClass('filtr-active');
-            $(this).addClass('filtr-active');
+            $('#filteringModeSingle .filtertoggle').removeClass('filtr-active').attr('aria-pressed', 'false');
+            $(this).addClass('filtr-active').attr('aria-pressed', 'true');
 
             $('.challenges').filterize($(this).data('filter'), $('#filterSearch').val());
         });

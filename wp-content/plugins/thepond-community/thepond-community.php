@@ -2,7 +2,7 @@
 /**
  * Plugin Name: The Pond Community Integration
  * Description: Integrates BuddyBoss with The Pond's Firebase, MemberPress and LearnDash flows.
- * Version: 1.2.2
+ * Version: 1.2.3
  * Requires at least: 6.6
  * Requires PHP: 7.4
  * Text Domain: thepond-community
@@ -30,6 +30,8 @@ add_filter('pre_option_bb_rl_enabled_pages', 'thepond_community_readylaunch_page
 add_filter('bb_is_readylaunch_enabled_for_page', 'thepond_community_readylaunch_page', PHP_INT_MAX);
 add_action('bp_init', 'thepond_community_preserve_course_templates', 8);
 add_filter('bp_core_fetch_avatar_url_check', 'thepond_community_avatar_url', 1001, 2);
+add_filter('bp_core_fetch_avatar_url', 'thepond_community_avatar_url', 1001, 2);
+add_filter('bp_core_fetch_avatar', 'thepond_community_avatar_markup', 1001, 2);
 add_action('bp_setup_nav', 'thepond_community_account_nav', 100);
 add_action('wp_enqueue_scripts', 'thepond_community_enqueue_styles', 100);
 add_filter('bp_get_buddypress_template', 'thepond_community_templates', 100);
@@ -315,7 +317,7 @@ function thepond_community_guard_rest($response, $handler, $request) {
 }
 
 function thepond_community_avatar_url($url, $params) {
-    if (($params['object'] ?? '') !== 'user' || empty($params['item_id'])) {
+    if (($params['object'] ?? '') !== 'user' || empty($params['item_id']) || !empty($params['force_default'])) {
         return $url;
     }
     $id = (int) $params['item_id'];
@@ -324,9 +326,35 @@ function thepond_community_avatar_url($url, $params) {
         return esc_url_raw($firebase_url);
     }
     if (function_exists('has_wp_user_avatar') && has_wp_user_avatar($id)) {
-        return get_wp_user_avatar_src($id, empty($params['width']) ? 96 : (int) $params['width']);
+        global $wpdb;
+        $attachment_id = get_user_meta($id, $wpdb->get_blog_prefix(get_current_blog_id()) . 'user_avatar', true);
+        $size = empty($params['width']) ? 96 : $params['width'];
+        $size = is_numeric($size) ? array((int) $size, (int) $size) : $size;
+        // The vendor URL helper re-enters avatar filters through its HTML renderer.
+        $image = apply_filters('wpua_get_attachment_image_src',
+            wp_get_attachment_image_src($attachment_id, $size), $attachment_id, $size, false);
+        if ($image) {
+            return $image[0];
+        }
     }
     return $url;
+}
+
+function thepond_community_avatar_markup($avatar, $params) {
+    return thepond_community_avatar_image($avatar, thepond_community_avatar_url('', $params));
+}
+
+function thepond_community_avatar_image($avatar, $url) {
+    if (!$url || !$avatar) {
+        return $avatar;
+    }
+    $image = new WP_HTML_Tag_Processor($avatar);
+    if ($image->next_tag('IMG')) {
+        $image->set_attribute('src', $url);
+        $image->remove_attribute('srcset');
+        return $image->get_updated_html();
+    }
+    return $avatar;
 }
 
 function thepond_community_avatar_permission($allowed, $capability, $args) {

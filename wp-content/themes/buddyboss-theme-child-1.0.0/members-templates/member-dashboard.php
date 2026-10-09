@@ -47,6 +47,19 @@ get_header(); ?>
 
 		<div class="sectionHeader">
 			<div class="large-12 columns" id="courses">
+				<?php if (current_user_can('memberpress_authorized')) : ?>
+					<section class="pond-dashboard-facebook" id="facebook-secret-phrase" aria-labelledby="pond-facebook-heading">
+						<h2 id="pond-facebook-heading"><?php esc_html_e('Facebook member group', 'buddyboss-theme-child'); ?></h2>
+						<p><?php esc_html_e('Use your membership phrase when requesting to join our Facebook group.', 'buddyboss-theme-child'); ?></p>
+						<?php
+						if (shortcode_exists('facebook_secret_phrase_shortcode')) {
+							echo do_shortcode('[facebook_secret_phrase_shortcode]');
+						} else {
+							echo '<p role="alert">' . esc_html__('The group code generator is unavailable. Please contact support.', 'buddyboss-theme-child') . '</p>';
+						}
+						?>
+					</section>
+				<?php endif; ?>
 				<?= do_shortcode('[ld_profile course_points_user="false" show_quizzes="false"]'); ?>
 			</div>
 		</div>
