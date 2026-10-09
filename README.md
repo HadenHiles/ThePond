@@ -349,6 +349,13 @@ After the confirmed four-file production upload:
 Actual credential sign-in, OAuth, password-reset delivery and payment completion
 remain outside these non-submitting presentation/regression checks.
 
+The Facebook SVG on both auth screens inherits the button's white text color,
+overriding the legacy blue icon rule that made it disappear against the blue button.
+Browser previews verified white SVG fills on both buttons at 1440px, 390px and
+320px in light/dark mode (12 checks); the five appearance regression tests pass.
+For this follow-up fix, upload only
+`wp-content/themes/buddyboss-theme-child-1.0.0/assets/css/custom.css` and purge caches.
+
 ### Verification and rollback
 
 Before considering the live migration complete, verify desktop/mobile menus,

@@ -401,6 +401,7 @@ html[data-pond-theme="dark"] .site-title a:has(img) {
     align-items: center;
 }
 .pond-auth-page #content .pond-auth-provider :is(img, svg) { width: 20px; height: 20px; position: static; margin: 0; }
+.pond-auth-page #content .facebook-btn .fa-facebook-f { color: inherit; }
 #firebase-login-page .pond-auth-email { margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--bb-content-border-color); }
 #firebase-login-page .pond-auth-reset { margin-top: 0; padding-top: 0; border-top: 0; }
 #firebase-login-page .pond-auth-reset .mp_wrapper > h3 { display: none; }
