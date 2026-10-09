@@ -92,22 +92,15 @@ if (!function_exists('learndash_courses_by_categories')) {
         $course->user_id =  get_current_user_id();
         $course->post_url = get_permalink($course);
 
-        $course->course_status = learndash_course_status($course->course_id, $course->user_id);
-        $course->course_steps_count = learndash_get_course_steps_count($course->course_id);
-        $course->completed = learndash_course_get_completed_steps($course->user_id, $course->course_id);
         $course->coming_soon = get_field('coming_soon', $course->course_id);
         $course->short_title = get_field('short_title', $course->course_id);
 
-        $ld_course_steps_object = LDLMS_Factory_Post::course_steps($course->course_id);
-        $total = $ld_course_steps_object->get_steps_count();
-
-        if ($total > 0) {
-          $percentage = intval($course->completed * 100 / $total);
-          $percentage = ($percentage > 100) ? 100 : $percentage;
-        } else {
-          $percentage = 0;
-        }
-        $course->percentage = $percentage;
+        $progress = learndash_course_progress(array(
+          'user_id' => $course->user_id,
+          'course_id' => $course->course_id,
+          'array' => true,
+        ));
+        $course->percentage = $progress['percentage'];
 
         $course_category_list = get_the_terms(get_the_ID(), 'ld_course_category');
         $course_category_slugs = array();

@@ -120,7 +120,16 @@ function get_queried_object_id() { return get_the_ID(); }
 function get_the_id_for_test() { return get_the_ID(); }
 function get_the_title($id = 0) { return 'Title ' . $id; }
 function get_term_by($field, $value, $taxonomy) { return (object) array('term_id' => 10); }
-function get_permalink($id = 0) { return '/item/' . $id; }
+function get_permalink($id = 0) { return '/item/' . (is_object($id) ? $id->ID : $id); }
+function get_post($id) { return (object) array('ID' => $id, 'post_title' => 'Course ' . $id); }
+function get_post_thumbnail_id($id) { return 0; }
+function wp_get_attachment_image_src($id, $size, $icon = false, $attr = '') { return array('/course.png'); }
+function get_post_meta($id, $key, $single = false) { return ''; }
+function get_the_terms($id, $taxonomy) { return array((object) array('slug' => 'skating')); }
+function learndash_course_progress($args) {
+    $GLOBALS['course_progress_calls'][] = $args;
+    return $GLOBALS['course_progress_results'][$args['course_id']];
+}
 function learndash_get_course_id($id = 0) { return 3194; }
 function get_field($name, $id = 0) { global $fields; return isset($fields[$name]) ? $fields[$name] : false; }
 function have_rows($name, $id = 0) {
@@ -160,8 +169,12 @@ class MeprOptions {
 }
 class WP_Post {}
 class WP_Query {
-    public function __construct($args) {}
-    public function have_posts() { return false; }
+    private $posts;
+    public function __construct($args) {
+        $this->posts = $args['post_type'] === array('sfwd-courses') ? ($GLOBALS['course_feed_ids'] ?? array()) : array();
+    }
+    public function have_posts() { return !empty($this->posts); }
+    public function the_post() { $GLOBALS['post_id'] = array_shift($this->posts); }
     public function get_posts() { return array(); }
 }
 function get_header() { echo '<header>Site header</header>'; }
@@ -297,6 +310,34 @@ $courses = learndash_courses_by_categories(array());
 $leak = ob_get_clean();
 check($leak === '' && strpos($courses, 'dashboard-courses') !== false, 'Course shortcode leaks output');
 check($reset_count === 2, 'Secondary loops did not restore dashboard fields');
+$saved_post_id = $post_id;
+$course_feed_ids = array(101, 102, 103, 104, 105);
+$course_progress_results = array(
+    101 => array('percentage' => 25, 'completed' => 1, 'total' => 4),
+    102 => array('percentage' => 100, 'completed' => 6, 'total' => 6),
+    103 => array('percentage' => 0, 'completed' => 0, 'total' => 0),
+    104 => array('percentage' => 0, 'completed' => 0, 'total' => 4),
+    105 => array('percentage' => 37, 'completed' => 3, 'total' => 8),
+);
+$course_progress_calls = array();
+$courses = learndash_courses_by_categories(array('categories' => 'skating'));
+preg_match_all('/<a class="course-item[^"]*"[^>]*>.*?<\/a>/s', $courses, $course_cards);
+check(count($course_cards[0]) === count($course_feed_ids), 'Native progress changed course visibility');
+foreach ($course_feed_ids as $index => $course_id) {
+    check($course_progress_calls[$index] === array('user_id' => 123, 'course_id' => $course_id, 'array' => true),
+        'Card progress must use the native LearnDash API for the current user and course');
+    $percentage = $course_progress_results[$course_id]['percentage'];
+    check(strpos($course_cards[0][$index], 'class="progress-bar-small" style="width: ' . $percentage . '%"') !== false,
+        'Card bar differs from native LearnDash percentage');
+    check((strpos($course_cards[0][$index], '>Complete</div>') !== false) === ($percentage === 100),
+        'Completed course label differs from native LearnDash progress');
+    if ($percentage > 0 && $percentage < 100) {
+        check(strpos($course_cards[0][$index], '>' . $percentage . '%</div>') !== false, 'Card percentage label changed');
+    }
+}
+check(count($course_progress_calls) === count($course_feed_ids), 'Native progress should be fetched once per course');
+$course_feed_ids = array();
+$post_id = $saved_post_id;
 $legacy = false; $post_type = 'page';
 do_action('wp_enqueue_scripts');
 check(isset($scripts['pond-firebase']) && in_array('buddyboss-child-js', $scripts['pond-firebase']['deps'], true), 'Firebase cookie helper dependency missing');

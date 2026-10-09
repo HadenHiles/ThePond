@@ -356,6 +356,38 @@ Browser previews verified white SVG fills on both buttons at 1440px, 390px and
 For this follow-up fix, upload only
 `wp-content/themes/buddyboss-theme-child-1.0.0/assets/css/custom.css` and purge caches.
 
+### Consistent course progress (uploaded and verified)
+
+Dashboard category cards now call `learndash_course_progress()` with the current
+user ID, course ID and `array => true`, matching the native BuddyBoss LearnDash
+profile rows, course progress and member-course listings. They no longer calculate
+a separate percentage from raw completed steps. LearnDash owns completion status,
+step totals, access checks, rounding and zero-step behavior; no progress records,
+enrollment, completion actions or course visibility settings are changed.
+The card layout, partial-progress labels, completed badge and progress bars remain
+unchanged. The dashboard's `[ld_profile]` already uses the native API.
+
+This applies to the active BuddyBoss portal; inactive Melting Pot templates are
+left unchanged. No other custom PHP/JavaScript percentage calculation remains
+in the active child theme or portable portal.
+
+Upload only `wp-content/plugins/thepond-community/portal/shortcodes.php` for this
+progress update, then purge page/CDN caches. No WordPress settings or migration
+are needed. The separately committed Facebook icon fix also requires its
+`wp-content/themes/buddyboss-theme-child-1.0.0/assets/css/custom.css` upload if
+not already deployed.
+
+Local validation: 366 portal/template checks and PHP syntax validation pass on
+PHP 7.4 and 8.5. Card rendering tests assert current-user/course API arguments,
+one API call per course, unchanged visibility, zero/partial/100% bar widths and
+labels. Editor diagnostics are clean. After the confirmed upload, all 15 live
+dashboard cards match their native profile percentages, including zero, partial
+and completed courses. The Skating Level 3 course page also matches its dashboard
+card/profile at 12%. No lessons were marked complete or stored progress changed.
+The uploaded Facebook stylesheet matches its local SHA-256, and 12 deployed-style
+login/signup desktop/phone light/dark icon checks pass without injected CSS.
+The browser is restored to the real member dashboard in light mode.
+
 ### Verification and rollback
 
 Before considering the live migration complete, verify desktop/mobile menus,
