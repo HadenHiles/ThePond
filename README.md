@@ -46,6 +46,19 @@ use each refinement's smaller upload list for the already migrated site.
 
 ### FTP upload manifest
 
+For private-message recipient fixes, overwrite
+`wp-content/plugins/thepond-community/thepond-community.php`.
+Exact existing usernames and email addresses are normalized to BuddyBoss's
+recipient identifiers before its normal validation and archived-thread checks.
+Unknown recipients still receive BuddyBoss's error; REST user IDs are unchanged.
+Message suggestions include each member's public profile handle to distinguish
+duplicate names without adding account email fields. Selected suggestions submit
+that handle, avoiding Nouveau's browser-side truncation of email-style usernames;
+selected members remain excluded from subsequent suggestions. Existing Firebase/uploaded
+photo preferences remain intact; members without a photo use BuddyBoss's neutral
+default instead of the configured shared portrait. No messages or user data are
+changed by this update.
+
 For the matching Move Makers grid, overwrite
 `wp-content/themes/buddyboss-theme-child-1.0.0/move-makers.php`.
 It reuses the existing responsive library styles, with accessible search and

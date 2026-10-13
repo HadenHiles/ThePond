@@ -43,6 +43,96 @@ add_filter('wpseo_opengraph_url', 'thepond_community_seo_url', 100);
 add_action('after_setup_theme', 'thepond_community_load_portal', 20);
 add_filter('pre_option_bb_rl_enabled', 'thepond_community_theme_readylaunch', PHP_INT_MAX);
 add_filter('bp_suspend_activity_get_where_conditions', 'thepond_community_activity_sql_literals', 20);
+add_filter('bp_messages_recipients', 'thepond_community_message_recipients', 20);
+add_filter('bp_after_messages_new_message_parse_args', 'thepond_community_message_args', 20);
+add_filter('bp_members_suggestions_results', 'thepond_community_message_suggestions', 20);
+add_filter('bp_members_suggestions_query_args', 'thepond_community_message_exclusions', 20);
+add_filter('bp_core_default_avatar_user', 'thepond_community_default_avatar', 20);
+add_filter('bb_default_fetch_avatar_url_user', 'thepond_community_default_avatar', 20);
+
+function thepond_community_message_recipients($recipients) {
+    $compatibility = bp_is_username_compatibility_mode();
+    $recipients = (array) $recipients;
+    foreach ($recipients as $key => $recipient) {
+        // Numeric IDs and unknown recipients stay with BuddyBoss's own validation.
+        if (!is_string($recipient) || is_numeric($recipient)) {
+            continue;
+        }
+        $name = trim($recipient);
+        $user = get_user_by($compatibility ? 'login' : 'slug', $name);
+        if (!$user) {
+            $user = get_user_by('login', $name);
+        }
+        if (!$user) {
+            $user = get_user_by('slug', $name);
+        }
+        if (!$user && is_email($name)) {
+            $user = get_user_by('email', $name);
+        }
+        if ($user) {
+            $recipients[$key] = $compatibility ? $user->user_login : $user->user_nicename;
+        }
+    }
+    return $recipients;
+}
+
+function thepond_community_message_args($args) {
+    // REST recipients are IDs, not usernames.
+    if (!bb_is_rest() && !empty($args['recipients'])) {
+        $args['recipients'] = thepond_community_message_recipients($args['recipients']);
+    }
+    return $args;
+}
+
+function thepond_community_message_suggestions($results) {
+    foreach ($results as $result) {
+        if (!empty($result->pond_message_label)) {
+            continue;
+        }
+        // This is already public in each member's profile URL; do not add emails.
+        $handle = $result->user_nicename;
+        // Nouveau's mention regex truncates logins containing @ (email usernames).
+        $result->ID = $handle;
+        $result->name = esc_html($result->name . ' (@' . $handle . ')');
+        $result->pond_message_label = true;
+    }
+    return $results;
+}
+
+function thepond_community_message_exclusions($args) {
+    if (($_GET['action'] ?? '') !== 'messages_search_recipients' || empty($_GET['except']) || !is_array($_GET['except'])) {
+        return $args;
+    }
+    $excluded = wp_parse_id_list($args['exclude'] ?? array());
+    foreach ($_GET['except'] as $handle) {
+        if (!is_string($handle)) {
+            continue;
+        }
+        $user = get_user_by('slug', ltrim(wp_unslash($handle), '@'));
+        if ($user) {
+            $excluded[] = $user->ID;
+        }
+    }
+    $args['exclude'] = array_values(array_unique($excluded));
+    return $args;
+}
+
+function thepond_community_default_avatar($url) {
+    // Do not represent members without a photo using another member's portrait.
+    return plugins_url('buddyboss-platform/bp-core/images/profile-avatar-buddyboss.png');
+}
+
+function thepond_community_neutral_avatar($url, $params) {
+    global $wpua_avatar_default;
+    if (($params['object'] ?? '') !== 'user' || !$wpua_avatar_default || !$url) {
+        return $url;
+    }
+    $size = !empty($params['width']) ? $params['width'] : 96;
+    $image = apply_filters('wpua_get_attachment_image_src',
+        wp_get_attachment_image_src($wpua_avatar_default, array($size, $size)),
+        $wpua_avatar_default, array($size, $size), 0);
+    return $image && $url === $image[0] ? thepond_community_default_avatar($url) : $url;
+}
 
 function thepond_community_activity_sql_literals($where) {
     // ANSI_QUOTES treats BuddyBoss's double-quoted group literal as a column name.
@@ -346,11 +436,17 @@ function thepond_community_avatar_url($url, $params) {
             return $image[0];
         }
     }
-    return $url;
+    return thepond_community_neutral_avatar($url, $params);
 }
 
 function thepond_community_avatar_markup($avatar, $params) {
-    return thepond_community_avatar_image($avatar, thepond_community_avatar_url('', $params));
+    $image = new WP_HTML_Tag_Processor($avatar);
+    if (!$image->next_tag('IMG')) {
+        return $avatar;
+    }
+    $src = $image->get_attribute('src');
+    $url = thepond_community_avatar_url($src, $params);
+    return $url === $src ? $avatar : thepond_community_avatar_image($avatar, $url);
 }
 
 function thepond_community_avatar_image($avatar, $url) {

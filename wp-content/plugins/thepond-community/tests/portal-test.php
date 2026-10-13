@@ -6,7 +6,7 @@ define('OBJECT', 'OBJECT');
 require ABSPATH . 'wp-includes/plugin.php';
 require ABSPATH . 'wp-includes/class-wp-error.php';
 require ABSPATH . 'wp-includes/kses.php';
-foreach (array('attribute-token', 'text-replacement', 'span', 'tag-processor') as $html_class) {
+foreach (array('attribute-token', 'text-replacement', 'span', 'decoder', 'tag-processor') as $html_class) {
     require ABSPATH . 'wp-includes/html-api/class-wp-html-' . $html_class . '.php';
 }
 
@@ -278,8 +278,21 @@ function the_content() { echo '<p>Existing page content</p>'; }
 function the_field($name) { echo get_field($name); }
 function dynamic_sidebar($name) { echo '<p>Existing membership sidebar: ' . esc_html($name) . '</p>'; }
 function get_user_by($field, $id) {
+    if (isset($GLOBALS['message_users'])) {
+        foreach ($GLOBALS['message_users'] as $user) {
+            $property = array('login' => 'user_login', 'slug' => 'user_nicename', 'email' => 'user_email', 'id' => 'ID')[$field];
+            if ($user->$property === $id) {
+                return $user;
+            }
+        }
+        return false;
+    }
     return (object) array('ID' => is_numeric($id) ? (int) $id : 123, 'user_login' => '<member>');
 }
+function is_email($value) { return filter_var($value, FILTER_VALIDATE_EMAIL); }
+function bp_is_username_compatibility_mode() { return $GLOBALS['username_compatibility'] ?? false; }
+function bb_is_rest() { return $GLOBALS['message_rest'] ?? false; }
+function wp_parse_id_list($list) { return array_values(array_unique(array_map('intval', (array) $list))); }
 function wp_logout_url($redirect) { return '/wp-login.php?action=logout'; }
 function do_shortcode($shortcode) {
     $GLOBALS['rendered_shortcodes'][] = $shortcode;
@@ -546,6 +559,81 @@ $uploaded_avatars = array();
 check(apply_filters('get_avatar', $avatar_html, 123, 100, '', 'Member') === $avatar_html, 'Existing fallback avatar changed');
 $avatar_meta = array();
 remove_filter('get_avatar', $vendor_avatar_override, 10);
+$message_users = array(
+    (object) array('ID' => 196, 'user_login' => 'jeremy@example.test', 'user_nicename' => 'jeremyexample-test', 'user_email' => 'jeremy@example.test'),
+    (object) array('ID' => 653, 'user_login' => 'jeremy-two', 'user_nicename' => 'jeremy-two', 'user_email' => 'second@example.test'),
+    (object) array('ID' => 800, 'user_login' => 'renamed-login', 'user_nicename' => 'secondexample-test', 'user_email' => 'renamed@example.test'),
+);
+$recipients = array('jeremy@example.test', ' second@example.test ', 'jeremy-two', 'unknown@example.test', 196, '196', '');
+$normalized = array('jeremyexample-test', 'jeremy-two', 'jeremy-two', 'unknown@example.test', 196, '196', '');
+check(apply_filters('bp_messages_recipients', $recipients) === $normalized, 'Email and login recipients must normalize before archived-thread checks without changing IDs or unknown recipients');
+check(apply_filters('bp_after_messages_new_message_parse_args', array('recipients' => 'jeremy@example.test'))['recipients'] === array('jeremyexample-test'), 'Single string recipients must normalize without string-offset writes');
+check(apply_filters('bp_messages_recipients', array('secondexample-test')) === array('secondexample-test'), 'Native profile slugs must take precedence over email fallback');
+$message_args = array('recipients' => $recipients, 'sender_id' => 123, 'content' => 'Do not send', 'thread_id' => false);
+$resolved_args = apply_filters('bp_after_messages_new_message_parse_args', $message_args);
+check($resolved_args['recipients'] === $normalized && $resolved_args['sender_id'] === 123 && $resolved_args['content'] === 'Do not send', 'Message argument filter must only normalize recipients');
+$message_rest = true;
+check(apply_filters('bp_after_messages_new_message_parse_args', $message_args) === $message_args, 'REST recipient handling must remain with BuddyBoss');
+$message_rest = false;
+$username_compatibility = true;
+check(apply_filters('bp_messages_recipients', array('second@example.test', 'jeremy@example.test')) === array('jeremy-two', 'jeremy@example.test'), 'Compatibility mode must resolve to login instead of slug');
+check(apply_filters('bp_messages_recipients', array('jeremyexample-test')) === array('jeremy@example.test'), 'Public suggestion handle must resolve even in username compatibility mode');
+$username_compatibility = false;
+$suggestions = array(
+    (object) array('ID' => 'jeremy@example.test', 'user_id' => 196, 'user_nicename' => 'jeremyexample-test', 'name' => 'Jeremy', 'image' => '/first.jpg'),
+    (object) array('ID' => 'jeremy-two', 'user_id' => 653, 'user_nicename' => 'jeremy-two', 'name' => 'Jeremy', 'image' => '/second.jpg'),
+    (object) array('ID' => 'third', 'user_id' => 700, 'user_nicename' => 'third', 'name' => '<Jeremy & friends>', 'image' => '/third.jpg'),
+);
+$suggestions = apply_filters('bp_members_suggestions_results', $suggestions);
+check($suggestions[0]->name === 'Jeremy (@jeremyexample-test)' && $suggestions[1]->name === 'Jeremy (@jeremy-two)', 'Duplicate recipient names must show distinct public handles');
+check($suggestions[0]->ID === 'jeremyexample-test' && $suggestions[0]->user_id === 196 && $suggestions[0]->image === '/first.jpg', 'Suggestion must submit safe public handle while retaining REST user ID and photo');
+check($suggestions[2]->name === '&lt;Jeremy &amp; friends&gt; (@third)', 'Suggestion labels must be safe in native HTML');
+$labels = array_column($suggestions, 'name');
+check(array_column(apply_filters('bp_members_suggestions_results', $suggestions), 'name') === $labels, 'REST applies the suggestions filter twice; labels must be idempotent');
+check(apply_filters('bp_members_suggestions_results', array()) === array(), 'Empty recipient results must remain empty');
+foreach (array(false, true) as $username_compatibility) {
+    foreach ($suggestions as $suggestion) {
+        if ($suggestion->user_id === 700) { continue; }
+        preg_match('/(^|[^@\w\-])@([a-zA-Z0-9_\-\.]{1,50})\b/', '@' . $suggestion->ID, $match);
+        check($match[0] === '@' . $suggestion->ID, 'Native Nouveau regex must retain the entire selected suggestion handle');
+        $resolved = apply_filters('bp_messages_recipients', array(trim($match[0], '@')));
+        $user = get_user_by($username_compatibility ? 'login' : 'slug', $resolved[0]);
+        check($user && $user->ID === $suggestion->user_id, 'Selected suggestion must resolve through native validation in both username modes');
+    }
+}
+$username_compatibility = false;
+$_GET = array('action' => 'messages_search_recipients', 'except' => array('@jeremyexample-test', '@unknown', '@jeremyexample-test'));
+$query = array('exclude' => array(123), 'search_terms' => 'Jeremy');
+$excluded_query = apply_filters('bp_members_suggestions_query_args', $query);
+check($excluded_query['exclude'] === array(123, 196) && $excluded_query['search_terms'] === 'Jeremy', 'Selected public handles must be excluded without replacing native restrictions');
+$_GET = array('action' => 'unrelated', 'except' => array('@jeremyexample-test'));
+check(apply_filters('bp_members_suggestions_query_args', $query) === $query, 'Unrelated suggestions must remain unchanged');
+$_GET = array();
+$neutral_avatar = apply_filters('bp_core_default_avatar_user', '/shared-portrait.jpg');
+check($neutral_avatar === '/wp-content/plugins/buddyboss-platform/bp-core/images/profile-avatar-buddyboss.png', 'Missing user photos must use a neutral default');
+check(apply_filters('bb_default_fetch_avatar_url_user', '/shared-portrait.jpg') === $neutral_avatar, 'Missing Gravatar fallback must also use a neutral default');
+check(apply_filters('bp_core_fetch_avatar_url', $neutral_avatar, array('object' => 'user', 'item_id' => 123)) === $neutral_avatar, 'Missing custom photo must retain neutral default');
+$avatar_meta[123] = array('avatar_url' => 'https://example.test/social.jpg', 'use_firebase_avatar' => true);
+check(apply_filters('bp_core_fetch_avatar_url', $neutral_avatar, array('object' => 'user', 'item_id' => 123)) === 'https://example.test/social.jpg', 'Personal photo must override neutral default');
+$avatar_meta = array();
+check(is_readable(ABSPATH . ltrim($neutral_avatar, '/')), 'Neutral avatar asset must exist');
+$wpua_avatar_default = 456;
+// One User Avatar actually supplies only two arguments, despite its docblock.
+check(apply_filters('wpua_get_avatar_filter_url', 'https://example.test/uploaded.jpg', 196) === 'https://example.test/uploaded.jpg', 'Vendor two-argument hook must not cause an ArgumentCountError');
+check(has_filter('wpua_get_avatar_filter_url', 'thepond_community_wpua_default_avatar') === false, 'Invalid vendor callback must not remain registered');
+$avatar_params = array('object' => 'user', 'item_id' => 196, 'width' => 50);
+check(apply_filters('bp_core_fetch_avatar_url', 'https://example.test/uploaded.jpg', $avatar_params) === $neutral_avatar, 'BuddyBoss URL hook must replace configured shared portrait after vendor filters');
+check($GLOBALS['attachment_image_request'] === array(456, array(50, 50)), 'Shared portrait comparison must use the requested avatar width');
+$shared_html = '<img src="https://example.test/uploaded.jpg" srcset="/shared-2x.jpg 2x" class="avatar">';
+$neutral_html = apply_filters('bp_core_fetch_avatar', $shared_html, $avatar_params);
+check(strpos($neutral_html, 'src="' . $neutral_avatar . '"') !== false && strpos($neutral_html, 'srcset') === false, 'BuddyBoss HTML hook must replace shared portrait and stale srcset');
+check(apply_filters('bp_core_fetch_avatar_url', 'https://example.test/personal.jpg', $avatar_params) === 'https://example.test/personal.jpg', 'Existing personal and Gravatar photos must remain unchanged');
+check(apply_filters('bp_core_fetch_avatar_url', 'https://example.test/uploaded.jpg', array('object' => 'group', 'item_id' => 196)) === 'https://example.test/uploaded.jpg', 'Group avatar defaults must remain unchanged');
+check(apply_filters('bp_core_fetch_avatar', $shared_html, array('object' => 'group', 'item_id' => 196)) === $shared_html, 'Group markup and srcset must remain unchanged');
+check(apply_filters('bp_core_fetch_avatar_url', 'https://example.test/uploaded.jpg', $avatar_params + array('force_default' => true)) === 'https://example.test/uploaded.jpg', 'Explicit force-default request must remain unchanged');
+$wpua_avatar_default = null;
+check(apply_filters('bp_core_fetch_avatar_url', 'https://example.test/personal.jpg', $avatar_params) === 'https://example.test/personal.jpg', 'No configured portrait must retain the existing fallback');
+unset($message_users);
 $legacy = true;
 foreach (array('pond-bootstrap', 'pond-datatables', 'pond-popper') as $handle) {
     check(is_readable(ABSPATH . ltrim($scripts[$handle]['src'], '/')), 'Legacy static dependency missing: ' . $handle);
