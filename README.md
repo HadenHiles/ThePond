@@ -46,6 +46,14 @@ use each refinement's smaller upload list for the already migrated site.
 
 ### FTP upload manifest
 
+For the account-tab refinement, overwrite
+`wp-content/plugins/thepond-community/portal/identity.php` and
+`wp-content/plugins/facebook-group-secret/assets/facebook-group.css`.
+The MemberPress Courses tab links to `/member-dashboard/#courses` on the
+BuddyBoss theme, and the Facebook card adapts to its available container width,
+including the narrower account content panel. The existing join, copy and
+phrase-refresh controls remain available.
+
 For the lesson/community feed SQL compatibility fix, overwrite only
 `wp-content/plugins/thepond-community/thepond-community.php`. On MySQL servers
 with `ANSI_QUOTES`, BuddyBoss's moderation query interprets `"groups"` as a

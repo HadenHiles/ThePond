@@ -301,6 +301,7 @@ require get_stylesheet_directory() . '/functions.php';
 require ABSPATH . 'wp-content/plugins/challenge-score/filters.php';
 do_action('after_setup_theme');
 check(ob_get_clean() === '', 'Theme initialization contaminates AJAX responses');
+check(apply_filters('mepr-account-nav-courses-link', '/account/?action=courses') === home_url('/member-dashboard/#courses'), 'Account Courses tab does not link to dashboard courses');
 $moderation_where = array(
     'suspend_where' => '( s.user_suspended = 0 OR s.user_suspended IS NULL )',
     'moderation_where' => '( s.hide_sitewide = 0 OR s.hide_sitewide IS NULL ) AND a.user_id NOT IN (SELECT user_id FROM blocked_members) OR a.component = "groups" AND ( s.hide_parent = 0 OR s.hide_parent IS NULL )',

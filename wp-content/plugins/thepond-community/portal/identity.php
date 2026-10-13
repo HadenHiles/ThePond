@@ -1,4 +1,10 @@
 <?php
+add_filter('mepr-account-nav-courses-link', 'thepond_portal_account_courses_url');
+
+function thepond_portal_account_courses_url($url) {
+  return home_url('/member-dashboard/#courses');
+}
+
 /* Memberpress account tabs */
 function mepr_add_tabs($user) {
 ?>

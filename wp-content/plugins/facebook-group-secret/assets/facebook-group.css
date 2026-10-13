@@ -1,4 +1,5 @@
 .fb-group-card {
+    container-type: inline-size;
     --fb-blue: #1877f2;
     --fb-blue-dark: #0b5fcc;
     --fb-card-bg: var(--bb-content-background-color, #fff);
@@ -16,6 +17,9 @@
     text-align: left;
 }
 
+.fb-group-card,
+.fb-group-card * { box-sizing: border-box; }
+
 html[data-pond-theme="dark"] .fb-group-card { --fb-blue: #2d88ff; --fb-blue-dark: #1877f2; }
 
 .fb-group-card svg { display: block; width: 100%; height: 100%; }
@@ -23,6 +27,7 @@ html[data-pond-theme="dark"] .fb-group-card { --fb-blue: #2d88ff; --fb-blue-dark
 .fb-group-card .fb-group-card__cover {
     position: relative;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 16px;
     padding: 20px 24px;
@@ -86,7 +91,7 @@ html[data-pond-theme="dark"] .fb-group-card { --fb-blue: #2d88ff; --fb-blue-dark
 
 .fb-group-card .fb-group-card__body {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(280px, 380px);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
     gap: 24px 32px;
     padding: 24px;
 }
@@ -128,6 +133,7 @@ html[data-pond-theme="dark"] .fb-group-card { --fb-blue: #2d88ff; --fb-blue-dark
 }
 
 .fb-group-card .fb-group-card__phrase {
+    min-width: 0;
     margin: 0;
     padding: 16px;
     border: 1px solid var(--fb-card-border);
@@ -240,6 +246,8 @@ html[data-pond-theme="dark"] .fb-group-card { --fb-blue: #2d88ff; --fb-blue-dark
     font-size: 15px;
     font-weight: 600;
     text-decoration: none !important;
+    text-align: center;
+    overflow-wrap: anywhere;
     transition: background-color .15s ease;
 }
 
@@ -258,6 +266,15 @@ html[data-pond-theme="dark"] .fb-group-card { --fb-blue: #2d88ff; --fb-blue-dark
 }
 
 @media (max-width: 480px) {
+    .fb-group-card .fb-group-card__view { order: 3; width: 100%; text-align: center; }
+    .fb-group-card .fb-group-card__field input#phrase { padding: 0 6px; font-size: 14px; }
+    .fb-group-card .fb-group-card__icon { flex-basis: 36px; width: 36px; padding: 9px; }
+}
+
+@container (max-width: 480px) {
+    .fb-group-card .fb-group-card__cover { padding: 18px 16px; }
+    .fb-group-card .fb-group-card__body { padding: 20px 16px; }
+    .fb-group-card .fb-group-card__title { font-size: 19px; }
     .fb-group-card .fb-group-card__view { order: 3; width: 100%; text-align: center; }
     .fb-group-card .fb-group-card__field input#phrase { padding: 0 6px; font-size: 14px; }
     .fb-group-card .fb-group-card__icon { flex-basis: 36px; width: 36px; padding: 9px; }
