@@ -47,6 +47,30 @@
 			});
 		}
 
+		// BuddyBoss's LD profile rows point their expand buttons at "<id>-container",
+		// but the panels keep LearnDash's "<id>" expand ID, so LearnDash can't find them.
+		function pondFixProfileExpanders() {
+			var $profile = $('#ld-profile');
+			if (!$profile.length) return;
+
+			$profile.find('.ld-item-list-item-expanded[id$="-container"]').each(function () {
+				$(this).attr('data-ld-expand-id', this.id);
+			});
+
+			$profile.find('.ld-item-list-actions .ld-expand-button[data-ld-expands*=" "]').attr({
+				'data-ld-expands': 'ld-main-course-list',
+				'aria-controls': 'ld-main-course-list'
+			});
+		}
+		pondFixProfileExpanders();
+		// LearnDash's search callback throws after replacing #ld-profile, so repair lazily in the
+		// capture phase, before LearnDash's delegated body handler reads the attributes.
+		document.addEventListener('click', function (event) {
+			if (event.target.closest && event.target.closest('#ld-profile .ld-expand-button')) {
+				pondFixProfileExpanders();
+			}
+		}, true);
+
 		// Move profile pond points to below edit profile link
 		// $('#pond-points').appendTo('.ld-profile-card');
 

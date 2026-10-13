@@ -77,6 +77,7 @@ function bp_is_theme_compat_active() { return true; }
 function bp_is_blog_page() { global $community; return !$community; }
 function locate_template($name) { return ABSPATH . 'wp-content/themes/buddyboss-theme/' . $name; }
 function is_user_logged_in() { global $logged_in; return $logged_in; }
+function is_404() { global $is_404_page; return !empty($is_404_page); }
 function current_user_can($cap) { global $member; return $cap === 'memberpress_authorized' && $member; }
 function get_current_user_id() { return 123; }
 function buddypress() { return new stdClass(); }
@@ -745,8 +746,22 @@ check(strpos($pond_source, "add_action('admin_init', 'pond_theme_learndash_ajax_
     strpos($pond_source, "array('ld30_ajax_profile_search', 'ld30_ajax_pager')") !== false &&
     strpos($pond_source, '->ld_30_template_override()') !== false &&
     strpos($pond_source, "add_action('pre_get_posts', 'pond_theme_learndash_ajax_course_status')") !== false &&
-    strpos($pond_source, "\$query->set('post_status', 'publish')") !== false,
+    strpos($pond_source, "\$query->set('post_status', array('publish', 'private'))") !== false,
     'LearnDash profile AJAX must reuse the BuddyBoss templates used on page load');
+$buddyboss_theme_options = array('404_button_link' => 'https://example.test/');
+$is_404_page = true;
+$logged_in = false;
+pond_theme_member_404_button();
+check($buddyboss_theme_options['404_button_link'] === 'https://example.test/', 'Anonymous 404 button should keep the site home link');
+$logged_in = true;
+pond_theme_member_404_button();
+check($buddyboss_theme_options['404_button_link'] === 'https://example.test/member-dashboard/', 'Member 404 button should return to the dashboard');
+$is_404_page = false;
+$dashboard_js = file_get_contents(get_stylesheet_directory() . '/assets/js/pond-dashboard.js');
+check(strpos($dashboard_js, "attr('data-ld-expand-id', this.id)") !== false &&
+    strpos($dashboard_js, "'data-ld-expands': 'ld-main-course-list'") !== false &&
+    strpos($dashboard_js, "closest('#ld-profile .ld-expand-button')") !== false,
+    'Dashboard course expand buttons must target their BuddyBoss containers');
 check(strpos($fb_hooks, 'return ob_get_clean();') !== false, 'Facebook shortcode must return markup instead of echoing');
 check(strpos($fb_hooks, 'echo do_shortcode("[facebook_secret_phrase_shortcode]")') !== false, 'MemberPress Facebook tab no longer prints the shortcode');
 check(strpos($fb_hooks, '<script') === false && strpos($fb_hooks, 'user_id: <?=') === false, 'Facebook shortcode JS should be enqueued, not inlined');

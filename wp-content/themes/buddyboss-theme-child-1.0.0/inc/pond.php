@@ -14,6 +14,18 @@ add_filter('comments_open', 'pond_theme_lesson_comments_open', 20, 2);
 add_action('learndash-lesson-after', 'pond_theme_lesson_discussion_panel');
 add_action('admin_post_pond_lesson_discussion', 'pond_theme_post_lesson_discussion');
 add_action('admin_init', 'pond_theme_learndash_ajax_templates');
+add_action('template_redirect', 'pond_theme_member_404_button', 1);
+
+function pond_theme_member_404_button() {
+    if (!is_404() || !is_user_logged_in()) {
+        return;
+    }
+    global $buddyboss_theme_options;
+    if (!isset($buddyboss_theme_options)) {
+        $buddyboss_theme_options = (array) get_option('buddyboss_theme_options', array());
+    }
+    $buddyboss_theme_options['404_button_link'] = home_url('/member-dashboard/');
+}
 
 // BuddyBoss only swaps in its LearnDash templates on template_redirect, which never runs in
 // admin-ajax, so profile search and pagination would otherwise re-render with different markup.
@@ -34,7 +46,8 @@ function pond_theme_learndash_ajax_templates() {
 // admin-ajax is an admin context, so course queries there also return drafts to editors.
 function pond_theme_learndash_ajax_course_status($query) {
     if ($query->get('post_type') === 'sfwd-courses' && !$query->get('post_status')) {
-        $query->set('post_status', 'publish');
+        // WP_Query still limits private posts to users allowed to read them, matching page load.
+        $query->set('post_status', array('publish', 'private'));
     }
 }
 
