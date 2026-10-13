@@ -46,6 +46,15 @@ use each refinement's smaller upload list for the already migrated site.
 
 ### FTP upload manifest
 
+For the lesson/community feed SQL compatibility fix, overwrite only
+`wp-content/plugins/thepond-community/thepond-community.php`. On MySQL servers
+with `ANSI_QUOTES`, BuddyBoss's moderation query interprets `"groups"` as a
+column instead of a string and fails, making the feed appear empty. The
+integration corrects that literal through BuddyBoss's filter without disabling
+moderation, changing the database SQL mode, or editing vendor files. Purge the
+site's object cache after upload to clear any cached empty activity results,
+then verify the community feed and recent lesson posts.
+
 Upload to the **same relative production paths**, overwriting only these files.
 Do not activate BuddyBoss Child until all three groups are uploaded.
 

@@ -42,6 +42,15 @@ add_filter('wpseo_canonical', 'thepond_community_seo_url', 100);
 add_filter('wpseo_opengraph_url', 'thepond_community_seo_url', 100);
 add_action('after_setup_theme', 'thepond_community_load_portal', 20);
 add_filter('pre_option_bb_rl_enabled', 'thepond_community_theme_readylaunch', PHP_INT_MAX);
+add_filter('bp_suspend_activity_get_where_conditions', 'thepond_community_activity_sql_literals', 20);
+
+function thepond_community_activity_sql_literals($where) {
+    // ANSI_QUOTES treats BuddyBoss's double-quoted group literal as a column name.
+    if (isset($where['moderation_where'])) {
+        $where['moderation_where'] = str_replace('a.component = "groups"', "a.component = 'groups'", $where['moderation_where']);
+    }
+    return $where;
+}
 
 function thepond_community_is_buddyboss_theme() {
     return get_template() === 'buddyboss-theme';

@@ -301,6 +301,15 @@ require get_stylesheet_directory() . '/functions.php';
 require ABSPATH . 'wp-content/plugins/challenge-score/filters.php';
 do_action('after_setup_theme');
 check(ob_get_clean() === '', 'Theme initialization contaminates AJAX responses');
+$moderation_where = array(
+    'suspend_where' => '( s.user_suspended = 0 OR s.user_suspended IS NULL )',
+    'moderation_where' => '( s.hide_sitewide = 0 OR s.hide_sitewide IS NULL ) AND a.user_id NOT IN (SELECT user_id FROM blocked_members) OR a.component = "groups" AND ( s.hide_parent = 0 OR s.hide_parent IS NULL )',
+);
+$expected_where = $moderation_where;
+$expected_where['moderation_where'] = str_replace('a.component = "groups"', "a.component = 'groups'", $expected_where['moderation_where']);
+check(apply_filters('bp_suspend_activity_get_where_conditions', $moderation_where) === $expected_where, 'Activity SQL literal incompatible with ANSI_QUOTES or moderation conditions changed');
+check(apply_filters('bp_suspend_activity_get_where_conditions', $expected_where) === $expected_where, 'Already compatible moderation SQL changed');
+check(apply_filters('bp_suspend_activity_get_where_conditions', array('suspend_where' => 's.user_suspended = 0')) === array('suspend_where' => 's.user_suspended = 0'), 'Suspension-only SQL changed');
 do_action('init');
 check(isset($GLOBALS['post_types']['skills'], $GLOBALS['post_types']['skill-examples'], $GLOBALS['post_types']['content-library']), 'Content types were not registered');
 check(isset($GLOBALS['taxonomies']['performance-level'], $GLOBALS['taxonomies']['skill-type'], $GLOBALS['taxonomies']['library_category']), 'Existing taxonomy slugs changed');
