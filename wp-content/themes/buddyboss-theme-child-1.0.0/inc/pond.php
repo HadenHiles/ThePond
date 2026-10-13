@@ -11,10 +11,32 @@ add_filter('register_url', 'pond_theme_registration_url', 1000);
 add_filter('body_class', 'pond_theme_auth_classes');
 add_filter('wp_nav_menu_items', 'pond_theme_account_menu', 30, 2);
 add_filter('comments_open', 'pond_theme_lesson_comments_open', 20, 2);
-add_filter('bbp_get_form_topic_title', 'pond_theme_lesson_topic_title');
-add_filter('bbp_get_form_topic_content', 'pond_theme_lesson_topic_content');
-add_action('template_redirect', 'pond_theme_lesson_topic_context', 20);
 add_action('learndash-lesson-after', 'pond_theme_lesson_discussion_panel');
+add_action('admin_post_pond_lesson_discussion', 'pond_theme_post_lesson_discussion');
+add_action('admin_init', 'pond_theme_learndash_ajax_templates');
+
+// BuddyBoss only swaps in its LearnDash templates on template_redirect, which never runs in
+// admin-ajax, so profile search and pagination would otherwise re-render with different markup.
+function pond_theme_learndash_ajax_templates() {
+    $actions = array('ld30_ajax_profile_search', 'ld30_ajax_pager');
+    if (!wp_doing_ajax() || !isset($_REQUEST['action']) || !in_array($_REQUEST['action'], $actions, true)) {
+        return;
+    }
+    if (function_exists('buddyboss_theme') && method_exists(buddyboss_theme(), 'learndash_helper')) {
+        $helper = buddyboss_theme()->learndash_helper();
+        if ($helper && method_exists($helper, 'ld_30_template_override')) {
+            $helper->ld_30_template_override();
+        }
+    }
+    add_action('pre_get_posts', 'pond_theme_learndash_ajax_course_status');
+}
+
+// admin-ajax is an admin context, so course queries there also return drafts to editors.
+function pond_theme_learndash_ajax_course_status($query) {
+    if ($query->get('post_type') === 'sfwd-courses' && !$query->get('post_status')) {
+        $query->set('post_status', 'publish');
+    }
+}
 
 function pond_theme_auth_classes($classes) {
     if (is_page_template(array('firebase-login.php', 'members-templates/member_register.php'))) {
@@ -31,89 +53,112 @@ function pond_theme_login_destination($requested = '') {
     return $path === $login_path ? $dashboard : $destination;
 }
 
-function pond_theme_training_forum() {
-    if (!function_exists('bbp_get_forum_permalink')) {
-        return null;
-    }
-    $forum = get_page_by_path('training-discussions', OBJECT, 'forum');
-    return $forum && in_array($forum->post_status, array('publish', 'private'), true) ? $forum : null;
-}
-
-function pond_theme_lesson_discussion_url($lesson_id) {
-    if (get_post_type($lesson_id) !== 'sfwd-lessons' ||
-        !current_user_can('memberpress_authorized') ||
-        !function_exists('sfwd_lms_has_access') ||
-        !sfwd_lms_has_access(learndash_get_course_id($lesson_id), get_current_user_id()) ||
-        thepond_community_access_error()) {
-        return '';
-    }
-    $forum = pond_theme_training_forum();
-    if (!$forum || !bbp_is_forum_open($forum->ID) || !bbp_user_can_view_forum(array('forum_id' => $forum->ID))) {
-        return '';
-    }
-    return add_query_arg('pond_lesson', $lesson_id, bbp_get_forum_permalink($forum->ID)) . '#new-post';
+function pond_theme_lesson_discussion_allowed($lesson_id) {
+    return get_post_type($lesson_id) === 'sfwd-lessons' &&
+        is_user_logged_in() &&
+        current_user_can('memberpress_authorized') &&
+        function_exists('bp_is_active') && bp_is_active('activity') &&
+        function_exists('bp_activity_post_update') &&
+        function_exists('sfwd_lms_has_access') &&
+        sfwd_lms_has_access(learndash_get_course_id($lesson_id), get_current_user_id()) &&
+        !(function_exists('thepond_community_access_error') && thepond_community_access_error());
 }
 
 function pond_theme_lesson_comments_open($open, $post_id) {
-    return get_post_type($post_id) === 'sfwd-lessons' && pond_theme_training_forum() ? false : $open;
+    // New lesson conversations go to the main activity feed; legacy responses still render.
+    return get_post_type($post_id) === 'sfwd-lessons' && function_exists('bp_is_active') && bp_is_active('activity') ? false : $open;
+}
+
+function pond_theme_lesson_activities($lesson_id, $limit = 5) {
+    if (!function_exists('bp_activity_get')) {
+        return array();
+    }
+    $result = bp_activity_get(array(
+        'per_page' => $limit,
+        'display_comments' => false,
+        'filter' => array('object' => 'activity', 'action' => 'activity_update'),
+        'meta_query' => array(array('key' => 'pond_lesson_id', 'value' => (int) $lesson_id)),
+    ));
+    return isset($result['activities']) ? $result['activities'] : array();
 }
 
 function pond_theme_lesson_discussion_panel($lesson_id) {
-    if (post_password_required()) {
+    if (post_password_required() || !pond_theme_lesson_discussion_allowed($lesson_id)) {
         return;
     }
-    $discussion_url = pond_theme_lesson_discussion_url($lesson_id);
-    if (!$discussion_url) {
-        return;
-    }
+    $status = isset($_GET['pond_discussion']) && is_string($_GET['pond_discussion']) ? sanitize_key($_GET['pond_discussion']) : '';
+    $feed_url = function_exists('bp_get_activity_directory_permalink') ? bp_get_activity_directory_permalink() : home_url('/news-feed/');
+    $activities = pond_theme_lesson_activities($lesson_id);
     ?>
-    <section class="pond-lesson-discussion" aria-labelledby="pond-lesson-discussion-heading">
+    <section id="pond-lesson-discussion" class="pond-lesson-discussion" aria-labelledby="pond-lesson-discussion-heading">
         <h2 id="pond-lesson-discussion-heading"><?php esc_html_e('Discuss this lesson', 'buddyboss-theme-child'); ?></h2>
-        <p><?php esc_html_e('Ask a question or share your progress in our shared Training Discussions forum. The lesson title and link will be included in your new discussion.', 'buddyboss-theme-child'); ?></p>
-        <a class="button" href="<?php echo esc_url($discussion_url); ?>"><?php esc_html_e('Start a lesson discussion', 'buddyboss-theme-child'); ?></a>
-        <p><?php esc_html_e('Existing lesson responses remain below. New conversations take place in the forum.', 'buddyboss-theme-child'); ?></p>
+        <p><?php esc_html_e('Ask a question or share your progress. Your post goes to the community news feed with a link back to this lesson.', 'buddyboss-theme-child'); ?></p>
+        <?php if ($status === 'posted') : ?>
+            <p class="pond-lesson-discussion__notice" role="status"><?php esc_html_e('Posted to the news feed.', 'buddyboss-theme-child'); ?> <a href="<?php echo esc_url($feed_url); ?>"><?php esc_html_e('View feed', 'buddyboss-theme-child'); ?></a></p>
+        <?php elseif ($status === 'error') : ?>
+            <p class="pond-lesson-discussion__notice is-error" role="alert"><?php esc_html_e('Your post could not be shared. Please write a message and try again.', 'buddyboss-theme-child'); ?></p>
+        <?php endif; ?>
+        <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
+            <input type="hidden" name="action" value="pond_lesson_discussion">
+            <input type="hidden" name="lesson_id" value="<?php echo absint($lesson_id); ?>">
+            <?php wp_nonce_field('pond_lesson_discussion_' . absint($lesson_id), 'pond_lesson_nonce'); ?>
+            <label class="screen-reader-text" for="pond-lesson-message"><?php esc_html_e('Your message', 'buddyboss-theme-child'); ?></label>
+            <textarea id="pond-lesson-message" name="pond_lesson_message" rows="3" maxlength="5000" required placeholder="<?php esc_attr_e('What are you working on?', 'buddyboss-theme-child'); ?>"></textarea>
+            <button type="submit" class="button"><?php esc_html_e('Post to news feed', 'buddyboss-theme-child'); ?></button>
+        </form>
+        <?php if ($activities) : ?>
+            <h3><?php esc_html_e('Recent posts about this lesson', 'buddyboss-theme-child'); ?></h3>
+            <ul class="pond-lesson-discussion__posts">
+                <?php foreach ($activities as $activity) : ?>
+                    <li>
+                        <?php echo bp_core_fetch_avatar(array('item_id' => $activity->user_id, 'type' => 'thumb', 'width' => 36, 'height' => 36)); ?>
+                        <div>
+                            <strong><?php echo esc_html(bp_core_get_user_displayname($activity->user_id)); ?></strong>
+                            <p><?php echo esc_html(wp_trim_words(wp_strip_all_tags(preg_replace('#<p[^>]*>\s*' . preg_quote(__('Lesson:', 'buddyboss-theme-child'), '#') . '.*?</p>#s', '', $activity->content)), 30, '…')); ?></p>
+                            <a href="<?php echo esc_url(bp_activity_get_permalink($activity->id, $activity)); ?>"><?php esc_html_e('View and reply', 'buddyboss-theme-child'); ?></a>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        <?php endif; ?>
+        <p class="pond-lesson-discussion__footer"><a href="<?php echo esc_url($feed_url); ?>"><?php esc_html_e('Open the community news feed', 'buddyboss-theme-child'); ?></a></p>
     </section>
     <?php
 }
 
-function pond_theme_lesson_topic_context() {
-    if (!isset($_GET['pond_lesson']) || !function_exists('bbp_is_single_forum') || !bbp_is_single_forum()) {
-        return;
+function pond_theme_post_lesson_discussion() {
+    $lesson_id = isset($_POST['lesson_id']) ? absint($_POST['lesson_id']) : 0;
+    if (!$lesson_id || !isset($_POST['pond_lesson_nonce']) ||
+        !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['pond_lesson_nonce'])), 'pond_lesson_discussion_' . $lesson_id)) {
+        wp_die(esc_html__('This discussion form has expired. Please reload the lesson and try again.', 'buddyboss-theme-child'), '', array('response' => 403));
     }
-    $forum = pond_theme_training_forum();
-    if (!$forum || bbp_get_forum_id() !== (int) $forum->ID) {
-        return;
+    if (!pond_theme_lesson_discussion_allowed($lesson_id)) {
+        wp_die(esc_html__('You do not have access to discuss this lesson.', 'buddyboss-theme-child'), '', array('response' => 403));
     }
-    if (!is_string($_GET['pond_lesson']) || !ctype_digit($_GET['pond_lesson']) || !absint($_GET['pond_lesson'])) {
-        wp_die(esc_html__('Invalid lesson discussion link.', 'buddyboss-theme-child'), '', array('response' => 400));
+    $back = get_permalink($lesson_id);
+    $message = isset($_POST['pond_lesson_message']) && is_string($_POST['pond_lesson_message']) ?
+        trim(sanitize_textarea_field(wp_unslash($_POST['pond_lesson_message']))) : '';
+    $length = function_exists('mb_strlen') ? mb_strlen($message) : strlen($message);
+    if ($message === '' || $length > 5000) {
+        wp_safe_redirect(add_query_arg('pond_discussion', 'error', $back) . '#pond-lesson-discussion');
+        exit;
     }
-    if (!pond_theme_lesson_discussion_url(absint($_GET['pond_lesson']))) {
-        wp_die(esc_html__('You do not have access to this lesson discussion.', 'buddyboss-theme-child'), '', array('response' => 403));
+    $content = wpautop(esc_html($message)) . '<p class="pond-lesson-link">' . esc_html__('Lesson:', 'buddyboss-theme-child') .
+        ' <a href="' . esc_url($back) . '">' . esc_html(get_the_title($lesson_id)) . '</a></p>';
+    $activity_id = bp_activity_post_update(array(
+        'content' => $content,
+        'title_required' => false,
+        'user_id' => get_current_user_id(),
+        'privacy' => 'public',
+        'error_type' => 'wp_error',
+    ));
+    if (!$activity_id || is_wp_error($activity_id)) {
+        wp_safe_redirect(add_query_arg('pond_discussion', 'error', $back) . '#pond-lesson-discussion');
+        exit;
     }
-}
-
-function pond_theme_discussion_lesson_id() {
-    if (empty($_GET['pond_lesson']) || !is_string($_GET['pond_lesson']) ||
-        !ctype_digit($_GET['pond_lesson']) || !function_exists('bbp_is_single_forum') ||
-        !bbp_is_single_forum() || bbp_is_post_request() || bbp_is_topic_edit()) {
-        return 0;
-    }
-    $forum = pond_theme_training_forum();
-    $lesson_id = absint($_GET['pond_lesson']);
-    return $forum && bbp_get_forum_id() === (int) $forum->ID && pond_theme_lesson_discussion_url($lesson_id) ? $lesson_id : 0;
-}
-
-function pond_theme_lesson_topic_title($title) {
-    $lesson_id = pond_theme_discussion_lesson_id();
-    return $title === '' && $lesson_id ? esc_html(get_the_title($lesson_id)) : $title;
-}
-
-function pond_theme_lesson_topic_content($content) {
-    $lesson_id = pond_theme_discussion_lesson_id();
-    return $content === '' && $lesson_id
-        ? '<p>' . esc_html__('Lesson:', 'buddyboss-theme-child') . ' <a href="' . esc_url(get_permalink($lesson_id)) . '">' .
-            esc_html(get_the_title($lesson_id)) . '</a></p><p></p>'
-        : $content;
+    bp_activity_update_meta($activity_id, 'pond_lesson_id', $lesson_id);
+    wp_safe_redirect(add_query_arg('pond_discussion', 'posted', $back) . '#pond-lesson-discussion');
+    exit;
 }
 
 function pond_theme_setup() {
@@ -215,7 +260,6 @@ function pond_theme_account_menu($items, $args) {
     if (function_exists('bp_core_get_user_domain')) {
         $links[] = array(bp_core_get_user_domain(get_current_user_id()), __('Community Profile', 'buddyboss-theme-child'), 'bb-icon-id-card');
     }
-    $links[] = array(get_permalink(387), __('My Content', 'buddyboss-theme-child'), 'bb-icon-bookmark');
     $links[] = array(get_permalink(392), __('Help & Support', 'buddyboss-theme-child'), 'bb-icon-question');
     $links[] = array(wp_logout_url(home_url('/')), __('Sign Out', 'buddyboss-theme-child'), 'bb-icon-sign-out');
     $items = '';

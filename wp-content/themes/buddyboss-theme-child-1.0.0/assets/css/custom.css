@@ -253,21 +253,43 @@ https://www.w3schools.com/css/css_rwd_mediaqueries.asp
     line-height: 1.4;
 }
 .page-template-member-dashboard #courses #ld-profile .ld-item-list .ld-item-name:hover { color: var(--bb-primary-color); }
-.page-template-member-dashboard .pond-dashboard-facebook { display: flow-root; float: none; width: 100%; padding: 24px; margin: 0 0 24px; border: 1px solid var(--bb-content-border-color); border-radius: 16px; background: var(--bb-content-background-color); }
-.page-template-member-dashboard .pond-dashboard-facebook h2 { font: inherit; font-size: 22px; font-weight: 600; color: var(--bb-headings-color); margin: 0 0 8px; }
-.page-template-member-dashboard .pond-dashboard-facebook p { margin: 0 0 16px; }
-.page-template-member-dashboard #facebook-secret-phrase #secret-phrase-form { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; }
-.page-template-member-dashboard #facebook-secret-phrase #secret-phrase-form > div { float: none !important; width: auto !important; padding: 0 !important; min-width: 0; flex: 1 1 280px; }
-.page-template-member-dashboard #facebook-secret-phrase #secret-phrase-form > .secret-phrase-wrapper { flex: 0 1 auto; }
-.page-template-member-dashboard #facebook-secret-phrase #secret-phrase-form br { display: none; }
-.page-template-member-dashboard #facebook-secret-phrase .copy-able-input { padding: 0 !important; display: flex; align-items: center; gap: 8px; margin: 8px 0 12px; }
-.page-template-member-dashboard #facebook-secret-phrase #phrase { flex: 1; width: 100%; min-width: 0; padding: 10px 12px; height: 44px; font: inherit; background: var(--bb-content-alternate-background-color); color: var(--bb-headings-color); border: 1px solid var(--bb-content-border-color); border-radius: 8px; }
-.page-template-member-dashboard #facebook-secret-phrase :is(#copyButton, #generate-new-phrase) { position: static !important; display: inline-flex; align-items: center; justify-content: center; flex: 0 0 44px; min-height: 44px; border: 1px solid var(--bb-content-border-color); border-radius: 8px; color: var(--bb-primary-color) !important; }
-.page-template-member-dashboard #facebook-secret-phrase label { display: block; font: inherit; font-size: 14px; line-height: 1.5; color: var(--bb-body-text-color); }
-.page-template-member-dashboard #facebook-secret-phrase a.BTN { display: inline-flex; align-items: center; justify-content: center; padding: 12px 16px; border-radius: 8px; background: var(--bb-primary-color) !important; color: var(--bb-primary-button-text-regular); font: inherit; font-size: 14px; line-height: 1.4; }
+.page-template-member-dashboard .pond-dashboard-facebook { display: block; float: none; width: 100%; margin: 0 0 24px; }
 .pond-lesson-discussion { padding: 24px; margin: 24px 0; border: 1px solid var(--bb-content-border-color); border-radius: 12px; background: var(--bb-content-background-color); }
 .pond-lesson-discussion h2 { font-size: 22px; margin: 0 0 12px; }
 .pond-lesson-discussion .button { background: var(--bb-primary-color); color: var(--bb-primary-button-text-regular); }
+.pond-lesson-discussion h3 { font-size: 16px; margin: 24px 0 12px; }
+.pond-lesson-discussion form { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; margin: 16px 0 0; }
+.pond-lesson-discussion textarea { width: 100%; min-height: 96px; padding: 12px; font: inherit; color: var(--bb-headings-color); background: var(--bb-content-alternate-background-color); border: 1px solid var(--bb-content-border-color); border-radius: 8px; resize: vertical; }
+.pond-lesson-discussion__notice { padding: 10px 14px; border-radius: 8px; background: var(--bb-content-alternate-background-color); border-left: 3px solid var(--bb-primary-color); }
+.pond-lesson-discussion__notice.is-error { border-left-color: var(--bb-danger-color, #ef3e46); }
+.pond-lesson-discussion__posts { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.pond-lesson-discussion__posts li { display: flex; gap: 12px; align-items: flex-start; padding: 12px; border: 1px solid var(--bb-content-border-color); border-radius: 8px; }
+.pond-lesson-discussion__posts img { width: 36px; height: 36px; border-radius: 50%; flex: 0 0 36px; }
+.pond-lesson-discussion__posts p { margin: 4px 0; font-size: 14px; }
+.pond-lesson-discussion__posts a, .pond-lesson-discussion__footer a { color: var(--bb-primary-color); font-size: 14px; }
+.pond-lesson-discussion__footer { margin: 16px 0 0; }
+.pond-seo-preview-page #primary { width: 100%; max-width: 1080px; margin: 0 auto; float: none; }
+.pond-seo-preview { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 40px; align-items: center; padding: 48px 0 32px; }
+.pond-seo-preview__eyebrow { display: inline-block; margin: 0 0 8px; color: var(--bb-primary-color); font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+.pond-seo-preview__title { margin: 0 0 16px; font-size: clamp(28px, 4vw, 42px); line-height: 1.15; }
+.pond-seo-preview__summary { margin: 0 0 16px; font-size: 17px; line-height: 1.6; color: var(--bb-body-text-color); }
+.pond-seo-preview__goals { margin: 0 0 20px 20px; }
+.pond-seo-preview__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 24px; }
+.pond-seo-preview__join.button { padding: 12px 22px; border-radius: 8px; background: var(--bb-primary-color); color: var(--bb-primary-button-text-regular); }
+.pond-seo-preview__login { color: var(--bb-primary-color); font-weight: 600; }
+.pond-seo-preview__media { position: relative; margin: 0; border-radius: 16px; overflow: hidden; box-shadow: 0 12px 32px rgba(0, 0, 0, .18); }
+.pond-seo-preview__media img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+.pond-seo-preview__lock { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 40px; color: #fff; background: rgba(0, 0, 0, .35); }
+.pond-seo-preview__lessons { padding: 8px 0 48px; }
+.pond-seo-preview__lessons h2 { font-size: 22px; margin: 0 0 12px; }
+.pond-seo-preview__lessons ol { margin: 0 0 0 20px; columns: 2; column-gap: 32px; }
+.pond-seo-preview__lessons li { margin: 0 0 8px; break-inside: avoid; }
+.pond-seo-preview__lessons a { color: var(--bb-primary-color); }
+@media (max-width: 768px) {
+  .pond-seo-preview { grid-template-columns: 1fr; gap: 24px; padding: 24px 0; }
+  .pond-seo-preview__media { order: -1; }
+  .pond-seo-preview__lessons ol { columns: 1; }
+}
 .pond-library-page { font: inherit; }
 .pond-library-page .dashboardbenefits { background: transparent; }
 .pond-library-page section.clbHeader { padding: 24px 0; background: transparent; margin: 0; }
@@ -376,7 +398,6 @@ https://www.w3schools.com/css/css_rwd_mediaqueries.asp
     .page-template-member-dashboard #courses #ld-profile .ld-profile-stat { padding: 16px 4px !important; }
     .page-template-member-dashboard #courses #ld-profile .ld-profile-stat strong { font-size: 26px; }
     .page-template-member-dashboard #courses #ld-profile .ld-profile-stat span { font-size: 12px; }
-    .page-template-member-dashboard .pond-dashboard-facebook { padding: 16px; }
     .pond-library-page .challenges { grid-template-columns: minmax(0, 1fr); gap: 16px; }
 }
 

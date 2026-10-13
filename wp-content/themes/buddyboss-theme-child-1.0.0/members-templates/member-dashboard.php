@@ -48,9 +48,7 @@ get_header(); ?>
 		<div class="sectionHeader">
 			<div class="large-12 columns" id="courses">
 				<?php if (current_user_can('memberpress_authorized')) : ?>
-					<section class="pond-dashboard-facebook" id="facebook-secret-phrase" aria-labelledby="pond-facebook-heading">
-						<h2 id="pond-facebook-heading"><?php esc_html_e('Facebook member group', 'buddyboss-theme-child'); ?></h2>
-						<p><?php esc_html_e('Use your membership phrase when requesting to join our Facebook group.', 'buddyboss-theme-child'); ?></p>
+					<section class="pond-dashboard-facebook" id="facebook-secret-phrase" aria-label="<?php esc_attr_e('The Pond Facebook Group', 'buddyboss-theme-child'); ?>">
 						<?php
 						if (shortcode_exists('facebook_secret_phrase_shortcode')) {
 							echo do_shortcode('[facebook_secret_phrase_shortcode]');

@@ -95,16 +95,15 @@ function nocache_headers() {}
 function wp_unslash($value) { return stripslashes($value); }
 function wp_die($message, $title = '', $args = array()) { throw new RuntimeException($message, $args['response'] ?? 500); }
 function get_post_type($id = 0) { return $GLOBALS['post_type']; }
-function get_page_by_path($path, $output = OBJECT, $type = 'page') { return $GLOBALS['training_forum'] ?? null; }
-function bbp_get_forum_permalink($id) { return home_url('/forums/forum/training-discussions/'); }
-function bbp_is_forum_open($id) { return $GLOBALS['forum_open'] ?? true; }
-function bbp_user_can_view_forum($args) { return $GLOBALS['forum_visible'] ?? true; }
-function bbp_is_single_forum() { return $GLOBALS['single_forum'] ?? false; }
-function bbp_get_forum_id() { return $GLOBALS['current_forum_id'] ?? 60096; }
-function bbp_is_post_request() { return $GLOBALS['forum_post_request'] ?? false; }
-function bbp_is_topic_edit() { return $GLOBALS['forum_topic_edit'] ?? false; }
 function post_password_required() { return $GLOBALS['password_protected'] ?? false; }
-function add_query_arg($key, $value, $url) { return $url . '?' . $key . '=' . urlencode($value); }
+function add_query_arg($key, $value, $url = null) {
+    if (is_array($key)) {
+        $pairs = array();
+        foreach ($key as $name => $item) { $pairs[] = $name . '=' . $item; }
+        return $value . (strpos($value, '?') === false ? '?' : '&') . implode('&', $pairs);
+    }
+    return $url . '?' . $key . '=' . urlencode($value);
+}
 function content_url($path = '') { return '/wp-content' . $path; }
 function plugins_url($path = '') { return '/wp-content/plugins/' . $path; }
 function admin_url($path = '') { return '/wp-admin/' . $path; }
@@ -168,14 +167,48 @@ function wp_get_post_terms($id, $taxonomy, $args) {
     if (($args['fields'] ?? '') === 'ids') return array(10);
     return array((object) array('name' => $taxonomy === 'library_category' ? $GLOBALS['detail_category'] : 'Skating'));
 }
-function get_post($id) { return (object) array('ID' => $id, 'post_title' => 'Course ' . $id); }
+function get_post($id) {
+    return (object) array('ID' => $id, 'post_title' => 'Course ' . $id, 'post_type' => $GLOBALS['post_type'],
+        'post_status' => 'publish', 'post_excerpt' => $GLOBALS['excerpts'][$id] ?? '', 'post_content' => $GLOBALS['contents'][$id] ?? '');
+}
+function get_queried_object() {
+    $post = new WP_Post();
+    foreach (get_object_vars(get_post(get_the_ID())) as $key => $value) { $post->$key = $value; }
+    return $post;
+}
+function _n($single, $plural, $count, $domain = '') { return $count === 1 ? $single : $plural; }
+function get_the_post_thumbnail($id, $size, $attr = array()) { return '<img src="/thumb-' . $id . '.jpg" alt="">'; }
+function learndash_course_get_children_of_step($course, $step, $type) { return $GLOBALS['course_lessons'] ?? array(); }
+function get_post_status($id = 0) { return 'publish'; }
+function has_excerpt($post) { return ($post->post_excerpt ?? '') !== ''; }
+function strip_shortcodes($text) { return preg_replace('/\[[^\]]+\]/', '', $text); }
+function get_bloginfo($key = '', $filter = '') { return $key === 'charset' ? 'UTF-8' : 'The Pond'; }
+function wp_strip_all_tags($text) { return trim(strip_tags($text)); }
+function wp_trim_words($text, $words = 55, $more = '…') {
+    $parts = preg_split('/\s+/', trim($text));
+    return count($parts) > $words ? implode(' ', array_slice($parts, 0, $words)) . $more : implode(' ', $parts);
+}
+function wpautop($text) { return '<p>' . $text . '</p>'; }
+function sanitize_key($key) { return preg_replace('/[^a-z0-9_\-]/', '', strtolower($key)); }
+function sanitize_text_field($text) { return trim(strip_tags($text)); }
+function sanitize_textarea_field($text) { return trim(strip_tags($text)); }
+function wp_nonce_field($action, $name) { echo '<input type="hidden" name="' . $name . '" value="' . $action . '">'; }
+function wp_verify_nonce($nonce, $action) { return $nonce === $action; }
+function bp_is_active($component) { return $GLOBALS['activity_active'] ?? true; }
+function bp_activity_post_update($args) { $GLOBALS['posted_activity'] = $args; return $GLOBALS['activity_result'] ?? 901; }
+function bp_activity_update_meta($id, $key, $value) { $GLOBALS['activity_meta'][$id][$key] = $value; }
+function bp_activity_get($args) { $GLOBALS['activity_query'] = $args; return array('activities' => $GLOBALS['lesson_activities'] ?? array()); }
+function bp_get_activity_directory_permalink() { return home_url('/news-feed/'); }
+function bp_core_fetch_avatar($args) { return '<img src="/avatar-' . $args['item_id'] . '.jpg" alt="">'; }
+function bp_core_get_user_displayname($id) { return 'Member ' . $id; }
+function bp_activity_get_permalink($id, $activity = null) { return home_url('/news-feed/p/' . $id . '/'); }
 function get_post_thumbnail_id($id) { return 0; }
 function wp_get_attachment_image_src($id, $size, $icon = false, $attr = '') {
     $GLOBALS['attachment_image_request'] = array($id, $size);
     return array($id === 456 ? 'https://example.test/uploaded.jpg' : '/course.png');
 }
 function get_current_blog_id() { return 1; }
-function get_post_meta($id, $key, $single = false) { return ''; }
+function get_post_meta($id, $key, $single = false) { return $GLOBALS['post_meta'][$id][$key] ?? ''; }
 function get_the_terms($id, $taxonomy) { return array((object) array('slug' => 'skating', 'name' => 'Skating')); }
 function learndash_course_progress($args) {
     $GLOBALS['course_progress_calls'][] = $args;
@@ -216,9 +249,13 @@ class MeprUser {
 }
 class MeprOptions {
     public static function fetch() { return new self(); }
+    public $unauthorized_redirect_url = '/wp-content/themes/meltingpot-child/funnel.php';
     public function forgot_password_url() { return home_url('/forgot-password/'); }
 }
-class WP_Post { public $post_author; }
+class MeprRule { public static function is_locked($post) { return $GLOBALS['mepr_locked'] ?? true; } }
+class WP_Post {
+    public $ID; public $post_author; public $post_title; public $post_type; public $post_status; public $post_excerpt; public $post_content;
+}
 class WP_User { public $ID; public function __construct($id) { $this->ID = $id; } }
 class WP_Query {
     private $posts;
@@ -427,10 +464,11 @@ $legacy = false;
 $other_menu = array((object) array('url' => '/other/#section', 'current' => true, 'classes' => array('current-menu-item')));
 check(apply_filters('wp_nav_menu_objects', $other_menu)[0]->current, 'Other template navigation changed');
 $account_menu = pond_theme_account_menu('<li>Legacy icons</li>', (object) array('theme_location' => 'header-my-account'));
-foreach (array('My Training', 'Account &amp; Billing', 'Change Profile Photo', 'Community Profile', 'My Content', 'Help &amp; Support', 'Sign Out') as $label) {
+foreach (array('My Training', 'Account &amp; Billing', 'Change Profile Photo', 'Community Profile', 'Help &amp; Support', 'Sign Out') as $label) {
     check(strpos($account_menu, $label) !== false, 'Account menu label missing: ' . $label);
 }
-foreach (array('/member-dashboard/', '/account/', '/account/?action=avatar', '/community-members/member-123/', '/item/387', '/item/392', 'action=logout') as $url) {
+check(strpos($account_menu, 'My Content') === false && strpos($account_menu, '/item/387') === false, 'My Content returned to the account menu');
+foreach (array('/member-dashboard/', '/account/', '/account/?action=avatar', '/community-members/member-123/', '/item/392', 'action=logout') as $url) {
     check(strpos($account_menu, $url) !== false, 'Canonical account destination missing: ' . $url);
 }
 check(pond_theme_account_menu('Other menu', (object) array('theme_location' => 'primary-menu')) === 'Other menu', 'Primary navigation replaced');
@@ -543,41 +581,139 @@ foreach (array(
     check(pond_theme_login_destination($requested) === $expected, 'Login destination changed or loops: ' . $requested);
 }
 
-$training_forum = (object) array('ID' => 60096, 'post_status' => 'private');
-$member = true; $access = true; $post_type = 'sfwd-lessons'; $post_id = 3250;
+$member = true; $access = true; $post_type = 'sfwd-lessons'; $post_id = 3250; $logged_in = true;
 add_filter('pre_option_thepond_community_open', '__return_true');
-check(pond_theme_lesson_discussion_url(3250) === home_url('/forums/forum/training-discussions/') . '?pond_lesson=3250#new-post', 'Lesson forum context link missing');
-check(!apply_filters('comments_open', true, 3250), 'New lesson conversations remain split between comments and forums');
+check(!has_filter('bbp_get_form_topic_title') && !has_filter('bbp_get_form_topic_content'), 'Forum discussion prefill still active');
+check(pond_theme_lesson_discussion_allowed(3250), 'Lesson discussion unavailable to members with course access');
+check(!apply_filters('comments_open', true, 3250), 'New lesson conversations remain split between comments and the feed');
+$lesson_activities = array((object) array('id' => 77, 'user_id' => 5, 'content' => '<p>Working on reach</p><p class="pond-lesson-link">Lesson: <a href="/item/3250">Title 3250</a></p>'));
 ob_start();
 do_action('learndash-lesson-after', 3250, 3194, 123);
 $discussion_html = ob_get_clean();
-check(strpos($discussion_html, 'Start a lesson discussion') !== false, 'Discussion panel missing when a lesson has no old comments');
-check(strpos($discussion_html, 'pond_lesson=3250#new-post') !== false, 'Discussion panel loses lesson context');
+check(strpos($discussion_html, 'name="action" value="pond_lesson_discussion"') !== false, 'Lesson feed composer missing');
+check(strpos($discussion_html, 'pond_lesson_discussion_3250') !== false, 'Lesson composer not nonce-protected per lesson');
+check(strpos($discussion_html, 'Post to news feed') !== false && strpos($discussion_html, '/news-feed/') !== false, 'Feed destination not explained');
+check(strpos($discussion_html, 'Working on reach') !== false && strpos($discussion_html, 'Lesson: ') === false, 'Recent lesson posts missing or repeat the lesson link');
+check(strpos($discussion_html, '/news-feed/p/77/') !== false, 'Recent lesson post does not link to its feed thread');
+check(($activity_query['meta_query'][0] ?? array()) === array('key' => 'pond_lesson_id', 'value' => 3250), 'Recent posts not scoped to the lesson');
+$lesson_activities = array();
 check(strpos(file_get_contents(get_stylesheet_directory() . '/comments.php'), "get_template_directory() . '/comments.php'") !== false, 'Native existing response template replaced');
-$_GET = array('pond_lesson' => '3250'); $single_forum = true;
-pond_theme_lesson_topic_context();
-check(apply_filters('bbp_get_form_topic_title', '') === 'Title 3250', 'Lesson topic title not prefilled');
-check(strpos(apply_filters('bbp_get_form_topic_content', ''), '/item/3250') !== false, 'Lesson context link missing from discussion');
-check(apply_filters('bbp_get_form_topic_content', 'Draft') === 'Draft', 'Existing discussion draft overwritten');
-foreach (array('forum_post_request', 'forum_topic_edit') as $flag) {
-    $GLOBALS[$flag] = true;
-    check(apply_filters('bbp_get_form_topic_title', '') === '', 'Posted/edited topic prefilled: ' . $flag);
+foreach (array('member', 'access', 'activity_active', 'logged_in') as $flag) {
     $GLOBALS[$flag] = false;
-}
-foreach (array('member', 'access', 'forum_visible', 'forum_open') as $flag) {
-    $GLOBALS[$flag] = false;
-    check(pond_theme_lesson_discussion_url(3250) === '', 'Forum link ignores access gate: ' . $flag);
+    check(!pond_theme_lesson_discussion_allowed(3250), 'Lesson discussion ignores access gate: ' . $flag);
+    ob_start();
+    do_action('learndash-lesson-after', 3250, 3194, 123);
+    check(ob_get_clean() === '', 'Lesson composer shown without access: ' . $flag);
     $GLOBALS[$flag] = true;
 }
-$_GET = array('pond_lesson' => '3250bad');
+$activity_active = false;
+check(apply_filters('comments_open', true, 3250), 'Lesson comments disabled without the activity feed');
+$activity_active = true;
+$post_type = 'post';
+check(!pond_theme_lesson_discussion_allowed(12), 'Non-lesson discussion allowed');
+$post_type = 'sfwd-lessons';
+$_POST = array('lesson_id' => '3250', 'pond_lesson_nonce' => 'pond_lesson_discussion_3250', 'pond_lesson_message' => "Keeping my feet planted <b>@coach</b>\nAny tips?");
 try {
-    pond_theme_lesson_topic_context();
-    check(false, 'Malformed lesson discussion accepted');
-} catch (RuntimeException $error) {
-    check($error->getCode() === 400, 'Malformed discussion does not return explicit input error');
+    pond_theme_post_lesson_discussion();
+    check(false, 'Lesson post did not redirect');
+} catch (PortalRedirect $redirect) {
+    check(strpos($redirect->getMessage(), 'pond_discussion=posted') !== false, 'Successful lesson post not confirmed');
 }
-$_GET = array(); $single_forum = false; $training_forum = null;
-check(apply_filters('comments_open', true, 3250), 'Lesson comments disabled without a configured forum');
+check(($posted_activity['privacy'] ?? '') === 'public' && ($posted_activity['user_id'] ?? 0) === 123, 'Lesson post not shared to the main feed as the member');
+check(strpos($posted_activity['content'], '<b>') === false && strpos($posted_activity['content'], '@coach') !== false, 'Lesson post content not sanitized safely');
+check(strpos($posted_activity['content'], 'href="/item/3250"') !== false, 'Lesson post missing its lesson link');
+check(($activity_meta[901]['pond_lesson_id'] ?? 0) === 3250, 'Lesson post not tagged with its lesson');
+$posted_activity = null;
+foreach (array(
+    array('pond_lesson_message' => '   '),
+    array('pond_lesson_message' => str_repeat('a', 5001)),
+) as $override) {
+    $_POST = array_merge($_POST, $override);
+    try {
+        pond_theme_post_lesson_discussion();
+    } catch (PortalRedirect $redirect) {
+        check(strpos($redirect->getMessage(), 'pond_discussion=error') !== false && $posted_activity === null, 'Invalid lesson post accepted');
+    }
+}
+$_POST['pond_lesson_message'] = 'Valid';
+$activity_result = new WP_Error('bp_activity_error', 'Failed');
+try {
+    pond_theme_post_lesson_discussion();
+} catch (PortalRedirect $redirect) {
+    check(strpos($redirect->getMessage(), 'pond_discussion=error') !== false, 'Failed activity save reported as success');
+}
+$activity_result = null;
+foreach (array(array('pond_lesson_nonce' => 'stale'), array('lesson_id' => '0')) as $override) {
+    $_POST = array_merge(array('lesson_id' => '3250', 'pond_lesson_nonce' => 'pond_lesson_discussion_3250', 'pond_lesson_message' => 'Hi'), $override);
+    try {
+        pond_theme_post_lesson_discussion();
+        check(false, 'Forged lesson post accepted');
+    } catch (PortalRedirect $redirect) {
+        check(false, 'Forged lesson post redirected instead of rejected');
+    } catch (RuntimeException $error) {
+        check($error->getCode() === 403, 'Forged lesson post not rejected with 403');
+    }
+}
+$_POST = array('lesson_id' => '3250', 'pond_lesson_nonce' => 'pond_lesson_discussion_3250', 'pond_lesson_message' => 'Hi');
+$member = false;
+try {
+    pond_theme_post_lesson_discussion();
+    check(false, 'Non-member lesson post accepted');
+} catch (PortalRedirect $redirect) {
+    check(false, 'Non-member lesson post redirected');
+} catch (RuntimeException $error) {
+    check($error->getCode() === 403, 'Non-member lesson post not rejected with 403');
+}
+$member = true; $_POST = array();
+
+// SEO descriptions, permalinks and the anonymous preview.
+$post_meta[3250] = array(
+    'below_media' => '<p>Being able to stickhandle effectively with the puck in close and far away from our feet is important for overall puck control. It allows us to retrieve more loose pucks, pull off more moves, and carry the puck through traffic. https://vimeo.com/1</p><iframe src="https://player.vimeo.com/video/1">Video</iframe>',
+    'tips_for_success' => '1', 'tips_for_success_0_content' => '<p>Keep your feet planted.</p>',
+);
+$description = apply_filters('wpseo_metadesc', '');
+check(strpos($description, 'Being able to stickhandle effectively') === 0, 'Lesson description not built from lesson intro');
+check(mb_strlen($description) <= 155 && substr($description, -3) === '…', 'Lesson description not trimmed for search snippets');
+check(strpos($description, '<') === false && strpos($description, 'vimeo') === false && strpos($description, 'Video') === false, 'Lesson description includes markup, embeds or URLs');
+check(apply_filters('wpseo_opengraph_desc', '') === $description && apply_filters('wpseo_twitter_description', '') === $description, 'Social descriptions differ from the lesson description');
+$excerpts[3250] = 'A hand-written lesson summary.';
+check(apply_filters('wpseo_metadesc', '') === 'A hand-written lesson summary.', 'Lesson excerpt does not take priority');
+$excerpts = array();
+$post_meta[3250]['_yoast_wpseo_metadesc'] = 'Custom Yoast';
+check(apply_filters('wpseo_metadesc', 'Custom Yoast') === 'Custom Yoast', 'Custom Yoast description overwritten');
+unset($post_meta[3250]['_yoast_wpseo_metadesc'], $post_meta[3250]['below_media']);
+check(apply_filters('wpseo_metadesc', '') === 'Keep your feet planted.', 'Lesson tips fallback missing');
+$post_meta[3250] = array();
+check(apply_filters('wpseo_metadesc', '') === 'Learn Title 3250, a lesson in Title 3194 on The Pond hockey training.', 'Lesson title fallback missing');
+$post_type = 'sfwd-courses'; $post_id = 3194;
+$post_meta[3194] = array('goals' => '1', 'goals_0_goal' => 'Be able to control the puck all around your body');
+check(apply_filters('wpseo_metadesc', '') === 'Title 3194 on The Pond: Be able to control the puck all around your body', 'Course description not built from goals');
+check(apply_filters('wpseo_dynamic_permalinks_enabled', false), 'Stale Yoast lesson/course permalinks still used');
+$post_type = 'page';
+check(apply_filters('wpseo_metadesc', 'Global') === 'Global', 'Non-training SEO description changed');
+check(!apply_filters('wpseo_dynamic_permalinks_enabled', false), 'Dynamic permalinks enabled site-wide');
+$post_type = 'sfwd-courses';
+check(apply_filters('mepr-pre-run-rule-redirection', true, '/', '?'), 'Members lost the MemberPress funnel');
+$logged_in = false;
+check(!apply_filters('mepr-pre-run-rule-redirection', true, '/', '?'), 'Anonymous course visitors still redirected away from SEO preview');
+check(apply_filters('template_include', '/single.php') === get_stylesheet_directory() . '/template-parts/seo-preview.php', 'Anonymous course preview template missing');
+$preview_classes = apply_filters('body_class', array('single', 'has-sidebar', 'bb-sfwd-aside', 'learndash-cpt', 'sfwd-single-sidebar-left'));
+check(in_array('pond-seo-preview-page', $preview_classes, true) && !in_array('has-sidebar', $preview_classes, true) && !in_array('learndash-cpt', $preview_classes, true), 'Preview keeps LearnDash sidebar layout');
+$course_lessons = array(3250, 3251);
+ob_start();
+require get_stylesheet_directory() . '/template-parts/seo-preview.php';
+$preview_html = ob_get_clean();
+check(strpos($preview_html, '<h1 class="pond-seo-preview__title">Title 3194</h1>') !== false, 'Preview title missing');
+check(strpos($preview_html, 'control the puck all around your body') !== false, 'Preview course goals missing');
+check(strpos($preview_html, '2 lessons') !== false && strpos($preview_html, 'href="/item/3251"') !== false, 'Preview lesson list missing');
+check((bool) preg_match('#funnel\.php\?mepr-unauth-page=3194&(amp;|\#038;)?redirect_to=%2Fitem%2F3194#', $preview_html), 'Preview join link skips the membership funnel');
+check(strpos($preview_html, '/login/?redirect_to=') !== false, 'Preview sign-in link missing destination');
+check(strpos($preview_html, 'video_code') === false && strpos($preview_html, 'Being able to') === false, 'Preview leaked member-only lesson material');
+$mepr_locked = false;
+check(apply_filters('mepr-pre-run-rule-redirection', true, '/', '?') && apply_filters('template_include', '/single.php') === '/single.php', 'Unlocked courses replaced by preview');
+$mepr_locked = true; $post_type = 'page';
+check(apply_filters('mepr-pre-run-rule-redirection', true, '/', '?'), 'Anonymous non-training pages skip MemberPress');
+$logged_in = true; $post_type = 'sfwd-lessons'; $post_id = 3250; $course_lessons = array(); $post_meta = array();
 $post_type = 'post';
 check(apply_filters('comments_open', true, 12), 'Blog comments changed');
 $post_type = 'sfwd-lessons';
@@ -597,6 +733,32 @@ foreach (array(true, false) as $member) {
     }
 }
 $member = true;
+$fb_plugin = ABSPATH . 'wp-content/plugins/facebook-group-secret/';
+$fb_hooks = file_get_contents($fb_plugin . 'hooks.php');
+$fb_js = file_get_contents($fb_plugin . 'assets/facebook-group.js');
+$fb_css = file_get_contents($fb_plugin . 'assets/facebook-group.css');
+token_get_all($fb_hooks, TOKEN_PARSE);
+check(!file_exists($fb_plugin . 'learndash/profile.php') && strpos($fb_hooks, 'learndash_template') === false,
+    'Facebook plugin must not override the LearnDash profile (AJAX course search duplicated its section)');
+$pond_source = file_get_contents(get_stylesheet_directory() . '/inc/pond.php');
+check(strpos($pond_source, "add_action('admin_init', 'pond_theme_learndash_ajax_templates')") !== false &&
+    strpos($pond_source, "array('ld30_ajax_profile_search', 'ld30_ajax_pager')") !== false &&
+    strpos($pond_source, '->ld_30_template_override()') !== false &&
+    strpos($pond_source, "add_action('pre_get_posts', 'pond_theme_learndash_ajax_course_status')") !== false &&
+    strpos($pond_source, "\$query->set('post_status', 'publish')") !== false,
+    'LearnDash profile AJAX must reuse the BuddyBoss templates used on page load');
+check(strpos($fb_hooks, 'return ob_get_clean();') !== false, 'Facebook shortcode must return markup instead of echoing');
+check(strpos($fb_hooks, 'echo do_shortcode("[facebook_secret_phrase_shortcode]")') !== false, 'MemberPress Facebook tab no longer prints the shortcode');
+check(strpos($fb_hooks, '<script') === false && strpos($fb_hooks, 'user_id: <?=') === false, 'Facebook shortcode JS should be enqueued, not inlined');
+foreach (array('id="phrase"', 'id="copyButton"', 'id="generate-new-phrase"', 'role="status"', 'esc_attr($phrase)', 'fb-group-card__steps', 'thepond.howtohockey') as $needle) {
+    check(strpos($fb_hooks, $needle) !== false, 'Facebook card missing ' . $needle);
+}
+check(strpos($fb_js, "$(document).on('click', '[data-fb-group] #generate-new-phrase'") !== false, 'Refresh handler is not delegated');
+check(strpos($fb_js, "addClass('is-generating')") !== false && strpos($fb_js, "attr('aria-busy', 'true')") !== false, 'Refresh loading state missing');
+check(strpos($fb_js, 'if ($button.prop(\'disabled\'))') !== false, 'Refresh double-submit guard missing');
+check(strpos($fb_js, 'user_id') === false, 'Refresh must use the server-side current user');
+check(strpos($fb_css, '.is-generating .fb-icon-refresh { animation:') !== false && strpos($fb_css, '@keyframes fb-group-spin') !== false,
+    'Refresh spinner animation missing');
 $fields['_mepr_product_price'] = '14.99';
 $post = (object) array('ID' => 479);
 foreach (array(false, true) as $logged_in) {

@@ -58,3 +58,4 @@ add_action( 'wp_enqueue_scripts', 'buddyboss_theme_child_scripts_styles', 9999 )
 /****************************** CUSTOM FUNCTIONS ******************************/
 
 require_once get_stylesheet_directory() . '/inc/pond.php';
+require_once get_stylesheet_directory() . '/inc/seo.php';

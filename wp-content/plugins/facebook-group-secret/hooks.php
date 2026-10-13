@@ -478,7 +478,7 @@ add_action('mepr_account_nav', 'mepr_add_facebook_tab');
 /* Memberpress account navigation content */
 function mepr_add_facebook_tab_content($action) {
     if ($action == 'facebook') {
-        do_shortcode("[facebook_secret_phrase_shortcode]");
+        echo do_shortcode("[facebook_secret_phrase_shortcode]");
     }
 }
 add_action('mepr_account_nav_content', 'mepr_add_facebook_tab_content');
@@ -489,149 +489,76 @@ function facebook_secret_phrase($atts = [], $content = null, $tag = '') {
 
     // Check if they have an active membership first
     $meprUser = new MeprUser($user_id);
-    $subscriptions = $meprUser->active_product_subscriptions('ids', false, false);
     $activeSubscriptions = $meprUser->active_product_subscriptions('ids');
 
     if (empty($activeSubscriptions)) {
-        header('location: /account/');
-    } else {
-        do_action("facebook_group_generate_phrase");
-        $phraseRow = fb_group_get_phrase();
+        if (!headers_sent()) {
+            header('location: /account/');
+        }
+        return '';
+    }
 
+    do_action("facebook_group_generate_phrase");
+    $phraseRow = fb_group_get_phrase();
+    $phrase = $phraseRow ? $phraseRow->phrase : '';
+    $group_url = 'https://www.facebook.com/groups/thepond.howtohockey';
+    $base = plugin_dir_path(__FILE__) . 'assets/';
+    $url = plugin_dir_url(__FILE__) . 'assets/';
+
+    wp_enqueue_style('facebook-group-secret', $url . 'facebook-group.css', array(), filemtime($base . 'facebook-group.css'));
+    wp_enqueue_script('facebook-group-secret', $url . 'facebook-group.js', array('jquery'), filemtime($base . 'facebook-group.js'), true);
+    wp_localize_script('facebook-group-secret', 'fbGroupSecret', array(
+        'ajaxUrl' => admin_url('admin-ajax.php'),
+        'generating' => __('Generating a new phrase…', 'facebook-group-secret'),
+        'generated' => __('New phrase ready. Copy it before requesting to join.', 'facebook-group-secret'),
+        'failed' => __('We couldn’t generate a new phrase. Please try again.', 'facebook-group-secret'),
+        'copied' => __('Phrase copied to your clipboard.', 'facebook-group-secret'),
+        'copyFailed' => __('Copy failed. Select the phrase and copy it manually.', 'facebook-group-secret'),
+    ));
+
+    $facebook_logo = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M24 12.07C24 5.41 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.5c-1.5 0-1.96.93-1.96 1.89v2.26h3.32l-.53 3.5h-2.8V24C19.62 23.1 24 18.1 24 12.07"/></svg>';
+
+    ob_start();
     ?>
-        <div>
-            <form action="" method="post" id="secret-phrase-form">
-                <div style="float: left; width: 300px; max-width: 100%; padding: 0 10px;">
-                    <small>Your Secret Phrase:</small>
-                    <br />
-                    <div class="copy-able-input" style="display: flex; position: relative; padding-right: 40px;">
-                        <input type="text" name="phrase" id="phrase" value="<?= $phraseRow->phrase ?>" readonly />
-                        <a href="" id="copyButton" style="position: absolute; right: 48px; top: 10px; color: #777;"><i class="fa fa-clipboard"></i></a>
-                        <a href="" id="generate-new-phrase" style="position: absolute; right: 5px; top: 10px;"><i class="fas fa-sync"></i></a>
-                    </div>
-                    <br />
-                    <label for="phrase">Provide this phrase when you request to join the private <a href="https://www.facebook.com/groups/thepond.howtohockey" target="_blank">Facebook group</a></label>
+    <div class="fb-group-card" data-fb-group>
+        <div class="fb-group-card__cover">
+            <span class="fb-group-card__logo"><?php echo $facebook_logo; ?></span>
+            <div class="fb-group-card__heading">
+                <span class="fb-group-card__eyebrow"><?php esc_html_e('Private group · Members only', 'facebook-group-secret'); ?></span>
+                <h2 class="fb-group-card__title"><?php esc_html_e('The Pond Facebook Group', 'facebook-group-secret'); ?></h2>
+            </div>
+            <a class="fb-group-card__view" href="<?php echo esc_url($group_url); ?>" target="_blank" rel="noopener"><?php esc_html_e('View group', 'facebook-group-secret'); ?></a>
+        </div>
+        <div class="fb-group-card__body">
+            <div class="fb-group-card__intro">
+                <p><?php esc_html_e('Share clips, ask questions, and get feedback from coaches and other Pond members.', 'facebook-group-secret'); ?></p>
+                <ol class="fb-group-card__steps">
+                    <li><?php esc_html_e('Copy your secret phrase', 'facebook-group-secret'); ?></li>
+                    <li><?php esc_html_e('Request to join the group', 'facebook-group-secret'); ?></li>
+                    <li><?php esc_html_e('Paste it in the membership question', 'facebook-group-secret'); ?></li>
+                </ol>
+            </div>
+            <form action="" method="post" id="secret-phrase-form" class="fb-group-card__phrase" onsubmit="return false;">
+                <label for="phrase"><?php esc_html_e('Your secret phrase', 'facebook-group-secret'); ?></label>
+                <div class="fb-group-card__field">
+                    <input type="text" name="phrase" id="phrase" value="<?php echo esc_attr($phrase); ?>" readonly />
+                    <button type="button" id="copyButton" class="fb-group-card__icon" aria-label="<?php esc_attr_e('Copy secret phrase', 'facebook-group-secret'); ?>" title="<?php esc_attr_e('Copy', 'facebook-group-secret'); ?>">
+                        <svg class="fb-icon-copy" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                        <svg class="fb-icon-check" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <button type="button" id="generate-new-phrase" class="fb-group-card__icon" aria-label="<?php esc_attr_e('Generate a new secret phrase', 'facebook-group-secret'); ?>" title="<?php esc_attr_e('New phrase', 'facebook-group-secret'); ?>">
+                        <svg class="fb-icon-refresh" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 12a8 8 0 1 1-2.34-5.66M20 4v5h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
                 </div>
-                <div style="float: left; padding: 23px 0;" class="secret-phrase-wrapper">
-                    <a href="https://www.facebook.com/groups/thepond.howtohockey" target="_blank" class="BTN" style="background: #3b5998;"><i class="fab fa-facebook" style="margin-right: 5px;"></i> Go To Facebook Group</a>
-                </div>
+                <p class="fb-group-card__status" role="status" aria-live="polite"></p>
+                <a href="<?php echo esc_url($group_url); ?>" target="_blank" rel="noopener" class="fb-group-card__join">
+                    <?php echo $facebook_logo; ?>
+                    <span><?php esc_html_e('Request to join on Facebook', 'facebook-group-secret'); ?></span>
+                </a>
             </form>
         </div>
-        <script type="text/javascript">
-            (($) => {
-                $('#generate-new-phrase').click((e) => {
-                    e.preventDefault();
-
-                    $('#generate-new-phrase').attr('disabled', true);
-                    $('#generate-new-phrase svg').addClass('fa-spin');
-
-                    var data = {
-                        action: 'generate_facebook_group_phrase',
-                        user_id: <?= get_current_user_id() ?>
-                    };
-
-                    $.ajax({
-                        url: "/wp-admin/admin-ajax.php",
-                        type: 'POST',
-                        data: data,
-                        success: function(response) {
-                            success = response.data.success;
-
-                            if (success) {
-                                setTimeout(() => {
-                                    $('#phrase').val(response.data.phrase);
-                                }, 1000);
-                            }
-                        },
-                        complete: function() {
-                            setTimeout(() => {
-                                $('#generate-new-phrase').attr('disabled', false);
-                                $('#generate-new-phrase svg').removeClass('fa-spin');
-                            }, 1000);
-                        },
-                        error: function(xhr, status, error) {
-                            console.log(error);
-                        }
-                    });
-                });
-
-                $('#copyButton').click((e) => {
-                    e.preventDefault();
-                    copyToClipboard('phrase');
-                });
-            })(jQuery);
-
-            function copyToClipboard(id) {
-                var elem = document.getElementById(id);
-
-                jQuery('#copyButton').css("color", "green");
-                jQuery('#copyButton').html("<span style='color: green; font-size: 12px;'>Copied</span>");
-
-                setTimeout(() => {
-                    jQuery('#copyButton').css("color", "#777");
-                    jQuery('#copyButton').html('<i class="fa fa-clipboard"></i>');
-                }, 3000);
-
-                // create hidden text element, if it doesn't already exist
-                var targetId = "_hiddenCopyText_";
-                var isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
-                var origSelectionStart, origSelectionEnd;
-                if (isInput) {
-                    // can just use the original source element for the selection and copy
-                    target = elem;
-                    origSelectionStart = elem.selectionStart;
-                    origSelectionEnd = elem.selectionEnd;
-                } else {
-                    // must use a temporary form element for the selection and copy
-                    target = document.getElementById(targetId);
-                    if (!target) {
-                        var target = document.createElement("textarea");
-                        target.style.position = "absolute";
-                        target.style.left = "-9999px";
-                        target.style.top = "0";
-                        target.id = targetId;
-                        document.body.appendChild(target);
-                    }
-                    target.textContent = elem.textContent;
-                }
-                // select the content
-                var currentFocus = document.activeElement;
-                target.focus();
-                target.setSelectionRange(0, target.value.length);
-
-                // copy the selection
-                var succeed;
-                try {
-                    succeed = document.execCommand("copy");
-                } catch (e) {
-                    succeed = false;
-                }
-                // restore original focus
-                if (currentFocus && typeof currentFocus.focus === "function") {
-                    currentFocus.focus();
-                }
-
-                if (isInput) {
-                    // restore prior selection
-                    elem.setSelectionRange(origSelectionStart, origSelectionEnd);
-                } else {
-                    // clear temporary content
-                    target.textContent = "";
-                }
-                return succeed;
-            }
-        </script>
-<?php
-    }
+    </div>
+    <?php
+    return ob_get_clean();
 }
-
-// Override the Learndash Profile Template so we can display the secret phrase code in the member dashboard
-function replacement_learndash_templates($filepath, $name, $args, $echo, $return_file_path) {
-    if ($name == 'profile') {
-        $filepath = plugin_dir_path(__FILE__) . 'learndash/profile.php';
-    }
-
-    return $filepath;
-}
-add_filter('learndash_template', 'replacement_learndash_templates', 90, 5);
 ?>
