@@ -28,6 +28,8 @@ https://www.w3schools.com/css/css_rwd_mediaqueries.asp
 .pond-portal .modal { z-index: 100001; }
 .pond-portal .course-container-wrapper { max-width: 100%; }
 .pond-portal #skills-vault { scroll-margin-top: 100px; }
+.pond-portal .skillsVault .bootstrap-styles .skills-vault-table tr td svg.puck,
+.pond-portal .memberDashWelc.skill-header .puck-rating svg.puck { fill: currentColor; }
 .pond-footer { padding: 24px; border-top: 1px solid #e7e9ec; background: #fff; }
 .pond-footer nav { max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; gap: 20px; }
 .pond-footer ul { display: flex; flex-wrap: wrap; gap: 20px; list-style: none; padding: 0; margin: 0; }
@@ -36,6 +38,11 @@ https://www.w3schools.com/css/css_rwd_mediaqueries.asp
 .pond-course-material .videoWrapper { position: relative; width: 100%; }
 .pond-course-material .videowrapper .videoWrapper { aspect-ratio: 16 / 9; }
 .pond-course-material .videowrapper iframe { width: 100%; height: 100%; }
+.pond-course-material .videowrapper .hu-iframe-overlay {
+    width: 100% !important;
+    height: 100% !important;
+    overflow-y: auto;
+}
 .pond-course-material .Documents ul, .pond-course-material .post_tools { list-style: none; padding: 0; }
 .pond-course-material .post_tools { display: flex; flex-wrap: wrap; gap: 16px; }
 .pond-course-material .lesson_tool { cursor: pointer; }
@@ -327,6 +334,8 @@ https://www.w3schools.com/css/css_rwd_mediaqueries.asp
 .pond-profile-help { margin-top: 24px; padding: 20px; border: 1px solid var(--bb-content-border-color); border-radius: 12px; background: var(--bb-content-background-color); color: var(--bb-body-text-color); }
 .pond-profile-help h3 { font: inherit; font-size: 20px; font-weight: 600; color: var(--bb-headings-color); }
 .pond-profile-help a { display: inline-block; margin: 0 16px 8px 0; }
+.bb-mp-account-settings > .mp_wrapper:has(> .mepr-account-table),
+.bb-mp-account-settings .mp_wrapper-table-wrapper { overflow-x: auto; }
 #header-my-account-menu .pond-account-menu-item > a { display: flex; align-items: center; gap: 10px; white-space: normal; }
 .user-wrap.menu-item-has-children #header-my-account-menu .pond-account-menu-item > a > i,
 #header-my-account-menu .pond-account-menu-item > a > i { position: static; flex: 0 0 20px; width: 20px; margin: 0; transform: none; }
@@ -397,6 +406,20 @@ https://www.w3schools.com/css/css_rwd_mediaqueries.asp
     .pond-library-page .challenges { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .pond-library-page .clbHeader > .row { flex-direction: column; align-items: stretch; gap: 16px; }
     .pond-library-page .clbHeader .columns { width: 100%; }
+}
+@media (max-width: 799px) {
+    .page-template-member_support .pond-portal > .row,
+    .page-template-member_support .pond-portal > .row > .columns { padding-left: 0; padding-right: 0; }
+    .page-template-member_support .membSupportForm { padding: 16px; }
+    .pond-library-page .clbHeader > .row { padding: 0; }
+    .pond-library-page .clbHeader > .row::before,
+    .pond-library-page .clbHeader > .row::after { display: none; }
+    .pond-library-page .searchfilter { width: 100%; margin: 0; align-items: stretch; }
+    .pond-library-page .searchfilter input { flex: 1 1 0; width: 0; min-height: 44px; height: auto; }
+    .pond-library-page .searchfilter #clearFilter { min-height: 44px; }
+    .pond-library-page ul.clFilters { justify-content: flex-start; }
+    .pond-library-page ul.clFilters li { width: auto; max-width: 100%; flex: 0 1 auto; }
+    .pond-library-page .filtertoggle { max-width: 100%; min-height: 44px; white-space: normal; overflow-wrap: anywhere; }
 }
 @media (max-width: 600px) {
     .page-template-member-dashboard #courses #ld-profile .ld-profile-summary { padding: 16px; }

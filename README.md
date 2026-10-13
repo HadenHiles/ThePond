@@ -46,6 +46,36 @@ use each refinement's smaller upload list for the already migrated site.
 
 ### FTP upload manifest
 
+For the Skills archive and puck-rating visibility fixes, overwrite:
+- `wp-content/themes/buddyboss-theme-child-1.0.0/archive-skills.php`
+- `wp-content/themes/buddyboss-theme-child-1.0.0/archive-content-library.php`
+- `wp-content/themes/buddyboss-theme-child-1.0.0/inc/pond.php`
+- `wp-content/themes/buddyboss-theme-child-1.0.0/assets/css/custom.css`
+
+The Skills archive shares Resources' responsive cards, search and category
+filters, using skill types and existing skill destinations. Published skills
+remain available without relying on Resources' availability field. Puck icons
+in the vault and skill headers follow the text color in light/dark mode; stored
+ratings and the faded-puck distinction are unchanged. Purge the site/CDN cache.
+
+For the member-page responsive layout audit fixes, overwrite
+`wp-content/themes/buddyboss-theme-child-1.0.0/assets/css/custom.css`.
+Account subscription/payment tables scroll within their panel when their columns
+cannot fit, retaining all billing actions and MemberPress's existing mobile rows.
+Lesson video consent panels follow the player width and scroll vertically rather
+than covering adjacent content. Mobile support removes redundant nested gutters
+so FAQs and form fields have usable width. These are layout-only changes; account
+data, course progression, consent behavior and existing visual styling are unchanged.
+Purge the site/CDN CSS cache after upload.
+
+For mobile search/filter spacing on Challenges, Routines, Move Makers and
+Resources, overwrite
+`wp-content/themes/buddyboss-theme-child-1.0.0/assets/css/custom.css`.
+Below 800px the search row uses the available width, Search and Clear align in
+height, and category buttons wrap with consistent gaps instead of retaining
+legacy percentage-width containers. Existing colors, typography, filtering
+behavior and desktop layout are unchanged. Purge the site/CDN CSS cache.
+
 For the mobile header and dashboard refinement, overwrite:
 - `wp-content/themes/buddyboss-theme-child-1.0.0/inc/pond.php`
 - `wp-content/themes/buddyboss-theme-child-1.0.0/assets/css/custom.css`

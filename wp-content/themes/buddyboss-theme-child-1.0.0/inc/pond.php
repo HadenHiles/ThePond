@@ -210,7 +210,7 @@ function pond_theme_is_legacy_page() {
         'members-templates/member-dashboard.php', 'members-templates/member_register.php',
         'members-templates/member-favourite-content.php', 'members-templates/member_support.php',
         'firebase-login.php', 'challenges.php', 'routines.php', 'move-makers.php',
-    )) || is_singular(array('content-library', 'skills')) || is_post_type_archive('content-library');
+    )) || is_singular(array('content-library', 'skills')) || is_post_type_archive(array('content-library', 'skills'));
 }
 
 function pond_theme_assets() {

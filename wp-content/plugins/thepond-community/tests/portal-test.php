@@ -135,7 +135,7 @@ function is_page_template($templates) {
     return isset($page_template) ? in_array($page_template, (array) $templates, true) : $legacy;
 }
 function is_singular($types) { global $post_type; return in_array($post_type, (array) $types, true); }
-function is_post_type_archive($type) { return false; }
+function is_post_type_archive($type) { return in_array($GLOBALS['archive_type'] ?? '', (array) $type, true); }
 function sfwd_lms_has_access($course, $user) { global $access; return $access; }
 function absint($value) { return abs((int) $value); }
 function esc_html($value) { return htmlspecialchars((string) $value, ENT_QUOTES); }
@@ -159,11 +159,17 @@ function get_queried_object_id() { return get_the_ID(); }
 function get_the_id_for_test() { return get_the_ID(); }
 function get_the_title($id = 0) { return 'Title ' . $id; }
 function get_term_by($field, $value, $taxonomy) { return (object) array('term_id' => 10); }
-function get_terms($taxonomy, $args = array()) { return array((object) array('term_id' => 10, 'slug' => 'passing', 'name' => 'Passing')); }
+function get_terms($taxonomy, $args = array()) {
+    $GLOBALS['terms_taxonomy'] = $taxonomy;
+    return array((object) array('term_id' => 10, 'slug' => 'passing', 'name' => 'Passing'));
+}
 function get_permalink($id = 0) { return '/item/' . (is_object($id) ? $id->ID : $id); }
 function get_page_template_slug($id) { return $GLOBALS['page_templates'][$id] ?? ''; }
 function get_post_permalink($id) { return get_permalink($id); }
 function get_the_content() { return '<p>Existing page content</p>'; }
+function get_the_excerpt() { return 'Skill practice summary'; }
+function wp_allowed_protocols() { return array('http', 'https', 'mailto'); }
+function wp_get_attachment_image_url($id, $size) { return ''; }
 function get_the_post_thumbnail_url() { return ''; }
 function wp_get_post_terms($id, $taxonomy, $args) {
     if (($args['fields'] ?? '') === 'ids') return array(10);
@@ -207,14 +213,14 @@ function bp_get_activity_directory_permalink() { return home_url('/news-feed/');
 function bp_core_fetch_avatar($args) { return '<img src="/avatar-' . $args['item_id'] . '.jpg" alt="">'; }
 function bp_core_get_user_displayname($id) { return 'Member ' . $id; }
 function bp_activity_get_permalink($id, $activity = null) { return home_url('/news-feed/p/' . $id . '/'); }
-function get_post_thumbnail_id($id) { return 0; }
+function get_post_thumbnail_id($id = 0) { return 0; }
 function wp_get_attachment_image_src($id, $size, $icon = false, $attr = '') {
     $GLOBALS['attachment_image_request'] = array($id, $size);
     return array($id === 456 ? 'https://example.test/uploaded.jpg' : '/course.png');
 }
 function get_current_blog_id() { return 1; }
 function get_post_meta($id, $key, $single = false) { return $GLOBALS['post_meta'][$id][$key] ?? ''; }
-function get_the_terms($id, $taxonomy) { return array((object) array('slug' => 'skating', 'name' => 'Skating')); }
+function get_the_terms($id, $taxonomy) { return array((object) array('term_id' => 10, 'slug' => 'skating', 'name' => 'Skating')); }
 function learndash_course_progress($args) {
     $GLOBALS['course_progress_calls'][] = $args;
     return $GLOBALS['course_progress_results'][$args['course_id']];
@@ -265,7 +271,8 @@ class WP_User { public $ID; public function __construct($id) { $this->ID = $id; 
 class WP_Query {
     private $posts;
     public function __construct($args) {
-        $this->posts = $args['post_type'] === array('sfwd-courses') ? ($GLOBALS['course_feed_ids'] ?? array()) : array();
+        $GLOBALS['last_query_args'] = $args;
+        $this->posts = $args['post_type'] === array('sfwd-courses') ? ($GLOBALS['course_feed_ids'] ?? array()) : ($GLOBALS['archive_feed_ids'] ?? array());
     }
     public function have_posts() { return !empty($this->posts); }
     public function the_post() { $GLOBALS['post_id'] = array_shift($this->posts); }
@@ -335,6 +342,22 @@ $resources_html = ob_get_clean();
 check(strpos($resources_html, 'pond-portal pond-library-page') !== false && strpos($resources_html, '<h1>Resources</h1>') !== false, 'Resources archive missing shared library layout');
 check(strpos($resources_html, 'type="search"') !== false && strpos($resources_html, 'aria-pressed="true"') !== false, 'Resources search or accessible category filters missing');
 check(strpos($resources_html, 'No resources are available yet.') !== false, 'Resources empty state missing');
+$archive_type = 'skills';
+check(pond_theme_is_legacy_page(), 'Skills archive missing shared portal assets');
+ob_start();
+require get_stylesheet_directory() . '/archive-skills.php';
+$skills_html = ob_get_clean();
+check(strpos($skills_html, '<h1>Skills</h1>') !== false && strpos($skills_html, 'pond-portal pond-library-page') !== false, 'Skills archive missing shared library layout');
+check(strpos($skills_html, 'Search skills') !== false && strpos($skills_html, 'aria-pressed="true"') !== false, 'Skills search or accessible filters missing');
+check(strpos($skills_html, 'No skills are available yet.') !== false, 'Skills empty state missing');
+check($terms_taxonomy === 'skill-type' && $last_query_args['post_type'] === 'skills' && $last_query_args['posts_per_page'] === -1, 'Skills filters or full archive query incorrect');
+$archive_feed_ids = array(123);
+ob_start();
+require get_stylesheet_directory() . '/archive-skills.php';
+$skills_html = ob_get_clean();
+check(strpos($skills_html, 'href="/item/0"') !== false && strpos($skills_html, 'aria-disabled="true"') === false && strpos($skills_html, 'Coming Soon') === false, 'Published skill incorrectly gated by Resources availability');
+check(strpos($skills_html, 'data-category="10,"') !== false && strpos($skills_html, 'Skill practice summary') !== false, 'Skill card category or summary missing');
+unset($archive_feed_ids, $archive_type);
 ob_start();
 require get_stylesheet_directory() . '/move-makers.php';
 $move_makers_html = ob_get_clean();
