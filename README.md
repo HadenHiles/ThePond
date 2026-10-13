@@ -46,6 +46,29 @@ use each refinement's smaller upload list for the already migrated site.
 
 ### FTP upload manifest
 
+For the matching Move Makers grid, overwrite
+`wp-content/themes/buddyboss-theme-child-1.0.0/move-makers.php`.
+It reuses the existing responsive library styles, with accessible search and
+category buttons, exact category matching, and an empty state.
+
+To hide the legacy training Favourite and Bookmark controls throughout the site,
+overwrite `wp-content/themes/buddyboss-theme-child-1.0.0/assets/css/custom.css`.
+The CSS hides the controls, their list items and saving-only toolbars, including
+content-library detail views and lesson resources. Completion controls and
+existing saved-content records are preserved.
+
+For the Facebook account wrapper, Resources grid and My Content navigation fix,
+overwrite these files:
+- `wp-content/plugins/facebook-group-secret/assets/facebook-group.css`
+- `wp-content/themes/buddyboss-theme-child-1.0.0/archive-content-library.php`
+- `wp-content/themes/buddyboss-theme-child-1.0.0/inc/pond.php`
+
+The Facebook custom-tab wrapper now fills the available MemberPress flex panel.
+Resources uses the same responsive grid as Routines and Challenges, retaining
+category filtering, search and coming-soon cards. My Content links are omitted
+from WordPress menus; its existing page, saved data and saving controls remain
+available. No database menu edits or redirects are required.
+
 For the account-tab refinement, overwrite
 `wp-content/plugins/thepond-community/portal/identity.php` and
 `wp-content/plugins/facebook-group-secret/assets/facebook-group.css`.

@@ -1,3 +1,9 @@
+.bb-mp-account-settings > .mepr-facebook-wrapper {
+    flex: 1;
+    min-width: 0;
+    padding: 30px;
+}
+
 .fb-group-card {
     container-type: inline-size;
     --fb-blue: #1877f2;

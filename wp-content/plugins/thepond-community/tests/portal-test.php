@@ -161,6 +161,7 @@ function get_the_title($id = 0) { return 'Title ' . $id; }
 function get_term_by($field, $value, $taxonomy) { return (object) array('term_id' => 10); }
 function get_terms($taxonomy, $args = array()) { return array((object) array('term_id' => 10, 'slug' => 'passing', 'name' => 'Passing')); }
 function get_permalink($id = 0) { return '/item/' . (is_object($id) ? $id->ID : $id); }
+function get_page_template_slug($id) { return $GLOBALS['page_templates'][$id] ?? ''; }
 function get_post_permalink($id) { return get_permalink($id); }
 function get_the_content() { return '<p>Existing page content</p>'; }
 function get_the_post_thumbnail_url() { return ''; }
@@ -301,6 +302,30 @@ require get_stylesheet_directory() . '/functions.php';
 require ABSPATH . 'wp-content/plugins/challenge-score/filters.php';
 do_action('after_setup_theme');
 check(ob_get_clean() === '', 'Theme initialization contaminates AJAX responses');
+$page_templates = array(387 => 'members-templates/member-favourite-content.php');
+$saved_menu_items = array(
+    (object) array('ID' => 1, 'url' => home_url('/saved-content/'), 'object_id' => 0, 'menu_item_parent' => 0),
+    (object) array('ID' => 2, 'url' => home_url('/renamed-saved-page/'), 'object_id' => 387, 'menu_item_parent' => 0),
+    (object) array('ID' => 3, 'url' => home_url('/account/'), 'object_id' => 8, 'menu_item_parent' => 0),
+    (object) array('ID' => 4, 'url' => home_url('/saved-child/'), 'object_id' => 0, 'menu_item_parent' => 1),
+    (object) array('ID' => 5, 'url' => home_url('/saved-grandchild/'), 'object_id' => 0, 'menu_item_parent' => 4),
+);
+check(array_column(pond_theme_hide_saved_content_links($saved_menu_items), 'ID') === array(3), 'Saved-content links or orphaned submenu links remain');
+check(pond_theme_hide_saved_content_links(array($saved_menu_items[2])) === array($saved_menu_items[2]), 'Unrelated account navigation changed');
+check(is_file(get_stylesheet_directory() . '/members-templates/member-favourite-content.php'), 'Saved-content page removed instead of navigation only');
+ob_start();
+require get_stylesheet_directory() . '/archive-content-library.php';
+$resources_html = ob_get_clean();
+check(strpos($resources_html, 'pond-portal pond-library-page') !== false && strpos($resources_html, '<h1>Resources</h1>') !== false, 'Resources archive missing shared library layout');
+check(strpos($resources_html, 'type="search"') !== false && strpos($resources_html, 'aria-pressed="true"') !== false, 'Resources search or accessible category filters missing');
+check(strpos($resources_html, 'No resources are available yet.') !== false, 'Resources empty state missing');
+ob_start();
+require get_stylesheet_directory() . '/move-makers.php';
+$move_makers_html = ob_get_clean();
+check(strpos($move_makers_html, 'pond-portal pond-library-page') !== false, 'Move Makers missing shared library grid styling');
+check(strpos($move_makers_html, 'type="search"') !== false && strpos($move_makers_html, 'aria-pressed="true"') !== false, 'Move Makers search or accessible filters missing');
+check(strpos($move_makers_html, 'No move makers are available yet.') !== false, 'Move Makers empty state missing');
+$reset_count = 0;
 check(apply_filters('mepr-account-nav-courses-link', '/account/?action=courses') === home_url('/member-dashboard/#courses'), 'Account Courses tab does not link to dashboard courses');
 $moderation_where = array(
     'suspend_where' => '( s.user_suspended = 0 OR s.user_suspended IS NULL )',
@@ -748,6 +773,9 @@ $fb_plugin = ABSPATH . 'wp-content/plugins/facebook-group-secret/';
 $fb_hooks = file_get_contents($fb_plugin . 'hooks.php');
 $fb_js = file_get_contents($fb_plugin . 'assets/facebook-group.js');
 $fb_css = file_get_contents($fb_plugin . 'assets/facebook-group.css');
+check(strpos($fb_css, '.bb-mp-account-settings > .mepr-facebook-wrapper') !== false &&
+    strpos($fb_css, 'flex: 1;') !== false && strpos($fb_css, 'min-width: 0;') !== false,
+    'Facebook account content wrapper lacks explicit flex sizing');
 token_get_all($fb_hooks, TOKEN_PARSE);
 check(!file_exists($fb_plugin . 'learndash/profile.php') && strpos($fb_hooks, 'learndash_template') === false,
     'Facebook plugin must not override the LearnDash profile (AJAX course search duplicated its section)');

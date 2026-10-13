@@ -8,7 +8,7 @@
 */
 
 get_header(); ?>
-<div class="pond-portal">
+<div class="pond-portal pond-library-page">
 <?php
 ?>
 
@@ -17,12 +17,12 @@ get_header(); ?>
 	<div class="row">
 		<div class="large-8 columns">
         <h1>Move Makers</h1>
+        <p><?php esc_html_e('Build your confidence with creative moves and focused skill practice.', 'buddyboss-theme-child'); ?></p>
 		</div>
 
 		<div class="large-4 columns">
-			<!-- <p class="searchText">Search Challenges</p> -->
-			<div class="searchfilter" style="margin-top: 5px;"><input type="text" id="filterSearch" name="filtr-search" class="filtr-search" value="" placeholder="Search move makers" data-search>
-			<a id="clearFilter" class="backBTN" href="javascript:;">Clear</a></div>
+			<div class="searchfilter"><label class="screen-reader-text" for="filterSearch"><?php esc_html_e('Search move makers', 'buddyboss-theme-child'); ?></label><input type="search" id="filterSearch" name="filtr-search" class="filtr-search" value="" placeholder="<?php esc_attr_e('Search move makers', 'buddyboss-theme-child'); ?>" data-search>
+			<button type="button" id="clearFilter" class="backBTN"><?php esc_html_e('Clear', 'buddyboss-theme-child'); ?></button></div>
 		</div>
 	</div>
 </section>
@@ -48,18 +48,6 @@ get_header(); ?>
 	));
 
 	$latestChallenge = ($challengesQuery->posts[0] ?? null);
-	$title = get_the_title(($latestChallenge ? $latestChallenge->ID : 0));
-	$shortDescription = get_field('description_short', $latestChallenge->ID);
-	$videoCode = get_field('video_code', $latestChallenge->ID);
-	if (empty($videoCode)) {
-		$post_thumbnail_id = get_post_thumbnail_id($latestChallenge);
-		$img = wp_get_attachment_image_url( $post_thumbnail_id , 'full');
-		if (empty($img))
-			$img = '/wp-content/themes/meltingpot-child/images/placeholder.png';
-
-		$videoCode = '<img src="' . $img . '" alt="' . $title . '" />';
-
-	}
 	?>
 	<div class="challenges-wrapper">
 		<?php
@@ -72,10 +60,10 @@ get_header(); ?>
 		if ( ! empty( $categories ) && ! is_wp_error( $categories ) ) {
 		?>
 			<ul class="clFilters" id="filteringModeSingle">
-				<li class="filtertoggle filtr-active" data-filter="all"> All </li>
+				<li><button type="button" class="filtertoggle filtr-active" data-filter="all" aria-pressed="true"><?php esc_html_e('All', 'buddyboss-theme-child'); ?></button></li>
 			<?php foreach( $categories as $cat) {
 				?>
-				<li class="filtertoggle" data-filter="<?php echo $cat->term_id;?>"> <?php echo $cat->name;?> </li>
+				<li><button type="button" class="filtertoggle" data-filter="<?php echo esc_attr($cat->term_id);?>" aria-pressed="false"><?php echo esc_html($cat->name);?></button></li>
 				<?php
 			} ?>
 
@@ -83,6 +71,9 @@ get_header(); ?>
 
 			<?php } ?>
 
+			<?php if (!$challengesQuery->have_posts()) : ?>
+				<p class="pond-library-empty"><?php esc_html_e('No move makers are available yet.', 'buddyboss-theme-child'); ?></p>
+			<?php endif; ?>
 			<div class="bootstrap-styles challenges">
 				<?php
 				while ($challengesQuery->have_posts()) : $challengesQuery->the_post();
@@ -103,9 +94,9 @@ get_header(); ?>
 					?>
 					<a 	href="<?php the_permalink(); ?>"
 						class="card shadow challenge filter"
-						data-category="<?=$termsString?>"
+						data-category="<?php echo esc_attr($termsString); ?>"
 						data-sort="value"
-						data-search="<?php the_title(); ?>\n<?php the_field('description_short'); ?>"
+						data-search="<?php echo esc_attr(get_the_title() . ' ' . wp_strip_all_tags((string) get_field('description_short'))); ?>"
 					>
 						<?php
 						$isMembersOnlyChallenge = false;
@@ -155,8 +146,8 @@ get_header(); ?>
 (function($){
 	$(document).ready(function(){
 		$('#filteringModeSingle .filtertoggle').click(function() {
-            $('#filteringModeSingle .filtertoggle').removeClass('filtr-active');
-            $(this).addClass('filtr-active');
+            $('#filteringModeSingle .filtertoggle').removeClass('filtr-active').attr('aria-pressed', 'false');
+            $(this).addClass('filtr-active').attr('aria-pressed', 'true');
 
             $('.challenges').filterize($(this).data('filter'), $('#filterSearch').val());
         });
@@ -177,9 +168,13 @@ get_header(); ?>
         var items = this.children('.filter');
         items.show();
 
-        if ((filter != '' || search != '') && filter != undefined && filter != null) {
+        filter = filter == null ? 'all' : String(filter);
+        search = String(search || '').toLowerCase();
+        if (filter !== 'all' || search !== '') {
             items.filter(function() {
-                return (!$(this).data("category").includes(filter) && filter != 'all') || !$(this).data('search').toLowerCase().includes(search.toLowerCase())
+                var categories = String($(this).attr('data-category') || '').split(',');
+                return (filter !== 'all' && categories.indexOf(filter) === -1) ||
+                    String($(this).attr('data-search') || '').toLowerCase().indexOf(search) === -1;
             }).hide();
         }
 

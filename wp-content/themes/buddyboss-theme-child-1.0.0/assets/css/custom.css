@@ -290,6 +290,12 @@ https://www.w3schools.com/css/css_rwd_mediaqueries.asp
   .pond-seo-preview__media { order: -1; }
   .pond-seo-preview__lessons ol { columns: 1; }
 }
+.lesson_tool.tool_fav,
+.lesson_tool.tool_bookmark,
+.post_tools > li:has(.tool_fav, .tool_bookmark),
+.lessonTools:has(.tool_fav, .tool_bookmark):not(:has(.lesson_tool:not(.tool_fav, .tool_bookmark))) {
+  display: none !important;
+}
 .pond-library-page { font: inherit; }
 .pond-library-page .dashboardbenefits { background: transparent; }
 .pond-library-page section.clbHeader { padding: 24px 0; background: transparent; margin: 0; }

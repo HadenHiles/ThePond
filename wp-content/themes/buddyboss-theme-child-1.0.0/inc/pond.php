@@ -7,6 +7,7 @@ add_action('template_redirect', 'pond_theme_dependencies');
 add_filter('wp_nav_menu_items', 'pond_theme_mobile_account', 20, 2);
 add_filter('nav_menu_link_attributes', 'pond_theme_menu_links', 20, 3);
 add_filter('wp_nav_menu_objects', 'pond_theme_dashboard_menu_items', 20);
+add_filter('wp_nav_menu_objects', 'pond_theme_hide_saved_content_links', 30);
 add_filter('register_url', 'pond_theme_registration_url', 1000);
 add_filter('body_class', 'pond_theme_auth_classes');
 add_filter('wp_nav_menu_items', 'pond_theme_account_menu', 30, 2);
@@ -305,6 +306,29 @@ function pond_theme_dashboard_menu_items($items) {
         }
     }
     return $items;
+}
+
+function pond_theme_hide_saved_content_links($items) {
+    $hidden_ids = array();
+    foreach ($items as $item) {
+        $path = rtrim((string) parse_url($item->url, PHP_URL_PATH), '/');
+        if ($path === rtrim((string) parse_url(home_url('/saved-content/'), PHP_URL_PATH), '/') ||
+            (isset($item->object_id) && get_page_template_slug($item->object_id) === 'members-templates/member-favourite-content.php')) {
+            $hidden_ids[] = (int) $item->ID;
+        }
+    }
+    do {
+        $previous_count = count($hidden_ids);
+        foreach ($items as $item) {
+            if (isset($item->menu_item_parent) && in_array((int) $item->menu_item_parent, $hidden_ids, true) &&
+                !in_array((int) $item->ID, $hidden_ids, true)) {
+                $hidden_ids[] = (int) $item->ID;
+            }
+        }
+    } while (count($hidden_ids) !== $previous_count);
+    return array_values(array_filter($items, function($item) use ($hidden_ids) {
+        return !in_array((int) $item->ID, $hidden_ids, true);
+    }));
 }
 
 function pond_theme_registration_url($url) {

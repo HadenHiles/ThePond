@@ -1,29 +1,29 @@
 <?php
 
 get_header(); ?>
-<div class="pond-portal">
+<div class="pond-portal pond-library-page">
 <?php
 
-$rename_content_library = "Content Library";
+$rename_content_library = __('Resources', 'buddyboss-theme-child');
 ?>
 
 
 <section class="clbHeader">
 	<div class="row">
 		<div class="large-8 columns">
-        <h1><?php echo $rename_content_library; ?></h1>
+        <h1><?php echo esc_html($rename_content_library); ?></h1>
+        <p><?php esc_html_e('Explore drills, routines, challenges and resources for your training.', 'buddyboss-theme-child'); ?></p>
 		</div>
 
 		<div class="large-4 columns">
-			<p class="searchText">Hi Search the <?php echo $rename_content_library; ?></p>
-			<div class="searchfilter"><input type="text" id="filterSearch" name="filtr-search" class="filtr-search" value="" placeholder="Enter you keyword here and press enter..." data-search>
-			<a id="clearFilter" class="backBTN" href="javascript:;">Clear</a></div>
+			<div class="searchfilter"><label class="screen-reader-text" for="filterSearch"><?php esc_html_e('Search resources', 'buddyboss-theme-child'); ?></label><input type="search" id="filterSearch" name="filtr-search" class="filtr-search" value="" placeholder="<?php esc_attr_e('Search resources', 'buddyboss-theme-child'); ?>" data-search>
+			<button type="button" id="clearFilter" class="backBTN"><?php esc_html_e('Clear', 'buddyboss-theme-child'); ?></button></div>
 		</div>
 	</div>
 </section>
 
 <!-- section-->
-<section class="memberbenefits dashboardbenefits" style="min-height: 80vh;">
+<section class="dashboardbenefits" style="min-height: 80vh; padding: 0 0 2rem 0;">
 	<div class="challenges-wrapper">
 		<?php
 			$categories = get_terms( 'library_category', array(
@@ -35,10 +35,10 @@ $rename_content_library = "Content Library";
 		if ( ! empty( $categories ) && ! is_wp_error( $categories ) ) {
 		?>
 			<ul class="clFilters" id="filteringModeSingle">
-				<li class="filtertoggle filtr-active" data-filter="all"> All </li>
+				<li><button type="button" class="filtertoggle filtr-active" data-filter="all" aria-pressed="true"><?php esc_html_e('All', 'buddyboss-theme-child'); ?></button></li>
 			<?php foreach( $categories as $cat) {
 				?>
-				<li class="filtertoggle" data-filter="<?php echo $cat->term_id;?>"> <?php echo $cat->name;?> </li>
+				<li><button type="button" class="filtertoggle" data-filter="<?php echo esc_attr($cat->term_id);?>" aria-pressed="false"><?php echo esc_html($cat->name);?></button></li>
 				<?php
 			} ?>
 
@@ -56,6 +56,9 @@ $rename_content_library = "Content Library";
                     'orderby' => 'post_date',
                     'suppress_filters' => true
                 ));
+                if (!$challengesQuery->have_posts()) {
+                    echo '<p class="pond-library-empty">' . esc_html__('No resources are available yet.', 'buddyboss-theme-child') . '</p>';
+                }
 				while ($challengesQuery->have_posts()) : $challengesQuery->the_post();
 					$terms = get_the_terms(get_the_ID(), 'library_category');
 
@@ -76,7 +79,7 @@ $rename_content_library = "Content Library";
 					}
 
 					?>
-					<a href="<?php if(get_field('available')) { ?><?php  the_permalink(); } ?>" class="card shadow challenge filter <?php echo $class; ?>" data-category="<?=$termsString?>" data-sort="value" data-search="<?php the_title(); ?>\n<?php the_field('description_short'); ?>">
+					<a <?php if(get_field('available')) : ?>href="<?php echo esc_url(get_permalink()); ?>"<?php else : ?>aria-disabled="true"<?php endif; ?> class="card shadow challenge filter <?php echo esc_attr($class); ?>" data-category="<?php echo esc_attr($termsString); ?>" data-sort="value" data-search="<?php echo esc_attr(get_the_title() . ' ' . wp_strip_all_tags((string) get_field('description_short'))); ?>">
 						<div class="card-img-top" style="background-image: url('<?php  echo $img; ?>'); overflow: hidden; position: relative;">
 							<?php
 							foreach ((is_array($terms) ? $terms : array()) as $term) {
@@ -107,8 +110,8 @@ $rename_content_library = "Content Library";
 (function($){
 	$(document).ready(function(){
 		$('#filteringModeSingle .filtertoggle').click(function() {
-            $('#filteringModeSingle .filtertoggle').removeClass('filtr-active');
-            $(this).addClass('filtr-active');
+            $('#filteringModeSingle .filtertoggle').removeClass('filtr-active').attr('aria-pressed', 'false');
+            $(this).addClass('filtr-active').attr('aria-pressed', 'true');
 
             $('.challenges').filterize($(this).data('filter'), $('#filterSearch').val());
         });
@@ -129,9 +132,13 @@ $rename_content_library = "Content Library";
         var items = this.children('.filter');
         items.show();
 
-        if ((filter != '' || search != '') && filter != undefined && filter != null) {
+        filter = filter == null ? 'all' : String(filter);
+        search = String(search || '').toLowerCase();
+        if (filter !== 'all' || search !== '') {
             items.filter(function() {
-                return (!$(this).data("category").includes(filter) && filter != 'all') || !$(this).data('search').toLowerCase().includes(search.toLowerCase())
+                var categories = String($(this).attr('data-category') || '').split(',');
+                return (filter !== 'all' && categories.indexOf(filter) === -1) ||
+                    String($(this).attr('data-search') || '').toLowerCase().indexOf(search) === -1;
             }).hide();
         }
 
