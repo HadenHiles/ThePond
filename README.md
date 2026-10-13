@@ -46,6 +46,29 @@ use each refinement's smaller upload list for the already migrated site.
 
 ### FTP upload manifest
 
+For the mobile header and dashboard refinement, overwrite:
+- `wp-content/themes/buddyboss-theme-child-1.0.0/inc/pond.php`
+- `wp-content/themes/buddyboss-theme-child-1.0.0/assets/css/custom.css`
+- `wp-content/themes/buddyboss-theme-child-1.0.0/assets/js/custom.js`
+
+Signed-in members see BuddyBoss's native mobile inbox and notification controls
+when those components are active; their unread counts and dropdowns are retained.
+The logo aligns beside the menu button without changing its typography or sizing.
+Below 800px, the existing Facebook group card moves below Challenges, Move Makers
+and Routines, immediately above Skills Vault. Desktop placement, membership
+gating and the single group-code generator are unchanged. Purge the site/CDN
+cache after upload and verify both mobile and desktop while signed in. Existing
+card colors, borders and header-control styling are preserved.
+
+For the Google/Firebase sign-in token handoff fix, overwrite
+`wp-content/plugins/miniorange-firebase-authentication-enterprise/admin/js/firebase-auth-main-script.js`
+and purge the site's JavaScript/CDN cache. Provider and email/password sign-in
+now await a refreshed ID token through Firebase's supported `getIdToken(true)`
+API instead of posting its private `_lat` field. Provider token-fetch failures
+display the login error without submitting, and new-account confirmation is
+preserved. Verify from a signed-out browser that the first Google sign-in reaches
+the dashboard (or the requested protected page), without a second click.
+
 For private-message recipient fixes, overwrite
 `wp-content/plugins/thepond-community/thepond-community.php`.
 Exact existing usernames and email addresses are normalized to BuddyBoss's

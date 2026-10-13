@@ -21,6 +21,23 @@ function eraseCookie(name) {
 }
 
 jQuery(function ($) {
+    var facebook = document.querySelector(".page-template-member-dashboard #facebook-secret-phrase");
+    var skillsVault = document.querySelector(".page-template-member-dashboard #skills-vault");
+    if (facebook && skillsVault) {
+        var originalParent = facebook.parentNode;
+        var originalNext = facebook.nextSibling;
+        var mobileDashboard = window.matchMedia("(max-width: 799px)");
+        function placeFacebookCard() {
+            if (mobileDashboard.matches) {
+                skillsVault.parentNode.insertBefore(facebook, skillsVault);
+            } else {
+                originalParent.insertBefore(facebook, originalNext);
+            }
+        }
+        placeFacebookCard();
+        mobileDashboard.addEventListener("change", placeFacebookCard);
+    }
+
     var $login = $("#firebase-login-page #mepr_loginform");
     var $loginActions = $login.closest(".mp_wrapper").find(".mepr-login-actions");
     if ($login.length === 1 && $loginActions.length === 1) {

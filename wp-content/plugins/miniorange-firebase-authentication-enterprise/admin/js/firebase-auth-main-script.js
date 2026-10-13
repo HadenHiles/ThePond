@@ -60,13 +60,15 @@ function mo_firebase_auth_firebaseAuthentication(pid, a_key, email, pass, test_c
 	// firebase.initializeApp(firebaseConfig);
 	firebase.auth().signInWithEmailAndPassword(email, pass)
 		.then(function (firebaseUser) {
-			setCookie("fb_user", JSON.stringify(firebaseUser), 90);
+			return firebaseUser.user.getIdToken(true).then(function (idToken) {
+				setCookie("fb_user", JSON.stringify(firebaseUser), 90);
 
-			if (test_check_field == 'test_check_true') {
-				document.getElementById('fb_is_test').value = 'test_check_true';
-			}
-			document.getElementById('fb_jwt').value = firebaseUser['user']['_lat'];
-			document.forms['jwtform'].submit();
+				if (test_check_field == 'test_check_true') {
+					document.getElementById('fb_is_test').value = 'test_check_true';
+				}
+				document.getElementById('fb_jwt').value = idToken;
+				document.forms['jwtform'].submit();
+			});
 		})
 		.catch(function (error) {
 			// Error Handling
@@ -246,23 +248,22 @@ function mo_firebase_auth_provider_firebaseAuthentication(provider_method, pid, 
 
 		//firebase.auth().signInWithRedirect(provider);
 
+		var user;
 		firebase.auth().signInWithPopup(provider)
 			.then(function (result) {
-				// This gives you a Google Access Token. You can use it to access the Google API.
-				var token = result.credential.accessToken;
-				// The signed-in user info.
-				var user = result.user;
-
+				user = result.user;
+				return user.getIdToken(true);
+			})
+			.then(function (idToken) {
 				setCookie("fb_user", JSON.stringify(user), 90);
 
 				if (test_check_field == 'test_check_true') {
-					document.getElementById('fb_is_test').value = 'test_check_true';
+					createform.elements['fb_is_test'].value = 'test_check_true';
 				}
-				document.getElementById('fb_jwt').value = user['_lat'];
-				document.getElementById('fb_user').value = JSON.stringify(user, null, 4);
+				createform.elements['fb_jwt'].value = idToken;
+				createform.elements['fb_user'].value = JSON.stringify(user, null, 4);
 
 				// If the user is trying to login - Check if the email exists or not and prompt the user before automatically creating a new account
-				var promptCreateAccount = false;
 				if (jQuery('#firebase-login-page').length == 1) {
 					var data = {
 						action: 'user_email_exists',
@@ -275,46 +276,44 @@ function mo_firebase_auth_provider_firebaseAuthentication(provider_method, pid, 
 						data: data,
 						success: function (response) {
 							if (!response.exists) {
-								promptCreateAccount = true;
-								
 								jQuery('#provider-email').text(user.email);
 								jQuery("#confirm-create-account-modal").modal({
 									backdrop: true
 								}).modal('toggle');
 
-								jQuery('#continue-create-account').click((e) => {
+								jQuery('#continue-create-account').off('click.moFirebase').on('click.moFirebase', (e) => {
 									e.preventDefault();
-									document.forms['jwtform'].submit();
+									createform.submit();
 								});
 							} else {
-								document.forms['jwtform'].submit();
+								createform.submit();
 							}
 						},
 						error: function(jqXHR, textStatus, errorThrown) {
 							console.error('Ajax server error for endpoint "user_email_exists": ' + textStatus + ': ' + errorThrown);
-							document.forms['jwtform'].submit();
+							createform.submit();
 						}
 					});
 				} else {
-					document.forms['jwtform'].submit();
+					createform.submit();
 				}
 			})
 			.catch(function (error) {
 				// Handle Errors here.
 				if (test_check_field == 'test_check_true') {
-					document.getElementById('fb_is_test').value = 'test_check_true';
+					createform.elements['fb_is_test'].value = 'test_check_true';
 				}
-				document.getElementById('fb_jwt').value = 'empty_string';
-				document.getElementById('fb_error_msg').value = error.message;
+				createform.elements['fb_jwt'].value = 'empty_string';
+				createform.elements['fb_error_msg'].value = error.message;
 
 				var $errContainer = jQuery('#login-error');
 				if ($errContainer.length == 1) {
 					console.log(error.code + ": " + error.message);
-					$errContainer.html(error.message);
+					$errContainer.text(error.message);
 					$errContainer.show();
 				} else {
 					$errContainer.hide();
-					document.forms['jwtform'].submit();
+					createform.submit();
 				}
 			});
 	}

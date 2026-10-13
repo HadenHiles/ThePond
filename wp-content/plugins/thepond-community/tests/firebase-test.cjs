@@ -78,9 +78,114 @@ for (const scenario of ['remember', 'without-remember', 'other-page']) {
     return collection(selector === '#firebase-login-page #mepr_loginform' ? 'login' : 'empty');
   }
   vm.runInNewContext(fs.readFileSync(path.join(root, 'wp-content/themes/buddyboss-theme-child-1.0.0/assets/js/custom.js'), 'utf8'),
-    {jQuery: jquery, document: {}, console});
+    {jQuery: jquery, document: {querySelector() { return null; }}, console});
   assert.deepEqual(movements, scenario === 'remember' ? ['remember-row'] :
     scenario === 'without-remember' ? ['before-submit'] : [], 'Forgot-password placement: ' + scenario);
   checks++;
 }
-console.log(`PASS: ${checks} Firebase initialization, auth UI and handler checks`);
+async function checkTokenHandoff() {
+  const source = fs.readFileSync(path.join(root,
+    'wp-content/plugins/miniorange-firebase-authentication-enterprise/admin/js/firebase-auth-main-script.js'), 'utf8');
+  for (const scenario of ['google', 'facebook', 'new-account', 'registration', 'token-error', 'popup-error', 'password']) {
+    const forms = [];
+    const cookies = [];
+    const errors = [];
+    const handlers = {};
+    let lookupCount = 0;
+    let resolveToken;
+    let rejectToken;
+    const tokenPromise = new Promise((resolve, reject) => {
+      resolveToken = resolve;
+      rejectToken = reject;
+    });
+    const user = {
+      email: 'member@example.com', _lat: 'expired-private-token',
+      getIdToken(forceRefresh) {
+        assert.equal(forceRefresh, true);
+        return tokenPromise;
+      },
+    };
+    const failure = {code: 'auth/network-request-failed', message: 'Token request failed'};
+    const document = {
+      forms: {},
+      body: {appendChild(form) { forms.push(form); document.forms.jwtform = form; }},
+      createElement() {
+        return {
+          elements: {}, attributes: {}, value: '', submissions: 0,
+          setAttribute(name, value) { this.attributes[name] = value; },
+          appendChild(input) { this.elements[input.attributes.name] = input; },
+          submit() { this.submissions++; },
+        };
+      },
+      getElementById(id) { return forms[0].elements[id]; },
+    };
+    function jquery(selector) {
+      return {
+        length: selector === '#firebase-login-page' && scenario === 'registration' ? 0 : 1,
+        text(value) { if (selector === '#login-error') errors.push(value); return this; },
+        show() { return this; }, hide() { return this; }, modal() { return this; },
+        off(event) { delete handlers[event]; return this; },
+        on(event, fn) { handlers[event] = fn; return this; },
+      };
+    }
+    jquery.ajax = options => {
+      lookupCount++;
+      options.success({exists: scenario !== 'new-account'});
+    };
+    const auth = {
+      signInWithPopup() {
+        return scenario === 'popup-error' ? Promise.reject(failure) : Promise.resolve({user});
+      },
+      signInWithEmailAndPassword() { return Promise.resolve({user}); },
+    };
+    function firebaseAuth() { return auth; }
+    firebaseAuth.GoogleAuthProvider = function () {};
+    firebaseAuth.FacebookAuthProvider = function () {};
+    const context = {
+      document, jQuery: jquery,
+      firebase: {apps: [{}], auth: firebaseAuth},
+      window: {location: {href: 'https://example.com/login/'}},
+      navigator: {userAgent: 'test'}, console: {log() {}, error() {}},
+      setCookie(name, value) { cookies.push({name, value}); },
+    };
+    vm.runInNewContext(source, context);
+    if (scenario === 'password') {
+      context.mo_firebase_auth_firebaseAuthentication('project', 'key', user.email, 'password', '');
+    } else {
+      context.mo_firebase_auth_provider_firebaseAuthentication(
+        scenario === 'facebook' ? 'facebook' : 'google', 'project', 'key', 'test_check_true');
+    }
+    await new Promise(resolve => setImmediate(resolve));
+    assert.equal(forms[0].submissions, 0, scenario + ': submitted before token was ready');
+    assert.equal(lookupCount, 0, scenario + ': checked email before token was ready');
+    assert.equal(cookies.length, 0, scenario + ': saved user before token was ready');
+    if (scenario === 'token-error') rejectToken(failure);
+    else resolveToken('fresh-id-token');
+    await new Promise(resolve => setImmediate(resolve));
+    if (scenario.endsWith('-error')) {
+      assert.equal(forms[0].submissions, 0, scenario + ': submitted failed authentication');
+      assert.equal(forms[0].elements.fb_jwt.value, 'empty_string');
+      assert.deepEqual(errors, [failure.message]);
+    } else {
+      assert.equal(forms[0].elements.fb_jwt.value, 'fresh-id-token');
+      assert.equal(cookies.length, 1);
+      if (scenario === 'new-account') {
+        assert.equal(forms[0].submissions, 0, 'New account must wait for confirmation');
+        handlers['click.moFirebase']({preventDefault() {}});
+      }
+      assert.equal(forms[0].submissions, 1, scenario + ': login must submit exactly once');
+      if (scenario !== 'password') {
+        assert.equal(forms[0].elements.fb_is_test.value, 'test_check_true');
+        assert.equal(JSON.parse(forms[0].elements.fb_user.value).email, user.email);
+      }
+    }
+    checks++;
+  }
+}
+
+checkTokenHandoff().then(() => {
+  console.log(`PASS: ${checks} Firebase initialization, auth UI, handler and token handoff checks`);
+}).catch(error => {
+  console.error(error);
+  process.exitCode = 1;
+});

@@ -196,7 +196,10 @@ function sanitize_text_field($text) { return trim(strip_tags($text)); }
 function sanitize_textarea_field($text) { return trim(strip_tags($text)); }
 function wp_nonce_field($action, $name) { echo '<input type="hidden" name="' . $name . '" value="' . $action . '">'; }
 function wp_verify_nonce($nonce, $action) { return $nonce === $action; }
-function bp_is_active($component) { return $GLOBALS['activity_active'] ?? true; }
+function bp_is_active($component) {
+    return isset($GLOBALS['active_components']) ? in_array($component, $GLOBALS['active_components'], true) :
+        ($GLOBALS['activity_active'] ?? true);
+}
 function bp_activity_post_update($args) { $GLOBALS['posted_activity'] = $args; return $GLOBALS['activity_result'] ?? 901; }
 function bp_activity_update_meta($id, $key, $value) { $GLOBALS['activity_meta'][$id][$key] = $value; }
 function bp_activity_get($args) { $GLOBALS['activity_query'] = $args; return array('activities' => $GLOBALS['lesson_activities'] ?? array()); }
@@ -883,6 +886,31 @@ $logged_in = true;
 pond_theme_member_404_button();
 check($buddyboss_theme_options['404_button_link'] === 'https://example.test/member-dashboard/', 'Member 404 button should return to the dashboard');
 $is_404_page = false;
+$original_mobile_options = array(
+    'mobile_component_opt_multi_checkbox' => array('mobile_header_search' => 1, 'mobile_messages' => 0, 'mobile_notifications' => 0),
+    'desktop_component_opt_multi_checkbox' => array('desktop_messages' => 0),
+);
+foreach (array(false, true) as $logged_in) {
+    foreach (array(array(), array('messages'), array('notifications'), array('messages', 'notifications')) as $active_components) {
+        $buddyboss_theme_options = $original_mobile_options;
+        pond_theme_mobile_community_icons();
+        foreach (array('messages', 'notifications') as $component) {
+            check($buddyboss_theme_options['mobile_component_opt_multi_checkbox']['mobile_' . $component] ===
+                ($logged_in && in_array($component, $active_components, true) ? 1 : 0),
+                'Mobile community icon gate changed: ' . $component);
+        }
+        check($buddyboss_theme_options['mobile_component_opt_multi_checkbox']['mobile_header_search'] === 1 &&
+            $buddyboss_theme_options['desktop_component_opt_multi_checkbox'] === $original_mobile_options['desktop_component_opt_multi_checkbox'],
+            'Mobile icon fix changes unrelated header settings');
+    }
+}
+$admin_request = true;
+$buddyboss_theme_options = $original_mobile_options;
+pond_theme_mobile_community_icons();
+check($buddyboss_theme_options === $original_mobile_options, 'Mobile icon override must not modify admin settings');
+$admin_request = false;
+$logged_in = true;
+unset($active_components);
 $dashboard_js = file_get_contents(get_stylesheet_directory() . '/assets/js/pond-dashboard.js');
 check(strpos($dashboard_js, "attr('data-ld-expand-id', this.id)") !== false &&
     strpos($dashboard_js, "'data-ld-expands': 'ld-main-course-list'") !== false &&

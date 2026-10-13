@@ -115,6 +115,7 @@ test("saved navy and cyan action text exceed WCAG AA normal-text contrast", () =
             const value = parseInt(hex.slice(offset, offset + 2), 16) / 255;
             return value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
         });
+
         return channels[0] * 0.2126 + channels[1] * 0.7152 + channels[2] * 0.0722;
     }
     for (const cookie of ["bbtheme=light", "bbtheme=dark"]) {
@@ -124,4 +125,60 @@ test("saved navy and cyan action text exceed WCAG AA normal-text contrast", () =
         const contrast = (Math.max(background, text) + 0.05) / (Math.min(background, text) + 0.05);
         assert.ok(contrast >= 4.5, `Action text contrast ${contrast} is below 4.5:1`);
     }
+});
+
+test("mobile dashboard moves one Facebook card above Skills Vault and restores desktop placement", () => {
+    const facebook = { id: "facebook-secret-phrase" };
+    const profile = { id: "ld-profile" };
+    const vault = { id: "skills-vault" };
+    const courses = {
+        children: [facebook, profile],
+        insertBefore(node, next) {
+            node.parentNode.children.splice(node.parentNode.children.indexOf(node), 1);
+            this.children.splice(this.children.indexOf(next), 0, node);
+            node.parentNode = this;
+        },
+    };
+    const portal = {
+        children: [{ id: "courses" }, { id: "challenges" }, { id: "move-makers" }, { id: "routines" }, vault],
+        insertBefore: courses.insertBefore,
+    };
+    facebook.parentNode = courses;
+    facebook.nextSibling = profile;
+    vault.parentNode = portal;
+    const media = {
+        matches: true,
+        addEventListener(event, handler) {
+            assert.equal(event, "change");
+            this.change = handler;
+        },
+    };
+    const empty = {
+        length: 0, closest() { return this; }, find() { return this; },
+        on() { return this; }, each() { return this; },
+    };
+    function jquery(selector) {
+        if (typeof selector === "function") { selector(jquery); return; }
+        return empty;
+    }
+    vm.runInNewContext(fs.readFileSync(path.join(__dirname,
+        "../../../themes/buddyboss-theme-child-1.0.0/assets/js/custom.js"), "utf8"), {
+        jQuery: jquery,
+        document: {
+            querySelector(selector) { return selector.endsWith("#skills-vault") ? vault : facebook; },
+        },
+        window: { matchMedia(query) { assert.equal(query, "(max-width: 799px)"); return media; } },
+    });
+    assert.deepEqual(portal.children.map(node => node.id),
+        ["courses", "challenges", "move-makers", "routines", "facebook-secret-phrase", "skills-vault"]);
+    assert.deepEqual(courses.children, [profile]);
+    for (const mobile of [false, true, true, false]) {
+        media.matches = mobile;
+        media.change();
+        assert.equal(facebook.parentNode, mobile ? portal : courses);
+        assert.equal((mobile ? portal : courses).children.filter(node => node === facebook).length, 1);
+        assert.equal(courses.children.at(-1), profile);
+        assert.equal(portal.children.at(-1), vault);
+    }
+    assert.deepEqual(courses.children, [facebook, profile]);
 });

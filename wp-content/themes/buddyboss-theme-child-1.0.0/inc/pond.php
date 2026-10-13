@@ -16,6 +16,22 @@ add_action('learndash-lesson-after', 'pond_theme_lesson_discussion_panel');
 add_action('admin_post_pond_lesson_discussion', 'pond_theme_post_lesson_discussion');
 add_action('admin_init', 'pond_theme_learndash_ajax_templates');
 add_action('template_redirect', 'pond_theme_member_404_button', 1);
+add_action('template_redirect', 'pond_theme_mobile_community_icons', 1);
+
+function pond_theme_mobile_community_icons() {
+    if (!is_user_logged_in() || is_admin() || !function_exists('bp_is_active')) {
+        return;
+    }
+    global $buddyboss_theme_options;
+    if (!isset($buddyboss_theme_options)) {
+        $buddyboss_theme_options = (array) get_option('buddyboss_theme_options', array());
+    }
+    foreach (array('messages', 'notifications') as $component) {
+        if (bp_is_active($component)) {
+            $buddyboss_theme_options['mobile_component_opt_multi_checkbox']['mobile_' . $component] = 1;
+        }
+    }
+}
 
 function pond_theme_member_404_button() {
     if (!is_404() || !is_user_logged_in()) {

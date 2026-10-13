@@ -751,6 +751,18 @@ html[data-pond-theme="dark"] #masthead .site-title :is(.bb-logo-dark, .bb-mobile
 html[data-pond-theme="dark"] #masthead .site-title a:has(.bb-logo-dark, .bb-mobile-logo-dark) { background: transparent; }
 html[data-pond-theme="light"] #masthead .site-title :is(.bb-logo-dark, .bb-mobile-logo-dark) { display: none; }
 @media (max-width: 799px) {
+    #masthead .bb-mobile-header .mobile-logo-wrapper {
+        flex: 1 1 0;
+        min-width: 0;
+        justify-content: flex-start;
+        text-align: left;
+    }
+    #masthead .bb-mobile-header .mobile-logo-wrapper img { max-width: 100%; }
+    #masthead .bb-mobile-header .header-aside { flex: 0 0 auto; }
+    .page-template-member-dashboard .pond-portal > .pond-dashboard-facebook {
+        padding: 24px var(--pond-dashboard-gutter);
+        margin: 0;
+    }
     .pond-auth-page #content .pond-signup-layout:has(.pond-signup-benefits) { display: block; }
     .pond-auth-page #content .pond-signup-benefits { margin-top: 24px; }
     .pond-auth-page #masthead .mobile-logo-wrapper { text-align: left; margin-left: 16px; }
