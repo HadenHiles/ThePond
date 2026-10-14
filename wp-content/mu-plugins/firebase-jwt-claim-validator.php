@@ -82,7 +82,7 @@ function thepond_prevalidate_firebase_jwt() {
     // All claims valid ,  miniOrange will complete RSA signature verification and log the user in.
 }
 
-function thepond_firebase_reject_jwt($reason) {
+function thepond_firebase_reject_jwt(string $reason) {
     error_log('[The Pond] Firebase JWT pre-validation rejected: ' . $reason);
 
     // Return the user to wherever they came from; the login page JS will display the error UI.

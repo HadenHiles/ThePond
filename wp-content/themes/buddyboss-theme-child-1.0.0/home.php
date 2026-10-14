@@ -117,7 +117,8 @@ by @CoachJeremy</title><meta content="Build your hockey game with progressive co
           margin: 0 auto;
      }
 
-     </style><style>.button.membership-plans-button {
+}
+</style><style>.button.membership-plans-button {
           background-image: none;
           background-position: center;
           padding-left: 20px;
