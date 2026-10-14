@@ -16,6 +16,7 @@ add_action('learndash-lesson-after', 'pond_theme_lesson_discussion_panel');
 add_action('admin_post_pond_lesson_discussion', 'pond_theme_post_lesson_discussion');
 add_action('admin_init', 'pond_theme_learndash_ajax_templates');
 add_action('template_redirect', 'pond_theme_member_404_button', 1);
+add_action('template_redirect', 'pond_theme_member_logo_link', 1);
 add_action('template_redirect', 'pond_theme_mobile_community_icons', 1);
 
 function pond_theme_mobile_community_icons() {
@@ -42,6 +43,22 @@ function pond_theme_member_404_button() {
         $buddyboss_theme_options = (array) get_option('buddyboss_theme_options', array());
     }
     $buddyboss_theme_options['404_button_link'] = home_url('/member-dashboard/');
+}
+
+// BuddyBoss sends signed-in logo clicks to this page ID (header, mobile header and panel).
+function pond_theme_member_logo_link() {
+    if (!is_user_logged_in()) {
+        return;
+    }
+    $dashboard = get_page_by_path('member-dashboard');
+    if (!$dashboard) {
+        return;
+    }
+    global $buddyboss_theme_options;
+    if (!isset($buddyboss_theme_options)) {
+        $buddyboss_theme_options = (array) get_option('buddyboss_theme_options', array());
+    }
+    $buddyboss_theme_options['header_logo_loggedin_link'] = $dashboard->ID;
 }
 
 // BuddyBoss only swaps in its LearnDash templates on template_redirect, which never runs in
@@ -203,6 +220,111 @@ function pond_theme_dependencies() {
     if (!function_exists('thepond_portal_course_tabs') || !class_exists('MeprUser') || !function_exists('get_field')) {
         wp_die('The Pond requires the updated The Pond Community plugin, MemberPress and Advanced Custom Fields. Activate these before using the BuddyBoss child theme.', 'Portal dependencies unavailable', array('response' => 503));
     }
+}
+
+// Mirrors the competency slider gradient; stored rgb values can be transparent.
+function pond_theme_skill_rating_rgb($percent) {
+    $stops = array(array(0, array(255, 0, 0)), array(20, array(255, 113, 0)), array(40, array(255, 113, 0)), array(60, array(255, 166, 0)), array(80, array(255, 166, 0)), array(100, array(0, 195, 0)));
+    $percent = max(0, min(100, (float) $percent));
+    for ($i = 1; $i < count($stops); $i++) {
+        if ($percent <= $stops[$i][0]) {
+            break;
+        }
+    }
+    $i = min($i, count($stops) - 1);
+    list($from_at, $from) = $stops[$i - 1];
+    list($to_at, $to) = $stops[$i];
+    $ratio = ($percent - $from_at) / ($to_at - $from_at);
+    $rgb = array();
+    for ($c = 0; $c < 3; $c++) {
+        $rgb[] = (int) round($from[$c] + ($to[$c] - $from[$c]) * $ratio);
+    }
+    return 'rgb(' . implode(', ', $rgb) . ')';
+}
+
+function pond_theme_skill_card($skill_id) {
+    $types = get_the_terms($skill_id, 'skill-type');
+    $types = is_array($types) ? $types : array();
+    $levels = get_the_terms($skill_id, 'performance-level');
+    $levels = is_array($levels) ? $levels : array();
+    $rating = is_user_logged_in() ? apply_filters('get_skill_rating', $skill_id) : null;
+    $rating = is_object($rating) && !empty($rating->data) ? $rating->data : null;
+    $percent = $rating && !empty($rating->percentage) ? (float) $rating->percentage : 0;
+    $pluck = function ($terms, $key) {
+        return array_map(function ($term) use ($key) { return $term->$key; }, $terms);
+    };
+    $field = function ($name) use ($skill_id) {
+        $value = get_field($name, $skill_id);
+        return empty($value) ? array() : $value;
+    };
+    return array(
+        'name' => get_the_title($skill_id),
+        'url' => get_permalink($skill_id),
+        'puckLevel' => max(0, min(5, intval(get_post_meta($skill_id, 'puck_level', true)))),
+        'pros' => $field('skill_pros'),
+        'cons' => $field('skill_cons'),
+        'skillExamples' => $field('skill_examples'),
+        'whenToUseIt' => get_field('when_to_use_it', $skill_id),
+        'videoCode' => get_field('video_code', $skill_id),
+        'skillTypes' => $types,
+        'skillTypeSlugs' => $pluck($types, 'slug'),
+        'skillTypeString' => implode(', ', $pluck($types, 'name')),
+        'performanceLevelString' => implode(', ', $pluck($levels, 'name')),
+        'ratingPercent' => $percent,
+        'ratingRgb' => $percent > 0 ? pond_theme_skill_rating_rgb($percent) : '',
+        'ratingLabel' => $percent >= 99 ? 'Game Changer' : ($percent > 0 ? sprintf('Rated %d%%', round($percent)) : 'Not rated yet'),
+    );
+}
+
+function pond_theme_skill_rating_badge($card) {
+    $percent = $card['ratingPercent'];
+    $style = $percent > 0 && $percent < 99 ? ' style="background-color: ' . esc_attr($card['ratingRgb']) . ';"' : '';
+    $logo = $percent >= 99 ? '<img src="/wp-content/plugins/skill-competency-slider/images/hth_logo.png" alt="">' : '';
+    return '<span class="pond-skill__rating' . ($percent > 0 ? '' : ' is-empty') . '" title="Your rating: ' . esc_attr($card['ratingLabel']) . '"' . $style . '>'
+        . $logo . '<span class="screen-reader-text">Your rating: ' . esc_html($card['ratingLabel']) . '</span></span>';
+}
+
+function pond_theme_skill_pucks($level) {
+    $html = '<span class="screen-reader-text">' . esc_html(sprintf('Frequency: %d of 5', $level)) . '</span>';
+    for ($x = 0; $x < 5; $x++) {
+        $html .= '<svg class="puck' . ($x < $level ? '' : ' faded') . '" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" viewBox="0 0 512 512"><path d="M0 160c0-53 114.6-96 256-96s256 43 256 96s-114.6 96-256 96S0 213 0 160zm0 82.2V352c0 53 114.6 96 256 96s256-43 256-96V242.2c-113.4 82.3-398.5 82.4-512 0z" /></svg>';
+    }
+    return $html;
+}
+
+function pond_theme_sort_skills_by_frequency($skills) {
+    usort($skills, function ($a, $b) {
+        $diff = intval(get_post_meta($b->ID, 'puck_level', true)) - intval(get_post_meta($a->ID, 'puck_level', true));
+        return $diff ?: strcasecmp(get_the_title($a->ID), get_the_title($b->ID));
+    });
+    return $skills;
+}
+
+function pond_theme_vimeo_thumbnail($video_html) {
+    if (!is_string($video_html) || !preg_match('~(?:player\.)?vimeo\.com/(?:video/)?(\d+)~', $video_html, $match)) {
+        return '';
+    }
+    $key = 'pond_vimeo_thumb_' . $match[1];
+    $cached = get_transient($key);
+    if ($cached !== false) {
+        return $cached === 'none' ? '' : $cached;
+    }
+    // Limit uncached lookups per page view; remaining thumbnails fill in on later visits.
+    static $lookups = 0;
+    if (++$lookups > 8) {
+        return '';
+    }
+    $thumbnail = '';
+    $response = wp_remote_get('https://vimeo.com/api/oembed.json?width=640&url=' . rawurlencode('https://vimeo.com/' . $match[1]), array('timeout' => 3));
+    if (!is_wp_error($response) && wp_remote_retrieve_response_code($response) === 200) {
+        $data = json_decode(wp_remote_retrieve_body($response), true);
+        if (!empty($data['thumbnail_url'])) {
+            $thumbnail = esc_url_raw($data['thumbnail_url']);
+        }
+    }
+    // Cache misses for a shorter time so a temporary Vimeo outage does not hide thumbnails for long.
+    set_transient($key, $thumbnail ?: 'none', $thumbnail ? MONTH_IN_SECONDS : DAY_IN_SECONDS);
+    return $thumbnail;
 }
 
 function pond_theme_is_legacy_page() {

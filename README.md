@@ -13,7 +13,7 @@ use each refinement's smaller upload list for the already migrated site.
 ### Preserved functionality
 
 - The dashboard keeps its course cards, LearnDash profile/progress, challenges,
-  Move Makers, routines and Skills Vault table, filters, ratings and resource dialogs.
+  Move Makers, routines and Skills Vault list, filters, ratings and resource dialogs.
   Legacy content styles are scoped to `.pond-portal`, not BuddyBoss chrome.
 - Firebase/miniOrange login, MemberPress registration, password-reset, account,
   checkout and subscription overrides retain their existing URLs and form hooks.
@@ -45,6 +45,51 @@ use each refinement's smaller upload list for the already migrated site.
   template filter, preventing Canvas from stripping the shell.
 
 ### FTP upload manifest
+
+For the Skills Vault card row, skill rating colours and richer `/skills/` cards, overwrite:
+- `wp-content/themes/buddyboss-theme-child-1.0.0/members-templates/member-dashboard.php`
+- `wp-content/themes/buddyboss-theme-child-1.0.0/single-skills.php`
+- `wp-content/themes/buddyboss-theme-child-1.0.0/archive-content-library.php`
+- `wp-content/themes/buddyboss-theme-child-1.0.0/inc/pond.php`
+- `wp-content/themes/buddyboss-theme-child-1.0.0/assets/css/custom.css`
+- `wp-content/themes/buddyboss-theme-child-1.0.0/assets/js/pond-dashboard.js`
+- `wp-content/plugins/skill-competency-slider/enqueue.php`
+- `wp-content/plugins/skill-competency-slider/js/competency-slider.js`
+
+and upload the new folder
+`wp-content/themes/buddyboss-theme-child-1.0.0/template-parts/skills/`
+(`card.php`, `vault-actions.php`, `vault-modal.php`).
+
+The dashboard Skills Vault now matches Latest Challenges and Routines: one row
+of the 3 most frequent skills, using the same cards as `/skills/`, followed by
+an "All Skills" button. Search, type filters and sorting live on `/skills/`.
+Skill cards show the thumbnail, the member's rating badge, type chips,
+frequency pucks and level, plus Breakdown/Examples dialogs for members. Rating
+colours are calculated from the saved percentage, because the slider had been
+saving a transparent colour whenever a skill page loaded; it now saves only
+when the member moves it. Skill pages' back button is "All Skills"
+(`/skills/`), and the "Skills Vault" items in Member Main Menu and Member
+Footer Menu (WordPress → Appearance → Menus) link to `/skills/`. Signed-in
+members' header logo now goes to the Member Dashboard (signed-out visitors
+still go to the landing page). Resources cards are unchanged. Purge the
+site/CDN cache.
+
+For the modern Skills Vault, skill pages and Skills thumbnails, overwrite:
+- `wp-content/themes/buddyboss-theme-child-1.0.0/members-templates/member-dashboard.php`
+- `wp-content/themes/buddyboss-theme-child-1.0.0/single-skills.php`
+- `wp-content/themes/buddyboss-theme-child-1.0.0/archive-content-library.php`
+- `wp-content/themes/buddyboss-theme-child-1.0.0/inc/pond.php`
+- `wp-content/themes/buddyboss-theme-child-1.0.0/assets/css/custom.css`
+- `wp-content/themes/buddyboss-theme-child-1.0.0/assets/js/pond-dashboard.js`
+
+The Skills Vault table is replaced by compact rows (stacked cards on phones)
+showing each member's rating swatch/Game Changer badge, frequency pucks, level,
+types and the existing Breakdown/Examples dialogs. Search, type pills and a sort
+menu (frequency, name, rating) run without DataTables. Skill pages use the
+Resources detail layout; member gating, rating slider, tips, pros/cons, related
+lessons and examples are retained. `/skills/` cards without a featured image use
+the skill's Vimeo thumbnail (cached; at most 8 uncached lookups per page view),
+then the existing placeholder. Purge the site/CDN cache.
 
 For the Skills archive and puck-rating visibility fixes, overwrite:
 - `wp-content/themes/buddyboss-theme-child-1.0.0/archive-skills.php`

@@ -30,6 +30,14 @@
 
         var sliderWidth = $("#competency-slider").outerWidth();
 
+        function competencyColor(value) {
+            var index = 1;
+            while (index < gradient.length - 1 && value > gradient[index][0]) index++;
+            var from = gradient[index - 1], to = gradient[index];
+            var ratio = (value - from[0]) / (to[0] - from[0]);
+            return 'rgb(' + pickHex(to[1], from[1], ratio).join() + ')';
+        }
+
         $(window).resize(() => {
             sliderWidth = $("#competency-slider").outerWidth();
         });
@@ -57,7 +65,7 @@
                                 $('#current-competency-color').html('<img src="/wp-content/plugins/skill-competency-slider/images/hth_logo.png" style="width: 100%;" />');
                             } else {
                                 $('#current-competency-color').html("");
-                                $('#current-competency-color').css({"background-color": response.data.rgb});
+                                $('#current-competency-color').css({"background-color": competencyColor(response.data.percentage)});
                             }
                         }
                     } else {
@@ -106,13 +114,15 @@
 
             },
             change: (event, ui) => {
+                // Loading the saved value also fires change; only save user moves.
+                if (!event || !event.originalEvent) return;
 
                 var data = {
                     action: 'update_skill_competency_rating',
                     skill_id: $('#competency-slider').data('skill-id'),
                     user_id: $('#competency-slider').data('user-id'),
                     percentage: ui.value,
-                    rgb: $('#current-competency-color').css("background-color")
+                    rgb: competencyColor(ui.value)
                 };
                 $.ajax({
                     url: ajax_url, // this will point to admin-ajax.php

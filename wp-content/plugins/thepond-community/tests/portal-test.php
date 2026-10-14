@@ -188,6 +188,7 @@ function _n($single, $plural, $count, $domain = '') { return $count === 1 ? $sin
 function get_the_post_thumbnail($id, $size, $attr = array()) { return '<img src="/thumb-' . $id . '.jpg" alt="">'; }
 function learndash_course_get_children_of_step($course, $step, $type) { return $GLOBALS['course_lessons'] ?? array(); }
 function get_post_status($id = 0) { return 'publish'; }
+function get_page_by_path($path) { return $path === 'member-dashboard' ? (object) array('ID' => 77) : null; }
 function has_excerpt($post) { return ($post->post_excerpt ?? '') !== ''; }
 function strip_shortcodes($text) { return preg_replace('/\[[^\]]+\]/', '', $text); }
 function get_bloginfo($key = '', $filter = '') { return $key === 'charset' ? 'UTF-8' : 'The Pond'; }
@@ -227,6 +228,15 @@ function learndash_course_progress($args) {
 }
 function learndash_get_course_id($id = 0) { return 3194; }
 function get_field($name, $id = 0) { global $fields; return isset($fields[$name]) ? $fields[$name] : false; }
+$transients = array();
+$remote_requests = array();
+function get_transient($key) { return $GLOBALS['transients'][$key] ?? false; }
+function set_transient($key, $value, $ttl = 0) { $GLOBALS['transients'][$key] = $value; return true; }
+function wp_remote_get($url, $args = array()) { $GLOBALS['remote_requests'][] = $url; return array('response' => array('code' => 200), 'body' => '{"thumbnail_url":"https://i.vimeocdn.com/video/thumb_640.jpg"}'); }
+function wp_remote_retrieve_response_code($response) { return $response['response']['code']; }
+function wp_remote_retrieve_body($response) { return $response['body']; }
+defined('MONTH_IN_SECONDS') || define('MONTH_IN_SECONDS', 2592000);
+defined('DAY_IN_SECONDS') || define('DAY_IN_SECONDS', 86400);
 function have_rows($name, $id = 0) {
     global $rows, $row_positions;
     $key = $name . ':' . $id;
@@ -247,6 +257,7 @@ function the_row() {
     $row_positions[$key] = $position + 1;
 }
 function get_sub_field($name) { global $current_row; return isset($current_row[$name]) ? $current_row[$name] : false; }
+function get_posts($args = array()) { return $GLOBALS['skill_lessons'] ?? array(); }
 function get_template_part($slug) {
     global $parts; $parts[] = $slug;
     $file = get_stylesheet_directory() . '/' . $slug . '.php';
@@ -355,8 +366,28 @@ $archive_feed_ids = array(123);
 ob_start();
 require get_stylesheet_directory() . '/archive-skills.php';
 $skills_html = ob_get_clean();
-check(strpos($skills_html, 'href="/item/0"') !== false && strpos($skills_html, 'aria-disabled="true"') === false && strpos($skills_html, 'Coming Soon') === false, 'Published skill incorrectly gated by Resources availability');
+check(strpos($skills_html, 'class="pond-skill-card__link" href="/item/123"') !== false && strpos($skills_html, 'aria-disabled="true"') === false && strpos($skills_html, 'Coming Soon') === false, 'Published skill incorrectly gated by Resources availability');
 check(strpos($skills_html, 'data-category="10,"') !== false && strpos($skills_html, 'Skill practice summary') !== false, 'Skill card category or summary missing');
+check(strpos($skills_html, '<article class="card shadow challenge filter pond-skill-card-item"') !== false && strpos($skills_html, '<a href="/item/123" class="card') === false, 'Skill cards should not nest action links inside a card link');
+check(strpos($skills_html, 'pond-skill-card__facts') !== false && strpos($skills_html, 'Frequency: ') !== false && strpos($skills_html, 'class="puck') !== false, 'Skill card frequency missing');
+check(strpos($skills_html, 'pond-skill__rating') !== false && strpos($skills_html, 'Your rating') !== false, 'Skill card rating missing');
+check(strpos($skills_html, 'id="pond-skill-archive-sort"') !== false && strpos($skills_html, 'data-frequency="') !== false, 'Skills archive sort missing');
+check(strpos($skills_html, 'Breakdown') !== false && strpos($skills_html, 'id="skillsVaultModal"') !== false, 'Member skill cards missing Breakdown action or modal');
+check(strpos($resources_html, 'pond-skill-card-item') === false && strpos($resources_html, 'id="pond-skill-archive-sort"') === false && strpos($resources_html, 'skillsVaultModal') === false, 'Resources archive should keep its existing cards');
+$fixture_video_code = $fields['video_code'] ?? null;
+$fields['video_code'] = '<iframe src="https://player.vimeo.com/video/473605460?h=abc"></iframe>';
+$remote_requests = array();
+ob_start();
+require get_stylesheet_directory() . '/archive-skills.php';
+$skills_html = ob_get_clean();
+check(strpos($skills_html, 'https://i.vimeocdn.com/video/thumb_640.jpg') !== false && strpos($skills_html, 'placeholder.png') === false, 'Skill card without featured image missing Vimeo thumbnail');
+check(count($remote_requests) === 1 && strpos($remote_requests[0], 'vimeo.com%2F473605460') !== false, 'Vimeo thumbnail lookup URL incorrect');
+ob_start();
+require get_stylesheet_directory() . '/archive-skills.php';
+ob_end_clean();
+check(count($remote_requests) === 1, 'Vimeo thumbnail lookup not cached');
+check(pond_theme_vimeo_thumbnail('<iframe src="https://www.youtube.com/embed/x"></iframe>') === '' && count($remote_requests) === 1, 'Non-Vimeo videos should not trigger thumbnail lookups');
+$fields['video_code'] = $fixture_video_code;
 unset($archive_feed_ids, $archive_type);
 ob_start();
 require get_stylesheet_directory() . '/move-makers.php';
@@ -908,6 +939,13 @@ check($buddyboss_theme_options['404_button_link'] === 'https://example.test/', '
 $logged_in = true;
 pond_theme_member_404_button();
 check($buddyboss_theme_options['404_button_link'] === 'https://example.test/member-dashboard/', 'Member 404 button should return to the dashboard');
+$buddyboss_theme_options = array('header_logo_loggedin_link' => '');
+$logged_in = false;
+pond_theme_member_logo_link();
+check($buddyboss_theme_options['header_logo_loggedin_link'] === '', 'Signed-out logo should keep the landing page link');
+$logged_in = true;
+pond_theme_member_logo_link();
+check($buddyboss_theme_options['header_logo_loggedin_link'] === 77, 'Signed-in logo should link to the member dashboard');
 $is_404_page = false;
 $original_mobile_options = array(
     'mobile_component_opt_multi_checkbox' => array('mobile_header_search' => 1, 'mobile_messages' => 0, 'mobile_notifications' => 0),
@@ -1049,6 +1087,50 @@ $other_detail_html = ob_get_clean();
 check(strpos($other_detail_html, 'tool_fav') !== false && strpos($other_detail_html, 'tool_bookmark') !== false,
     'Save controls on other library content must remain available');
 check(strpos($other_detail_html, 'pond-related-skill-list') === false, 'Empty related skills should not render a list');
+$rows['skill_quick_tips'] = array(array('title' => 'Keep your head up', 'content' => '<p>Scan the ice.</p>'), array('title' => 'Soft hands', 'content' => ''));
+$rows['skill_pros'] = array(array('title' => 'Fast release', 'content' => ''));
+$fields['skill_quick_tips'] = $rows['skill_quick_tips'];
+$fields['puck_level'] = '4';
+$fixture_video_code = $fields['video_code'] ?? null;
+$fields['video_code'] = '<iframe src="https://player.vimeo.com/video/473605460"></iframe>';
+$fields['when_to_use_it'] = '<p>On the rush</p>';
+$skill_lessons = array((object) array('ID' => 77));
+foreach (array(true, false) as $member) {
+    $remaining_posts = 1;
+    $row_positions = array();
+    ob_start();
+    require get_stylesheet_directory() . '/single-skills.php';
+    $skill_html = ob_get_clean();
+    check(strpos($skill_html, 'pond-portal pond-library-detail pond-skill-detail') !== false && strpos($skill_html, 'memberDashWelc') === false, 'Skill page missing shared detail layout');
+    check(substr_count($skill_html, '<h1') === 1 && strpos($skill_html, '</h3>') === false, 'Skill page heading structure invalid');
+    check(substr_count($skill_html, 'class="puck"') === 4 && substr_count($skill_html, 'class="puck faded"') === 1 && strpos($skill_html, 'Frequency: 4 of 5') !== false, 'Skill frequency pucks incorrect');
+    check(strpos($skill_html, 'When To Use It') !== false && strpos($skill_html, '/item/77') !== false, 'Skill page lost When To Use It or related lessons');
+    check((strpos($skill_html, '473605460') !== false) === $member && (strpos($skill_html, '2 Quick Tips') !== false) === $member && (strpos($skill_html, '>Pros<') !== false) === $member, 'Skill member content gating changed');
+    check((strpos($skill_html, 'This content is for members only') !== false) === !$member, 'Skill unauthorized preview changed');
+    check(strpos($skill_html, 'class="backBTN" href="/skills/"') !== false && strpos($skill_html, '#skills-vault') === false, 'Skill back destination incorrect');
+}
+unset($rows['skill_quick_tips'], $rows['skill_pros'], $fields['skill_quick_tips'], $fields['puck_level'], $fields['when_to_use_it'], $skill_lessons);
+$fields['video_code'] = $fixture_video_code;
+$member = true;
+$vault_template = file_get_contents(get_stylesheet_directory() . '/members-templates/member-dashboard.php');
+$vault_source = $vault_template
+    . file_get_contents(get_stylesheet_directory() . '/inc/pond.php')
+    . file_get_contents(get_stylesheet_directory() . '/template-parts/skills/card.php')
+    . file_get_contents(get_stylesheet_directory() . '/template-parts/skills/vault-actions.php')
+    . file_get_contents(get_stylesheet_directory() . '/template-parts/skills/vault-modal.php');
+check(strpos($vault_template, 'challenges pond-skill-cards') !== false && strpos($vault_template, "template-parts/skills/card.php") !== false, 'Skills Vault should reuse the Skills card in the dashboard card row');
+check(strpos($vault_template, 'pond_theme_sort_skills_by_frequency(') !== false && strpos($vault_template, ', 0, 3)') !== false, 'Skills Vault should show the three most frequent skills like the other dashboard rows');
+check(strpos($vault_template, '<a href="/skills/" class="BTN all-challenges">All Skills</a>') !== false && strpos($vault_template, 'pond-skill-footer') === false, 'Skills Vault should end with the shared All Skills button');
+check(strpos($vault_source, '<table') === false && strpos($vault_source, 'id="pond-skill-list"') === false, 'Skills Vault list rows should be replaced by cards');
+check(strpos($vault_source, "apply_filters('get_skill_rating'") !== false && strpos($vault_source, 'skill_rating_box') === false, 'Skills Vault rating must not use the table-cell shortcode');
+foreach (array('data-frequency=', 'data-rating=', 'pond-skill-card__facts', 'id="skillsVaultModal"', 'data-side=') as $needle) {
+    check(strpos($vault_source, $needle) !== false, 'Skills Vault markup missing ' . $needle);
+}
+check(pond_theme_skill_rating_rgb(0) === 'rgb(255, 0, 0)' && pond_theme_skill_rating_rgb(10) === 'rgb(255, 57, 0)' && pond_theme_skill_rating_rgb(50) === 'rgb(255, 140, 0)' && pond_theme_skill_rating_rgb(90) === 'rgb(128, 181, 0)', 'Skill rating colour should follow the competency slider gradient');
+$slider_js = file_get_contents(dirname(dirname(__DIR__)) . '/skill-competency-slider/js/competency-slider.js');
+check(strpos($slider_js, 'rgb: competencyColor(ui.value)') !== false && strpos($slider_js, '!event.originalEvent') !== false, 'Competency slider must not save a transparent colour when loading a rating');
+$vault_js = file_get_contents(get_stylesheet_directory() . '/assets/js/pond-dashboard.js');
+check(strpos($vault_js, 'DataTable(') === false && strpos($vault_js, '#pond-skill-list') === false && strpos($vault_js, '#skillsVaultModal') !== false, 'Skills Vault script should only drive the Breakdown/Examples modal');
 $member = true;
 foreach (array(dirname(__DIR__) . '/portal', get_stylesheet_directory()) as $directory) {
     foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory, FilesystemIterator::SKIP_DOTS)) as $file) {
