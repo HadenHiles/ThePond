@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Plugin Name: The Pond — Firebase JWT Claim Validator
+ * Plugin Name: The Pond ,  Firebase JWT Claim Validator
  * Description: Validates Firebase ID token claims (exp, iss, aud) before the
  *              miniOrange Firebase plugin processes them. Closes the missing
  *              claim-validation gap without modifying the licensed plugin.
@@ -15,7 +15,7 @@ if (! defined('THEPOND_FIREBASE_PROJECT_ID')) {
 }
 
 /**
- * Run at priority 5 — before miniOrange hooks at the default priority 10.
+ * Run at priority 5 ,  before miniOrange hooks at the default priority 10.
  * Rejects tokens that fail claim validation before signature verification runs.
  */
 add_action('init', 'thepond_prevalidate_firebase_jwt', 5);
@@ -38,7 +38,7 @@ function thepond_prevalidate_firebase_jwt() {
         return;
     }
 
-    // Decode claims — signature is intentionally verified later by miniOrange via openssl_verify.
+    // Decode claims ,  signature is intentionally verified later by miniOrange via openssl_verify.
     $payload = json_decode(
         base64_decode(strtr($parts[1], '-_', '+/')),
         true
@@ -53,7 +53,7 @@ function thepond_prevalidate_firebase_jwt() {
     $proj   = THEPOND_FIREBASE_PROJECT_ID;
     $issuer = 'https://securetoken.google.com/' . $proj;
 
-    // Expiry — most critical: prevents replay of intercepted or stolen tokens.
+    // Expiry ,  most critical: prevents replay of intercepted or stolen tokens.
     if (empty($payload['exp']) || (int) $payload['exp'] < $now) {
         thepond_firebase_reject_jwt('Token is expired (exp=' . ($payload['exp'] ?? 'missing') . ').');
         return;
@@ -72,14 +72,14 @@ function thepond_prevalidate_firebase_jwt() {
         return;
     }
 
-    // Audience must match this project ID — prevents cross-project token abuse.
+    // Audience must match this project ID ,  prevents cross-project token abuse.
     $token_aud = $payload['aud'] ?? '';
     if ($token_aud !== $proj) {
         thepond_firebase_reject_jwt('Invalid audience: ' . $token_aud);
         return;
     }
 
-    // All claims valid — miniOrange will complete RSA signature verification and log the user in.
+    // All claims valid ,  miniOrange will complete RSA signature verification and log the user in.
 }
 
 function thepond_firebase_reject_jwt($reason) {
