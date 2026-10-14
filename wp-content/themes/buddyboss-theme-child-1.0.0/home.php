@@ -12442,12 +12442,12 @@ also rich-text.less has its own sprite-sheet */
                     flex-direction: column;
                }
 
-               .hero-slider-content > .column.max-600 {
+               .hero-slider-content>.column.max-600 {
                     order: -1;
                     margin-top: 0 !important;
                }
 
-               .hero-slider-content > .column.hero-image-column {
+               .hero-slider-content>.column.hero-image-column {
                     order: 1;
                }
           }
@@ -12487,8 +12487,8 @@ also rich-text.less has its own sprite-sheet */
                                         </div>
                                         <div id="w-node-f2bd7fdc-a738-1450-b4f9-1b53880bc1f6-3da9f9f2" style="margin-top: -40px;" class="column max-600">
                                              <div class="label _30-margin"><br></div>
-                                             <h1>Build a more complete hockey game, one skill at a time.</h1>
-                                             <p class="big-paragraph max-500">Follow progressive courses in skating, shooting, stickhandling, and passing. Learn the technique, find focused ways to practice, and track your progress—on or off the ice.</p><a href="#pricingSect" class="button membership-plans-button w-button">View membership plans</a>
+                                             <h1>Get better at Hockey, one skill at a time.</h1>
+                                             <p class="big-paragraph max-500">Follow progressive courses in skating, shooting, stickhandling, and passing. Learn the technique, find focused ways to practice, and track your progress, on or off the ice.</p><a href="#pricingSect" class="button membership-plans-button w-button">View membership plans</a>
                                         </div>
                                    </div>
                               </div>
@@ -12804,7 +12804,8 @@ also rich-text.less has its own sprite-sheet */
                                                        with levels from 1 to 3 so you can build from fundamentals
                                                        toward more advanced skills. Lessons include focused instruction
                                                        and practice guidance. You can preview the teaching style in the
-                                                       <a href="#free-lessons">free sample lessons</a>.</p>
+                                                       <a href="#free-lessons">free sample lessons</a>.
+                                                  </p>
                                              </div>
                                         </div>
                                    </div>
