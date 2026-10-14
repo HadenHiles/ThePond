@@ -697,7 +697,10 @@ foreach (array('pond-bootstrap', 'pond-datatables', 'pond-popper') as $handle) {
 }
 check(strpos(file_get_contents(get_stylesheet_directory() . '/members-templates/member_register.php'), 'setcookie') <
     strpos(file_get_contents(get_stylesheet_directory() . '/members-templates/member_register.php'), 'get_header'), 'Signup cookie sent after output');
-check(strpos(file_get_contents(get_stylesheet_directory() . '/home.php'), '/melting_pot/home.php') !== false, 'Static public landing page lost');
+$landing = file_get_contents(get_stylesheet_directory() . '/home.php');
+check(strpos($landing, '<!DOCTYPE html>') !== false &&
+    strpos($landing, '/landing-page-files/webflow.e1003040c.js') !== false &&
+    strpos($landing, '/melting_pot/home.php') === false, 'Static public landing page lost or depends on Melting Pot');
 $auth_hook_args = null;
 add_action('mo_custom_login_form_end', function ($username, $password, $submit) use (&$auth_hook_args) {
     $auth_hook_args = array($username, $password, $submit);

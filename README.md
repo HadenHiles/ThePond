@@ -76,10 +76,14 @@ use each refinement's smaller upload list for the already migrated site.
 - Existing menu items are reused, including dashboard anchors, search, account
   and logout. Logout clears Firebase and then uses WordPress's nonce-protected
   logout URL. Custom account-menu destinations also appear in the native mobile menu.
-- The public homepage remains its existing standalone marketing template, including
-  membership-selection links. It deliberately does not acquire BuddyBoss's portal shell.
-  Keep **both old Melting Pot themes installed**: their existing static assets,
-  placeholder images and the standalone landing-page source are reused.
+- The public homepage is a standalone marketing template in
+  [BuddyBoss Child's home.php](wp-content/themes/buddyboss-theme-child-1.0.0/home.php),
+  including membership-selection links. It deliberately does not acquire BuddyBoss's
+  portal shell. Keep **both old Melting Pot themes installed** because other existing
+  static assets and placeholder images are still reused; the homepage source no longer
+  depends on either theme. Deploy homepage edits from BuddyBoss Child's `home.php`,
+  keep the shared `/landing-page-files/` assets deployed, and remove the obsolete
+  `melting_pot/home.php` copy from servers when updating.
   No vendor parent theme or complete third-party plugin needs uploading/tracking.
 - ReadyLaunch is forced off with BuddyBoss Theme so it cannot compete with native
   community or LearnDash rendering. The old hybrid behavior remains available on
