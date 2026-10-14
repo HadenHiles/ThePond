@@ -1,6 +1,48 @@
 # The Pond
 A wordpress site that uses learndash/memberpress to provide the most efficient hockey skills courses in the world.
 
+## Hosting migration: Ubuntu 24.04 / PHP 8.3
+
+On October 14, 2026, the site moved from the Ubuntu 18.04 / PHP 7.4 Droplet
+to `thepond-new` in TOR1. Both `thepond.howtohockey.com` and
+`www.thepond.howtohockey.com` now point to `201.79.56.101`. The old Droplet
+at `178.128.232.27` remains available for rollback; do not delete it until
+the new server has been monitored and backed up.
+
+- Apache uses PHP 8.3 through `mod_php`, with a local Redis cache. The web root
+  remains `/var/www/thepond`. WordPress, plugins and themes were copied without
+  version updates.
+- The existing external database cluster remains in use. The new server has an
+  IP-specific `thepond` account with access to the production database. Database
+  credentials are supplied by `/etc/apache2/thepond-environment`, readable only
+  by root; do not commit this file or upload credentials to the repository.
+- Web PHP settings are in `/etc/php/8.3/apache2/conf.d/99-thepond.ini`:
+  512 MB memory, 300-second execution time, 8,000 input variables and 75 MB
+  upload/post limits. Short tags remain enabled to support the legacy templates,
+  matching the old server's Apache configuration.
+- `DISABLE_WP_CRON` is enabled on both servers. On the new server,
+  `thepond-wp-cron.timer` runs jobs every minute through a localhost-only HTTPS
+  endpoint. Check `systemctl list-timers thepond-wp-cron.timer` and
+  `journalctl -u thepond-wp-cron.service` when investigating scheduled jobs.
+  No WordPress scheduler was copied to the old server.
+- HTTPS uses the certificate in
+  `/etc/letsencrypt/live/thepond.howtohockey.com-0001/`, covering both hostnames.
+  Certbot's renewal timer and Apache reload hook handle renewal.
+- PHP errors are logged to `/var/log/apache2/thepond-error.log`; errors are not
+  displayed to visitors.
+
+The homepage, member dashboard, LearnDash lesson, Elementor editor and checkout
+layout were checked before cutover. These checks did not submit a payment or
+verify a new subscription. A syntax scan also identified pre-existing invalid
+Firebase and BuddyBoss vendor templates; they were not modified during migration.
+
+For rollback, stop the new server's `thepond-wp-cron.timer` first, restore the old
+server's WordPress configuration from
+`/root/thepond-migration/wp-config.before-cron-handoff.php`, and point both DNS
+records back to `178.128.232.27`. Verify scheduled jobs and certificate renewal on
+the restored server. A Droplet rollback does **not** roll back the external
+database. Remove any local hosts-file preview override before testing public DNS.
+
 ## Current migration: BuddyBoss Theme + the existing Pond portal
 
 The prepared [BuddyBoss child theme](wp-content/themes/buddyboss-theme-child-1.0.0)
