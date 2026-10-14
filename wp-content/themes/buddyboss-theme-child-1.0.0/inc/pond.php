@@ -17,7 +17,18 @@ add_action('admin_post_pond_lesson_discussion', 'pond_theme_post_lesson_discussi
 add_action('admin_init', 'pond_theme_learndash_ajax_templates');
 add_action('template_redirect', 'pond_theme_member_404_button', 1);
 add_action('template_redirect', 'pond_theme_member_logo_link', 1);
+add_action('template_redirect', 'pond_theme_public_layout', 1);
+add_filter('pre_wp_nav_menu', 'pond_theme_hide_public_header_menu', 10, 2);
 add_action('template_redirect', 'pond_theme_mobile_community_icons', 1);
+add_filter('nav_menu_item_title', 'pond_theme_menu_item_icons', 20);
+
+// Menu labels saved in WordPress use Font Awesome Pro duotone icons, which the site doesn't load.
+function pond_theme_menu_item_icons($title) {
+    if (strpos($title, 'fa-sign-out') === false) {
+        return $title;
+    }
+    return preg_replace('/<i\s+class="fad\s+fa-sign-out(?:-alt)?"[^>]*>\s*<\/i>/', '<i class="bb-icon-l bb-icon-sign-out" aria-hidden="true"></i>', $title);
+}
 
 function pond_theme_mobile_community_icons() {
     if (!is_user_logged_in() || is_admin() || !function_exists('bp_is_active')) {
@@ -59,6 +70,27 @@ function pond_theme_member_logo_link() {
         $buddyboss_theme_options = (array) get_option('buddyboss_theme_options', array());
     }
     $buddyboss_theme_options['header_logo_loggedin_link'] = $dashboard->ID;
+}
+
+// Signed-out pages (e.g. /support/) skip the member sidebar; header Sign in/Sign up replace its Join Now/Member Login links.
+function pond_theme_public_layout() {
+    if (is_user_logged_in()) {
+        return;
+    }
+    global $buddyboss_theme_options;
+    if (!isset($buddyboss_theme_options)) {
+        $buddyboss_theme_options = (array) get_option('buddyboss_theme_options', array());
+    }
+    $buddyboss_theme_options['buddypanel'] = 0;
+}
+
+// Only the desktop header copy is removed; the mobile panel still needs these links.
+function pond_theme_hide_public_header_menu($output, $args) {
+    if (!is_user_logged_in() && isset($args->theme_location, $args->menu_id) &&
+        $args->theme_location === 'header-menu-logout' && $args->menu_id === 'primary-menu') {
+        return '';
+    }
+    return $output;
 }
 
 // BuddyBoss only swaps in its LearnDash templates on template_redirect, which never runs in

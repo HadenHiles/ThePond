@@ -229,6 +229,7 @@ https://www.w3schools.com/css/css_rwd_mediaqueries.asp
 
 .page-template-member-dashboard #courses #ld-profile .ld-profile-summary {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
@@ -525,7 +526,6 @@ https://www.w3schools.com/css/css_rwd_mediaqueries.asp
 @media (max-width: 799px) {
     .page-template-member_support .pond-portal > .row,
     .page-template-member_support .pond-portal > .row > .columns { padding-left: 0; padding-right: 0; }
-    .page-template-member_support .membSupportForm { padding: 16px; }
     .pond-library-page .clbHeader > .row { padding: 0; }
     .pond-library-page .clbHeader > .row::before,
     .pond-library-page .clbHeader > .row::after { display: none; }
@@ -543,6 +543,71 @@ https://www.w3schools.com/css/css_rwd_mediaqueries.asp
     .page-template-member-dashboard #courses #ld-profile .ld-profile-stat strong { font-size: 26px; }
     .page-template-member-dashboard #courses #ld-profile .ld-profile-stat span { font-size: 12px; }
     .pond-library-page .challenges { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+}
+
+/* Support forms (member and public /support/) */
+.page-template-member_support .pond-portal .membSupportForm {
+    display: block;
+    margin: 24px 0 48px;
+    padding: 0;
+    background: transparent;
+}
+.page-template-member_support .membSupportForm .wpforms-container {
+    --wpforms-field-border-radius: 8px;
+    --wpforms-field-background-color: var(--bb-content-background-color);
+    --wpforms-field-border-color: var(--bb-content-border-color);
+    --wpforms-field-text-color: var(--bb-body-text-color);
+    --wpforms-label-color: var(--bb-headings-color);
+    --wpforms-label-sublabel-color: var(--bb-alternate-text-color);
+    --wpforms-button-background-color: var(--bb-primary-button-background-regular);
+    --wpforms-button-text-color: var(--bb-primary-button-text-regular);
+    --wpforms-button-border-radius: 8px;
+    max-width: 720px;
+    margin: 0;
+}
+.page-template-member_support .membSupportForm .wpforms-field { padding: 0 0 20px; }
+.page-template-member_support .membSupportForm div.wpforms-container-full .wpforms-form .wpforms-field-row { max-width: 100%; }
+.page-template-member_support .membSupportForm .wpforms-field-label { margin: 0 0 8px; font: inherit; font-size: 15px; font-weight: 600; color: var(--bb-headings-color); }
+.page-template-member_support .membSupportForm .wpforms-field-sublabel { margin-top: 6px; font-size: 13px; color: var(--bb-alternate-text-color); }
+.page-template-member_support .membSupportForm .wpforms-required-label { color: #d64545; }
+.page-template-member_support .membSupportForm div.wpforms-container-full .wpforms-form :is(input[type="text"], input[type="email"], input[type="tel"], input[type="url"], input[type="number"], select, textarea) {
+    width: 100%;
+    max-width: 100%;
+    height: 48px;
+    padding: 0 14px;
+    font: inherit;
+    font-size: 15px;
+    color: var(--bb-body-text-color) !important;
+    background: var(--bb-content-background-color) !important;
+    border: 1px solid var(--bb-content-border-color);
+    border-radius: 8px;
+    box-shadow: none;
+}
+.page-template-member_support .membSupportForm div.wpforms-container-full .wpforms-form textarea { height: auto; min-height: 160px; padding: 12px 14px; resize: vertical; }
+.page-template-member_support .membSupportForm div.wpforms-container-full .wpforms-form :is(input, select, textarea):focus {
+    outline: none;
+    border-color: var(--bb-primary-color);
+    box-shadow: 0 0 0 3px rgba(var(--bb-primary-color-rgb), .2) !important;
+}
+.page-template-member_support .membSupportForm div.wpforms-container-full .wpforms-form .wpforms-submit-container { padding: 4px 0 0; }
+.page-template-member_support .membSupportForm div.wpforms-container-full .wpforms-form button.wpforms-submit {
+    min-width: 160px;
+    height: 48px;
+    padding: 0 24px;
+    font: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: none;
+    color: var(--bb-primary-button-text-regular) !important;
+    background: var(--bb-primary-button-background-regular) !important;
+    border: 1px solid var(--bb-primary-button-border-regular);
+    border-radius: 8px;
+    cursor: pointer;
+}
+.page-template-member_support .membSupportForm div.wpforms-container-full .wpforms-form button.wpforms-submit:hover { filter: brightness(1.08); }
+.page-template-member_support .membSupportForm div.wpforms-container-full .wpforms-form button.wpforms-submit:focus-visible { outline: 2px solid var(--bb-primary-color); outline-offset: 2px; }
+@media (max-width: 600px) {
+    .page-template-member_support .membSupportForm div.wpforms-container-full .wpforms-form button.wpforms-submit { width: 100%; }
 }
 
 /* ReadyLaunch stores branding separately; the portal shares its saved accents. */
@@ -706,6 +771,14 @@ html[data-pond-theme="dark"] .pond-portal .challenges .card-text {
 html[data-pond-theme="dark"] .site-title a:has(img) {
     background: #fff;
     border-radius: 4px;
+}
+/* BuddyBoss tints the selected conversation with a 90% white overlay, which stays light in dark mode. */
+html[data-pond-theme="dark"] .bb-template-v2 #message-threads .current > a,
+html[data-pond-theme="dark"] .bb-template-v2 .message-thread-options .current:hover + .bp-message-link,
+html[data-pond-theme="dark"] .bb-template-v2 #message-threads .bp-message-link:hover .thread-avatar .thread-multiple-avatar::before,
+html[data-pond-theme="dark"] .bb-template-v2 #message-threads .current .bp-message-link .thread-avatar .thread-multiple-avatar::before,
+html[data-pond-theme="dark"] .bp-messages-content-wrapper .dropzone {
+    background: linear-gradient(0deg, rgba(var(--bb-primary-color-rgb), .25), rgba(var(--bb-primary-color-rgb), .25)), var(--bb-content-alternate-background-color);
 }
 @media (max-width: 799px) {
     html[data-pond-theme] .pond-theme-toggle { width: 32px; height: 32px; margin-right: 6px; }

@@ -946,6 +946,25 @@ check($buddyboss_theme_options['header_logo_loggedin_link'] === '', 'Signed-out 
 $logged_in = true;
 pond_theme_member_logo_link();
 check($buddyboss_theme_options['header_logo_loggedin_link'] === 77, 'Signed-in logo should link to the member dashboard');
+$buddyboss_theme_options = array('buddypanel' => 1);
+pond_theme_public_layout();
+check($buddyboss_theme_options['buddypanel'] === 1, 'Signed-in pages should keep the member sidebar');
+$logged_in = false;
+pond_theme_public_layout();
+check($buddyboss_theme_options['buddypanel'] === 0, 'Signed-out pages should hide the duplicate Join Now/Member Login sidebar');
+$desktop_menu = (object) array('theme_location' => 'header-menu-logout', 'menu_id' => 'primary-menu');
+$mobile_menu = (object) array('theme_location' => 'header-menu-logout', 'menu_id' => '');
+check(pond_theme_hide_public_header_menu(null, $desktop_menu) === '', 'Signed-out desktop header menu should be hidden');
+check(pond_theme_hide_public_header_menu(null, $mobile_menu) === null, 'Signed-out mobile panel should keep its sign-in links');
+check(pond_theme_hide_public_header_menu(null, (object) array('theme_location' => 'header-menu', 'menu_id' => 'primary-menu')) === null, 'Other menus should be untouched');
+$logged_in = true;
+check(pond_theme_hide_public_header_menu(null, $desktop_menu) === null, 'Signed-in header menus should be untouched');
+$support_css = file_get_contents(dirname(__DIR__, 3) . '/themes/buddyboss-theme-child-1.0.0/assets/css/custom.css');
+check(strpos($support_css, '.membSupportForm div.wpforms-container-full .wpforms-form button.wpforms-submit') !== false, 'Support form button should use the theme button style');
+check(strpos($support_css, '.page-template-member_support .membSupportForm { padding: 16px; }') === false, 'Support form should not keep the old panel padding');
+check(strpos($support_css, 'html[data-pond-theme="dark"] .bb-template-v2 #message-threads .current > a') !== false, 'Selected conversation should stay dark in dark mode');
+check(pond_theme_menu_item_icons('Logout <i class="fad fa-sign-out-alt"></i>') === 'Logout <i class="bb-icon-l bb-icon-sign-out" aria-hidden="true"></i>', 'Logout menu icon should use the loaded BuddyBoss icon font');
+check(pond_theme_menu_item_icons('Support') === 'Support', 'Other menu titles should be untouched');
 $is_404_page = false;
 $original_mobile_options = array(
     'mobile_component_opt_multi_checkbox' => array('mobile_header_search' => 1, 'mobile_messages' => 0, 'mobile_notifications' => 0),

@@ -46,6 +46,22 @@ use each refinement's smaller upload list for the already migrated site.
 
 ### FTP upload manifest
 
+For the public support layout and support form styles, overwrite:
+- `wp-content/themes/buddyboss-theme-child-1.0.0/inc/pond.php`
+- `wp-content/themes/buddyboss-theme-child-1.0.0/assets/css/custom.css`
+
+Signed-out visitors no longer get the BuddyBoss sidebar or the desktop header
+"Join Now / Member Login" menu (the header's Sign in / Sign up buttons cover
+them); the mobile hamburger keeps those links because the mobile header has no
+sign-in buttons. Signed-in pages keep the member layout. Both support forms
+(`/support/` and `/member-support/`) drop the grey panel and use theme-coloured
+inputs and the primary button colour. Purge the site/CDN cache.
+
+The same two files also fix the footer menu's Logout icon (the saved menu label
+uses a Font Awesome Pro duotone icon the site doesn't load; it's swapped for
+BuddyBoss's sign-out icon) and keep the selected conversation in Messages dark
+in dark mode.
+
 For the Skills Vault card row, skill rating colours and richer `/skills/` cards, overwrite:
 - `wp-content/themes/buddyboss-theme-child-1.0.0/members-templates/member-dashboard.php`
 - `wp-content/themes/buddyboss-theme-child-1.0.0/single-skills.php`
