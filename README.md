@@ -66,10 +66,12 @@ use each refinement's smaller upload list for the already migrated site.
   only when BuddyBoss is the parent theme. Melting Pot remains independently usable.
 - Native LearnDash content tabs receive the existing ACF video/image/audio,
   Vimeo jump links, goals, practice tips/mistakes, skill links and downloads/resources.
-  Both MemberPress authorization and LearnDash course access are required for
-  this protected material. Native progression/drip gating determines whether the
-  content tabs render; the adapter does not replace LearnDash templates, enrollment,
-  navigation or completion controls.
+  Member-only material requires both MemberPress authorization and LearnDash course
+  access. Published lessons marked as samples in the free `free-lessons` course can
+  show their lesson material to visitors; member downloads and lesson tracking stay
+  protected. Native progression/drip gating determines whether member content renders;
+  the adapter does not replace LearnDash templates, enrollment, navigation or completion
+  controls.
 - Challenges retain their score controls and Firebase collection. The Challenge
   Score plugin no longer overrides the migrated child template on BuddyBoss.
   Routines, content-library browsing, skill pages, My Content and support remain available.

@@ -5,7 +5,9 @@
 <?php endif; ?>
 <?php
 //Unauthorized
-if (!current_user_can('memberpress_authorized')) {
+if (!current_user_can('memberpress_authorized') &&
+    !(function_exists('thepond_portal_is_free_course_sample') &&
+        thepond_portal_is_free_course_sample(get_the_ID()))) {
     ?>
     <div class="bootstrap-styles">
         <div class="card">

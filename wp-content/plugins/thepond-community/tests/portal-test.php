@@ -13,6 +13,9 @@ foreach (array('attribute-token', 'text-replacement', 'span', 'decoder', 'tag-pr
 $checks = 0;
 $member = true;
 $access = true;
+$sample_lesson = false;
+$course_settings = array();
+$post_fields = array();
 $post_type = 'sfwd-lessons';
 $post_id = 3250;
 $legacy = false;
@@ -96,6 +99,7 @@ function nocache_headers() {}
 function wp_unslash($value) { return stripslashes($value); }
 function wp_die($message, $title = '', $args = array()) { throw new RuntimeException($message, $args['response'] ?? 500); }
 function get_post_type($id = 0) { return $GLOBALS['post_type']; }
+function get_post_field($field, $id = 0) { return $GLOBALS['post_fields'][$id][$field] ?? ''; }
 function post_password_required() { return $GLOBALS['password_protected'] ?? false; }
 function add_query_arg($key, $value, $url = null) {
     if (is_array($key)) {
@@ -227,6 +231,8 @@ function learndash_course_progress($args) {
     return $GLOBALS['course_progress_results'][$args['course_id']];
 }
 function learndash_get_course_id($id = 0) { return 3194; }
+function learndash_get_setting($id, $setting = '') { return $GLOBALS['course_settings'][$id][$setting] ?? ''; }
+function learndash_is_sample($post) { return $GLOBALS['sample_lesson']; }
 function get_field($name, $id = 0) { global $fields; return isset($fields[$name]) ? $fields[$name] : false; }
 $transients = array();
 $remote_requests = array();
@@ -489,6 +495,23 @@ check($rendered[1] === $tabs[1], 'Native materials tab replaced');
 check(apply_filters('learndash_content_tabs', $rendered, 'lesson', 3194, 123) === $rendered, 'Course material duplicated');
 $access = false;
 check(apply_filters('learndash_content_tabs', $tabs, 'lesson', 3194, 123) === $tabs, 'Unenrolled media exposed');
+$member = false; $logged_in = false; $sample_lesson = true;
+$post_fields[3194]['post_name'] = 'free-lessons';
+$course_settings[3194]['course_price_type'] = 'free';
+$free_sample = apply_filters('learndash_content_tabs', $tabs, 'lesson', 3194, 123);
+check(strpos($free_sample[0]['content'], '440111888') !== false &&
+    strpos($free_sample[0]['content'], 'Before video') !== false, 'Public free sample lesson media missing');
+check(strpos($free_sample[0]['content'], 'tool_fav') === false &&
+    strpos($free_sample[0]['content'], 'tool_bookmark') === false, 'Member tracking tools exposed on public sample');
+$sample_lesson = false;
+check(apply_filters('learndash_content_tabs', $tabs, 'lesson', 3194, 123) === $tabs, 'Non-sample lesson exposed publicly');
+$sample_lesson = true;
+$post_fields[3194]['post_name'] = 'paid-course';
+check(apply_filters('learndash_content_tabs', $tabs, 'lesson', 3194, 123) === $tabs, 'Paid-course sample exposed publicly');
+$post_fields[3194]['post_name'] = 'free-lessons';
+$course_settings[3194]['course_price_type'] = 'open';
+check(apply_filters('learndash_content_tabs', $tabs, 'lesson', 3194, 123) === $tabs, 'Non-free course sample exposed publicly');
+$sample_lesson = false; $logged_in = true;
 $access = true; $member = false;
 check(apply_filters('learndash_content_tabs', $tabs, 'lesson', 3194, 123) === $tabs, 'Nonmember media exposed');
 $member = true;

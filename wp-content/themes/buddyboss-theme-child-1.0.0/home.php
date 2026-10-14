@@ -16,9 +16,9 @@
           }
      </style>
      <title>The Pond - Fun & Easy to follow Hockey Training, by @CoachJeremy</title>
-     <meta content="Improve your skating, shooting, and stickhandling with step-by-step hockey training and 150+ lessons from Coach Jeremy." name="description">
+     <meta content="Build your hockey game with progressive courses in skating, shooting, stickhandling, and passing, plus focused drills, routines, challenges, and progress tracking." name="description">
      <meta content="The Pond - Fun & Easy to follow Hockey Training, by @CoachJeremy" property="og:title">
-     <meta content="Improve your skating, shooting, and stickhandling with step-by-step hockey training and 150+ lessons from Coach Jeremy." property="og:description">
+     <meta content="Build your hockey game with progressive courses in skating, shooting, stickhandling, and passing, plus focused drills, routines, challenges, and progress tracking." property="og:description">
      <meta property="og:type" content="website">
      <meta content="width=device-width, initial-scale=1" name="viewport">
      <meta content="Webflow" name="generator">
@@ -12425,6 +12425,17 @@ also rich-text.less has its own sprite-sheet */
      </style>
      <style data-emotion=""></style>
      <style>
+          .button.membership-plans-button {
+               background-image: none;
+               background-position: center;
+               padding-left: 20px;
+          }
+
+          .button.membership-plans-button:hover {
+               background-position: center;
+               padding-left: 20px;
+          }
+
           @media screen and (max-width: 767px) {
                .hero-slider-content {
                     display: flex;
@@ -12476,8 +12487,8 @@ also rich-text.less has its own sprite-sheet */
                                         </div>
                                         <div id="w-node-f2bd7fdc-a738-1450-b4f9-1b53880bc1f6-3da9f9f2" style="margin-top: -40px;" class="column max-600">
                                              <div class="label _30-margin"><br></div>
-                                             <h1>Improve your skating, shooting, and stickhandling.</h1>
-                                             <p class="big-paragraph max-500">Follow a clear, step-by-step plan with 150+ lessons from Coach Jeremy to build your skills and enjoy every trip to the ice.</p><a href="#pricingSect" class="button w-button">View membership plans</a>
+                                             <h1>Build a more complete hockey game, one skill at a time.</h1>
+                                             <p class="big-paragraph max-500">Follow progressive courses in skating, shooting, stickhandling, and passing. Learn the technique, find focused ways to practice, and track your progress—on or off the ice.</p><a href="#pricingSect" class="button membership-plans-button w-button">View membership plans</a>
                                         </div>
                                    </div>
                               </div>
@@ -12491,15 +12502,15 @@ also rich-text.less has its own sprite-sheet */
                <div class="container grid-3">
                     <div class="column flex-center">
                          <h4 class="_10-margin">150+</h4>
-                         <div class="label grey-label">Carefully Crafted<br>Hockey Lessons</div>
+                         <div class="label grey-label">Coach-led lessons<br>across core skills</div>
                     </div>
                     <div class="column flex-center">
                          <h4 class="_10-margin">15+ YRS</h4>
-                         <div class="label grey-label">of coaching<br>experience</div>
+                         <div class="label grey-label">of hockey coaching<br>experience</div>
                     </div>
                     <div class="column flex-center">
                          <h4 class="_10-margin">THOUSANDS</h4>
-                         <div class="label grey-label">Of players improving<br>their hockey skills</div>
+                         <div class="label grey-label">of players building<br>their hockey skills</div>
                     </div>
                </div>
                <div class="blue-line bottom"></div>
@@ -12509,8 +12520,8 @@ also rich-text.less has its own sprite-sheet */
                <div class="container features-grid">
                     <div id="w-node-_8d350ed8-e9a4-eb03-1dcf-82faec0a87df-3da9f9f2" class="column feature-headline">
                          <div class="left-content">
-                              <h2 class="max-800">Your best,</br>most fun hockey</br>is only one click away</h2>
-                              <a href="#pricingSect" class="button w-button">View membership plans</a>
+                              <h2 class="max-800">Courses, practice, and progress—all in one place</h2>
+                              <a href="#pricingSect" class="button membership-plans-button w-button">View membership plans</a>
                          </div>
                          <div class="right-content">
                               <img src="/landing-page-files/the-pond-dashboard.png" alt="dashboard desktop screenshot" class="dashboard-screenshot-desktop" />
@@ -12521,79 +12532,50 @@ also rich-text.less has its own sprite-sheet */
                               <div class="feature-image-mask"><img src="/landing-page-files/65f1de8fd67271e580a1b8f1_Level3Skating.jpg" alt="" sizes="(max-width: 479px) 150px, 300px" srcset="https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1de8fd67271e580a1b8f1_Level3Skating-p-500.jpg 500w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1de8fd67271e580a1b8f1_Level3Skating-p-800.jpg 800w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1de8fd67271e580a1b8f1_Level3Skating-p-1080.jpg 1080w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1de8fd67271e580a1b8f1_Level3Skating-p-1600.jpg 1600w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1de8fd67271e580a1b8f1_Level3Skating.jpg 1920w" class="feature-image"></div>
                               <div class="feature-gradient"></div>
                          </div>
-                         <h4 class="feature-max">Learn the essentials of strong skating</h4>
-                         <p class="max-400 no-margin">We will help you find your balance and feel your edges. You will
-                              master speed
-                              &amp; acceleration and gain an understanding of the key movements that lead to great
-                              skating.</p>
+                         <h4 class="feature-max">Build confident skating fundamentals</h4>
+                         <p class="max-400 no-margin">Work on balance, edges, speed, and acceleration through clear progressions that help you understand the movements behind strong skating.</p>
                     </div>
                     <div id="w-node-_1ac6e14c-5d80-b4fb-1311-8131a2fe412d-a2fe412d" class="column feature-column">
                          <div class="feature-img-and-graident">
                               <div class="feature-image-mask"><img src="/landing-page-files/65f1dee25996b3c6965b676b_shooting-level2.png" alt="" sizes="(max-width: 479px) 150px, 300px" srcset="https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1dee25996b3c6965b676b_shooting-level2-p-500.png 500w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1dee25996b3c6965b676b_shooting-level2-p-800.png 800w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1dee25996b3c6965b676b_shooting-level2-p-1080.png 1080w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1dee25996b3c6965b676b_shooting-level2-p-1600.png 1600w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1dee25996b3c6965b676b_shooting-level2.png 1920w" class="feature-image"></div>
                               <div class="feature-gradient"></div>
                          </div>
-                         <h4 class="feature-max">Understand how to shoot hard and accurately</h4>
-                         <p class="max-400 no-margin">Just practicing for the sake of practicing won't improve your shot
-                              power or
-                              accuracy. We teach you the technique necessary for a strong and powerful shot. From the
-                              basics, to the toe
-                              drag release!</p>
+                         <h4 class="feature-max">Build a stronger, more accurate shot</h4>
+                         <p class="max-400 no-margin">Learn the technique behind shot power and accuracy, from the fundamentals through releases like the toe drag.</p>
                     </div>
                     <div id="w-node-_1ac6e14c-5d80-b4fb-1311-8131a2fe412d-a2fe412d" class="column feature-column">
                          <div class="feature-img-and-graident">
                               <div class="feature-image-mask"><img src="/landing-page-files/65f1dffbec13d2027b0c1686_03-quick-moves.jpg" alt="" sizes="(max-width: 479px) 150px, 300px" srcset="https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1dffbec13d2027b0c1686_03-quick-moves-p-500.jpg 500w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1dffbec13d2027b0c1686_03-quick-moves-p-800.jpg 800w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1dffbec13d2027b0c1686_03-quick-moves-p-1080.jpg 1080w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1dffbec13d2027b0c1686_03-quick-moves-p-1600.jpg 1600w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1dffbec13d2027b0c1686_03-quick-moves.jpg 1920w" class="feature-image"></div>
                               <div class="feature-gradient"></div>
                          </div>
-                         <h4 class="feature-max">Master the art of stickhandling</h4>
-                         <p class="max-400 no-margin">We'll help you get a feel for the movement of the blade,
-                              understand crucial hand
-                              positions, give you the ability to control the puck around your entire body, and learn the
-                              art of deception.
-                         </p>
+                         <h4 class="feature-max">Handle the puck with control</h4>
+                         <p class="max-400 no-margin">Develop feel for the blade, learn useful hand positions, protect the puck around your body, and add deception to your moves.</p>
                     </div>
                     <div id="w-node-_1ac6e14c-5d80-b4fb-1311-8131a2fe412d-a2fe412d" class="column feature-column">
                          <div class="feature-img-and-graident">
                               <div class="feature-image-mask"><img src="/landing-page-files/65f1e0bfcf31de2e175f7109_05-side-side-fwd-bwd.jpg" alt="" sizes="(max-width: 479px) 150px, 300px" srcset="https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1e0bfcf31de2e175f7109_05-side-side-fwd-bwd-p-500.jpg 500w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1e0bfcf31de2e175f7109_05-side-side-fwd-bwd-p-800.jpg 800w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1e0bfcf31de2e175f7109_05-side-side-fwd-bwd-p-1080.jpg 1080w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1e0bfcf31de2e175f7109_05-side-side-fwd-bwd-p-1600.jpg 1600w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f1e0bfcf31de2e175f7109_05-side-side-fwd-bwd.jpg 1920w" class="feature-image"></div>
                               <div class="feature-gradient"></div>
                          </div>
-                         <h4 class="feature-max">All designed to be fun, time efficient, and easy to follow</h4>
-                         <p class="max-400 no-margin">The pros understand that 90% of hockey is doing fundamental
-                              skills, exceptionally
-                              well.<br>That's why our courses focus on the most important skills in the game.</p>
+                         <h4 class="feature-max">Know what to work on next</h4>
+                         <p class="max-400 no-margin">Progress through courses from fundamentals to more advanced skills. Practice tips, common-mistake breakdowns, and course progress help you keep your training focused.</p>
                     </div>
                </div><img src="/landing-page-files/65f339da457cd234a51235d2_puck.png" width="125" data-w-id="062aa6af-9e5a-7005-a3be-017687b69e67" alt="Directors Chair" srcset="https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f339da457cd234a51235d2_puck-p-500.png 500w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f339da457cd234a51235d2_puck.png 550w" sizes="(max-width: 479px) 28vw, (max-width: 991px) 20vw, 175px" class="puck" style="will-change: transform; transform: translate3d(0px, 0px, 0px) scale3d(0.7, 0.7, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;"><img src="/landing-page-files/65f339da457cd234a51235d2_puck.png" loading="lazy" width="125" sizes="(max-width: 479px) 28vw, (max-width: 991px) 20vw, 125px" alt="Directors Chair" srcset="https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f339da457cd234a51235d2_puck-p-500.png 500w, https://assets-global.website-files.com/65f1cda7de87d6943da9f97c/65f339da457cd234a51235d2_puck.png 550w" class="puck">
           </div>
           <div class="section free-classes">
                <div class="column workouts-headline">
-                    <h2 class="jumbo max-800">Want to improve FASTER?</h2>
-                    <p class="big-paragraph max-600 center">With no time wasted, The Pond follows a clear progression
-                         designed to
-                         continually challenge and improve the skills that you will use most often in real
-                         games.<br>‍<br>We want to
-                         give you that amazing feeling when you snipe your first target, master a new move, or score
-                         your first goal.
-                    </p><a href="#pricingSect" class="button center w-button">View membership plans</a>
+                    <h2 class="jumbo max-800">Turn lessons into focused practice</h2>
+                    <p class="big-paragraph max-600 center">Use focused routines and Move Makers to revisit techniques, then put your skills to the test with challenges. Explore individual moves in the Skills Vault, track course progress, and pick up your training where you left off.
+                    </p><a href="#pricingSect" class="button center membership-plans-button w-button">View membership plans</a>
                </div>
                <div class="container free-plan-container"></div>
           </div>
           <div id="free-lessons" class="section premium-classes">
                <div class="container free-plan-container">
                     <div class="column workouts-headline">
-                         <h2 class="jumbo max-800">Not sure if The Pond is right for you?</h2>
-                         <p class="big-paragraph max-600">
-                              I've created so much free training material over the years,
-                              and there's so much out there that it can be a lot to sift through as a beginner, or even
-                              for advanced players.
-                              <br />
-                              <br />
-                              That's why I'm giving you free access to a few of the key lessons from our courses on
-                              The Pond which hold the secrets I've learned over the years!
-                              <br />
-                              <br />
-                              All I ask is that if you like the lessons, share them with your friends and try out a
-                              membership if you'd like to unlock everything The Pond has to offer!
+                         <h2 class="jumbo max-800">Try nine sample lessons for free</h2>
+                         <p class="big-paragraph max-600">Get a feel for Coach Jeremy's teaching with sample lessons in skating, shooting, and puck control. Explore the instruction and practice ideas, then choose a membership when you're ready for the full course library.
                          </p>
-                         <a href="/courses/free-lessons" target="_blank" class="button white w-button">Free lessons</a>
+                         <a href="/courses/free-lessons" class="button white w-button">Watch free sample lessons</a>
                     </div>
                </div>
           </div>
@@ -12610,12 +12592,7 @@ also rich-text.less has its own sprite-sheet */
                <div class="container grid-2">
                     <div id="w-node-_48f1e152-304c-af08-bac2-2094cbc0c067-3da9f9f2" class="column description-heading">
                          <h2 class="max-600">Who can benefit from The Pond?</h2>
-                         <p class="big-paragraph max-500">Literally anyone who wants to play hockey. There are members
-                              ranging from 4
-                              to 60+ years old. I've designed these courses to bring you all the way from a complete
-                              beginner, to a
-                              proficient skater, puck handler, and sniper who loves the game every time you step on the
-                              ice!</p><a href="#pricingSect" class="button w-button">View membership plans</a>
+                         <p class="big-paragraph max-500">Whether you're learning the basics or refining specific skills, The Pond gives players ages 4 to 60+ a structured way to work on skating, puck control, shooting, and passing—wherever they train.</p><a href="#pricingSect" class="button membership-plans-button w-button">View membership plans</a>
                     </div>
                     <div id="w-node-d7b1a011-026b-afea-5499-7750c3a8ba54-3da9f9f2" class="description-image-wrap"><img src="/landing-page-files/phone-screenshot.png" alt="" class="description-image"></div>
                </div>
@@ -12634,19 +12611,22 @@ also rich-text.less has its own sprite-sheet */
                               <div class="pricing-divider"></div>
                               <ul role="list" class="pricing-feature-list w-list-unstyled">
                                    <li>
-                                        <div class="pricing-feature">15+ courses covering every skill</div>
+                                        <div class="pricing-feature">15+ progressive courses across core skills</div>
                                    </li>
                                    <li>
                                         <div class="pricing-feature">Over 150 total lessons</div>
                                    </li>
                                    <li>
-                                        <div class="pricing-feature">Skills vault + skill breakdowns</div>
+                                        <div class="pricing-feature">Skills Vault with move breakdowns and quick tips</div>
                                    </li>
                                    <li>
-                                        <div class="pricing-feature">Fun challenges &amp; routines</div>
+                                        <div class="pricing-feature">Routines, Move Makers, and skill challenges</div>
                                    </li>
                                    <li>
-                                        <div class="pricing-feature">Private Facebook group access</div>
+                                        <div class="pricing-feature">Track progress and save lessons</div>
+                                   </li>
+                                   <li>
+                                        <div class="pricing-feature">Private member Facebook group</div>
                                    </li>
                                    <li>
                                         <div class="pricing-feature">Pause or cancel anytime</div>
@@ -12752,15 +12732,13 @@ also rich-text.less has its own sprite-sheet */
                                              </div>
                                              <div class="_w-accordion-item-a">
                                                   <p class="accordion-item-a-text" style="transform: translate3d(0px, 50%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; opacity: 0;">
-                                                       With your membership to The Pond, not only will you get instant
-                                                       access to our most efficient
-                                                       hockey training courses, &nbsp;find out the crucial skills you
-                                                       need to focus on, get access to our
-                                                       private Facebook group, and participate in fun challenges to test
-                                                       your skills. You will get our
-                                                       100% dedication to help YOU get better at hockey. The Pond
-                                                       provides a clear path to improvement,
-                                                       and we'll be right there to support you throughout the process.​
+                                                       Your membership gives you progressive courses in skating,
+                                                       shooting, stickhandling, and passing, plus lesson breakdowns
+                                                       that explain what to practice and common mistakes to avoid.
+                                                       Track course progress, explore the Skills Vault, build practice
+                                                       habits with routines and Move Makers, and test your skills with
+                                                       challenges. Members also get access to the private Facebook
+                                                       group and future specialty courses.
                                                   </p>
                                              </div>
                                         </div>
@@ -12822,14 +12800,11 @@ also rich-text.less has its own sprite-sheet */
                                              </div>
                                              <div class="_w-accordion-item-a">
                                                   <p class="accordion-item-a-text" style="transform: translate3d(0px, 50%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; opacity: 0;">
-                                                       There are multiple levels of courses for each skill (skating,
-                                                       shooting, stickhandling, passing),
-                                                       starting from Level 1 up to Level 3. Plus we are continually
-                                                       creating more advanced courses to keep challenging you. If you want
-                                                       an idea of what the lessons in each course are like, be sure to
-                                                       check out the <a href="#free-lessons">free lessons</a> that I've
-                                                       unlocked for
-                                                       you!</p>
+                                                       Courses cover skating, shooting, stickhandling, and passing,
+                                                       with levels from 1 to 3 so you can build from fundamentals
+                                                       toward more advanced skills. Lessons include focused instruction
+                                                       and practice guidance. You can preview the teaching style in the
+                                                       <a href="#free-lessons">free sample lessons</a>.</p>
                                              </div>
                                         </div>
                                    </div>
