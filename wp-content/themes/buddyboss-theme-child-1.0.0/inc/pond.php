@@ -18,6 +18,8 @@ add_action('admin_init', 'pond_theme_learndash_ajax_templates');
 add_action('template_redirect', 'pond_theme_member_404_button', 1);
 add_action('template_redirect', 'pond_theme_member_logo_link', 1);
 add_action('template_redirect', 'pond_theme_public_layout', 1);
+add_filter('option_buddyboss_theme_options', 'pond_theme_participant_privacy');
+add_action('wp_ajax_nopriv_buddyboss_lms_get_course_participants', 'pond_theme_require_participant_login', 0);
 add_filter('pre_wp_nav_menu', 'pond_theme_hide_public_header_menu', 10, 2);
 add_action('template_redirect', 'pond_theme_mobile_community_icons', 1);
 add_filter('nav_menu_item_title', 'pond_theme_menu_item_icons', 20);
@@ -82,6 +84,20 @@ function pond_theme_public_layout() {
         $buddyboss_theme_options = (array) get_option('buddyboss_theme_options', array());
     }
     $buddyboss_theme_options['buddypanel'] = 0;
+    $buddyboss_theme_options = pond_theme_participant_privacy($buddyboss_theme_options);
+}
+
+function pond_theme_participant_privacy($options) {
+    if (!is_user_logged_in()) {
+        $options['learndash_course_participants'] = false;
+    }
+    return $options;
+}
+
+function pond_theme_require_participant_login() {
+    wp_send_json_error(array(
+        'message' => __('Sign in to view course participants.', 'buddyboss-theme-child'),
+    ), 401);
 }
 
 // Only the desktop header copy is removed; the mobile panel still needs these links.

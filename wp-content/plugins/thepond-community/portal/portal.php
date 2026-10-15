@@ -14,8 +14,6 @@ add_action('wp_ajax_track_lesson_ajax', 'thepond_portal_track_lesson');
 
 function thepond_portal_is_free_course_sample($lesson_id) {
     if (get_post_type($lesson_id) !== 'sfwd-lessons' ||
-        !function_exists('learndash_is_sample') ||
-        !learndash_is_sample($lesson_id) ||
         !function_exists('learndash_get_course_id') ||
         !function_exists('learndash_get_setting') ||
         !function_exists('get_post_field')) {
@@ -23,9 +21,13 @@ function thepond_portal_is_free_course_sample($lesson_id) {
     }
 
     $course_id = learndash_get_course_id($lesson_id);
-    return $course_id &&
-        get_post_field('post_name', $course_id) === 'free-lessons' &&
-        learndash_get_setting($course_id, 'course_price_type') === 'free';
+    if (!$course_id || get_post_field('post_name', $course_id) !== 'free-lessons') {
+        return false;
+    }
+    $access_mode = learndash_get_setting($course_id, 'course_price_type');
+    return $access_mode === 'open' ||
+        ($access_mode === 'free' &&
+            function_exists('learndash_is_sample') && learndash_is_sample($lesson_id));
 }
 
 function thepond_portal_course_tabs($tabs, $context, $course_id, $user_id) {

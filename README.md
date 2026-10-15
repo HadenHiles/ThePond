@@ -67,11 +67,22 @@ use each refinement's smaller upload list for the already migrated site.
 - Native LearnDash content tabs receive the existing ACF video/image/audio,
   Vimeo jump links, goals, practice tips/mistakes, skill links and downloads/resources.
   Member-only material requires both MemberPress authorization and LearnDash course
-  access. Published lessons marked as samples in the free `free-lessons` course can
-  show their lesson material to visitors; member downloads and lesson tracking stay
+  access. The `free-lessons` course uses LearnDash **Open** access so visitors can
+  view every published lesson's material without signing in or enrolling. If set
+  to **Free**, only lessons marked as samples show their material to visitors.
+  Member downloads and lesson tracking stay
   protected. Native progression/drip gating determines whether member content renders;
   the adapter does not replace LearnDash templates, enrollment, navigation or completion
   controls.
+- Desktop lesson footers leave space for the fixed LearnDash sidebar, including
+  right-side navigation, and return to full width when it is collapsed or on mobile.
+  After changing public-course access or lesson settings, purge the affected
+  course/lesson URLs in W3 Total Cache to avoid serving stale empty pages. Shared
+  lessons have course-specific URLs; purging only a lesson's primary permalink
+  does not clear its cached page under `free-lessons`.
+- Course participant lists and avatars are omitted server-side for signed-out
+  visitors on courses, lessons, and topics. The anonymous participant-pagination
+  AJAX endpoint returns HTTP 401; signed-in participant settings are unchanged.
 - Challenges retain their score controls and Firebase collection. The Challenge
   Score plugin no longer overrides the migrated child template on BuddyBoss.
   Routines, content-library browsing, skill pages, My Content and support remain available.
@@ -90,6 +101,12 @@ use each refinement's smaller upload list for the already migrated site.
   Landing assets include the scoped stylesheet and real dashboard captures from
   October 14, 2026. Captures exclude the WordPress toolbar, account details, and
   private group codes. Browser and phone outlines are CSS, not part of the images.
+  The lower homepage reuses existing off-ice practice photography and three real
+  free-lesson thumbnails as direct lesson links, with lightweight inline SVG
+  feature icons. Existing marketing copy, pricing, and membership links are
+  preserved, including the legacy `/#choose-your-subscription` membership anchor
+  alongside `/#pricingSect`. Landing CSS is versioned by its modification time; fixed decorative
+  animations are hidden below the introductory skills section.
   The existing Webflow script, animation IDs, slider, navigation and accordion
   hooks remain in the standalone template.
   No vendor parent theme or complete third-party plugin needs uploading/tracking.

@@ -405,11 +405,43 @@
 }
 
 .pond-training-options {
-    border-left: 2px solid #c5e5ed;
-    padding-left: 32px;
+    display: grid;
+    gap: 32px;
 }
 
-.pond-training-options article + article {
+.pond-training-options article {
+    display: grid;
+    grid-template-columns: 52px minmax(0, 1fr);
+    gap: 20px;
+    align-items: start;
+}
+
+.pond-feature-icon {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: #e7f4f8;
+    color: var(--pond-blue);
+}
+
+.pond-feature-icon svg {
+    width: 30px;
+    height: 30px;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.pond-practice-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 14px;
     margin-top: 28px;
 }
 
@@ -441,32 +473,104 @@
 }
 
 .pond-sample-menu {
-    border: 1px solid #ffffff33;
-    border-radius: 16px;
-    padding: 32px;
-    background: #ffffff08;
+    align-self: end;
+    padding-bottom: 8px;
 }
 
-.pond-sample-menu ul {
+.pond-samples-grid {
+    grid-template-columns: 1.2fr 1fr;
+    gap: 36px 80px;
+}
+
+.pond-sample-cards {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
     list-style: none;
     padding: 0;
-    margin: 0 0 28px;
+    margin: 0;
 }
 
-.pond-landing .pond-sample-menu li {
+.pond-sample-cards a {
     display: block;
-    padding: 18px 0;
-    border-bottom: 1px solid #ffffff26;
-    font-size: 17px;
+    height: 100%;
+    border: 1px solid #ffffff33;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #ffffff08;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 180ms, border-color 180ms;
 }
 
-.pond-sample-menu li span {
+.pond-sample-cards a:hover {
+    background: #ffffff14;
+    border-color: #8ed7ec;
+}
+
+.pond-samples a:focus-visible {
+    outline-color: #8ed7ec;
+}
+
+.pond-sample-image {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+}
+
+.pond-sample-image img {
     display: block;
-    font-size: 16px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pond-sample-play {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #102f46e6;
+    color: #fff;
+    border: 1px solid #ffffff80;
+}
+
+.pond-sample-play svg {
+    width: 22px;
+    height: 22px;
+}
+
+.pond-sample-copy {
+    padding: 24px;
+}
+
+.pond-sample-copy > span {
+    display: block;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
     font-weight: 700;
-    line-height: 1.4;
-    margin-bottom: 8px;
     color: #8ed7ec;
+}
+
+.pond-landing .pond-sample-copy h3 {
+    font-size: 21px;
+    line-height: 1.35;
+    margin: 10px 0 0;
+}
+
+.pond-rink-mark {
+    display: block;
+    width: 150px;
+    height: auto;
+    margin-bottom: 24px;
+    stroke: var(--pond-blue);
+    stroke-width: 1.5;
 }
 
 .pond-landing .pond-audience {
@@ -690,6 +794,12 @@
     display: none;
 }
 
+.pond-landing .bottle[hidden],
+.pond-landing .target[hidden],
+.pond-landing .puck[hidden] {
+    display: none;
+}
+
 .pond-landing .bottle {
     pointer-events: none;
     width: clamp(100px, 18vw, 175px);
@@ -806,6 +916,15 @@
         right: auto;
         width: min(293px, 100%);
         margin: 0 auto;
+    }
+
+    .pond-sample-cards {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .pond-sample-menu {
+        padding: 0;
     }
 
     .pond-dashboard-preview figcaption {

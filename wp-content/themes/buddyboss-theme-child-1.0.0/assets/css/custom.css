@@ -31,6 +31,12 @@ https://www.w3schools.com/css/css_rwd_mediaqueries.asp
 .pond-footer { padding: 24px; border-top: 1px solid #e7e9ec; background: #fff; }
 .pond-footer nav { max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; gap: 20px; }
 .pond-footer ul { display: flex; flex-wrap: wrap; gap: 20px; list-style: none; padding: 0; margin: 0; }
+@media (min-width: 768px) {
+    .bb-sfwd-aside.has-sidebar:not(.lms-side-panel-close) .pond-footer { margin-left: 370px; }
+}
+@media (min-width: 800px) {
+    .bb-sfwd-aside.has-sidebar.sfwd-single-sidebar-right:not(.lms-side-panel-close) .pond-footer { margin-left: 0; margin-right: 370px; }
+}
 .pond-course-material { margin-bottom: 24px; }
 .pond-course-material iframe { max-width: 100%; }
 .pond-course-material .videoWrapper { position: relative; width: 100%; }

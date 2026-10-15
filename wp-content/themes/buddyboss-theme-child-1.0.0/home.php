@@ -15,7 +15,7 @@
     <meta property="og:type" content="website">
     <link rel="icon" href="https://cdn.thepond.howtohockey.com/2020/01/cropped-THEPOND_RGB_WHITE_BLUE_ICON_RAW-32x32.png">
     <link rel="stylesheet" href="/landing-page-files/the-pond-eb9fd4.webflow.698342c13.css">
-    <link rel="stylesheet" href="/wp-content/themes/buddyboss-theme-child-1.0.0/assets/landing/landing.css">
+    <link rel="stylesheet" href="/wp-content/themes/buddyboss-theme-child-1.0.0/assets/landing/landing.css?ver=<?php echo filemtime(__DIR__ . '/assets/landing/landing.css'); ?>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="/landing-page-files/webfont.js.download"></script>
@@ -165,11 +165,21 @@
                         <p class="pond-eyebrow">Your game doesn't stop at the rink</p>
                         <h2>Ice time is precious.<br>Make it count.</h2>
                         <p>Not every skill needs a fresh sheet of ice. Work on puck feel, stickhandling, and shooting at home, then take those skills into your next skate.</p>
+                        <img class="pond-practice-image" src="/landing-page-files/65f1dffbec13d2027b0c1686_03-quick-moves.jpg" width="1920" height="1080" alt="A stickhandling practice setup with a puck, stick, and taped training marks at home" loading="lazy">
                     </div>
                     <div class="pond-training-options">
-                        <article><span>Learn the details</span><h3>Skills Vault</h3><p>Look closer at individual moves and the techniques behind them.</p></article>
-                        <article><span>Get out of a rut</span><h3>Routines &amp; Move Makers</h3><p>Find ideas to make your stickhandling and skill work more focused.</p></article>
-                        <article><span>Give yourself a goal</span><h3>Skill challenges</h3><p>Try something different and put the skills you're learning to the test.</p></article>
+                        <article>
+                            <div class="pond-feature-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><rect x="5" y="4" width="22" height="24" rx="3"/><path d="m13 11 8 5-8 5V11Z"/></svg></div>
+                            <div><span>Learn the details</span><h3>Skills Vault</h3><p>Look closer at individual moves and the techniques behind them.</p></div>
+                        </article>
+                        <article>
+                            <div class="pond-feature-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M8 10h13a6 6 0 0 1 0 12H11M8 10l5-5M8 10l5 5M24 22l-5-5M24 22l-5 5"/></svg></div>
+                            <div><span>Get out of a rut</span><h3>Routines &amp; Move Makers</h3><p>Find ideas to make your stickhandling and skill work more focused.</p></div>
+                        </article>
+                        <article>
+                            <div class="pond-feature-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12"/><circle cx="16" cy="16" r="7"/><circle cx="16" cy="16" r="2"/></svg></div>
+                            <div><span>Give yourself a goal</span><h3>Skill challenges</h3><p>Try something different and put the skills you're learning to the test.</p></div>
+                        </article>
                     </div>
                 </div>
             </section>
@@ -183,23 +193,41 @@
                     </div>
                     <div class="pond-sample-menu">
                         <p class="pond-card-label">A few things you can start learning</p>
-                        <ul>
-                            <li><span>Skating</span>Forward stride &amp; snow plow stops</li>
-                            <li><span>Puck control</span>Puck movement on the blade &amp; one hand</li>
-                            <li><span>Shooting</span>Wrist snap, timing &amp; accuracy</li>
-                        </ul>
                         <a href="/courses/free-lessons/" class="pond-text-link">Explore all nine sample lessons <span aria-hidden="true">&#8594;</span></a>
                     </div>
+                    <ul class="pond-sample-cards">
+                        <li>
+                            <a href="/courses/free-lessons/pond-lessons/forward-stride/">
+                                <div class="pond-sample-image"><img src="https://cdn.thepond.howtohockey.com/2020/10/05-forward-stride-1024x576.jpg" width="1024" height="576" alt="Coach Jeremy demonstrating the forward stride on the ice" loading="lazy"><span class="pond-sample-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m9 5 11 7-11 7V5Z"/></svg></span></div>
+                                <div class="pond-sample-copy"><span>Skating</span><h3>Forward stride &amp; snow plow stops</h3></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/courses/free-lessons/pond-lessons/puck-movement-on-the-blade/">
+                                <div class="pond-sample-image"><img src="https://cdn.thepond.howtohockey.com/2020/08/04-puck-movement-on-the-blade-1024x576.jpg" width="1024" height="576" alt="A close-up of puck control on a hockey stick blade" loading="lazy"><span class="pond-sample-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m9 5 11 7-11 7V5Z"/></svg></span></div>
+                                <div class="pond-sample-copy"><span>Puck control</span><h3>Puck movement on the blade &amp; one hand</h3></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/courses/free-lessons/pond-lessons/timing-of-release/">
+                                <div class="pond-sample-image"><img src="https://cdn.thepond.howtohockey.com/2020/07/Timing-of-Release-too-soon-too-late.00_01_12_20.Still002-1024x576.jpg" width="1024" height="576" alt="Coach Jeremy demonstrating the timing of a wrist shot release" loading="lazy"><span class="pond-sample-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m9 5 11 7-11 7V5Z"/></svg></span></div>
+                                <div class="pond-sample-copy"><span>Shooting</span><h3>Wrist snap, timing &amp; accuracy</h3></div>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </section>
             <section class="section pond-audience">
                 <div class="container pond-audience-grid">
-                    <h2>New to hockey?<br>Getting back into it?<br>Ready for a better game?</h2>
+                    <div>
+                        <svg class="pond-rink-mark" viewBox="0 0 180 80" fill="none" aria-hidden="true"><rect x="2" y="2" width="176" height="76" rx="30"/><path d="M60 2v76M90 2v76M120 2v76"/><circle cx="90" cy="40" r="17"/><path d="M2 27h12v26H2m176-26h-12v26h12"/><circle cx="36" cy="24" r="7"/><circle cx="36" cy="56" r="7"/><circle cx="144" cy="24" r="7"/><circle cx="144" cy="56" r="7"/></svg>
+                        <h2>New to hockey?<br>Getting back into it?<br>Ready for a better game?</h2>
+                    </div>
                     <div><p>You don't have to be an elite player to care about getting better. Start with the basics or dig into a skill that's been holding you back.</p><p>The Pond has helped players ages 4 to 60+. Choose the lessons that fit your game and learn at a pace that works for you.</p></div>
                 </div>
             </section>
             <section id="pricingSect" class="pricing-comparison pond-pricing">
-                <div class="container">
+                <div id="choose-your-subscription" class="container">
                     <div class="pond-section-heading">
                         <p class="pond-eyebrow">Invest in the game you love</p>
                         <h2>Choose your membership.</h2>
@@ -318,6 +346,13 @@
     <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=65f1cda7de87d6943da9f97c" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="/landing-page-files/webflow.e1003040c.js"></script>
     <script>
+        new IntersectionObserver(function (entries) {
+            var belowIntro = entries[0].boundingClientRect.bottom <= 0;
+            document.querySelectorAll(".bottle, .target, .puck").forEach(function (image) {
+                image.hidden = belowIntro;
+            });
+        }).observe(document.querySelector(".pond-skills"));
+
         document.querySelectorAll(".c-accordion-item-q").forEach(function (button) {
             button.addEventListener("click", function () {
                 button.setAttribute("aria-expanded", button.getAttribute("aria-expanded") === "true" ? "false" : "true");

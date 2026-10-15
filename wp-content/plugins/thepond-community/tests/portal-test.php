@@ -98,6 +98,7 @@ function wp_safe_redirect($url) { throw new PortalRedirect($url); }
 function nocache_headers() {}
 function wp_unslash($value) { return stripslashes($value); }
 function wp_die($message, $title = '', $args = array()) { throw new RuntimeException($message, $args['response'] ?? 500); }
+function wp_send_json_error($data = null, $status_code = null) { throw new RuntimeException($data['message'], $status_code); }
 function get_post_type($id = 0) { return $GLOBALS['post_type']; }
 function get_post_field($field, $id = 0) { return $GLOBALS['post_fields'][$id][$field] ?? ''; }
 function post_password_required() { return $GLOBALS['password_protected'] ?? false; }
@@ -510,7 +511,18 @@ $post_fields[3194]['post_name'] = 'paid-course';
 check(apply_filters('learndash_content_tabs', $tabs, 'lesson', 3194, 123) === $tabs, 'Paid-course sample exposed publicly');
 $post_fields[3194]['post_name'] = 'free-lessons';
 $course_settings[3194]['course_price_type'] = 'open';
-check(apply_filters('learndash_content_tabs', $tabs, 'lesson', 3194, 123) === $tabs, 'Non-free course sample exposed publicly');
+foreach (array(true, false) as $sample_lesson) {
+    $open_lesson = apply_filters('learndash_content_tabs', $tabs, 'lesson', 3194, 0);
+    check(strpos($open_lesson[0]['content'], '440111888') !== false, 'Open free-course lesson media missing');
+    foreach (array('tool_fav', 'tool_bookmark', '/drill.pdf', '/extra/') as $resource) {
+        check(strpos($open_lesson[0]['content'], $resource) === false, 'Member resource exposed in open lesson: ' . $resource);
+    }
+}
+$post_fields[3194]['post_name'] = 'another-course';
+check(apply_filters('learndash_content_tabs', $tabs, 'lesson', 3194, 0) === $tabs, 'Other open course material exposed');
+$post_fields[3194]['post_name'] = 'free-lessons';
+$course_settings[3194]['course_price_type'] = 'closed';
+check(apply_filters('learndash_content_tabs', $tabs, 'lesson', 3194, 0) === $tabs, 'Closed course material exposed');
 $sample_lesson = false; $logged_in = true;
 $access = true; $member = false;
 check(apply_filters('learndash_content_tabs', $tabs, 'lesson', 3194, 123) === $tabs, 'Nonmember media exposed');
@@ -734,6 +746,14 @@ foreach (array('landing.css', 'dashboard-desktop.webp', 'dashboard-mobile.webp')
         strpos($landing, '/assets/landing/' . $asset) !== false, 'Landing asset missing or unused: ' . $asset);
 }
 check(strpos($landing, "\xE2\x80\x94") === false, 'Landing copy contains an em dash');
+foreach (array('forward-stride', 'puck-movement-on-the-blade', 'timing-of-release') as $slug) {
+    check(strpos($landing, 'href="/courses/free-lessons/pond-lessons/' . $slug . '/"') !== false, 'Sample lesson card destination missing: ' . $slug);
+}
+check(substr_count($landing, 'class="pond-sample-image"') === 3, 'Free sample lessons should have three image cards');
+check(strpos($landing, "filemtime(__DIR__ . '/assets/landing/landing.css')") !== false, 'Landing stylesheet should invalidate browser caches when updated');
+check(strpos($landing, '<section id="pricingSect" class="pricing-comparison pond-pricing">') !== false &&
+    strpos($landing, '<div id="choose-your-subscription" class="container">') !== false,
+    'Membership section must preserve both current and legacy pricing anchors');
 $auth_hook_args = null;
 add_action('mo_custom_login_form_end', function ($username, $password, $submit) use (&$auth_hook_args) {
     $auth_hook_args = array($username, $password, $submit);
@@ -982,12 +1002,23 @@ check($buddyboss_theme_options['header_logo_loggedin_link'] === '', 'Signed-out 
 $logged_in = true;
 pond_theme_member_logo_link();
 check($buddyboss_theme_options['header_logo_loggedin_link'] === 77, 'Signed-in logo should link to the member dashboard');
-$buddyboss_theme_options = array('buddypanel' => 1);
+$buddyboss_theme_options = array('buddypanel' => 1, 'learndash_course_participants' => true);
 pond_theme_public_layout();
 check($buddyboss_theme_options['buddypanel'] === 1, 'Signed-in pages should keep the member sidebar');
+check($buddyboss_theme_options['learndash_course_participants'] === true, 'Signed-in pages should keep participant settings');
+check(pond_theme_participant_privacy(array('learndash_course_participants' => true)) === array('learndash_course_participants' => true), 'Signed-in participant option changed');
 $logged_in = false;
 pond_theme_public_layout();
 check($buddyboss_theme_options['buddypanel'] === 0, 'Signed-out pages should hide the duplicate Join Now/Member Login sidebar');
+check($buddyboss_theme_options['learndash_course_participants'] === false, 'Signed-out pages should not render course participants');
+check(apply_filters('option_buddyboss_theme_options', array('learndash_course_participants' => true, 'other' => 7)) === array('learndash_course_participants' => false, 'other' => 7), 'Anonymous participant option filter changed other settings');
+check(pond_theme_participant_privacy(array()) === array('learndash_course_participants' => false), 'Missing participant option must not default to visible');
+try {
+    do_action('wp_ajax_nopriv_buddyboss_lms_get_course_participants');
+    check(false, 'Anonymous participant endpoint did not deny access');
+} catch (RuntimeException $error) {
+    check($error->getCode() === 401 && $error->getMessage() === 'Sign in to view course participants.', 'Anonymous participant endpoint should return a clear authentication error');
+}
 $desktop_menu = (object) array('theme_location' => 'header-menu-logout', 'menu_id' => 'primary-menu');
 $mobile_menu = (object) array('theme_location' => 'header-menu-logout', 'menu_id' => '');
 check(pond_theme_hide_public_header_menu(null, $desktop_menu) === '', 'Signed-out desktop header menu should be hidden');
