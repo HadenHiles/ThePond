@@ -11,6 +11,8 @@ function fixture({ width = 1440, reduced = false, top = 1200 } = {}) {
     const puck = { hidden: true, style: {} };
     const rect = { top, bottom: top + 1000, height: 1000 };
     const skills = { getBoundingClientRect: () => rect };
+    const previewRect = { top: top + 1000, bottom: top + 1800, height: 800 };
+    const preview = { getBoundingClientRect: () => previewRect };
     const listeners = {};
     const frames = [];
     const decorations = [{ hidden: false }, { hidden: false }];
@@ -31,17 +33,20 @@ function fixture({ width = 1440, reduced = false, top = 1200 } = {}) {
     vm.runInNewContext(source, {
         window,
         document: {
-            querySelector: selector => selector === ".pond-skills" ? skills : puck,
+            querySelector: selector => selector === ".pond-skills" ? skills :
+                selector === ".pond-preview" ? preview : puck,
             querySelectorAll: selector => selector === ".bottle, .target" ? decorations : [button],
         },
         IntersectionObserver: class {
             constructor(callback) { observer = callback; }
-            observe(element) { assert.equal(element, skills); }
+            observe(element) { assert.equal(element, preview); }
         },
     });
     function scroll(top) {
         rect.top = top;
         rect.bottom = top + rect.height;
+        previewRect.top = rect.bottom;
+        previewRect.bottom = rect.bottom + previewRect.height;
         listeners.scroll();
         frames.shift()();
     }
@@ -49,17 +54,21 @@ function fixture({ width = 1440, reduced = false, top = 1200 } = {}) {
         observe: bottom => observer([{ boundingClientRect: { bottom } }]) };
 }
 
-test("puck moves visibly within the skills section and disappears before lower content", () => {
+test("puck moves through skills and preview, then disappears before lower content", () => {
     const f = fixture();
     assert.equal(f.puck.hidden, true);
     f.scroll(500);
     assert.equal(f.puck.hidden, false);
     const first = f.puck.style.transform;
-    f.scroll(0);
+    f.scroll(-400);
     assert.equal(f.puck.hidden, false);
     assert.notEqual(f.puck.style.transform, first);
     assert.match(f.puck.style.transform, /translate3d\(350px,-400px,0\) rotate\(360deg\) scale\(1\)/);
     f.scroll(-1000);
+    assert.equal(f.puck.hidden, false);
+    f.scroll(-1799);
+    assert.equal(f.puck.hidden, false);
+    f.scroll(-1800);
     assert.equal(f.puck.hidden, true);
     f.scroll(500);
     assert.equal(f.puck.hidden, false);

@@ -106,8 +106,9 @@ use each refinement's smaller upload list for the already migrated site.
   feature icons. Existing marketing copy, pricing, and membership links are
   preserved, including the legacy `/#choose-your-subscription` membership anchor
   alongside `/#pricingSect`. Landing CSS is versioned by its modification time; fixed decorative
-  animations are hidden below the introductory skills section.
-  The puck uses section-relative scroll progress in `assets/landing/landing.js`,
+  animations remain visible through "Take a look inside" and hide once that section
+  leaves the viewport. Decorations render above content dividers but below navigation.
+  The puck uses combined skills/preview scroll progress in `assets/landing/landing.js`,
   not Webflow's whole-page progress, so adding lower sections does not push its
   motion offscreen. It is disabled on mobile and for reduced-motion preferences.
   Vimeo's embedded player may report an `unload` permissions-policy warning in

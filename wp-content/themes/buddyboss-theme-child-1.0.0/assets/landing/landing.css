@@ -800,6 +800,12 @@
     display: none;
 }
 
+.pond-landing .bottle,
+.pond-landing .target,
+.pond-landing .puck {
+    z-index: 64;
+}
+
 .pond-landing .bottle {
     pointer-events: none;
     width: clamp(100px, 18vw, 175px);
@@ -817,7 +823,6 @@
     right: auto;
     bottom: 32px;
     left: 4vw;
-    z-index: 2;
     pointer-events: none;
     width: 125px;
     will-change: transform;

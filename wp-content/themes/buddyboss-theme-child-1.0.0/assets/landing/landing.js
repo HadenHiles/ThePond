@@ -1,5 +1,6 @@
 (function () {
     var skills = document.querySelector(".pond-skills");
+    var preview = document.querySelector(".pond-preview");
     var puck = document.querySelector("[data-pond-puck]");
     var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     var pending = false;
@@ -7,14 +8,15 @@
     function updatePuck() {
         pending = false;
         var rect = skills.getBoundingClientRect();
+        var bottom = preview.getBoundingClientRect().bottom;
         puck.hidden = reducedMotion.matches || window.innerWidth < 768 ||
-            rect.top >= window.innerHeight || rect.bottom <= 0;
+            rect.top >= window.innerHeight || bottom <= 0;
         if (puck.hidden) {
             return;
         }
 
         var progress = Math.max(0, Math.min(1,
-            (window.innerHeight - rect.top) / (window.innerHeight + rect.height)));
+            (window.innerHeight - rect.top) / (window.innerHeight + bottom - rect.top)));
         var arc = Math.sin(progress * Math.PI);
         var x = progress * Math.min(window.innerWidth * 0.6, 700);
         var y = -arc * Math.min(window.innerHeight * 0.5, 400);
@@ -40,7 +42,7 @@
         document.querySelectorAll(".bottle, .target").forEach(function (image) {
             image.hidden = belowIntro;
         });
-    }).observe(skills);
+    }).observe(preview);
 
     document.querySelectorAll(".c-accordion-item-q").forEach(function (button) {
         button.addEventListener("click", function () {
