@@ -138,7 +138,7 @@
                               <a href="#pricingSect" class="button membership-plans-button w-button">View membership plans</a>
                          </div>
                     </div>
-                    <img src="/landing-page-files/65f339da457cd234a51235d2_puck.png" width="125" data-w-id="062aa6af-9e5a-7005-a3be-017687b69e67" alt="" class="puck" loading="lazy">
+                    <img src="/landing-page-files/65f339da457cd234a51235d2_puck.png" width="125" data-pond-puck alt="" class="puck" loading="lazy" hidden>
                </section>
                <section class="section pond-preview">
                     <div class="container pond-preview-grid">
@@ -470,20 +470,7 @@
      </div>
      <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=65f1cda7de87d6943da9f97c" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
      <script src="/landing-page-files/webflow.e1003040c.js"></script>
-     <script>
-          new IntersectionObserver(function(entries) {
-               var belowIntro = entries[0].boundingClientRect.bottom <= 0;
-               document.querySelectorAll(".bottle, .target, .puck").forEach(function(image) {
-                    image.hidden = belowIntro;
-               });
-          }).observe(document.querySelector(".pond-skills"));
-
-          document.querySelectorAll(".c-accordion-item-q").forEach(function(button) {
-               button.addEventListener("click", function() {
-                    button.setAttribute("aria-expanded", button.getAttribute("aria-expanded") === "true" ? "false" : "true");
-               });
-          });
-     </script>
+     <script src="/wp-content/themes/buddyboss-theme-child-1.0.0/assets/landing/landing.js?ver=<?php echo filemtime(__DIR__ . '/assets/landing/landing.js'); ?>"></script>
 </body>
 
 </html>

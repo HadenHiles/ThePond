@@ -812,8 +812,15 @@
 }
 
 .pond-landing .puck {
+    position: fixed;
+    top: auto;
+    right: auto;
+    bottom: 32px;
+    left: 4vw;
+    z-index: 2;
     pointer-events: none;
     width: 125px;
+    will-change: transform;
 }
 
 @media screen and (max-width: 991px) {

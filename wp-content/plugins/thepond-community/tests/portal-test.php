@@ -737,11 +737,10 @@ check(strpos($landing, '<!DOCTYPE html>') !== false &&
     strpos($landing, '/landing-page-files/webflow.e1003040c.js') !== false &&
     strpos($landing, '/melting_pot/home.php') === false, 'Static public landing page lost or depends on Melting Pot');
 foreach (array('0b977642-4bc9-361c-e479-5599f5e5888b', '615f5c7d-6473-673b-545c-2045b9d31070',
-    '7d14055f-409e-d3c9-5124-f00e15e3bf48', 'ec2afc2d-f943-794b-6c3e-3dc130fbfeed',
-    '062aa6af-9e5a-7005-a3be-017687b69e67') as $animation_id) {
+    '7d14055f-409e-d3c9-5124-f00e15e3bf48', 'ec2afc2d-f943-794b-6c3e-3dc130fbfeed') as $animation_id) {
     check(strpos($landing, 'data-w-id="' . $animation_id . '"') !== false, 'Landing animation hook removed: ' . $animation_id);
 }
-foreach (array('landing.css', 'dashboard-desktop.webp', 'dashboard-mobile.webp') as $asset) {
+foreach (array('landing.css', 'landing.js', 'dashboard-desktop.webp', 'dashboard-mobile.webp') as $asset) {
     check(is_readable(get_stylesheet_directory() . '/assets/landing/' . $asset) &&
         strpos($landing, '/assets/landing/' . $asset) !== false, 'Landing asset missing or unused: ' . $asset);
 }

@@ -107,6 +107,13 @@ use each refinement's smaller upload list for the already migrated site.
   preserved, including the legacy `/#choose-your-subscription` membership anchor
   alongside `/#pricingSect`. Landing CSS is versioned by its modification time; fixed decorative
   animations are hidden below the introductory skills section.
+  The puck uses section-relative scroll progress in `assets/landing/landing.js`,
+  not Webflow's whole-page progress, so adding lower sections does not push its
+  motion offscreen. It is disabled on mobile and for reduced-motion preferences.
+  Vimeo's embedded player may report an `unload` permissions-policy warning in
+  newer Chrome versions: its vendor code registers a deprecated lifecycle handler.
+  This is separate from landing animations; do not suppress console messages or
+  re-enable deprecated `unload` permissions to conceal the third-party warning.
   The existing Webflow script, animation IDs, slider, navigation and accordion
   hooks remain in the standalone template.
   No vendor parent theme or complete third-party plugin needs uploading/tracking.
