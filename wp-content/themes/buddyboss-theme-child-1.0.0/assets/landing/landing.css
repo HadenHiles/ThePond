@@ -1,0 +1,852 @@
+.pond-landing {
+    --pond-ink: #102f46;
+    --pond-blue: #087ea9;
+    --pond-paper: #f3f7f8;
+    color: var(--pond-ink);
+    background: #fff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.pond-landing .container {
+    width: min(1180px, calc(100% - 64px));
+    max-width: 1180px;
+    margin-inline: auto;
+}
+
+.pond-landing .section {
+    padding: 96px 0;
+}
+
+.pond-landing h1,
+.pond-landing h2,
+.pond-landing h3 {
+    font-family: "Red Hat Display", sans-serif;
+    letter-spacing: -0.035em;
+    color: inherit;
+}
+
+.pond-landing h1 {
+    font-size: clamp(40px, 4.2vw, 64px);
+    line-height: 1.04;
+    margin: 16px 0 24px;
+}
+
+.pond-landing h2 {
+    font-size: clamp(32px, 3.3vw, 48px);
+    line-height: 1.1;
+    margin: 12px 0 24px;
+}
+
+.pond-landing h3 {
+    font-size: 26px;
+    line-height: 1.2;
+    margin: 8px 0 14px;
+}
+
+.pond-landing p,
+.pond-landing li {
+    font-size: 18px;
+    line-height: 1.65;
+}
+
+.pond-landing p {
+    margin: 0 0 20px;
+}
+
+.pond-landing .pond-eyebrow,
+.pond-landing .pond-card-label {
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--pond-blue);
+    margin: 0 0 12px;
+}
+
+.pond-landing .navbar {
+    position: relative;
+    z-index: 65;
+    background: #fff;
+    padding: 18px 0;
+}
+
+.pond-landing .nav-container {
+    min-height: 48px;
+}
+
+.pond-landing .brand {
+    width: 110px;
+    min-height: 50px;
+    background: url("https://cdn.thepond.howtohockey.com/2020/01/THEPOND_RGB_WORDMARK_CLEAN.svg") left center / contain no-repeat;
+}
+
+.pond-landing .nav-link {
+    color: var(--pond-ink);
+    font-size: 15px;
+}
+
+.pond-landing .button,
+.pond-landing .button-primary {
+    background-image: none;
+    padding: 16px 24px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 16px;
+    white-space: normal;
+    transition: background-color 180ms, box-shadow 180ms;
+}
+
+.pond-landing .button:hover,
+.pond-landing .button-primary:hover {
+    padding: 16px 24px;
+    background-image: none;
+}
+
+.pond-landing .button.small {
+    padding: 10px 20px;
+}
+
+.pond-landing .pond-text-link {
+    color: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+    display: inline-block;
+}
+
+.pond-landing .pond-text-link span {
+    margin-left: 8px;
+}
+
+.pond-landing .hero {
+    position: relative;
+    background: var(--pond-paper);
+    padding: 64px 0 80px;
+    overflow: hidden;
+}
+
+.pond-landing .hero > .container,
+.pond-landing .pond-skills > .container {
+    position: relative;
+    z-index: 1;
+}
+
+.pond-landing .hero-slider,
+.pond-landing .w-slider-mask {
+    height: auto;
+    background: transparent;
+}
+
+.pond-landing .hero-slider-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 56px;
+    min-height: 0;
+}
+
+.pond-landing .hero-slider-content > .column {
+    width: 100%;
+    max-width: none;
+    padding: 0;
+}
+
+.pond-landing .pond-hero-copy {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.pond-landing .hero-image-column {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.pond-landing .hero-slider-image-wrap {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px #102f4626;
+}
+
+.pond-video {
+    aspect-ratio: 16 / 9;
+    position: relative;
+    background: #102f46;
+}
+
+.pond-video iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.pond-landing .pond-video-caption,
+.pond-landing .pond-hero-note {
+    font-size: 14px;
+    color: #4f6674;
+    margin: 16px 0 0;
+}
+
+.pond-landing .pond-hero-copy .pond-text-link {
+    display: block;
+    width: fit-content;
+    margin-top: 20px;
+}
+
+.pond-proof {
+    border-bottom: 1px solid #dce6ea;
+    padding: 28px 0;
+}
+
+.pond-proof-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+}
+
+.pond-landing .pond-proof p {
+    margin: 0;
+    border-right: 1px solid #dce6ea;
+}
+
+.pond-landing .pond-proof p:last-child {
+    border: 0;
+}
+
+.pond-proof strong,
+.pond-proof span {
+    display: block;
+}
+
+.pond-proof strong {
+    font-size: 26px;
+    font-weight: 900;
+}
+
+.pond-proof span {
+    font-size: 14px;
+    color: #4f6674;
+}
+
+.pond-section-heading {
+    max-width: 740px;
+    margin-bottom: 40px;
+}
+
+.pond-landing .pond-skills {
+    position: relative;
+    background: #fff;
+    text-align: left;
+    overflow: visible;
+}
+
+.pond-skill-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.pond-skill-card {
+    background: var(--pond-paper);
+    border: 1px solid #dce6ea;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.pond-skill-card > img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+}
+
+.pond-card-copy {
+    padding: 24px;
+}
+
+.pond-landing .pond-skill-card h3 {
+    font-size: 24px;
+}
+
+.pond-landing .pond-skill-card p:not(.pond-card-label) {
+    font-size: 16px;
+    margin: 0;
+}
+
+.pond-section-end {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    margin-top: 32px;
+}
+
+.pond-landing .pond-section-end p {
+    margin: 0;
+    font-size: 16px;
+    max-width: 580px;
+}
+
+.pond-landing .pond-preview {
+    background: var(--pond-paper);
+    overflow: hidden;
+}
+
+.pond-preview-grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.4fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.pond-benefit-list {
+    list-style: none;
+    padding: 0;
+    margin: 28px 0 0;
+}
+
+.pond-landing .pond-benefit-list li {
+    font-size: 16px;
+    border-top: 1px solid #d1e0e6;
+    padding: 14px 0;
+}
+
+.pond-dashboard-preview {
+    position: relative;
+    margin: 0;
+    padding-bottom: 84px;
+    padding-right: 32px;
+}
+
+.pond-browser-frame {
+    border: 1px solid #b3c4ce;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 24px 48px #102f4626;
+}
+
+.pond-browser-bar {
+    background: #e5ecef;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    height: 34px;
+    padding: 0 12px;
+}
+
+.pond-browser-bar > span {
+    height: 6px;
+    width: 6px;
+    border-radius: 50%;
+    background: #869fab;
+}
+
+.pond-landing .pond-browser-bar p {
+    font-size: 10px;
+    margin: 0 0 0 10px;
+    color: #496371;
+}
+
+.pond-browser-frame img,
+.pond-phone-frame img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.pond-phone-frame {
+    position: absolute;
+    right: 0;
+    bottom: 36px;
+    width: 150px;
+    background: #102f46;
+    border: 7px solid #102f46;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 16px 32px #102f4633;
+}
+
+.pond-phone-speaker {
+    height: 12px;
+    position: relative;
+}
+
+.pond-phone-speaker::after {
+    content: "";
+    position: absolute;
+    width: 32px;
+    height: 3px;
+    background: #638092;
+    left: calc(50% - 16px);
+    top: 3px;
+    border-radius: 4px;
+}
+
+.pond-dashboard-preview figcaption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: #4f6674;
+    font-size: 14px;
+}
+
+.pond-off-ice-grid,
+.pond-samples-grid,
+.pond-audience-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+}
+
+.pond-training-options {
+    border-left: 2px solid #c5e5ed;
+    padding-left: 32px;
+}
+
+.pond-training-options article + article {
+    margin-top: 28px;
+}
+
+.pond-training-options span {
+    font-size: 12px;
+    color: var(--pond-blue);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.pond-landing .pond-training-options h3 {
+    font-size: 22px;
+}
+
+.pond-landing .pond-training-options p {
+    font-size: 16px;
+    margin: 0;
+}
+
+.pond-landing .pond-samples {
+    background: var(--pond-ink);
+    color: #fff;
+}
+
+.pond-samples .pond-eyebrow,
+.pond-samples .pond-card-label {
+    color: #8ed7ec;
+}
+
+.pond-sample-menu {
+    border: 1px solid #ffffff33;
+    border-radius: 16px;
+    padding: 32px;
+    background: #ffffff08;
+}
+
+.pond-sample-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 28px;
+}
+
+.pond-landing .pond-sample-menu li {
+    display: block;
+    padding: 18px 0;
+    border-bottom: 1px solid #ffffff26;
+    font-size: 17px;
+}
+
+.pond-sample-menu li span {
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 8px;
+    color: #8ed7ec;
+}
+
+.pond-landing .pond-audience {
+    padding: 72px 0;
+    background: var(--pond-paper);
+}
+
+.pond-landing .pond-audience h2 {
+    font-size: clamp(28px, 3vw, 40px);
+    margin: 0;
+}
+
+.pond-audience p:last-child {
+    margin: 0;
+}
+
+.pond-landing .pond-pricing {
+    padding: 96px 0;
+    background: #fff;
+}
+
+.pond-price-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 56px;
+}
+
+.pond-price-card {
+    position: relative;
+    border: 1px solid #c5d6de;
+    border-radius: 14px;
+    padding: 32px;
+}
+
+.pond-price-featured {
+    border: 2px solid var(--pond-blue);
+    background: #f1fafd;
+}
+
+.pond-landing .pond-price-tag {
+    position: absolute;
+    top: -17px;
+    left: 24px;
+    border-radius: 6px;
+    background: var(--pond-blue);
+    color: #fff;
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.pond-landing .pond-price {
+    font-size: 40px;
+    font-weight: 900;
+    line-height: 1.3;
+    letter-spacing: -0.04em;
+    margin: 18px 0 8px;
+}
+
+.pond-price span {
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0;
+}
+
+.pond-landing .pond-price-card > p:not(.pond-price):not(.pond-price-tag) {
+    font-size: 14px;
+}
+
+.pond-price-card .button-primary {
+    display: block;
+    text-align: center;
+    margin: 24px 0;
+}
+
+.pond-price-card ul {
+    border-top: 1px solid #c5d6de;
+    padding: 24px 0 0 18px;
+    margin: 0;
+}
+
+.pond-landing .pond-price-card li {
+    font-size: 15px;
+    margin-bottom: 12px;
+}
+
+.pond-landing .pond-price-note {
+    text-align: center;
+    font-size: 13px;
+    margin: 24px 0;
+}
+
+.pond-payment-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    margin-top: 32px;
+}
+
+.pond-payment-logos img {
+    width: 48px;
+    height: 28px;
+    object-fit: contain;
+}
+
+.pond-guarantee {
+    display: grid;
+    grid-template-columns: 64px minmax(0, 1fr);
+    gap: 24px;
+    align-items: center;
+    max-width: 760px;
+    margin: 48px auto 0;
+    padding: 28px;
+    border-radius: 14px;
+    border: 1px solid #dce6ea;
+    background: var(--pond-paper);
+}
+
+.pond-guarantee-icon {
+    display: grid;
+    place-items: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #dceef2;
+    color: var(--pond-blue);
+}
+
+.pond-landing .pond-guarantee h3 {
+    font-size: 24px;
+    margin: 0 0 8px;
+}
+
+.pond-landing .pond-guarantee p {
+    font-size: 15px;
+    margin: 0;
+}
+
+.pond-landing .pond-faq {
+    background: var(--pond-paper);
+}
+
+.pond-faq .c-accordion-list {
+    max-width: 850px;
+}
+
+.pond-faq .c-accordion-item {
+    color: var(--pond-ink);
+    background: #fff;
+    border: 1px solid #dce6ea;
+    border-radius: 10px;
+    margin-bottom: 12px;
+}
+
+.pond-faq .accordion-item-q-text {
+    color: var(--pond-ink);
+    font-size: 20px;
+}
+
+.pond-faq button.c-accordion-item-q {
+    display: block;
+    width: 100%;
+    background: transparent;
+    color: inherit;
+    border: 0;
+    text-align: left;
+    font: inherit;
+}
+
+.pond-landing a:focus-visible,
+.pond-landing button:focus-visible {
+    outline: 3px solid #087ea9;
+    outline-offset: 4px;
+}
+
+.pond-faq .accordion-item-a-text {
+    color: #365565;
+    font-size: 17px;
+}
+
+.pond-footer {
+    background: var(--pond-ink);
+    color: #fff;
+    padding: 48px 0;
+}
+
+.pond-footer .container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 24px;
+    justify-content: space-between;
+}
+
+.pond-footer .footer-brand {
+    width: 90px;
+    height: 50px;
+    margin: 0;
+    background: url("https://cdn.thepond.howtohockey.com/2020/01/THEPOND_WHITE_WORDMARK_CLEAN.svg") left center / contain no-repeat;
+}
+
+.pond-landing .pond-footer p {
+    font-size: 15px;
+    margin: 0;
+}
+
+.pond-footer nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.pond-footer a {
+    color: #fff;
+    font-size: 14px;
+}
+
+.pond-landing .helmet-crown {
+    display: none;
+}
+
+.pond-landing .bottle {
+    pointer-events: none;
+    width: clamp(100px, 18vw, 175px);
+}
+
+.pond-landing .target {
+    pointer-events: none;
+    left: -40px;
+    width: 100px;
+}
+
+.pond-landing .puck {
+    pointer-events: none;
+    width: 125px;
+}
+
+@media screen and (max-width: 991px) {
+    .pond-skill-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .pond-preview-grid,
+    .pond-off-ice-grid,
+    .pond-samples-grid,
+    .pond-audience-grid {
+        gap: 40px;
+    }
+
+    .pond-landing .hero-slider-content {
+        gap: 32px;
+    }
+
+    .pond-price-card {
+        padding: 24px;
+    }
+
+    .pond-landing .pond-price {
+        font-size: 32px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .pond-landing .w-nav-overlay,
+    .pond-landing .nav-menu {
+        max-height: 100dvh;
+    }
+
+    .pond-landing .nav-menu {
+        overflow-y: auto;
+    }
+
+    .pond-landing .container {
+        width: calc(100% - 40px);
+    }
+
+    .pond-landing .section,
+    .pond-landing .pond-pricing {
+        padding: 56px 0;
+    }
+
+    .pond-landing .hero-slider-content,
+    .pond-preview-grid,
+    .pond-off-ice-grid,
+    .pond-samples-grid,
+    .pond-audience-grid,
+    .pond-price-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pond-landing .hero-image-column {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .pond-landing .hero-slider-content {
+        gap: 36px;
+    }
+
+    .pond-landing .pond-hero-copy .button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .pond-landing .pond-hero-copy .pond-text-link {
+        margin-inline: auto;
+    }
+
+    .pond-proof strong {
+        font-size: 19px;
+    }
+
+    .pond-proof span {
+        font-size: 11px;
+        padding-inline: 8px;
+        line-height: 1.4;
+    }
+
+    .pond-section-end {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .pond-dashboard-preview {
+        padding: 0 0 36px;
+    }
+
+    .pond-browser-frame {
+        display: none;
+    }
+
+    .pond-phone-frame {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        width: min(293px, 100%);
+        margin: 0 auto;
+    }
+
+    .pond-dashboard-preview figcaption {
+        width: 100%;
+        text-align: center;
+    }
+
+    .pond-price-grid {
+        gap: 32px;
+    }
+
+    .pond-guarantee {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        gap: 16px;
+        text-align: center;
+        padding: 24px;
+    }
+
+    .pond-footer .container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .pond-landing .bottle,
+    .pond-landing .puck,
+    .pond-landing .target {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    .pond-skill-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pond-skill-card > img {
+        aspect-ratio: 16 / 9;
+    }
+
+    .pond-sample-menu {
+        padding: 24px;
+    }
+}

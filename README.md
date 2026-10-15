@@ -83,9 +83,15 @@ use each refinement's smaller upload list for the already migrated site.
   including membership-selection links. It deliberately does not acquire BuddyBoss's
   portal shell. Keep **both old Melting Pot themes installed** because other existing
   static assets and placeholder images are still reused; the homepage source no longer
-  depends on either theme. Deploy homepage edits from BuddyBoss Child's `home.php`,
+  depends on either theme. Deploy homepage edits from BuddyBoss Child's `home.php`
+  together with its [landing assets](wp-content/themes/buddyboss-theme-child-1.0.0/assets/landing/),
   keep the shared `/landing-page-files/` assets deployed, and remove the obsolete
   `melting_pot/home.php` copy from servers when updating.
+  Landing assets include the scoped stylesheet and real dashboard captures from
+  October 14, 2026. Captures exclude the WordPress toolbar, account details, and
+  private group codes. Browser and phone outlines are CSS, not part of the images.
+  The existing Webflow script, animation IDs, slider, navigation and accordion
+  hooks remain in the standalone template.
   No vendor parent theme or complete third-party plugin needs uploading/tracking.
 - ReadyLaunch is forced off with BuddyBoss Theme so it cannot compete with native
   community or LearnDash rendering. The old hybrid behavior remains available on
