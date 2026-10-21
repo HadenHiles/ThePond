@@ -33,6 +33,7 @@
                }
           })(window, document);
      </script>
+     <?php do_action('thepond_landing_head'); ?>
 </head>
 
 <body class="body pond-landing">

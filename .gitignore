@@ -40,6 +40,7 @@ wp-content/themes/melting_pot/bootstrap-4.5.0
 !wp-content/plugins/player-profile
 !wp-content/plugins/miniorange-firebase-authentication-enterprise
 !wp-content/plugins/thepond-community
+!wp-content/plugins/thepond-analytics
 
 # Track only the customized BuddyBoss child, not the vendor parent/download extras.
 !wp-content/themes/buddyboss-theme-child-1.0.0/
