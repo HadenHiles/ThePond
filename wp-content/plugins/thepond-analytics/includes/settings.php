@@ -25,16 +25,14 @@ foreach (array(THEPOND_ANALYTICS_OPTION, THEPOND_ANALYTICS_SA_OPTION) as $thepon
 unset($thepond_analytics_option);
 
 /**
- * W3 Total Cache skips its object cache on wp-admin pages but uses it for
- * AJAX, cron and the front end, so settings saved in wp-admin would otherwise
- * stay stale (or missing) everywhere else until the cache expires.
+ * W3 Total Cache doesn't write to its object cache on wp-admin pages but does
+ * read it for AJAX, cron and the front end, so settings saved in wp-admin
+ * would stay stale there. Deletes still reach the persistent cache, so
+ * dropping just these keys is enough; a full flush would cold-start the site.
  */
 function thepond_analytics_flush_object_cache() {
     foreach (array(THEPOND_ANALYTICS_OPTION, THEPOND_ANALYTICS_SA_OPTION, 'alloptions', 'notoptions') as $key) {
         wp_cache_delete($key, 'options');
-    }
-    if (function_exists('w3tc_objectcache_flush')) {
-        w3tc_objectcache_flush();
     }
 }
 

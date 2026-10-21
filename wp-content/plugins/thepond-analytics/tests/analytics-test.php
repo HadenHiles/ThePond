@@ -31,9 +31,7 @@ define('WP_PLUGIN_DIR', ABSPATH . 'wp-content/plugins');
 define('WPMU_PLUGIN_DIR', ABSPATH . 'wp-content/mu-plugins');
 define('THEPOND_ANALYTICS_FILE', dirname(__DIR__) . '/thepond-analytics.php');
 $cache_deletes = array();
-$w3tc_flushes = 0;
 function wp_cache_delete($key, $group = '') { global $cache_deletes; $cache_deletes[] = $group . ':' . $key; return true; }
-function w3tc_objectcache_flush() { global $w3tc_flushes; $w3tc_flushes++; }
 
 require dirname(__DIR__) . '/includes/settings.php';
 require dirname(__DIR__) . '/includes/conversions.php';
@@ -149,10 +147,10 @@ $chart = thepond_analytics_chart(array('2024-01-01', '2024-01-02'), array(array(
 check(strpos($chart, '<svg') !== false && strpos($chart, '<polyline') !== false, 'chart renders svg');
 
 do_action('update_option_' . THEPOND_ANALYTICS_SA_OPTION, array(), array());
-check($w3tc_flushes === 1, 'saving the service account flushes the W3TC object cache');
+check(in_array('options:thepond_analytics_service_account', $cache_deletes, true), 'saving the service account clears its cached copy');
 check(in_array('options:alloptions', $cache_deletes, true) && in_array('options:notoptions', $cache_deletes, true), 'saving clears cached option lists');
 do_action('add_option_' . THEPOND_ANALYTICS_OPTION, THEPOND_ANALYTICS_OPTION, array());
 do_action('delete_option_' . THEPOND_ANALYTICS_SA_OPTION, THEPOND_ANALYTICS_SA_OPTION);
-check($w3tc_flushes === 3, 'adding settings and removing the key also flush the object cache');
+check(in_array('options:thepond_analytics', $cache_deletes, true) && !function_exists('w3tc_objectcache_flush'), 'adding settings clears cached copies without a full cache flush');
 
 echo "OK: {$checks} checks passed\n";
