@@ -25,7 +25,17 @@ function is_wp_error($thing) { return $thing instanceof WP_Error; }
 function wp_timezone() { return new DateTimeZone('America/Toronto'); }
 function number_format_i18n($number, $decimals = 0) { return number_format($number, $decimals); }
 function wp_date($format, $timestamp = null) { return gmdate($format, $timestamp ?? time()); }
+function wp_normalize_path($path) { return str_replace('\\', '/', $path); }
+$wp_plugin_paths = array();
+define('WP_PLUGIN_DIR', ABSPATH . 'wp-content/plugins');
+define('WPMU_PLUGIN_DIR', ABSPATH . 'wp-content/mu-plugins');
+define('THEPOND_ANALYTICS_FILE', dirname(__DIR__) . '/thepond-analytics.php');
+$cache_deletes = array();
+$w3tc_flushes = 0;
+function wp_cache_delete($key, $group = '') { global $cache_deletes; $cache_deletes[] = $group . ':' . $key; return true; }
+function w3tc_objectcache_flush() { global $w3tc_flushes; $w3tc_flushes++; }
 
+require dirname(__DIR__) . '/includes/settings.php';
 require dirname(__DIR__) . '/includes/conversions.php';
 require dirname(__DIR__) . '/includes/google.php';
 require dirname(__DIR__) . '/includes/charts.php';
@@ -137,5 +147,12 @@ check(strpos($bars, 'Visited &lt;b&gt;') !== false && strpos($bars, '<b>') === f
 check(strpos($bars, '5') !== false, 'bars show values');
 $chart = thepond_analytics_chart(array('2024-01-01', '2024-01-02'), array(array('name' => 'Signups', 'values' => array('2024-01-01' => 1, '2024-01-02' => 3))));
 check(strpos($chart, '<svg') !== false && strpos($chart, '<polyline') !== false, 'chart renders svg');
+
+do_action('update_option_' . THEPOND_ANALYTICS_SA_OPTION, array(), array());
+check($w3tc_flushes === 1, 'saving the service account flushes the W3TC object cache');
+check(in_array('options:alloptions', $cache_deletes, true) && in_array('options:notoptions', $cache_deletes, true), 'saving clears cached option lists');
+do_action('add_option_' . THEPOND_ANALYTICS_OPTION, THEPOND_ANALYTICS_OPTION, array());
+do_action('delete_option_' . THEPOND_ANALYTICS_SA_OPTION, THEPOND_ANALYTICS_SA_OPTION);
+check($w3tc_flushes === 3, 'adding settings and removing the key also flush the object cache');
 
 echo "OK: {$checks} checks passed\n";

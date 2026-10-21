@@ -17,6 +17,26 @@ add_action('admin_menu', 'thepond_analytics_settings_menu');
 add_action('admin_post_thepond_analytics_test', 'thepond_analytics_handle_test');
 add_action('admin_post_thepond_analytics_setup', 'thepond_analytics_handle_setup');
 add_filter('plugin_action_links_' . plugin_basename(THEPOND_ANALYTICS_FILE), 'thepond_analytics_action_links');
+foreach (array(THEPOND_ANALYTICS_OPTION, THEPOND_ANALYTICS_SA_OPTION) as $thepond_analytics_option) {
+    add_action('add_option_' . $thepond_analytics_option, 'thepond_analytics_flush_object_cache');
+    add_action('update_option_' . $thepond_analytics_option, 'thepond_analytics_flush_object_cache');
+    add_action('delete_option_' . $thepond_analytics_option, 'thepond_analytics_flush_object_cache');
+}
+unset($thepond_analytics_option);
+
+/**
+ * W3 Total Cache skips its object cache on wp-admin pages but uses it for
+ * AJAX, cron and the front end, so settings saved in wp-admin would otherwise
+ * stay stale (or missing) everywhere else until the cache expires.
+ */
+function thepond_analytics_flush_object_cache() {
+    foreach (array(THEPOND_ANALYTICS_OPTION, THEPOND_ANALYTICS_SA_OPTION, 'alloptions', 'notoptions') as $key) {
+        wp_cache_delete($key, 'options');
+    }
+    if (function_exists('w3tc_objectcache_flush')) {
+        w3tc_objectcache_flush();
+    }
+}
 
 function thepond_analytics_defaults() {
     return array(
