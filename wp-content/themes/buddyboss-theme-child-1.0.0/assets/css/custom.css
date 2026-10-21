@@ -552,6 +552,118 @@ https://www.w3schools.com/css/css_rwd_mediaqueries.asp
 }
 
 /* Support forms (member and public /support/) */
+/* The support page is an Elementor page, so the Elementor kit's grey body background would otherwise override the theme's. */
+body.page-template-member_support {
+    background-color: var(--bb-body-background-color);
+}
+.page-template-member_support .pond-portal {
+    background: transparent;
+}
+.page-template-member_support .pond-support-faq {
+    max-width: 850px;
+    margin: 32px 0;
+    color: var(--bb-headings-color);
+}
+.page-template-member_support .pond-support-faq h2 {
+    margin: 0 0 20px;
+    color: var(--bb-headings-color);
+}
+.page-template-member_support .pond-support-faq-group + .pond-support-faq-group {
+    margin-top: 28px;
+}
+.page-template-member_support .pond-support-faq h3 {
+    margin: 0 0 12px;
+    color: var(--bb-headings-color);
+    font-size: 18px;
+    font-weight: 700;
+}
+.page-template-member_support .pond-support-faq .c-accordion-item {
+    margin-bottom: 12px;
+    color: var(--bb-headings-color);
+    background: var(--bb-content-background-color, #fff);
+    border: 1px solid var(--bb-content-border-color);
+    border-radius: 10px;
+}
+.page-template-member_support .pond-support-faq button.c-accordion-item-q {
+    display: block;
+    width: 100%;
+    padding: 20px 24px;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+}
+.page-template-member_support .pond-support-faq ._w-accordion-item-q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+.page-template-member_support .pond-support-faq .accordion-item-q-text {
+    color: inherit;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+.page-template-member_support .pond-support-faq .c-accordion-item-q-icon {
+    flex: 0 0 20px;
+    width: 20px;
+    height: 20px;
+}
+.page-template-member_support .pond-support-faq ._w-accordion-item-q-icon {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.page-template-member_support .pond-support-faq .accordion-item-q-icon-stripe-1,
+.page-template-member_support .pond-support-faq .accordion-item-q-icon-stripe-2 {
+    position: absolute;
+    top: 9px;
+    left: 2px;
+    width: 16px;
+    height: 2px;
+    background: currentColor;
+    transition: transform 180ms ease;
+}
+.page-template-member_support .pond-support-faq .accordion-item-q-icon-stripe-2 {
+    transform: rotate(90deg);
+}
+.page-template-member_support .pond-support-faq button[aria-expanded="true"] .accordion-item-q-icon-stripe-2 {
+    transform: rotate(90deg) scaleX(0);
+}
+.page-template-member_support .pond-support-faq .c-accordion-item-a {
+    height: 0;
+    overflow: hidden;
+    transition: height 250ms ease;
+}
+.page-template-member_support .pond-support-faq ._w-accordion-item-a {
+    padding: 0 24px 20px;
+}
+.page-template-member_support .pond-support-faq .accordion-content-divider {
+    margin: 0 24px 16px;
+    border-top: 1px solid var(--bb-content-border-color);
+}
+.page-template-member_support .pond-support-faq .accordion-item-a-text {
+    margin: 0;
+    color: var(--bb-body-text-color);
+    font-size: 17px;
+    line-height: 1.6;
+}
+.page-template-member_support .pond-support-faq a {
+    color: var(--bb-primary-color);
+    text-decoration: underline;
+}
+.page-template-member_support .pond-support-faq button:focus-visible {
+    outline: 3px solid var(--bb-primary-color);
+    outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+    .page-template-member_support .pond-support-faq .c-accordion-item-a,
+    .page-template-member_support .pond-support-faq .accordion-item-q-icon-stripe-1,
+    .page-template-member_support .pond-support-faq .accordion-item-q-icon-stripe-2 { transition: none; }
+}
 .page-template-member_support .pond-portal .membSupportForm {
     display: block;
     margin: 24px 0 48px;

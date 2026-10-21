@@ -1,7 +1,7 @@
 <?php
 defined('ABSPATH') || exit;
 
-foreach (array('identity', 'cpt', 'taxonomies', 'acf', 'library', 'shortcodes', 'history', 'HthMeprUser.class') as $module) {
+foreach (array('identity', 'firebase-sync', 'cpt', 'taxonomies', 'acf', 'library', 'shortcodes', 'history', 'HthMeprUser.class') as $module) {
     require_once __DIR__ . '/' . $module . '.php';
 }
 

@@ -1726,7 +1726,7 @@
     padding: 2rem 0;
 }
 .pond-portal .membSupportForm{
-    background: #f5f5f5;
+    background: transparent;
     display: inline-block;
     width: 100%;
     padding: 3rem;

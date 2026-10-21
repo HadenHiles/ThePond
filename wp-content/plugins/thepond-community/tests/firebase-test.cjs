@@ -10,7 +10,7 @@ for (const initialized of [false, true]) {
     let initializationCount = 0;
     let authListeners = 0;
     const bindings = [];
-    const auth = {onAuthStateChanged() { authListeners++; }};
+    const auth = {onAuthStateChanged() { authListeners++; }, signInWithEmailAndPassword() { return Promise.resolve({}); }};
     const firebase = {
       apps: initialized ? [{}] : [],
       initializeApp() { initializationCount++; this.apps.push({}); },
@@ -42,10 +42,12 @@ for (const initialized of [false, true]) {
       context.setCookie('probe', 'value', 1);
       assert.ok(document.cookie.includes('expires=Fri, 09 Oct 2026 00:01:00 GMT'), 'Firebase cookie duration changed from minutes');
       checks++;
-      for (const selector of ['.mepr-signup-form .mepr-submit', '#mepr_forgot_password_form', '#mepr_account_form', '#mepr-newpassword-form']) {
+      for (const selector of ['#mepr_forgot_password_form', '#mepr_account_form', '#mepr-newpassword-form']) {
         assert.ok(bindings.includes(selector), 'Auth handler missing: ' + selector);
         checks++;
       }
+      assert.ok(!bindings.includes('.mepr-signup-form .mepr-submit'), 'Sign-up must not depend on browser Firebase creation');
+      checks++;
     } else {
       assert.equal(authListeners, 1, 'Challenge scores fail with an existing Firebase app');
       checks++;
@@ -78,7 +80,7 @@ for (const scenario of ['remember', 'without-remember', 'other-page']) {
     return collection(selector === '#firebase-login-page #mepr_loginform' ? 'login' : 'empty');
   }
   vm.runInNewContext(fs.readFileSync(path.join(root, 'wp-content/themes/buddyboss-theme-child-1.0.0/assets/js/custom.js'), 'utf8'),
-    {jQuery: jquery, document: {querySelector() { return null; }}, console});
+    {jQuery: jquery, document: {querySelector() { return null; }, querySelectorAll() { return []; }}, console});
   assert.deepEqual(movements, scenario === 'remember' ? ['remember-row'] :
     scenario === 'without-remember' ? ['before-submit'] : [], 'Forgot-password placement: ' + scenario);
   checks++;
@@ -183,8 +185,87 @@ async function checkTokenHandoff() {
   }
 }
 
-checkTokenHandoff().then(() => {
-  console.log(`PASS: ${checks} Firebase initialization, auth UI, handler and token handoff checks`);
+async function checkFirebaseRecovery() {
+  const source = fs.readFileSync(path.join(root, 'wp-content/themes/buddyboss-theme-child-1.0.0/assets/js/firebase.js'), 'utf8');
+  const missing = {code: 'auth/user-not-found', message: 'There is no user record.'};
+  const scenarios = [
+    {name: 'login-created', form: 'login', response: {success: true, data: {created: true}}, signIn: 'ok'},
+    {name: 'login-existing', form: 'login', response: {success: true, data: {created: false}}, signIn: 'missing'},
+    {name: 'login-wrong-password', form: 'login', xhr: {status: 403}, signIn: 'missing'},
+    {name: 'login-other-error', form: 'login', otherError: true},
+    {name: 'login-short-password', form: 'login', response: {success: true, data: {created: true, reset_sent: true}}, signIn: 'pending'},
+    {name: 'reset-recovered', form: 'reset', response: {success: true, data: {created: true}}, message: 'An email has been sent'},
+    {name: 'reset-not-member', form: 'reset', xhr: {status: 404}, message: 'Email address not found'},
+    {name: 'reset-rate-limited', form: 'reset', xhr: {status: 429}, message: 'Too many reset attempts'},
+  ];
+  for (const scenario of scenarios) {
+    const requests = [];
+    const handlers = {};
+    let resultText = '';
+    let signInCalls = 0;
+    let body = null;
+    const auth = {
+      signInWithEmailAndPassword() {
+        signInCalls++;
+        if (scenario.otherError) return Promise.reject({code: 'auth/wrong-password', message: 'Wrong password'});
+        return signInCalls === 1 ? Promise.reject(missing) : Promise.resolve({user: {}});
+      },
+      sendPasswordResetEmail() { return Promise.reject(missing); },
+    };
+    function jquery(selector) {
+      if (selector === document) return {ready(fn) { fn(); }};
+      const present = (scenario.form === 'login' && selector === '#mepr_loginform') ||
+        (scenario.form === 'reset' && selector === '#mepr_forgot_password_form');
+      return {
+        length: present || selector === '#mepr_user_or_email' ? 1 : 0,
+        submit(fn) { handlers[selector] = fn; return this; },
+        val() { return ' member@example.com '; },
+        attr() { return this; }, css() { return this; }, removeAttr() { return this; },
+        html(value) { if (selector === '#pw_reset_result p' && value !== undefined) resultText = value; return this; },
+        text(value) { if (selector === '#pw_reset_result p') resultText = value; return this; },
+      };
+    }
+    jquery.extend = Object.assign;
+    jquery.ajax = options => {
+      requests.push(options.data);
+      return scenario.xhr ? Promise.reject(scenario.xhr) : Promise.resolve(scenario.response);
+    };
+    const document = {
+      cookie: '',
+      createElement() { return {style: {}, append() {}, textContent: ''}; },
+      body: {replaceChildren(node) { body = node; }},
+    };
+    const context = {
+      document, jQuery: jquery, console: {log() {}, warn() {}, error() {}}, Promise, setTimeout() {}, Date, String,
+      firebase: {apps: [{}], auth() { return auth; }},
+      pondFirebase: {ajaxUrl: '/wp-admin/admin-ajax.php', recoverNonce: 'nonce'},
+    };
+    vm.runInNewContext(source, context);
+    if (scenario.form === 'login') {
+      let outcome = 'pending';
+      auth.signInWithEmailAndPassword('member@example.com', 'secret-pass')
+        .then(() => { outcome = 'ok'; }, error => { outcome = error.code === 'auth/wrong-password' ? 'other' : 'missing'; });
+      for (let i = 0; i < 5; i++) await new Promise(resolve => setImmediate(resolve));
+      assert.equal(outcome, scenario.otherError ? 'other' : scenario.signIn, scenario.name + ': unexpected sign-in outcome');
+      assert.equal(requests.length, scenario.otherError ? 0 : 1, scenario.name + ': recovery request count');
+      if (!scenario.otherError) {
+        assert.equal(requests[0].mode, 'login');
+        assert.equal(requests[0].password, 'secret-pass');
+        assert.equal(requests[0].nonce, 'nonce');
+      }
+      assert.equal(!!body, scenario.name === 'login-short-password', scenario.name + ': reset notice visibility');
+    } else {
+      handlers['#mepr_forgot_password_form']({preventDefault() {}});
+      for (let i = 0; i < 5; i++) await new Promise(resolve => setImmediate(resolve));
+      assert.deepEqual(requests.map(data => [data.mode, data.email]), [['reset', 'member@example.com']]);
+      assert.ok(resultText.includes(scenario.message), scenario.name + ': ' + resultText);
+    }
+    checks++;
+  }
+}
+
+checkTokenHandoff().then(checkFirebaseRecovery).then(() => {
+  console.log(`PASS: ${checks} Firebase initialization, auth UI, handler, token handoff and recovery checks`);
 }).catch(error => {
   console.error(error);
   process.exitCode = 1;

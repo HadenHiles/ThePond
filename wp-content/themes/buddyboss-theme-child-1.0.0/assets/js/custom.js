@@ -21,6 +21,40 @@ function eraseCookie(name) {
 }
 
 jQuery(function ($) {
+    document.querySelectorAll(".pond-support-faq .c-accordion-item-q").forEach(function (button) {
+        button.addEventListener("click", function () {
+            var panel = document.getElementById(button.getAttribute("aria-controls"));
+            var isExpanded = button.getAttribute("aria-expanded") === "true";
+            if (!panel) {
+                console.error("Support FAQ panel not found:", button.getAttribute("aria-controls"));
+                return;
+            }
+
+            button.setAttribute("aria-expanded", String(!isExpanded));
+            if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+                panel.style.height = isExpanded ? "0px" : "auto";
+                return;
+            }
+            if (isExpanded) {
+                panel.style.height = panel.scrollHeight + "px";
+                window.requestAnimationFrame(function () {
+                    panel.style.height = "0px";
+                });
+            } else {
+                panel.style.height = panel.scrollHeight + "px";
+            }
+        });
+    });
+    document.querySelectorAll(".pond-support-faq .c-accordion-item-a").forEach(function (panel) {
+        panel.addEventListener("transitionend", function (event) {
+            if (event.propertyName === "height" &&
+                panel.previousElementSibling &&
+                panel.previousElementSibling.getAttribute("aria-expanded") === "true") {
+                panel.style.height = "auto";
+            }
+        });
+    });
+
     var facebook = document.querySelector(".page-template-member-dashboard #facebook-secret-phrase");
     var skillsVault = document.querySelector(".page-template-member-dashboard #skills-vault");
     if (facebook && skillsVault) {

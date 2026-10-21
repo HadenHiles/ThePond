@@ -412,7 +412,11 @@ function pond_theme_assets() {
     }
     wp_enqueue_script('pond-firebase', $uri . '/assets/js/firebase.js',
         array('jquery', 'buddyboss-child-js', 'mo_firebase_app_script', 'mo_firebase_auth_script', 'mo_firebase_firestore_script'),
-        $version, true);
+        filemtime(get_stylesheet_directory() . '/assets/js/firebase.js'), true);
+    wp_localize_script('pond-firebase', 'pondFirebase', array(
+        'ajaxUrl' => admin_url('admin-ajax.php'),
+        'recoverNonce' => wp_create_nonce('thepond-firebase-recover'),
+    ));
     wp_localize_script('buddyboss-child-js', 'pondPortal', array(
         'ajaxUrl' => admin_url('admin-ajax.php'),
         'trackerNonce' => wp_create_nonce('pond-lesson-tracker'),

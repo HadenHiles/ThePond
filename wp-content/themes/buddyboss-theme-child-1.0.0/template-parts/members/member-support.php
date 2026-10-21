@@ -14,6 +14,10 @@
         <?php if (get_field('below_media')) : ?>
             <?php the_field('below_media'); ?>
         <?php endif; ?>
+        <section class="pond-support-faq pond-faq" aria-labelledby="pond-support-faq-title">
+            <h2 id="pond-support-faq-title">Common questions</h2>
+            <?php get_template_part('template-parts/content-blocks/support-questions'); ?>
+        </section>
         <?php
         $FormID = get_field('form_id');
         ?>

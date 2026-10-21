@@ -36,33 +36,62 @@
         //     }
         // }, 100);
 
-        /* Email/password sign up */
-        var $signupForm = $('#register-form-wrapper .mepr-signup-form');
-        if ($signupForm.length == 1) {
-            var fbUserCreated = false;
-            $(".mepr-signup-form .mepr-submit").click((e) => {
-                if (!fbUserCreated) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    var email = $("#user_email1").val();
-                    var pass = $("#mepr_user_password1").val();
-                    var confirm_pass = $("#mepr_user_password_confirm1").val();
-                    if (pass == confirm_pass) {
-                        auth.createUserWithEmailAndPassword(email, pass)
-                            .then(function (credential) {
-                                fbUserCreated = true;
-                                setCookie("request_path", "/login", 1);
-                                $(".mepr-signup-form .mepr-submit").trigger('click');
-                            })
-                            .catch(function (error) {
-                                console.error(error);
-                                fbUserCreated = true;
-                                setCookie("request_path", "/login", 1);
-                                $(".mepr-signup-form .mepr-submit").trigger('click');
-                            });
+        /*
+         * Email/password sign-ups create their Firebase user on the server once MemberPress
+         * saves the account (thepond-community/portal/firebase-sync.php). Members whose
+         * Firebase user is still missing are repaired from the login and reset forms below.
+         */
+        function isMissingFirebaseAccount(error) {
+            return !!error && (error.code == "auth/user-not-found" ||
+                error.code == "auth/invalid-login-credentials" ||
+                error.code == "auth/invalid-credential" ||
+                String(error.message).indexOf("INVALID_LOGIN_CREDENTIALS") !== -1);
+        }
+
+        function recoverFirebaseAccount(data) {
+            if (typeof pondFirebase === "undefined") {
+                return Promise.reject(new Error("Firebase recovery is not configured."));
+            }
+            return Promise.resolve($.ajax({
+                url: pondFirebase.ajaxUrl,
+                method: "POST",
+                dataType: "json",
+                data: $.extend({ action: "thepond_firebase_recover", nonce: pondFirebase.recoverNonce }, data)
+            }));
+        }
+
+        /* Email/password login: create the missing Firebase user when the WordPress password matches */
+        if ($('#mepr_loginform').length == 1) {
+            var signInWithPassword = auth.signInWithEmailAndPassword.bind(auth);
+            auth.signInWithEmailAndPassword = function (email, pass) {
+                return signInWithPassword(email, pass).catch(function (error) {
+                    if (!isMissingFirebaseAccount(error)) {
+                        throw error;
                     }
-                }
-            });
+                    return recoverFirebaseAccount({ mode: "login", email: email, password: pass }).then(function (response) {
+                        if (response && response.success && response.data.reset_sent) {
+                            var message = document.createElement("p");
+                            var link = document.createElement("a");
+                            message.style.cssText = "max-width: 560px; margin: 64px auto; padding: 0 24px; font: 16px/1.6 sans-serif;";
+                            message.append("We've emailed a password reset link to ", email,
+                                ". Follow it to choose a new password, then ");
+                            link.href = "/login/";
+                            link.textContent = "sign in again";
+                            message.append(link, ".");
+                            document.body.replaceChildren(message);
+                            // Keep the login form from reporting a failed sign-in.
+                            return new Promise(function () { });
+                        }
+                        if (response && response.success && response.data.created) {
+                            return signInWithPassword(email, pass);
+                        }
+                        throw error;
+                    }, function (recoveryError) {
+                        console.error(recoveryError);
+                        throw error;
+                    });
+                });
+            };
         }
 
         /* Password reset */
@@ -76,38 +105,54 @@
                     $('#mepr_forgot_password_form #wp-submit').css({ 'filter': 'brightness(0.4)' });
 
                     if ($('#mepr_user_or_email').val().length > 0) {
-                        auth.sendPasswordResetEmail($('#mepr_user_or_email').val(), null)
-                            .then(function () {
-                                // Password reset email sent.
-                                sentFirebaseResetEmail = true;
-                                $('#pw_reset_result p').html('');
-                                $('#pw_reset_result p').html(`An email has been sent to ${$('#mepr_user_or_email').val()} with instructions on how to reset your password.`).css({ 'color': '#4BB543' });
-                                // $('#mepr_forgot_password_form').submit(); This sends password reset link through wordpress (not needed since we only allow signing in with firebase)
-                            })
+                        var resetEmail = $('#mepr_user_or_email').val().trim();
+                        var showResetSent = function () {
+                            sentFirebaseResetEmail = true;
+                            $('#pw_reset_result p').text(`An email has been sent to ${resetEmail} with instructions on how to reset your password.`).css({ 'color': '#4BB543' });
+                        };
+                        var showResetError = function (error) {
+                            var timeoutLength = 3000;
+                            console.warn(error);
+                            var errMsg = "Error sending password reset email.";
+
+                            // Set error.code specific error messages
+                            if (error.code == "auth/too-many-requests") {
+                                errMsg = "Too many reset attempts, please try again later.";
+                            } else if (error.code == "auth/invalid-email") {
+                                errMsg = "The email address is badly formatted.";
+                            } else if (error.code == "auth/user-not-found") {
+                                errMsg = `Email address not found.</br></br>If you believe this is a mistake, please contact <a href="mailto:thepondsupport@howtohockey.com">thepondsupport@howtohockey.com</a>`;
+                                timeoutLength = 10000;
+                            }
+
+                            $('#pw_reset_result p').html(errMsg).css({ 'color': '#cc3333' });
+                            $('#mepr_forgot_password_form #wp-submit').attr('disabled', true);
+
+                            setTimeout(() => {
+                                $('#pw_reset_result p').html('').css({ 'color': '#000' });
+                                $('#mepr_forgot_password_form #wp-submit').attr('disabled', false);
+                                $('#mepr_forgot_password_form #wp-submit').removeAttr('style');
+                            }, timeoutLength);
+                        };
+
+                        auth.sendPasswordResetEmail(resetEmail, null)
+                            .then(showResetSent)
                             .catch(function (error) {
-                                var timeoutLength = 3000;
-                                console.warn(error);
-                                var errMsg = "Error sending password reset email.";
-
-                                // Set error.code specific error messages
-                                if (error.code == "auth/too-many-requests") {
-                                    errMsg = "Too many reset attempts, please try again later.";
-                                } else if (error.code == "auth/invalid-email") {
-                                    errMsg = "The email address is badly formatted.";
-                                } else if (error.code == "auth/user-not-found") {
-                                    errMsg = `Email address not found.</br></br>If you believe this is a mistake, please contact <a href="mailto:thepondsupport@howtohockey.com">thepondsupport@howtohockey.com</a>`;
-                                    timeoutLength = 10000;
+                                if (!isMissingFirebaseAccount(error)) {
+                                    showResetError(error);
+                                    return;
                                 }
-
-                                $('#pw_reset_result p').html('');
-                                $('#pw_reset_result p').html(errMsg).css({ 'color': '#cc3333' });
-                                $('#mepr_forgot_password_form #wp-submit').attr('disabled', true);
-
-                                setTimeout(() => {
-                                    $('#pw_reset_result p').html('').css({ 'color': '#000' });
-                                    $('#mepr_forgot_password_form #wp-submit').attr('disabled', false);
-                                    $('#mepr_forgot_password_form #wp-submit').removeAttr('style');
-                                }, timeoutLength);
+                                // The member may exist in WordPress without a Firebase user; create it and send the reset.
+                                recoverFirebaseAccount({ mode: "reset", email: resetEmail }).then(function (response) {
+                                    if (response && response.success) {
+                                        showResetSent();
+                                    } else {
+                                        showResetError(error);
+                                    }
+                                }, function (xhr) {
+                                    showResetError(xhr && xhr.status == 429 ? { code: "auth/too-many-requests" } :
+                                        xhr && xhr.status == 404 ? error : {});
+                                });
                             });
                     }
                 } else {
