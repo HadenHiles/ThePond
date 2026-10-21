@@ -16,7 +16,6 @@ add_action('admin_init', 'thepond_analytics_register_setting');
 add_action('admin_menu', 'thepond_analytics_settings_menu');
 add_action('admin_post_thepond_analytics_test', 'thepond_analytics_handle_test');
 add_action('admin_post_thepond_analytics_setup', 'thepond_analytics_handle_setup');
-add_action('admin_notices', 'thepond_analytics_admin_notice');
 add_filter('plugin_action_links_' . plugin_basename(THEPOND_ANALYTICS_FILE), 'thepond_analytics_action_links');
 
 function thepond_analytics_defaults() {
@@ -133,7 +132,8 @@ function thepond_analytics_sanitize_settings($input) {
         delete_option(THEPOND_ANALYTICS_SA_OPTION);
         thepond_analytics_flush_cache();
     } elseif (!empty($input['service_account_json'])) {
-        $result = thepond_analytics_store_service_account(wp_unslash($input['service_account_json']));
+        // options.php already unslashes input; unslashing again would strip the key's \n escapes.
+        $result = thepond_analytics_store_service_account($input['service_account_json']);
         if (is_wp_error($result)) {
             add_settings_error(THEPOND_ANALYTICS_OPTION, 'service_account', $result->get_error_message());
         }
@@ -195,6 +195,7 @@ function thepond_analytics_render_settings() {
         <h1><?php esc_html_e('Pond Analytics', 'thepond-analytics'); ?></h1>
         <p><?php esc_html_e('Tracks landing page clicks, signups and member activity, then summarizes it on the Dashboard and under MemberPress → Growth & Engagement. Staff accounts are never tracked.', 'thepond-analytics'); ?></p>
         <?php settings_errors(THEPOND_ANALYTICS_OPTION); ?>
+        <?php thepond_analytics_tool_notice(); ?>
         <form method="post" action="options.php">
             <?php settings_fields('thepond_analytics'); ?>
             <h2><?php esc_html_e('Tracking', 'thepond-analytics'); ?></h2>
@@ -306,7 +307,8 @@ function thepond_analytics_handle_setup() {
     thepond_analytics_finish_tool($result['lines'], $result['ok']);
 }
 
-function thepond_analytics_admin_notice() {
+// Printed by the settings page itself: some admin plugins strip admin_notices callbacks.
+function thepond_analytics_tool_notice() {
     $key = 'thepond_analytics_notice_' . get_current_user_id();
     $notice = get_transient($key);
     if (!$notice) {
