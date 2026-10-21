@@ -8,9 +8,9 @@
         <?php if (get_field('above_media')) : ?>
             <?php the_field('above_media'); ?>
         <?php endif; ?>
-        <div class="faqs">
-            <?php get_template_part('template-parts/content-blocks/accordian'); ?>
-        </div>
+        <?php if (get_field('faq_sub_heading')) : ?>
+            <p class="pond-support-intro"><?php the_field('faq_sub_heading'); ?></p>
+        <?php endif; ?>
         <?php if (get_field('below_media')) : ?>
             <?php the_field('below_media'); ?>
         <?php endif; ?>

@@ -559,6 +559,13 @@ body.page-template-member_support {
 .page-template-member_support .pond-portal {
     background: transparent;
 }
+.page-template-member_support .pond-support-intro {
+    max-width: 850px;
+    margin: 0 0 8px;
+    color: var(--bb-alternate-text-color);
+    font-size: 17px;
+    line-height: 1.6;
+}
 .page-template-member_support .pond-support-faq {
     max-width: 850px;
     margin: 32px 0;
