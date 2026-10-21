@@ -311,6 +311,7 @@ function thepond_analytics_active_member_sql() {
     $lifetime = class_exists('MeprUtils') ? MeprUtils::db_lifetime() : '0000-00-00 00:00:00';
     return $wpdb->prepare(
         "SELECT DISTINCT tr.user_id FROM {$mepr_db->transactions} tr
+         INNER JOIN {$wpdb->users} u ON u.ID = tr.user_id
          WHERE (tr.expires_at >= %s OR tr.expires_at IS NULL OR tr.expires_at = %s) AND tr.status IN ('complete','confirmed')",
         $now,
         $lifetime
