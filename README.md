@@ -855,6 +855,41 @@ or rewrite all BuddyBoss media to public CDN URLs. Videos, documents, avatars,
 covers, private/group restrictions and remote deletion still require a successful
 end-to-end verification.
 
+### Dashboard Community feature
+
+The member dashboard features **The Pond Community** immediately above the
+existing Facebook group card. The navy/cyan introduction links to BuddyBoss's
+native activity directory, with two newest site-wide member posts alongside it.
+Previews contain an avatar, display name, a text-only excerpt capped at 30 words
+and a direct conversation link; there are no embedded players or inline comments.
+Stored apostrophe escapes and HTML entities are decoded, and paragraph/list
+boundaries become spaces. Emoji remain inline text-sized images rather than
+inheriting avatar dimensions. The card omits a redundant members-only label,
+with scoped heading margins to avoid legacy section-header spacing overrides.
+An empty feed shows an invitation to start a conversation instead.
+
+The feature checks the integration's current membership/open-state policy and
+the active activity component before querying or rendering. Queries include only
+`activity_update` posts from the `activity` component with `public` or `loggedin`
+privacy and `show_hidden=false`; group, friends-only, self-only and system
+activity are not featured. BuddyBoss's native query filters remain in place.
+There is no separate feed cache or custom posting endpoint.
+
+On desktop, Community and Facebook remain above LearnDash profile/progress.
+On mobile, both move together to the existing Facebook position before Skills
+Vault, keeping training content first and Community above Facebook. With
+JavaScript unavailable, both remain in their original position.
+
+Deploy these child-theme files together:
+
+- `inc/pond.php`
+- `members-templates/member-dashboard.php`
+- `assets/css/custom.css`
+- `assets/js/custom.js`
+
+Regression coverage lives in the integration's `tests/portal-test.php` and
+`tests/appearance-test.cjs`. The public landing stylesheet is unchanged.
+
 ### Login, mobile dashboard, Facebook group and lesson discussions (deployed)
 
 - Authenticated visits to the Firebase login page now go to the member dashboard

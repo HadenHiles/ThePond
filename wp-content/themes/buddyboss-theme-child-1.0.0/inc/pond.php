@@ -164,6 +164,67 @@ function pond_theme_lesson_comments_open($open, $post_id) {
     return get_post_type($post_id) === 'sfwd-lessons' && function_exists('bp_is_active') && bp_is_active('activity') ? false : $open;
 }
 
+function pond_theme_dashboard_community() {
+    if (!is_user_logged_in() ||
+        !function_exists('thepond_community_access_error') || thepond_community_access_error() ||
+        !function_exists('bp_is_active') || !bp_is_active('activity')) {
+        return;
+    }
+    $feed_url = bp_get_activity_directory_permalink();
+    // Feature only site-wide conversations, never group or restricted-audience posts.
+    $result = bp_activity_get(array(
+        'per_page' => 2,
+        'sort' => 'DESC',
+        'order_by' => 'date_recorded',
+        'display_comments' => false,
+        'show_hidden' => false,
+        'privacy' => array('public', 'loggedin'),
+        'filter' => array('object' => 'activity', 'action' => 'activity_update'),
+    ));
+    $activities = $result['activities'];
+    ?>
+    <section class="pond-dashboard-community" aria-labelledby="pond-dashboard-community-heading">
+        <div class="pond-dashboard-community__intro">
+            <h2 id="pond-dashboard-community-heading"><?php esc_html_e('The Pond Community', 'buddyboss-theme-child'); ?></h2>
+            <p><?php esc_html_e('Ask questions, share your progress, and connect with other Pond members. All right here.', 'buddyboss-theme-child'); ?></p>
+            <a class="pond-dashboard-community__button" href="<?php echo esc_url($feed_url); ?>">
+                <?php esc_html_e('Explore the Community', 'buddyboss-theme-child'); ?> <span aria-hidden="true">&rarr;</span>
+            </a>
+        </div>
+        <div class="pond-dashboard-community__conversations">
+            <?php if ($activities) : ?>
+                <h3><?php esc_html_e('Latest conversations', 'buddyboss-theme-child'); ?></h3>
+                <ul class="pond-dashboard-community__posts">
+                    <?php foreach ($activities as $activity) : ?>
+                        <li>
+                            <?php echo bp_core_fetch_avatar(array('item_id' => $activity->user_id, 'type' => 'thumb', 'width' => 40, 'height' => 40, 'alt' => '')); ?>
+                            <div>
+                                <strong><?php echo esc_html(bp_core_get_user_displayname($activity->user_id)); ?></strong>
+                                <p><?php echo esc_html(pond_theme_activity_excerpt($activity->content)); ?></p>
+                                <a href="<?php echo esc_url(bp_activity_get_permalink($activity->id, $activity)); ?>"><?php esc_html_e('View conversation', 'buddyboss-theme-child'); ?><span class="screen-reader-text"><?php echo esc_html(' ' . bp_core_get_user_displayname($activity->user_id)); ?></span></a>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php else : ?>
+                <h3><?php esc_html_e('Start a conversation', 'buddyboss-theme-child'); ?></h3>
+                <p><?php esc_html_e('What are you working on? Introduce yourself, ask a training question, or share a recent win with the community.', 'buddyboss-theme-child'); ?></p>
+                <a href="<?php echo esc_url($feed_url); ?>"><?php esc_html_e('Share your first post', 'buddyboss-theme-child'); ?> <span aria-hidden="true">&rarr;</span></a>
+            <?php endif; ?>
+        </div>
+    </section>
+    <?php
+}
+
+function pond_theme_activity_excerpt($content) {
+    $content = wp_unslash($content);
+    $content = preg_replace('#<p[^>]*>\s*' . preg_quote(__('Lesson:', 'buddyboss-theme-child'), '#') . '.*?</p>#s', '', $content);
+    $content = preg_replace('#<br\b[^>]*>|</(?:p|div|li|h[1-6]|blockquote|ul|ol)>#i', ' ', $content);
+    $content = html_entity_decode(wp_strip_all_tags($content), ENT_QUOTES | ENT_HTML5, 'UTF-8');
+    $content = preg_replace('/[\s\x{00a0}]+/u', ' ', $content);
+    return wp_trim_words(trim($content), 30, '…');
+}
+
 function pond_theme_lesson_activities($lesson_id, $limit = 5) {
     if (!function_exists('bp_activity_get')) {
         return array();
@@ -209,7 +270,7 @@ function pond_theme_lesson_discussion_panel($lesson_id) {
                         <?php echo bp_core_fetch_avatar(array('item_id' => $activity->user_id, 'type' => 'thumb', 'width' => 36, 'height' => 36)); ?>
                         <div>
                             <strong><?php echo esc_html(bp_core_get_user_displayname($activity->user_id)); ?></strong>
-                            <p><?php echo esc_html(wp_trim_words(wp_strip_all_tags(preg_replace('#<p[^>]*>\s*' . preg_quote(__('Lesson:', 'buddyboss-theme-child'), '#') . '.*?</p>#s', '', $activity->content)), 30, '…')); ?></p>
+                            <p><?php echo esc_html(pond_theme_activity_excerpt($activity->content)); ?></p>
                             <a href="<?php echo esc_url(bp_activity_get_permalink($activity->id, $activity)); ?>"><?php esc_html_e('View and reply', 'buddyboss-theme-child'); ?></a>
                         </div>
                     </li>

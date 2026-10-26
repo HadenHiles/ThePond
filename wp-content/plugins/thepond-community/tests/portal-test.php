@@ -274,7 +274,7 @@ function get_template_part($slug) {
 function wp_reset_postdata() { $GLOBALS['reset_count']++; }
 class MeprUser {
     public function __construct($id = 0) {}
-    public function is_active() { return true; }
+    public function is_active() { return $GLOBALS['membership_active'] ?? true; }
 }
 class MeprOptions {
     public static function fetch() { return new self(); }
@@ -818,6 +818,51 @@ foreach (array(
 }
 
 $member = true; $access = true; $post_type = 'sfwd-lessons'; $post_id = 3250; $logged_in = true;
+add_filter('pre_option_thepond_community_open', '__return_true');
+$lesson_activities = array(
+    (object) array('id' => 77, 'user_id' => 5, 'content' => '<p>Working on reach &amp; control</p><p class="pond-lesson-link">Lesson: <a href="/item/3250">Title 3250</a></p>'),
+    (object) array('id' => 78, 'user_id' => 6, 'content' => '<p>' . str_repeat('practice ', 45) . '</p><iframe src="/video/"></iframe>'),
+);
+ob_start();
+pond_theme_dashboard_community();
+$community_html = ob_get_clean();
+check(strpos($community_html, 'The Pond Community') !== false && strpos($community_html, 'Explore the Community') !== false, 'Dashboard Community feature missing');
+check(strpos($community_html, 'Members only') === false, 'Dashboard Community repeats the members-only context');
+check(strpos($community_html, home_url('/news-feed/')) !== false, 'Dashboard Community does not use the native feed URL');
+check(substr_count($community_html, '<li>') === 2 && substr_count($community_html, 'View conversation') === 2, 'Dashboard must render two conversation previews');
+check(strpos($community_html, 'Member 5') !== false && strpos($community_html, '/avatar-5.jpg') !== false, 'Community preview omits member identity');
+check(strpos($community_html, '/news-feed/p/77/') !== false && strpos($community_html, '/news-feed/p/78/') !== false, 'Community previews do not link to individual threads');
+check(strpos($community_html, 'Lesson: ') === false && strpos($community_html, '<iframe') === false, 'Community preview embeds media or repeats lesson attribution');
+check(substr_count($community_html, 'practice') === 30, 'Community excerpt is not capped at 30 words');
+check($activity_query['per_page'] === 2 && $activity_query['sort'] === 'DESC' && $activity_query['order_by'] === 'date_recorded', 'Community does not request the two newest posts');
+check($activity_query['filter'] === array('object' => 'activity', 'action' => 'activity_update'), 'Community includes group or system activity');
+check($activity_query['privacy'] === array('public', 'loggedin') && $activity_query['show_hidden'] === false, 'Community query allows restricted-audience or hidden posts');
+check($activity_query['display_comments'] === false, 'Community preview includes inline comments');
+check(strpos(pond_theme_activity_excerpt('<b>Progress</b> <img src=x onerror=alert(1)>'), '<') === false, 'Activity excerpt retains unsafe HTML');
+check(pond_theme_activity_excerpt("<p>Hey, it\\'s Coach Jeremy. I\\'m here.</p>") === "Hey, it's Coach Jeremy. I'm here.", 'Activity excerpt retains stored apostrophe escapes');
+check(pond_theme_activity_excerpt('<p>First paragraph</p><p>Second<br>line</p><ul><li>First item</li><li>Second item</li></ul>') === 'First paragraph Second line First item Second item', 'Activity excerpt joins paragraphs, lines or list items');
+check(pond_theme_activity_excerpt('<p>Skills &amp; drills&nbsp;&nbsp;are &#039;fun&#039;.</p>') === "Skills & drills are 'fun'.", 'Activity excerpt double-escapes entities or retains nonbreaking whitespace');
+$dashboard_source = file_get_contents(get_stylesheet_directory() . '/members-templates/member-dashboard.php');
+check(strpos($dashboard_source, 'pond_theme_dashboard_community();') < strpos($dashboard_source, 'id="facebook-secret-phrase"'), 'Community must appear above Facebook');
+$lesson_activities = array();
+ob_start();
+pond_theme_dashboard_community();
+$community_html = ob_get_clean();
+check(strpos($community_html, 'Start a conversation') !== false && strpos($community_html, 'Share your first post') !== false, 'Quiet community lacks an invitation to post');
+check(strpos($community_html, 'Explore the Community') !== false && strpos($community_html, 'Latest conversations') === false, 'Quiet community loses its CTA or renders an empty feed');
+foreach (array('logged_in', 'activity_active', 'membership_active') as $flag) {
+    $GLOBALS[$flag] = false;
+    unset($activity_query);
+    ob_start();
+    pond_theme_dashboard_community();
+    check(ob_get_clean() === '' && !isset($activity_query), 'Dashboard queries or exposes Community without access: ' . $flag);
+    $GLOBALS[$flag] = true;
+}
+remove_filter('pre_option_thepond_community_open', '__return_true');
+unset($activity_query);
+ob_start();
+pond_theme_dashboard_community();
+check(ob_get_clean() === '' && !isset($activity_query), 'Dashboard exposes Community before it opens');
 add_filter('pre_option_thepond_community_open', '__return_true');
 check(!has_filter('bbp_get_form_topic_title') && !has_filter('bbp_get_form_topic_content'), 'Forum discussion prefill still active');
 check(pond_theme_lesson_discussion_allowed(3250), 'Lesson discussion unavailable to members with course access');

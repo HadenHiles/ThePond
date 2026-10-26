@@ -127,12 +127,14 @@ test("saved navy and cyan action text exceed WCAG AA normal-text contrast", () =
     }
 });
 
-test("mobile dashboard moves one Facebook card above Skills Vault and restores desktop placement", () => {
+test("mobile dashboard keeps Community above Facebook while moving both cards and restoring desktop placement", () => {
+    const community = { id: "pond-dashboard-community" };
     const facebook = { id: "facebook-secret-phrase" };
+    const socialCards = { id: "pond-dashboard-social", children: [community, facebook] };
     const profile = { id: "ld-profile" };
     const vault = { id: "skills-vault" };
     const courses = {
-        children: [facebook, profile],
+        children: [socialCards, profile],
         insertBefore(node, next) {
             node.parentNode.children.splice(node.parentNode.children.indexOf(node), 1);
             this.children.splice(this.children.indexOf(next), 0, node);
@@ -143,8 +145,8 @@ test("mobile dashboard moves one Facebook card above Skills Vault and restores d
         children: [{ id: "courses" }, { id: "challenges" }, { id: "move-makers" }, { id: "routines" }, vault],
         insertBefore: courses.insertBefore,
     };
-    facebook.parentNode = courses;
-    facebook.nextSibling = profile;
+    socialCards.parentNode = courses;
+    socialCards.nextSibling = profile;
     vault.parentNode = portal;
     const media = {
         matches: true,
@@ -165,20 +167,42 @@ test("mobile dashboard moves one Facebook card above Skills Vault and restores d
         "../../../themes/buddyboss-theme-child-1.0.0/assets/js/custom.js"), "utf8"), {
         jQuery: jquery,
         document: {
-            querySelector(selector) { return selector.endsWith("#skills-vault") ? vault : facebook; },
+            querySelector(selector) { return selector.endsWith("#skills-vault") ? vault : socialCards; },
+            querySelectorAll() { return []; },
         },
         window: { matchMedia(query) { assert.equal(query, "(max-width: 799px)"); return media; } },
     });
     assert.deepEqual(portal.children.map(node => node.id),
-        ["courses", "challenges", "move-makers", "routines", "facebook-secret-phrase", "skills-vault"]);
+        ["courses", "challenges", "move-makers", "routines", "pond-dashboard-social", "skills-vault"]);
     assert.deepEqual(courses.children, [profile]);
     for (const mobile of [false, true, true, false]) {
         media.matches = mobile;
         media.change();
-        assert.equal(facebook.parentNode, mobile ? portal : courses);
-        assert.equal((mobile ? portal : courses).children.filter(node => node === facebook).length, 1);
+        assert.equal(socialCards.parentNode, mobile ? portal : courses);
+        assert.equal((mobile ? portal : courses).children.filter(node => node === socialCards).length, 1);
+        assert.deepEqual(socialCards.children, [community, facebook]);
         assert.equal(courses.children.at(-1), profile);
         assert.equal(portal.children.at(-1), vault);
     }
-    assert.deepEqual(courses.children, [facebook, profile]);
+    assert.deepEqual(courses.children, [socialCards, profile]);
+});
+
+test("dashboard without accessible social cards does not move an empty padded wrapper", () => {
+    const empty = {
+        length: 0, closest() { return this; }, find() { return this; },
+        on() { return this; }, each() { return this; },
+    };
+    function jquery(selector) {
+        if (typeof selector === "function") { selector(jquery); return; }
+        return empty;
+    }
+    vm.runInNewContext(fs.readFileSync(path.join(__dirname,
+        "../../../themes/buddyboss-theme-child-1.0.0/assets/js/custom.js"), "utf8"), {
+        jQuery: jquery,
+        document: {
+            querySelector() { return { children: [] }; },
+            querySelectorAll() { return []; },
+        },
+        window: { matchMedia() { assert.fail("Empty social wrapper should stay in place"); } },
+    });
 });

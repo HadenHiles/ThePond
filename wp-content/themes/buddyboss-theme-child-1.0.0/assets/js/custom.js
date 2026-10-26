@@ -55,21 +55,21 @@ jQuery(function ($) {
         });
     });
 
-    var facebook = document.querySelector(".page-template-member-dashboard #facebook-secret-phrase");
+    var socialCards = document.querySelector(".page-template-member-dashboard .pond-dashboard-social");
     var skillsVault = document.querySelector(".page-template-member-dashboard #skills-vault");
-    if (facebook && skillsVault) {
-        var originalParent = facebook.parentNode;
-        var originalNext = facebook.nextSibling;
+    if (socialCards && socialCards.children.length && skillsVault) {
+        var originalParent = socialCards.parentNode;
+        var originalNext = socialCards.nextSibling;
         var mobileDashboard = window.matchMedia("(max-width: 799px)");
-        function placeFacebookCard() {
+        function placeSocialCards() {
             if (mobileDashboard.matches) {
-                skillsVault.parentNode.insertBefore(facebook, skillsVault);
+                skillsVault.parentNode.insertBefore(socialCards, skillsVault);
             } else {
-                originalParent.insertBefore(facebook, originalNext);
+                originalParent.insertBefore(socialCards, originalNext);
             }
         }
-        placeFacebookCard();
-        mobileDashboard.addEventListener("change", placeFacebookCard);
+        placeSocialCards();
+        mobileDashboard.addEventListener("change", placeSocialCards);
     }
 
     var $login = $("#firebase-login-page #mepr_loginform");
