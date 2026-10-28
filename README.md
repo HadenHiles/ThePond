@@ -530,6 +530,24 @@ Actual credential sign-in, OAuth popups, password-reset delivery and paid checko
 were not submitted during these checks. Verify those with an authorized test
 account; existing authentication hooks and field contracts are preserved.
 
+### Signup password expectations
+
+The BuddyBoss child theme now gives signup passwords an explicit readiness verdict.
+The meter only turns green once the configured MemberPress strength threshold and
+Firebase minimum length are met; a "Strong" password stays amber when "Very Strong"
+is required. Passphrase guidance and a screen-reader status explain what to do next.
+MemberPress scoring, submitted strength fields and password policy are unchanged.
+Account/password-reset meters are unaffected.
+
+Deploy the child theme's `functions.php`, `assets/js/signup-password.js` and
+`assets/css/custom.css` together, then purge signup page/CDN caches. No plugin files
+or settings changes are needed. Regression checks:
+`node --test wp-content/plugins/thepond-community/tests/signup-password-test.cjs`.
+These changes are prepared locally, not yet uploaded or verified in production.
+Local checks use the installed MemberPress scorer at every enforced threshold;
+an inert browser preview checks rejected/accepted/empty states at 1440px, 390px
+and 320px in light/dark mode. No authentication or payment forms were submitted.
+
 ### Login/signup refinements (uploaded and verified)
 
 Login and membership signup receive an auth-only `pond-auth-page` body class.

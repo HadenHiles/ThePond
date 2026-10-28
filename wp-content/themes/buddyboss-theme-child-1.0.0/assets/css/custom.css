@@ -1106,6 +1106,29 @@ body.pond-auth-page #masthead { left: 0; right: 0; width: 100%; }
 .pond-auth-page #content .mepr-signup-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 20px; }
 .pond-auth-page #content .mepr-signup-form > * { grid-column: 1 / -1; }
 .pond-auth-page #content .mepr-signup-form > :is(.mepr_first_name, .mepr_last_name, .mepr_password, .mepr_password_confirm) { grid-column: auto; }
+.mepr-signup-form .mp-password-strength-area[data-pond-password-state] .mp-password-strength-display {
+    max-width: 100%;
+    width: auto;
+    padding: 8px 12px;
+    border-radius: 6px;
+    background: #eee;
+    border: 1px solid #707071;
+    color: #333;
+}
+.mepr-signup-form .mp-password-strength-area[data-pond-password-state] .mp-password-strength-display + span { display: none; }
+.mepr-signup-form .mp-password-strength-area[data-pond-password-state="rejected"] .mp-password-strength-display {
+    background: #fff0cf;
+    border-color: #896000;
+    color: #674800;
+}
+.mepr-signup-form .mp-password-strength-area[data-pond-password-state="accepted"] .mp-password-strength-display {
+    background: #e0f3e5;
+    border-color: #28743a;
+    color: #205e30;
+}
+.mepr-signup-form .mp-password-strength-area .pond-password-guidance,
+.mepr-signup-form .mp-password-strength-area .pond-password-status { margin: 8px 0 0; font-size: 14px; line-height: 1.5; }
+.mepr-signup-form .mp-password-strength-area .pond-password-status { font-weight: 600; }
 .pond-auth-page #content .mepr-signup-form :is(select, textarea, .select2-selection--single) {
     width: 100%;
     min-height: 48px;

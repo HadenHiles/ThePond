@@ -51,6 +51,24 @@ function buddyboss_theme_child_scripts_styles()
 
   // Javascript
   wp_enqueue_script( 'buddyboss-child-js', get_stylesheet_directory_uri().'/assets/js/custom.js', array('jquery'), filemtime(get_stylesheet_directory().'/assets/js/custom.js'), true );
+
+  if ( wp_script_is( 'mepr-zxcvbn', 'registered' ) && class_exists( 'MeprZxcvbnCtrl' ) ) {
+    $required_text = MeprZxcvbnCtrl::get_required_str();
+    $minimum_length = defined( 'THEPOND_FIREBASE_MIN_PASSWORD' ) ? THEPOND_FIREBASE_MIN_PASSWORD : 0;
+    wp_enqueue_script( 'pond-signup-password', get_stylesheet_directory_uri().'/assets/js/signup-password.js', array('jquery', 'mepr-zxcvbn'), filemtime(get_stylesheet_directory().'/assets/js/signup-password.js'), true );
+    wp_localize_script( 'pond-signup-password', 'pondSignupPassword', array(
+      'requiredScore' => MeprZxcvbnCtrl::get_required_int(),
+      'minLength' => $minimum_length,
+      'guidance' => ( $required_text ? $required_text . '. ' : '' ) .
+        ( $minimum_length ? sprintf( __( 'Use at least %d characters. ', 'buddyboss-theme-child' ), $minimum_length ) : '' ) .
+        __( 'Try a long passphrase with several unrelated words. Avoid common phrases and personal information.', 'buddyboss-theme-child' ),
+      'empty' => __( 'Enter a password to check it.', 'buddyboss-theme-child' ),
+      'checking' => __( 'Checking password strength...', 'buddyboss-theme-child' ),
+      'tooWeak' => __( 'Not ready: choose a stronger password.', 'buddyboss-theme-child' ),
+      'tooShort' => sprintf( __( 'Not ready: use at least %d characters.', 'buddyboss-theme-child' ), $minimum_length ),
+      'accepted' => __( 'Meets password requirements.', 'buddyboss-theme-child' ),
+    ) );
+  }
 }
 add_action( 'wp_enqueue_scripts', 'buddyboss_theme_child_scripts_styles', 9999 );
 
