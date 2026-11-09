@@ -24,6 +24,9 @@ function page(cfg, options = {}) {
     if (options.huBlocking !== undefined) {
         w.huOptions = { blocking: options.huBlocking };
     }
+    if (options.fazCategories) {
+        w.getFazConsent = () => ({ categories: options.fazCategories });
+    }
     (options.cookies || []).forEach((cookie) => { w.document.cookie = cookie; });
     Object.entries(options.session || {}).forEach(([key, value]) => w.sessionStorage.setItem(key, value));
     w.pondAnalytics = cfg;
@@ -102,6 +105,30 @@ check(scripts(w).filter((src) => src.includes('googletagmanager.com/gtag/js?id=G
 let src = JSON.parse(cookie(w, 'pond_src'));
 check(src.f.s === 'youtube' && src.f.m === 'video' && src.f.c === 'spring' && src.f.r === 'www.youtube.com' && src.v === 1, 'first touch is remembered');
 check(w.clarity.q.some((args) => args[0] === 'set' && args[1] === 'visitor_type' && args[2] === 'prospect'), 'clarity is tagged');
+
+// FAZ may initialize after the deferred tracker. It must fail closed until ready.
+const fazConfig = { measurementId: 'G-TEST', pageType: 'landing', clarityId: 'clar1', consentProvider: 'faz' };
+w = page(fazConfig, { huBlocking: false });
+check(scripts(w).length === 0 && cookie(w, 'pond_src') === null, 'FAZ waits even without its runtime or the legacy blocker');
+w.document.dispatchEvent(new w.CustomEvent('set-consent.hu', { detail: { categories: { 3: true, 4: true } } }));
+check(scripts(w).length === 0, 'legacy consent cannot bypass FAZ');
+w.document.dispatchEvent(new w.CustomEvent('fazcookie_consent_ready', { detail: { accepted: ['necessary'], rejected: ['analytics', 'marketing'] } }));
+check(scripts(w).length === 0, 'FAZ rejection keeps trackers blocked');
+w.document.dispatchEvent(new w.CustomEvent('fazcookie_consent_update', { detail: { accepted: ['necessary', 'analytics'], rejected: ['marketing'] } }));
+check(scripts(w).filter((src) => src.includes('googletagmanager')).length === 1, 'FAZ analytics consent loads GA');
+check(cookie(w, 'pond_src') !== null && !scripts(w).some((src) => src.includes('clarity.ms')), 'FAZ analytics consent allows attribution but not recordings');
+w.document.dispatchEvent(new w.CustomEvent('fazcookie_consent_update', { detail: { accepted: ['necessary', 'analytics', 'marketing'] } }));
+check(scripts(w).filter((src) => src.includes('googletagmanager')).length === 1, 'FAZ consent updates do not duplicate GA');
+check(scripts(w).filter((src) => src.includes('clarity.ms')).length === 1, 'FAZ marketing consent loads recordings');
+w.document.dispatchEvent(new w.CustomEvent('fazcookie_consent_update', { detail: { accepted: ['analytics', 'marketing'] } }));
+check(scripts(w).filter((src) => src.includes('clarity.ms')).length === 1, 'FAZ consent updates do not duplicate recordings');
+w = page(fazConfig, { fazCategories: { analytics: true, marketing: false } });
+check(scripts(w).some((src) => src.includes('googletagmanager')) && !scripts(w).some((src) => src.includes('clarity.ms')), 'FAZ restored consent works when runtime initialized first');
+w = page(fazConfig, { fazCategories: { analytics: false, marketing: false } });
+check(scripts(w).length === 0 && cookie(w, 'pond_src') === null, 'FAZ stored rejection stays blocked');
+w = page(fazConfig);
+w.document.dispatchEvent(new w.CustomEvent('fazcookie_consent_ready', { detail: { accepted: ['analytics', 'marketing'], action: 'restore' } }));
+check(scripts(w).length === 2, 'FAZ restored consent works when runtime initializes after tracker');
 
 // Returning visitor in a new session keeps the first touch and counts the visit.
 w = page({ measurementId: 'G-TEST', pageType: 'landing' }, {

@@ -2,7 +2,7 @@
  * The Pond Analytics tracker.
  *
  * Reads window.pondAnalytics (printed by the plugin), waits for cookie consent
- * from the Hu-manity banner, then loads GA4 and (optionally) Microsoft Clarity
+ * from FAZ or the legacy Hu-manity banner, then loads GA4 and (optionally) Microsoft Clarity
  * and records landing, signup, login and member content events.
  */
 (function (w, d) {
@@ -55,6 +55,11 @@
     }
 
     function consentGranted(category) {
+        if (cfg.consentProvider === 'faz') {
+            var slug = category === CONSENT_ANALYTICS ? 'analytics' : 'marketing';
+            var faz = typeof w.getFazConsent === 'function' ? w.getFazConsent() : null;
+            return !!(faz && faz.categories && faz.categories[slug] === true);
+        }
         var hu = w.huOptions;
         if (!hu || !hu.blocking) {
             return true;
@@ -79,14 +84,21 @@
         var done = false;
         function onConsent(event) {
             var categories = event && event.detail && event.detail.categories;
-            if (done || !((categories && categories[category] === true) || consentGranted(category))) {
+            var fazAccepted = event && event.detail && event.detail.accepted;
+            var granted = cfg.consentProvider === 'faz'
+                ? Array.isArray(fazAccepted) && fazAccepted.indexOf(category === CONSENT_ANALYTICS ? 'analytics' : 'marketing') > -1
+                : categories && categories[category] === true;
+            if (done || !(granted || consentGranted(category))) {
                 return;
             }
             done = true;
-            d.removeEventListener('set-consent.hu', onConsent);
+            consentEvents.forEach(function (name) { d.removeEventListener(name, onConsent); });
             callback();
         }
-        d.addEventListener('set-consent.hu', onConsent);
+        var consentEvents = cfg.consentProvider === 'faz'
+            ? ['fazcookie_consent_ready', 'fazcookie_consent_update']
+            : ['set-consent.hu'];
+        consentEvents.forEach(function (name) { d.addEventListener(name, onConsent); });
     }
 
     function loadScript(src, onload) {

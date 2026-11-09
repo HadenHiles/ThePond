@@ -126,6 +126,9 @@ function thepond_analytics_tracker_config($page_type = null) {
         'currency' => class_exists('MeprOptions') ? MeprOptions::fetch()->currency_code : 'USD',
         'loggedIn' => is_user_logged_in(),
     ));
+    if (class_exists('FazCookie\\Frontend\\Frontend')) {
+        $config['consentProvider'] = 'faz';
+    }
 
     if (!empty($settings['clarity_id']) && in_array($context['pageType'], (array) $settings['clarity_pages'], true)) {
         $config['clarityId'] = $settings['clarity_id'];
@@ -160,11 +163,11 @@ function thepond_analytics_print_head($page_type = null) {
 
 /**
  * The landing page is a standalone template without wp_head(), so it gets the
- * cookie banner and tracker directly. The banner must print first so it can
- * hold back analytics until the visitor accepts.
+ * tracker directly. The child theme bridges FAZ before this callback; retain
+ * the old Cookie Notice integration for sites still using that plugin.
  */
 function thepond_analytics_print_landing_head() {
-    if (function_exists('Cookie_Notice')) {
+    if (!class_exists('FazCookie\\Frontend\\Frontend') && function_exists('Cookie_Notice')) {
         $notice = Cookie_Notice();
         if (isset($notice->frontend) && method_exists($notice->frontend, 'add_cookie_compliance')) {
             $notice->frontend->add_dns_prefetch();

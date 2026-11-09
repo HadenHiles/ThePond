@@ -115,6 +115,18 @@ use each refinement's smaller upload list for the already migrated site.
   newer Chrome versions: its vendor code registers a deprecated lifecycle handler.
   This is separate from landing animations; do not suppress console messages or
   re-enable deprecated `unload` permissions to conceal the third-party warning.
+  The standalone page bridges only FAZ Cookie Manager's registered enqueue,
+  head and footer callbacks through `inc/landing.php`; it does not run the full
+  WordPress hooks or load the member portal's assets. FAZ keeps Vimeo blocked
+  until the visitor accepts its cookies, then restores the player through its
+  own placeholder controls. This works independently of the analytics plugin.
+  The analytics tracker recognizes FAZ's consent query API and ready/update
+  events: GA/attribution require `analytics`, and Clarity requires `marketing`.
+  To deploy this integration, upload the child theme's `functions.php`,
+  `inc/landing.php` and `home.php`, plus the analytics plugin's
+  `includes/tracking.php` and `assets/tracker.js`. Purge W3 Total Cache and any
+  CDN homepage cache, then check in a fresh private window: banner visible,
+  rejecting leaves Vimeo blocked, accepting Vimeo restores the player.
   The existing Webflow script, animation IDs, slider, navigation and accordion
   hooks remain in the standalone template.
   No vendor parent theme or complete third-party plugin needs uploading/tracking.
